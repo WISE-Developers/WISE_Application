@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "cwfgmFilter.proto";
+import "projectGridFilter.proto";
+import "staticPoints.proto";
+
+package WISE.ProjectProto;
+
+
+message VectorCollection {
+    int32 version = 1;
+
+    repeated Vector vectors = 2 [deprecated = true];
+    repeated WISE.GridProto.CwfgmVectorFilter vectorData = 3;
+
+    message Vector {
+        option deprecated = true;
+
+		oneof data {
+			ProjectVectorFilter filter = 1;
+            StaticPoint points = 2 [deprecated = true];
+		}
+    }
+}

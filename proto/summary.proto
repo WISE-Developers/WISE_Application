@@ -1,0 +1,477 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+package WISE.ProjectProto;
+
+import "google/protobuf/wrappers.proto";
+import "geography.proto";
+
+/**
+ * Information about the settings used in a given
+ * scenario.
+ */
+message ScenarioReport {
+    //Did the user request the application settings in the output
+    bool output_application_settings = 1;
+    //Did the user request the scenario settings in the output
+    bool output_scenario_settings = 2;
+    //Did the user request the landscape properties in the output
+    bool output_landscape_properties = 3;
+    //Did the user request the input files in the output
+    bool output_input_files = 4;
+    //Did the user request the fuel patches in the output
+    bool output_fuel_patches = 5;
+    //Did the user request the weather patches/grids in the output
+    bool output_weather_patches_grids = 6;
+    //Did the user request the geo-location data in the output
+    bool output_geo_data = 7;
+    //Did the user request the ignitions in the output
+    bool output_ignitions = 8;
+    //Did the user request the weather streams in the output
+    bool output_weather_streams = 9;
+    //Did the user request the fuel types in the output
+    bool output_fuel_types = 10;
+    //Did the user request the scenario comments in the output
+    bool output_scenario_comments = 11;
+    //The name of the FGM file that is being run
+    google.protobuf.StringValue fgm_name = 12;
+    //The date that the report was generated on
+    string report_date = 13;
+    //The name of the scenario that the report is for
+    google.protobuf.StringValue scenario_name = 14;
+    //The start time of the scenario
+    google.protobuf.StringValue scenario_start = 15;
+    //The end time of the scenario
+    google.protobuf.StringValue scenario_end = 16;
+    //A list of ignitions that are attached to the scenario
+    repeated string ignition_ref = 17;
+    //A list of fuel breaks used by the scenario
+    repeated FuelBreak fuel_breaks = 18;
+    //A list of grid filters that are used by the scenario
+    repeated string grid_filter_ref = 19;
+    //A list of weather streams that are used by the scenario
+    repeated WeatherStream weather_streams = 20;
+    //The user comment on the scenario
+    google.protobuf.StringValue scenario_comment = 21;
+    //Burning conditions
+    repeated BurnCondition burn_conditions = 22;
+    //The type of interpolation to use for weather values
+    oneof interp {
+        WeatherInterpMethod weather_spatial_interp = 23;
+    }
+    //Is FMC override enabled
+    google.protobuf.BoolValue fmc_override_enabled = 24;
+    //The FMC override, if it is enabled
+    google.protobuf.DoubleValue fmc_override = 25;
+    //Is the terrain effect enabled
+    google.protobuf.BoolValue terrain_effect = 26;
+    //Greenup on/off dates
+    repeated SeasonalBurnCondition greenup = 27;
+    //Grass Phenology on/off dates
+    repeated SeasonalBurnCondition grass_phenology = 28;
+    //Grass Curing values
+    repeated SeasonalBurnCondition grass_curing = 29;
+    //Is breaching enabled
+    google.protobuf.BoolValue breaching_enabled = 30;
+    //Is spotting enabled
+    google.protobuf.BoolValue spotting_enabled = 31;
+    //Is percentile rate of spread enabled
+    google.protobuf.BoolValue percentile_ros_enabled = 32;
+    //If percentile rate of spread is enabled, use this value
+    google.protobuf.DoubleValue percentile_ros = 33;
+    //The display interval (ISO8601 duration)
+    google.protobuf.StringValue display_interval = 34;
+    //The timestep during acceleration (ISO8601 duration)
+    google.protobuf.StringValue accel_timestep = 35;
+    //Is dynamic threshold enabled
+    google.protobuf.BoolValue dynamic_threshold = 36;
+    //The resolution to use for distances
+    google.protobuf.DoubleValue distance_resolution = 37;
+    //The resolution to use for perimeters
+    google.protobuf.DoubleValue perimeter_resolution = 38;
+    //Should the simulation stop if the fire reaches the grid boundary
+    google.protobuf.BoolValue stop_at_boundary = 39;
+    //Should non-displayable timesteps be purged
+    google.protobuf.BoolValue purge_non_displayable = 40;
+    //The untis to use for grid cell sizes
+    google.protobuf.StringValue grid_units = 41;
+    //The grid cell size (m)
+    google.protobuf.DoubleValue grid_cell_size = 42;
+    //The number of columns in the base grid
+    google.protobuf.Int32Value grid_columns = 43;
+    //The number of rows in the base grid
+    google.protobuf.Int32Value grid_rows = 44;
+    //The X location of the lower left corner of the base grid
+    google.protobuf.DoubleValue grid_ll_x = 45;
+    //The Y location of the lower left corner of the base grid
+    google.protobuf.DoubleValue grid_ll_y = 46;
+    //The minimum elevation (m)
+    google.protobuf.DoubleValue grid_min_elev = 47;
+    //The maximum elevation (m)
+    google.protobuf.DoubleValue grid_max_elev = 48;
+    //The mean elevation (m)
+    google.protobuf.DoubleValue grid_mean_elev = 49;
+    //The median elevation (m)
+    google.protobuf.DoubleValue grid_median_elev = 50;
+    //The timezone used by the project
+    google.protobuf.StringValue time_zone = 51;
+    //A project for the entire project (if one exists)
+    google.protobuf.StringValue project_comment = 52;
+    //The name of the projection file
+    google.protobuf.StringValue projection_file = 53;
+    //The name of the fuel grid file
+    google.protobuf.StringValue fuel_grid_file = 54;
+    //The name of the lookup table file
+    google.protobuf.StringValue lookup_table_file = 55;
+    //The name of the elevation grid file
+    google.protobuf.StringValue elevation_grid_file = 56;
+    //A list of attribute filters used by the scenario
+    repeated string attribute_filters = 57;
+    //Patches applied to the fuel grid on this scenario
+    repeated FuelPatch fuel_patches = 58;
+    //The list of fuels used in this scenario
+    repeated FuelType fuel_types = 59;
+    //Weather patches and grids used by the scenario
+    repeated WeatherPatch weather_patch_grid = 60;
+    //Ignitions used by the scenario
+    repeated Ignition ignitions = 61;
+    //The version of Prometheus that created the report
+    string prometheus_version = 62;
+    //The release date of Prometheus that created the report
+    string prometheus_date = 63;
+    // delta-x
+    google.protobuf.DoubleValue dx = 64;
+    // delta-y
+    google.protobuf.DoubleValue dy = 65;
+    // delta-time
+    google.protobuf.StringValue dt = 66;
+    // delta-winddirection
+    google.protobuf.DoubleValue dwd = 67;
+    // override-winddirection
+    google.protobuf.DoubleValue owd = 68;
+    //A list of assets used by the scenario
+    repeated Asset assets = 69;
+    //Is a false origin used for internally storing grid data
+    google.protobuf.BoolValue use_false_origin = 70;
+    //Is a false scale used for internally storing grid data
+    google.protobuf.BoolValue use_false_scaling = 71;
+
+    /**
+     * Details of a fuel break that is being used by the scenario.
+     */
+    message FuelBreak {
+        //The name of the fuel break
+        string name = 1;
+        //The break width (m)
+        double width = 2;
+        //A comment for the fuel break (if one exists)
+        google.protobuf.StringValue comment = 3;
+    }
+
+    /**
+     * Details of an asset that is being used by the scenario.
+     */
+    message Asset {
+        //The name of the fuel break
+        string name = 1;
+        //The boundary width (m) to build around the asset feature (point or line), not used for a polygon
+        google.protobuf.DoubleValue boundary = 2;
+        //A comment for the asset (if one exists)
+        google.protobuf.StringValue comment = 3;
+    }
+
+    /**
+     * Details of a weather stream that is being used by the scenario.
+     */
+    message WeatherStream {
+        //Is this the primary weather stream for the scenario.
+        bool is_primary = 1;
+        //The name of the weather station that collected the weather
+        string station_name = 2;
+        //The name of the weather stream that the station is recording to
+        string stream_name = 3;
+        //The first time in the provided weather data
+        string start_time = 4;
+        //The last time in the provided weather data
+        string end_time = 5;
+        //A comment for the weather station (if one exists)
+        google.protobuf.StringValue station_comment = 6;
+        //A comment for the weather stream (if one exists)
+        google.protobuf.StringValue stream_comment = 7;
+        //The X location of the weather station
+        google.protobuf.DoubleValue station_x = 8;
+        //The Y location of the weather station
+        google.protobuf.DoubleValue station_y = 9;
+        //The elevation of the weather station (m)
+        google.protobuf.DoubleValue station_elev = 10;
+        //Yesterday's daily FFMC value
+        google.protobuf.DoubleValue yesterday_ffmc = 11;
+        //Yesterday's daily DMC value
+        google.protobuf.DoubleValue yesterday_dmc = 12;
+        //Yesterday's daily DC value
+        google.protobuf.DoubleValue yesterday_dc = 13;
+        //The precipitation for the 24 hour period before the weather stream (mm)
+        google.protobuf.DoubleValue yesterday_precip = 14;
+        //Today's starting hourly FFMC value
+        google.protobuf.DoubleValue today_hffmc = 15;
+        //The hour that today's hourly FFMC value is for
+        google.protobuf.Int32Value today_hffmc_time = 16;
+        //Were the FWI values specified with the weather conditions or were they calculated
+        google.protobuf.BoolValue specified_fwi = 17;
+        //The hourly FFMC calculation method to use
+        oneof method {
+            HffmcMethodType hffmc_method = 18;
+        }
+        //The temperature alpha value
+        google.protobuf.DoubleValue temp_alpha = 19;
+        //The temperature beta value
+        google.protobuf.DoubleValue temp_beta = 20;
+        //The temperature gamma value
+        google.protobuf.DoubleValue temp_gamma = 21;
+        //The wind alpha value
+        google.protobuf.DoubleValue wind_alpha = 22;
+        //The wind beta value
+        google.protobuf.DoubleValue wind_beta = 23;
+        //The wind gamma value
+        google.protobuf.DoubleValue wind_gamma = 24;
+
+        /**
+         * The hourly FFMC calculation method.
+         */
+        enum HffmcMethodType {
+            //Van Wagner
+            VanWagner = 0;
+            //Lawson
+            Lawson = 1;
+        }
+
+        message WeatherStreamEntry {
+            string time = 1;
+            HourlyWeather wx = 2;
+            HourlyFwi hfwi = 3;
+            DailyFwi dfwi = 4;
+
+            message HourlyWeather {
+                google.protobuf.DoubleValue dewPoint = 1;
+                google.protobuf.DoubleValue precip = 2;
+                google.protobuf.DoubleValue rh = 3;
+                google.protobuf.DoubleValue temp = 4;
+                google.protobuf.DoubleValue wd = 5;
+                google.protobuf.DoubleValue ws = 6;
+            }
+
+            message HourlyFwi {
+                google.protobuf.DoubleValue ffmc = 1;
+                google.protobuf.DoubleValue fwi = 2;
+                google.protobuf.DoubleValue isi = 3;
+            }
+
+            message DailyFwi {
+                google.protobuf.DoubleValue ffmc = 1;
+                google.protobuf.DoubleValue isi = 2;
+                google.protobuf.DoubleValue fwi = 3;
+                google.protobuf.DoubleValue dmc = 4;
+                google.protobuf.DoubleValue dc = 5;
+                google.protobuf.DoubleValue bui = 6;
+            }
+
+	    }
+
+        repeated WeatherStreamEntry wx_data = 25;
+
+        // If any of the data was imported from a file
+        bool is_imported_file = 26;
+        // If any of the data was imported from ensemble data
+        bool is_imported_ensemble = 27;
+        // If any of the data is generated from diurnal curves
+        bool is_diurnal = 28;
+        // If any of the data was modified by the user
+        bool is_user_modified = 29;
+    }
+
+    /**
+     * Burning conditions for a day of the simulation
+     */
+    message BurnCondition {
+        //The date that the burn condition is valid for
+        string condition_date = 1;
+        //The hour of the day that burning is allowed to start
+        google.protobuf.StringValue start_hour = 2;
+        //The hour of the day that burning stops
+        google.protobuf.StringValue stop_hour = 3;
+        //The minimum ISI value that will allow burning
+        google.protobuf.DoubleValue min_isi = 4;
+        //The minimum FWI value that will allow burning
+        google.protobuf.DoubleValue min_fwi = 5;
+        //The maximum wind speed that will allow burning
+        google.protobuf.DoubleValue max_ws = 6;
+        //The minimum relative humidity that will allow burning
+        google.protobuf.DoubleValue min_rh = 7;
+    }
+
+    /**
+     * Details of seasonal burning conditions.
+     */
+    message SeasonalBurnCondition {
+        //The first date that the condition is valid on
+        string start_date = 1;
+        //The last date that the condition is valid on
+        string end_date = 2;
+        //Does this override enable or disable the condition (if applicable)
+        google.protobuf.BoolValue enabled = 3;
+        //The value that this override changes the condition to (if applicable)
+        google.protobuf.DoubleValue value = 4;
+    }
+
+    /**
+     * A modification to the fuel grid.
+     */
+    message FuelPatch {
+        //The name of the fuel patch
+        string name = 1;
+        //The area that the patch covers (if this is a polygon fuel patch)
+        google.protobuf.DoubleValue area = 2;
+        //The fuel that is being replaced
+        string from_fuel = 3;
+        //The fuel that will be used instead
+        string to_fuel = 4;
+        //A comment for the fuel patch (if one exists)
+        google.protobuf.StringValue comment = 5;
+    }
+
+    /**
+     * A fuel that is used somewhere in the fuel grid for this scenario.
+     */
+    message FuelType {
+        //The name of the fuel
+        string name = 1;
+        //Was the fuel modified from its default values
+        bool is_modified = 2;
+        //The CBH setting for the fuel (if applicable)
+        google.protobuf.DoubleValue cbh = 3;
+        //The PDF setting for the fuel (if applicable)
+        google.protobuf.DoubleValue pdf = 4;
+        //The PC setting for the fuel (if applicable)
+        google.protobuf.DoubleValue pc = 5;
+        //The curing degree for the fuel (if applicable)
+        google.protobuf.DoubleValue curing_degree = 6;
+        //The GFL setting for the fuel (if applicable)
+        google.protobuf.DoubleValue gfl = 7;
+        google.protobuf.DoubleValue m3m4_c2_a = 8;
+        google.protobuf.DoubleValue m3m4_c2_b = 9;
+        google.protobuf.DoubleValue m3m4_c2_c = 10;
+        google.protobuf.DoubleValue m4_d1_a = 11;
+        google.protobuf.DoubleValue m4_d1_b = 12;
+        google.protobuf.DoubleValue m4_d1_c = 13;
+        google.protobuf.DoubleValue a = 14;
+        google.protobuf.DoubleValue b = 15;
+        google.protobuf.DoubleValue c = 16;
+        google.protobuf.DoubleValue q = 17;
+        google.protobuf.DoubleValue bui0 = 18;
+        google.protobuf.DoubleValue maxbe = 19;
+        google.protobuf.DoubleValue cfl = 20;
+        google.protobuf.DoubleValue tree_height = 21;
+        google.protobuf.DoubleValue o1ab_matted_a = 22;
+        google.protobuf.DoubleValue o1ab_matted_b = 23;
+        google.protobuf.DoubleValue o1ab_matted_c = 24;
+        google.protobuf.DoubleValue o1ab_standing_a = 25;
+        google.protobuf.DoubleValue o1ab_standing_b = 26;
+        google.protobuf.DoubleValue o1ab_standing_c = 27;
+    }
+
+    /**
+     * A weather modification layer.
+     */
+    message WeatherPatch {
+        //The patch or grid type
+        WeatherPatchType patch_type = 1;
+        //The name of the patch
+        string name = 2;
+        //The start time that the patch is valid at
+        string start_time = 3;
+        //The start hour that the patch is valid for
+        google.protobuf.StringValue start_hour = 4;
+        //The end time that the patch is valid for
+        string end_time = 5;
+        //The end hour that the patch is valid for
+        google.protobuf.StringValue end_hour = 6;
+        //The value that the patch modifies the wind direction to (if applicable)
+        google.protobuf.DoubleValue wind_direction = 7;
+        //The value that the patch modifies the wind speed to (if applicable)
+        google.protobuf.DoubleValue wind_speed = 8;
+        //A user comment for the patch (if one exists)
+        google.protobuf.StringValue comment = 9;
+        //A string describing the operation of the patch (if one exists and is applicable)
+        repeated string operations = 10;
+        //A string describing any input files associated with the grid
+        repeated string files = 11;
+        /**
+         * The weather modification grid type.
+         */
+        enum WeatherPatchType {
+            //A weather patch
+            WeatherPatch = 0;
+            //A weather grid
+            WeatherGrid = 1;
+            //A grid to modify wind speed
+            SpeedGrid = 2;
+            //A grid to modify wind direction
+            DirectionGrid = 3;
+        }
+    }
+
+    /**
+     * Details of an ignition used by the scenario.
+     */
+    message Ignition {
+        //The name of the ignition
+        string name = 1;
+        //The ignition start time
+        string start_time = 2;
+        //The ignition type
+        IgnitionType ignition_type = 3;
+        // location of the Point
+        Geography.GeoPoint pt_loc = 4;
+        //A user comment for the ignition (if one exists)
+        google.protobuf.StringValue comment = 5;
+        //The name of the FGM file that is being run
+        google.protobuf.StringValue start_time_override = 6;
+
+        /**
+         * The type of ignition that is being used by the scenario.
+         */
+        enum IgnitionType {
+            //A point ignition. More information will be provided for point ignitions
+            Point = 0;
+            //A line ignition
+            Line = 1;
+            //A polygon ignition
+            Polygon = 2;
+        }
+    }
+
+    /**
+     * The type of interpolation to use for weather data.
+     */
+    enum WeatherInterpMethod {
+        //Don't spatially interpolate FWI system values
+        None = 0;
+        //Recursively calculate FWI system values from spatially interpolated weather
+        RecursiveFromSpatiallyInterpWeather = 1;
+        //Calculate FWI system values from spatially interpolated weather
+        FromSpatiallyInterpWeather = 2;
+        //Spatially interpolate FWI system values
+        SpatiallyInterp = 3;
+    }
+}
+
+/**
+ * A wrapper around scenario reports so multiple can be output at once.
+ */
+message ScenarioReportGroup {
+    //Reports for different scenarios
+    repeated ScenarioReport reports = 1;
+}

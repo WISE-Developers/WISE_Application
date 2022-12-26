@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "google/protobuf/wrappers.proto";
+
+package WISE.ProjectProto;
+
+
+message ViewStorage {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string viewType = 2;
+    google.protobuf.Int32Value zOrder = 3;
+    uint32 id = 4;
+    bytes viewData = 5;
+    WindowPlacement placement = 6;
+
+    message WindowPlacement {
+        uint32 length = 1;
+        uint32 flags = 2;
+        uint32 showCMd = 3;
+        Point minPosition = 4;
+        Point maxPosition = 5;
+        Rect normalPosition = 6;
+
+        message Point {
+            int32 x = 1;
+            int32 y = 2;
+        }
+
+        message Rect {
+            int32 left = 1;
+            int32 top = 2;
+            int32 right = 3;
+            int32 bottom = 4;
+        }
+    }
+}
+
+message ViewCollection {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    repeated ViewStorage views = 2;
+}

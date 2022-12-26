@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "geography.proto";
+import "cwfgmFilter.proto";
+
+package WISE.ProjectProto;
+
+
+message StaticPoint {
+    option deprecated = true;
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+    uint32 color = 4;
+
+    Geography.GeoPoly points = 5;
+
+    bool valid = 6;
+    uint32 size = 7;
+    bool imported = 8;
+
+    WISE.GridProto.CwfgmVectorFilter filter = 9;
+}

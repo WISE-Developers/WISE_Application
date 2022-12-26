@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "math.proto";
+import "weatherGridFilter.proto";
+import "cwfgmFilter.proto";
+import "google/protobuf/wrappers.proto";
+
+package WISE.ProjectProto;
+
+
+message ProjectWeatherGridFilter {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+
+    WISE.WeatherProto.WeatherGridFilter filter = 4;
+}
+
+message ProjectPolyWeatherGridFilter {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+    google.protobuf.UInt32Value color = 4;
+    google.protobuf.UInt64Value size = 5;
+    bool landscape = 6;
+
+    WISE.WeatherProto.WeatherGridFilter filter = 7;
+}
+
+message ProjectAttributeGridFilter {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+    google.protobuf.UInt32Value color = 4;
+    google.protobuf.UInt64Value size = 5;
+    bool landscape = 6;
+
+    WISE.GridProto.CwfgmAttributeFilter filter = 7;
+}
+
+//I don't think some of these descriptions are correct
+message ProjectReplaceGridFilterBase {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    oneof toFuel {
+        int32 toFuelIndex = 2;
+        string toFuelName = 3;
+    }
+
+    oneof fromFuel {
+        int32 fromFuelIndex = 4;
+        string fromFuelName = 5;
+        FromFuelRule fromFuelRule = 6;
+    }
+
+    enum FromFuelRule {
+        NODATA = 0;
+        ALL_FUELS = 1;
+        ALL_COMBUSTIBLE_FUELS = 2;
+    }
+}
+
+message ProjectReplaceGridFilter {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+
+	WISE.GridProto.CwfgmReplaceGridFilter area = 4;
+    ProjectReplaceGridFilterBase filter = 5;
+}
+
+message ProjectPolyReplaceGridFilter {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+    google.protobuf.UInt32Value color = 4;
+    google.protobuf.UInt64Value size = 5;
+
+    oneof shape {
+        WISE.GridProto.CwfgmPolyReplaceGridFilter polygon = 6;
+        google.protobuf.StringValue filename = 7;
+    }
+
+    ProjectReplaceGridFilterBase filter = 8;
+}
+
+message ProjectVectorFilter {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+    uint32 color = 4;
+    uint32 fillColor = 5;
+    uint32 symbol = 6;
+    sint32 width = 7;
+    bool imported = 8;
+
+    oneof data {
+        WISE.GridProto.CwfgmVectorFilter filter = 9;
+        string filename = 10 [deprecated=true];
+        VectorFile file = 11;
+    }
+
+    /**
+     * Information for a file to import as a fire break.
+     */
+    message VectorFile {
+        option deprecated = true;
+
+        //The location of the file to import
+        string filename = 1;
+
+        //The width of the fire break
+        Math.Double fireBreakWidth = 2;
+    }
+}

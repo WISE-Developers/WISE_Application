@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "windGrid.proto";
+
+package WISE.ProjectProto;
+
+message ProjectWindGrid {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+
+    WISE.WeatherProto.WindGrid.GridType type = 4;
+
+    WISE.WeatherProto.WindGrid grid = 5;
+}

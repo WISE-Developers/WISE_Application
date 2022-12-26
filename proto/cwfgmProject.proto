@@ -1,0 +1,1099 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "wtime.proto";
+import "cwfgmFuelMap.proto";
+import "cwfgmGrid.proto";
+import "fuelCollection.proto";
+import "projectIgnition.proto";
+import "weatherStation.proto";
+import "assetCollection.proto";
+import "gridCollection.proto";
+import "vectorCollection.proto";
+import "projectScenario.proto";
+import "viewStorage.proto";
+import "geography.proto";
+import "google/protobuf/wrappers.proto";
+import "convert.proto";
+import "math.proto";
+package WISE.ProjectProto;
+
+
+message Project {
+    int32 version = 1;
+
+    string comments = 2;
+
+    WISE.GridProto.CwfgmFuelMap fuels = 3;
+    WISE.GridProto.CwfgmGrid grid = 4;
+    FuelCollection fuelCollection = 5 [deprecated = true];
+    FireCollection ignitions = 6;
+    StationCollection stations = 7;
+    GridCollection grids = 8;
+    VectorCollection vectors = 9;
+    ScenarioCollection scenarios = 10;
+    ViewCollection views = 11 [deprecated = true];  // not really deprecated for V2, just stated so it's here for updated files, not for new files
+
+    string elevationName = 12;
+    string gridName = 13;
+    string projectionName = 14;
+
+    Outputs outputs = 15;
+    HSS.Times.WTime projectStartTime = 16;  // when the project was created
+
+    TimestepSettings timestepSettings = 17;
+
+    //The type of load balancing to use
+    LoadBalancingType loadBalancing = 18;
+
+    AssetCollection assets = 19;
+    HSS.Times.WTimeZone timeZoneSettings = 20;  // explicit settings for the project's timezone
+    TargetCollection targets = 21;
+
+    message DiscretizedStatsOptions {
+        int32 version = 1;
+        int32 discretize = 2;
+    }
+
+    message Outputs {
+        repeated SummaryOutput summaries = 1;
+        repeated VectorOutput vectors = 2;
+        repeated GridOutput grids = 3;
+        JobOutput job = 4;
+        repeated StatsOutput stats = 5;
+        repeated AssetStatsOutput assetStats = 6;
+        repeated FuelGridOutput fuelgrids = 7;
+
+        message GridOutputOptions {         // if this object is missing, then defaults are as before - use fuel map resolution, origin is based off fuel map origin and may be clipped based on minimizeOutput
+                                            // this would be the same as having this object, with useFuelMap set to true, then MINIMIZE_PERIMETER or MINIMIZE_PERIMETER2, then minimizeOutput to true
+            int32 version = 1;
+            oneof OutputResolution {
+            	double resolution = 2;      // declared resolution of the export
+            	double scale = 3;           // scale the resolution off the fuel map grid - positive applies to the numerator, negative applies to denominator (-2 then equals 0.5 - per #1213)
+                bool useFuelMap = 4;        // use the scale of the fuel map, unmodified
+            }
+
+            enum GridOutputOriginOptions {
+                FUELMAP_ORIGIN = 0;         // use whatever origin is given by the fuel map, unchanged
+                PRECISE_PERIMETER = 1;      // regardless of fuel map grid origin and scale, start the grid export origin at precisely the left and lower edge intersection of the fire perimeter
+                MINIMIZE_PERIMETER = 2;     // from the fuel map origin and the export resolution, calculate the closest even multiple to where to start the grid
+                MINIMIZE_PERIMETER2 = 3;    // from the fuel map origin and the fuel map resolution, calculate the closest even multiple to where to start the egrid
+                CENTER_PERIMETER = 4;       // regardless of the fuel map grid origin and scale, use the center [(max_x - min_x) / 2], etc. so that there's an equal portion of subcell at each extent of the perimeter
+            }
+
+            oneof OutputOrigin {
+                Geography.GeoPoint location = 5;
+                GridOutputOriginOptions dynamicOrigin = 6;
+            }
+        }
+
+        message SummaryOutput {
+            int32 version = 1;
+            string scenarioName = 2;
+            string filename = 3;
+            MetadataOutput metadata = 4;
+            google.protobuf.BoolValue streamOutput = 5;
+
+            message MetadataOutput {
+                google.protobuf.BoolValue applicationName = 1;
+                google.protobuf.BoolValue geoData = 2;
+                google.protobuf.BoolValue scnearioName = 3;
+                google.protobuf.BoolValue scenarioComments = 4;
+                google.protobuf.BoolValue inputs = 5;
+                google.protobuf.BoolValue landscape = 6;
+                google.protobuf.BoolValue fbpPatches = 7;
+                google.protobuf.BoolValue wxPatches = 8;
+                google.protobuf.BoolValue ignitions = 9;
+                google.protobuf.BoolValue wxStreams = 10;
+                google.protobuf.BoolValue fbp = 11;
+                //Output the weather conditions for the streams that are
+                //associated with the scenario
+                google.protobuf.BoolValue wxData = 12;
+                google.protobuf.BoolValue assetData = 13;
+            }
+        }
+
+        message VectorOutput {
+            int32 version = 1;
+
+            string scenarioName = 2;
+            string filename = 3;
+            MetadataOutput metadata = 4;
+            PerimeterTime perimeterTime = 5;
+
+            bool multiplePerimeters = 6;
+            bool removeIslands = 7;
+            bool mergeContacting = 8;
+            bool activePerimeters = 9;
+            google.protobuf.BoolValue streamOutput = 10;
+            //The name of a specific sub-scenario that this output is for. If absent and the scenario this output is for generates sub-scenarios, the output will be a combined file.
+            repeated google.protobuf.StringValue subScenarioName = 11;
+            //A collection of output override times for different sub-scenarios
+            repeated PerimeterTimeOverride perimeterTimeOverride = 12;
+
+            //An optional coverage name that will be used as the GeoServer store name for this output, if the file is beings streamed to GeoServer.
+            //This value will override the one in the GeoServer configuration.
+            google.protobuf.StringValue coverage_name = 13;
+
+            message MetadataOutput {
+                int32 version = 1;
+
+                bool applicationVersion = 2;
+                bool scenarioName = 3;
+                bool jobName = 4;
+                bool ignitionName = 5;
+                bool simulationDate = 6;
+                bool fireSize = 7;
+                bool perimeterTotal = 8;
+                bool perimeterActive = 9;
+                oneof area {
+                    AreaUnits areaUnits = 10;
+                }
+                oneof perimeter {
+                    PerimeterUnits perimeterUnits = 11;
+                }
+				bool wxValues = 12;
+				bool fwiValues = 13;
+				google.protobuf.BoolValue ignitionLocation = 14;
+				google.protobuf.BoolValue maxBurnDistance = 15;
+				google.protobuf.BoolValue ignitionAttributes = 16;
+                google.protobuf.BoolValue assetArrivalTime = 17;
+                google.protobuf.BoolValue assetArrivalCount = 18;
+                google.protobuf.BoolValue identifyFinalPerimeter = 19;
+                google.protobuf.BoolValue simulationStatus = 20;
+
+                enum AreaUnits {
+                    KILOMETRES_SQUARE = 0;
+                    METRES_SQUARE = 1;
+                    HECTARES = 2;
+                    MILES_SQUARE = 3;
+                    FEET_SQUARE = 4;
+                    YARDS_SQUARE = 5;
+                    ACRES = 6;
+                }
+
+                enum PerimeterUnits {
+                    KILOMETRES = 0;
+                    METRES = 1;
+                    MILES = 2;
+                    FEET = 3;
+                    YARDS = 4;
+                    CHAIN = 5;
+                }
+            }
+
+            message PerimeterTime {
+                HSS.Times.WTime startTime = 1;
+                HSS.Times.WTime endTime = 2;
+            }
+
+            /**
+             * Override export times for a specific sub-scenario.
+             */
+            message PerimeterTimeOverride {
+                //The name of the sub-scenario to override the perimeter times for
+                string subScenarioName = 1;
+
+                //The start time to use for this sub-scenario
+                HSS.Times.WTime startTime = 2;
+
+                //The end time to use for this sub-scenario
+                HSS.Times.WTime endTime = 3;
+            }
+        }
+
+        message FuelGridOutput {
+            int32 version = 1;
+
+            string filename = 2;
+            string scenarioName = 3;
+            google.protobuf.StringValue subScenarioName = 5;
+
+            google.protobuf.BoolValue streamOutput = 4;
+
+            //An optional coverage name that will be used as the GeoServer store name for this output, if the file is beings streamed to GeoServer.
+            //This value will override the one in the GeoServer configuration.
+            google.protobuf.StringValue coverage_name = 7;
+            
+            //The type of compression to use when exporting TIF files
+            CompressionType compression = 6;
+        }
+
+        message GridOutput {
+            int32 version = 1;
+
+            string filename = 2;
+            string scenarioName = 3;
+            HSS.Times.WTime startExportTime = 15;
+            HSS.Times.WTime exportTime = 4;
+            InterpolationMethod interpolation = 5;
+            google.protobuf.BoolValue excludeIgnitionInteriors = 20;
+
+            oneof StatsTypes {
+            	StatisticsType statistics = 6 [deprecated = true];
+            	GlobalStatistics globalStatistics = 13;
+            }
+            google.protobuf.BoolValue streamOutput = 7;
+            google.protobuf.BoolValue outputNodata = 8;
+            //The name of a specific sub-scenario that this output is for. If absent and the scenario this output is for generates sub-scenarios, the output will be a compbined file.
+            repeated google.protobuf.StringValue subScenarioName = 9;
+            //A collection of export override times for different sub-scenarios
+            repeated TimeOverride subScenarioExportTimes = 10;
+			// whether to clip the output to the bounds of the data being exported (true) or to the bounds of the original grid maps (false)
+            google.protobuf.BoolValue minimizeOutput = 11;
+            //The type of compression to use when exporting TIF files
+            CompressionType compression = 12;
+            
+            DiscretizedStatsOptions discretizedOptions = 14;
+            GridOutputOptions gridOptions = 16;
+
+            // name of the asset to be referenced on this grid output - currently only valid for exports of critical paths as grids, can be empty to select all assets
+            google.protobuf.StringValue assetName = 17;
+            // index of the geometry in the asset(s).  If assetName is left empty, then this value is assumed to be -1 (to select every geometry in every asset)
+            google.protobuf.Int32Value assetIndex = 18;
+
+            //An optional coverage name that will be used as the GeoServer store name for this output, if the file is beings streamed to GeoServer.
+            //This value will override the one in the GeoServer configuration.
+            google.protobuf.StringValue coverage_name = 19;
+
+            enum InterpolationMethod {
+                CLOSEST_VERTEX = 0;
+                IDW = 1;
+                AREA_WEIGHTING = 2;
+                CALCULATE = 3;
+                DISCRETIZED = 4;
+                VORONOI_OVERLAP = 5;
+            }
+
+            enum StatisticsType {
+                option deprecated = true;
+                TEMPERATURE = 0;
+                DEW_POINT = 1;
+                RELATIVE_HUMIDITY = 2;
+                WIND_DIRECTION = 3;
+                WIND_SPEED = 4;
+                PRECIPITATION = 5;
+                FFMC = 6;
+                ISI = 7;
+                FWI = 8;
+                BUI = 9;
+                FI = 10;
+                FL = 11;
+                ROS = 12;
+                SFC = 13;
+                CFC = 14;
+                TFC = 15;
+                CFB = 16;
+                RAZ = 17;
+                BURN_GRID = 18;
+                FIRE_ARRIVAL_TIME = 19;
+                HROS = 20;
+                FROS = 21;
+                BROS = 22;
+                RSS = 23;
+                ACTIVE = 24;
+                BURN = 25;
+                BURN_PERCENTAGE = 26;
+                FIRE_ARRIVAL_TIME_MIN = 27;
+                FIRE_ARRIVAL_TIME_MAX = 28;
+                TOTAL_FUEL_CONSUMED = 29;
+                SURFACE_FUEL_CONSUMED = 30;
+                CROWN_FUEL_CONSUMED = 31;
+                RADIATIVE_POWER = 32;
+				HFI = 33;
+				HCFB = 34;
+                CRITICAL_PATH = 35;
+                CRITICAL_PATH_MEAN = 36;
+                HROS_MAP = -1;
+                FROS_MAP = -2;
+                BROS_MAP = -3;
+                RSS_MAP = -4;
+                RAZ_MAP = -5;
+                FMC_MAP = -6;
+                CFB_MAP = -7;
+                CFC_MAP = -8;
+                SFC_MAP = -9;
+                TFC_MAP = -10;
+                FI_MAP = -11;
+                FL_MAP = -12;
+                CURINGDEGREE_MAP = -13;
+                GREENUP_MAP = -14;
+                PC_MAP = -15;
+                PDF_MAP = -16;
+                CBH_MAP = -17;
+                TREE_HEIGHT_MAP = -18;
+                FUEL_LOAD_MAP = -19;
+                CFL_MAP = -20;
+                GRASSPHENOLOGY_MAP = -21;
+                ROSVECTOR_MAP = -22;
+                DIRVECTOR_MAP = -23;
+            }
+
+            /**
+             * Override the output time for a specific sub-scenario.
+             */
+            message TimeOverride {
+                //The name of the sub-scenario
+                string subScenarioName = 1;
+
+                //The time that should be exported
+                HSS.Times.WTime time = 2;
+
+                // optional: the override start time for the export
+                HSS.Times.WTime startTime = 3;
+            }
+        }
+
+        /**
+         * The type of compression to use in TIF files.
+         */
+        enum CompressionType {
+            NONE = 0;
+            //Should only be used with byte data.
+            JPEG = 1;
+            LZW = 2;
+            PACKBITS = 3;
+            DEFLATE = 4;
+            //Should only be used with bit data.
+            CCITTRLE = 5;
+            //Should only be used with bit data.
+            CCITTFAX3 = 6;
+            //Should only be used with bit data.
+            CCITTFAX4 = 7;
+            LZMA = 8;
+            ZSTD = 9;
+            LERC = 10;
+            LERC_DEFLATE = 11;
+            LERC_ZSTD = 12;
+            WEBP = 13;
+        }
+
+        message JobOutput {
+            google.protobuf.BoolValue saveJob = 1;
+            google.protobuf.StringValue filename = 2;
+        }
+
+        message StatsOutput {
+            int32 version = 1;
+
+            string scenarioName = 2;
+            //don't define any of these to use no weather data in the output
+            oneof weatherSource {
+                int32 streamIndex = 3;
+                Geography.GeoPoint location = 4;
+                string streamName = 5;
+            }
+            //if the output filename is a JSON file and multiple files with the same filename
+            //and scenarioName are specified they will be combined into a single file. The
+            //streamOutputs setting will be ignore for all but the first specification.
+            string filename = 6;
+
+            repeated StatisticsType columns = 7 [deprecated = true];
+            repeated GlobalStatistics globalColumns = 10;
+            //Should the file be streamed over MQTT or to GeoServer after output
+            google.protobuf.BoolValue streamOutput = 8;
+            //The type of file to write
+            StatsFileType fileType = 9;
+            DiscretizedStatsOptions discretizedOptions = 11;
+
+            enum StatisticsType {
+                option deprecated = true;
+                DATE_TIME = 0;
+                ELAPSED_TIME = 1;
+                TIME_STEP_DURATION = 2;
+                TEMPERATURE = 3;
+                DEW_POINT = 4;
+                RELATIVE_HUMIDITY = 5;
+                WIND_SPEED = 6;
+                WIND_DIRECTION = 7;
+                PRECIPITATION = 8;
+                HFFMC = 9;
+                HISI = 10;
+                DMC = 11;
+                DC = 12;
+                HFWI = 13;
+                BUI = 14;
+                FFMC = 15;
+                ISI = 16;
+                FWI = 17;
+                TIMESTEP_AREA = 18;
+                TIMESTEP_BURN_AREA = 19;
+                TOTAL_AREA = 20;
+                TOTAL_BURN_AREA = 21;
+                AREA_GROWTH_RATE = 22;
+                EXTERIOR_PERIMETER = 23;
+                EXTERIOR_PERIMETER_GROWTH_RATE = 24;
+                ACTIVE_PERIMETER = 25;
+                ACTIVE_PERIMETER_GROWTH_RATE = 26;
+                TOTAL_PERIMETER = 27;
+                TOTAL_PERIMETER_GROWTH_RATE = 28;
+                FI_LT_10 = 29;
+                FI_10_500 = 30;
+                FI_500_2000 = 31;
+                FI_2000_4000 = 32;
+                FI_4000_10000 = 33;
+                FI_GT_10000 = 34;
+                ROS_0_1 = 35;
+                ROS_2_4 = 36;
+                ROS_5_8 = 37;
+                ROS_9_14 = 38;
+                ROS_GT_15 = 39;
+                MAX_ROS = 40;
+                MAX_FI = 41;
+                MAX_FL = 42;
+                MAX_CFB = 43;
+                MAX_CFC = 44;
+                MAX_SFC = 45;
+                MAX_TFC = 46;
+                TOTAL_FUEL_CONSUMED = 47;
+                CROWN_FUEL_CONSUMED = 48;
+                SURFACE_FUEL_CONSUMED = 49;
+                NUM_ACTIVE_VERTICES = 50;
+                NUM_VERTICES = 51;
+                CUMULATIVE_VERTICES = 52;
+                CUMULATIVE_ACTIVE_VERTICES = 53;
+                NUM_ACTIVE_FRONTS = 54;
+                NUM_FRONTS = 55;
+                MEMORY_USED_START = 56;
+                MEMORY_USED_END = 57;
+                NUM_TIMESTEPS = 58;
+                NUM_DISPLAY_TIMESTEPS = 59;
+                NUM_EVENT_TIMESTEPS = 60;
+                NUM_CALC_TIMESTEPS = 61;
+                TICKS = 62;
+                PROCESSING_TIME = 63;
+                GROWTH_TIME = 64;
+            }
+            
+            /**
+             * The type of file to output.
+             */
+            enum StatsFileType {
+                //Detect the file type using the output file extension
+                AUTO = 0;
+                //Output a comman separated value file
+                CSV = 1;
+                //Output a JSON file with data separated by timestep
+                JSON_ROW = 2;
+                //Output a JSON file with data separated by statistic
+                JSON_COLUMN = 3;
+            }
+        }
+        
+        /**
+         * Output details for a file containing information about asset arrival times.
+         */
+        message AssetStatsOutput {
+            int32 version = 1;
+
+            //The scenario to output the file for
+            string scenarioName = 2;
+            
+            //The name of the file to save to
+            string filename = 3;
+            
+            //Should the file be streamed over MQTT or to GeoServer after output
+            google.protobuf.BoolValue streamOutput = 4;
+
+            //The type of file to write
+            StatsOutput.StatsFileType fileType = 5;
+
+            // whether or not to export the critical path(s) embedded into the filename
+            google.protobuf.BoolValue criticalPathEmbedded = 6;
+
+            //The name of the file to save the critical path (separately) to
+            string criticalPathFilename = 7;
+        }
+    }
+
+    /**
+     * Settings for the steps that PSaaS should take after a simulation timestep has completed.
+     */
+    message TimestepSettings {
+        int32 version = 1;
+
+        /**
+         * The statistics that should be emitted.
+         */
+        repeated Statistics messageOutputs = 2 [deprecated = true];
+        repeated GlobalStatistics messageGlobalOutputs = 3;
+        DiscretizedStatsOptions discretizedOptions = 4;
+
+        enum Statistics {
+            /**
+             * Total area of the fire. (sq. metres)
+             */
+            BurnArea = 0;
+            /**
+             * Total fire perimeter, including interior and exterior and active/inactive portions. (metres)
+             */
+            TotalPerimeter = 1;
+            /**
+             * Total exterior fire perimeter, including active and inactive portions. (metres)
+             */
+            ExteriorPerimeter = 2;
+            /**
+             * Portion of the fire front considered active (interior and exterior) (where 1 or both vertices are active). (metres)
+             */
+            ActivePerimeter = 3;
+            /**
+             * Change in the total perimeter growth. (metres)
+             */
+            TotalPerimeterChange = 4;
+            /**
+             * Rate of change in the total perimeter growth rate. (metres per minute)
+             */
+            TotalPerimeterGrowth = 5;
+            /**
+             * Change in the exterior perimeter growth. (metres)
+             */
+            ExteriorPerimeterChange = 6;
+            /**
+             * Rate of change in the exterior perimeter growth rate. (metres per minute)
+             */
+            ExteriorPerimeterGrowth = 7;
+            /**
+             * Change in the active perimeter growth. (metres)
+             */
+            ActivePerimeterChange = 8;
+            /**
+             * Rate of change in the active perimeter growth rate. (metres per minute)
+             */
+            ActivePerimeterGrowth = 9;
+            /**
+             * Change in fire area. (sq. metres)
+             */
+            AreaChange = 10;
+            /**
+             * Rate of change in the fire area. (sq. metres)
+             */
+            AreaGrowth = 11;
+            /**
+             * Number of vertices defining the fire perimeter(s).
+             */
+            NumberVertices = 12;
+            /**
+             * Number of active vertices defining the fire perimeter(s).
+             */
+            NumberActivePoints = 13;
+            /**
+             * Cumulative number of active vertices defining the fire perimeter(s).
+             */
+            CumulativeNumberActivePoints = 14;
+            /**
+             * Total, cumulative number of verticies defining the simulation's perimeters.
+             */
+            CumulativeNumberPoints = 15;
+            /**
+             * Number of fire fronts (interior and exterior).
+             */
+            NumberFronts = 16;
+            /**
+             * Number of fire fronts (interior and exterior) which have at least 1 active vertex.
+             */
+            NumberActiveFronts = 17;
+            /**
+             * Maximum rate of spread calculated from Dr. Richards' ellipse equations (metres per minute).
+             */
+            ROS = 18;
+            /**
+             * Maximum crown fraction burned (unitless), based on ROS from Dr. Richards' ellipse equations.
+             */
+            CFB = 19;
+            /**
+             * Maximum crown fuel consumption (kg/m2), based on ROS from Dr. Richards' ellipse equations.
+             */
+            CFC = 20;
+            /**
+             * Maximum surface fuel consumption (kg/m2), based on ROS from Dr. Richards' ellipse equations.
+             */
+            SFC = 21;
+            /**
+             * Maximum total fuel consumption (kg/m2), based on ROS from Dr. Richards' ellipse equations.
+             */
+            TFC = 22;
+            /**
+             * Maximum fire intensity, based on ROS from Dr. Richards' ellipse equations.
+             */
+            FI = 23;
+            /**
+             * Maximum flame length (metres), based on ROS from Dr. Richards' ellipse equations.
+             */
+            FlameLength = 24;
+            /**
+             * Number of real-time (clock) seconds to calculate the current display time step.
+             */
+            TimestepRealtime = 25;
+            /**
+             * Number of real-time (clock) seconds to calculate all display time steps.
+             */
+            TimestepCumulativeRealtime = 26;
+            /**
+             * Number of simulated seconds that burning was allowed since the start of the simulation.
+             */
+            TimestepCumulativeBurningSeconds = 27;
+            /**
+             * The current simulation time as of the end of the timestep.
+             */
+            CurrentTime = 28;
+            /**
+             * The name of the scenario that is reporting statistics.
+             */
+            ScenarioName = 29;
+            /**
+             * Maximum fire intensity, based on ROS the standard FBP equations.
+             */
+            HFI = 30;
+            /**
+             * Maximum crown fraction burned (unitless), based on ROS from standard FBP equations.
+             */
+            HCFB = 31;
+        }
+    }
+
+    /**
+     * The type of load balancing to enable.
+     */
+    enum LoadBalancingType {
+        //Don't use load balancing
+        NONE = 0;
+        //Use a per scenario/sub-scenario load balancing scheme that requires an external counter
+        EXTERNAL_COUNTER = 1;
+        //Read scenario indices from a file
+        LOCAL_FILE = 2;
+    }
+}
+
+message PrometheusData {
+    reserved 5;
+    /**
+     * Information needed to start Prometheus.
+     */
+    SimulationSettings settings = 1;
+    Project project = 2;
+    /**
+     * A name for the project.
+     */
+    google.protobuf.StringValue name = 3;
+    /**
+     * A list of input files that are needed by various parts
+     * of the simulation.
+     */
+    repeated InputFile inputFiles = 4;
+    /**
+     * A location to stream output files to after
+     * the simulation has completed.
+     */
+    repeated OutputStream outputLocation = 6;
+    /**
+     * Options to help build and run sub-scenarios, if present.
+     */
+    SubScenarioOptions sub_scenario_options = 7;
+
+    /**
+     *
+     */
+    UnitExportSettings unitSettings = 8;
+
+    Command preExecution = 9;
+    Command postExecution = 10;
+
+    message Command {
+        int32 version = 1;
+        string WindowsCommand = 2;
+        string LinuxCommand = 3;
+    }
+
+    message UnitExportSettings {
+	    uint32 version = 1;
+	    Math.StorageUnit.DistanceUnit smallMeasureOutput = 2;
+	    Math.StorageUnit.DistanceUnit smallDistanceOutput = 3;
+	    Math.StorageUnit.DistanceUnit distanceOutput = 4;
+	    Math.StorageUnit.DistanceUnit alternateDistanceOutput = 5;
+	    Math.StorageUnit.CoordinateUnit coordinateOutput = 6;
+	    Math.StorageUnit.AreaUnit areaOutput = 7;
+	    Math.StorageUnit.VolumeUnit volumeOutput = 8;
+	    Math.StorageUnit.TemperatureUnit temperatureOutput = 9;
+	    Math.StorageUnit.MassUnit massOutput = 10;
+	    Math.StorageUnit.EnergyUnit energyOutput = 11;
+	    Math.StorageUnit.AngleUnit angleOutput = 12;
+	    Math.StorageUnit.VelocityUnit velocityOutput = 13;
+	    Math.StorageUnit.VelocityUnit alternateVelocityOutput = 14;
+	    Math.StorageUnit.IntensityUnit intensityOutput = 15;
+	    Math.StorageUnit.MassAreaUnit massAreaOutput = 16;
+    }
+
+    message SimulationSettings {
+        /**
+         * Settings for log output.
+         */
+        LogFile logfile = 1;
+        /**
+         * The files that will signal various stages of the job.
+         */
+        JobSignals signals = 2;
+        /**
+         * Hardware parameters needed to start Prometheus.
+         */
+        HardwareSettings hardware = 3 [deprecated = true];
+        /**
+         * The MQTT configuration.
+         */
+        MqttSettings mqtt = 4;
+        oneof export_format_oneof {
+            //The file type to export the FGM when re-saving after modification
+            ExportType export_format = 5;
+        }
+
+        message LogFile {
+            /**
+             * The path of the log file relative to the jobs root directory.
+             */
+            string filename = 1;
+            /**
+             * The verbosity of the log output.
+             */
+            Verbosity verbosity = 2;
+        }
+
+        enum Verbosity {
+            NONE = 0;
+            SEVERE = 1;
+            WARN = 2;
+            INFO = 3;
+            MAX = 4;
+        }
+
+        /**
+         * The file type to use when re-saving the FGM when modifications are detected.
+         */
+        enum ExportType {
+            //Pretty printed JSON
+            PRETTY_JSON = 0;
+            //Minimalized JSON
+            MINIMAL_JSON = 1;
+            //Binary
+            BINARY = 2;
+        }
+
+        //probably not needed anymore with MQTT
+        message JobSignals {
+            /**
+             * The name of the file that will signal the job to start.
+             * This will be a path relative to the jobs root directory.
+             */
+            string startFilename = 1;
+            /**
+             * The name of the file that will signal that the job is complete.
+             * This will be a path relative to the jobs root directory.
+             */
+            string completeFilename = 2;
+        }
+
+        message HardwareSettings {
+            option deprecated = true;
+            /**
+             * The number of cores to use per job.
+             */
+            int32 cores = 1;
+            /**
+             * The number of concurrent jobs to run.
+             */
+            int32 processes = 2;
+        }
+
+        message MqttSettings {
+            string hostname = 1;
+            google.protobuf.Int32Value port = 2;
+            google.protobuf.StringValue username = 3;
+            google.protobuf.StringValue password = 4;
+            string topic = 5;
+            bool debug = 6;
+            google.protobuf.Int32Value qos = 7;
+            google.protobuf.StringValue userkey = 8;
+            Verbosity verbosity = 9;
+        }
+    }
+
+    /**
+     * Files that are needed to run the simulation.
+     */
+    message InputFile {
+        /**
+         * The name of the file. Will be a relative path within the job directory.
+         */
+        string filename = 1;
+        /**
+         * The binary file data.
+         */
+        bytes data = 2;
+    }
+
+    /**
+     * A location to stream output files to.
+     */
+    message OutputStream {
+        oneof StreamType {
+            MqttStream mqtt = 1;
+            GeoserverStream geoserver = 2;
+        }
+
+        /**
+         * Stream output files to MQTT. The same MQTT broker
+         * that is being used for communication between Builder,
+         * Manager, PSaaS, and the API will be used to stream to.
+         */
+        message MqttStream {
+        }
+
+        /**
+         * Upload output files to Geoserver. Currently only Geotiff
+         * files are supported.
+         */
+        message GeoserverStream {
+            //A username to authenticate on the geoserver with.
+            string username = 1;
+
+            //A password to authenticate on the geoserver with.
+            string password = 2;
+
+            //The base URL of the geoserver instance. The address of the rest API should be {url}/rest.
+            string url = 3;
+
+            //The workspace to load the file into.
+            string workspace = 4;
+
+            //The name of the coverage to create or update.
+            string coverage = 5;
+
+            //The declared spatial reference system for the added coverage.
+            string srs = 6;
+
+            //An override for the coverage store if a vector file is being uploaded.
+            google.protobuf.StringValue vector_coverage = 7;
+        
+            //An override for the coverage store if a raster file is being uploaded.
+            google.protobuf.StringValue raster_coverage = 8;
+        }
+    }
+
+    /**
+     * Options for building sub-scenarios.
+     */
+    message SubScenarioOptions {
+        //Output partial cumulative grid outputs every time this many more sub-scenarios have completed
+        google.protobuf.Int32Value temp_output_interval = 1;
+        //The number of temporary output files to keep around
+        google.protobuf.Int32Value temp_output_count = 2;
+    }
+}
+
+enum GlobalStatistics {
+    DATE_TIME = 0;
+    ELAPSED_TIME = 1;
+    TIME_STEP_DURATION = 2;
+    TEMPERATURE = 3;
+    DEW_POINT = 4;
+    RELATIVE_HUMIDITY = 5;
+    WIND_SPEED = 6;
+    WIND_DIRECTION = 7;
+    PRECIPITATION = 8;
+    HFFMC = 9;
+    HISI = 10;
+    DMC = 11;
+    DC = 12;
+    HFWI = 13;
+    BUI = 14;
+    FFMC = 15;
+    ISI = 16;
+    FWI = 17;
+    TIMESTEP_AREA = 18;
+    TIMESTEP_BURN_AREA = 19;
+    TOTAL_AREA = 20;
+    /**
+     * Total area of the fire. (sq. metres)
+     */
+    TOTAL_BURN_AREA = 21;
+    /**
+     * Rate of change in the fire area. (sq. metres)
+     */
+    AREA_GROWTH_RATE = 22;
+    /**
+     * Total exterior fire perimeter, including active and inactive portions. (metres)
+     */
+    EXTERIOR_PERIMETER = 23;
+    /**
+     * Rate of change in the exterior perimeter growth rate. (metres per minute)
+     */
+    EXTERIOR_PERIMETER_GROWTH_RATE = 24;
+    /**
+     * Portion of the fire front considered active (interior and exterior) (where 1 or both vertices are active). (metres)
+     */
+    ACTIVE_PERIMETER = 25;
+    /**
+     * Rate of change in the active perimeter growth rate. (metres per minute)
+     */
+    ACTIVE_PERIMETER_GROWTH_RATE = 26;
+    /**
+     * Total fire perimeter, including interior and exterior and active/inactive portions. (metres)
+     */
+    TOTAL_PERIMETER = 27;
+    /**
+     * Rate of change in the total perimeter growth rate. (metres per minute)
+     */
+    TOTAL_PERIMETER_GROWTH_RATE = 28;
+    FI_LT_10 = 29;
+    FI_10_500 = 30;
+    FI_500_2000 = 31;
+    FI_2000_4000 = 32;
+    FI_4000_10000 = 33;
+    FI_GT_10000 = 34;
+    ROS_0_1 = 35;
+    ROS_2_4 = 36;
+    ROS_5_8 = 37;
+    ROS_9_14 = 38;
+    ROS_GT_15 = 39;
+    /**
+     * Maximum rate of spread calculated from Dr. Richards' ellipse equations (metres per minute).
+     */
+    MAX_ROS = 40;
+    MAX_FI = 41;
+    /**
+     * Maximum flame length (metres), based on ROS from Dr. Richards' ellipse equations.
+     */
+    MAX_FL = 42;
+    /**
+     * Maximum crown fraction burned (unitless), based on ROS from Dr. Richards' ellipse equations.
+     */
+    MAX_CFB = 43;
+    /**
+     * Maximum crown fuel consumption (kg/m2), based on ROS from Dr. Richards' ellipse equations.
+     */
+    MAX_CFC = 44;
+    /**
+     * Maximum surface fuel consumption (kg/m2), based on ROS from Dr. Richards' ellipse equations.
+     */
+    MAX_SFC = 45;
+    /**
+     * Maximum total fuel consumption (kg/m2), based on ROS from Dr. Richards' ellipse equations.
+     */
+    MAX_TFC = 46;
+    TOTAL_FUEL_CONSUMED = 47;
+    CROWN_FUEL_CONSUMED = 48;
+    SURFACE_FUEL_CONSUMED = 49;
+    /**
+     * Number of active vertices defining the fire perimeter(s).
+     */
+    NUM_ACTIVE_VERTICES = 50;
+    /**
+     * Number of vertices defining the fire perimeter(s).
+     */
+    NUM_VERTICES = 51;
+    /**
+     * Total, cumulative number of verticies defining the simulation's perimeters.
+     */
+    CUMULATIVE_VERTICES = 52;
+    /**
+     * Cumulative number of active vertices defining the fire perimeter(s).
+     */
+    CUMULATIVE_ACTIVE_VERTICES = 53;
+    /**
+     * Number of fire fronts (interior and exterior) which have at least 1 active vertex.
+     */
+    NUM_ACTIVE_FRONTS = 54;
+    /**
+     * Number of fire fronts (interior and exterior).
+     */
+    NUM_FRONTS = 55;
+    MEMORY_USED_START = 56;
+    MEMORY_USED_END = 57;
+    NUM_TIMESTEPS = 58;
+    NUM_DISPLAY_TIMESTEPS = 59;
+    NUM_EVENT_TIMESTEPS = 60;
+    NUM_CALC_TIMESTEPS = 61;
+    /**
+     * Number of real-time (clock) seconds to calculate the current display time step.
+     */
+    TICKS = 62;
+    /**
+     * Number of real-time (clock) seconds to calculate all display time steps.
+     */
+    PROCESSING_TIME = 63;
+    /**
+     * Number of simulated seconds that burning was allowed since the start of the simulation.
+     */
+    GROWTH_TIME = 64;
+    RAZ = 65;
+    BURN_GRID = 66;
+    FIRE_ARRIVAL_TIME = 67;
+    FIRE_ARRIVAL_TIME_MIN = 68;
+    FIRE_ARRIVAL_TIME_MAX = 69;
+    HROS = 70;
+    FROS = 71;
+    BROS = 72;
+    RSS = 73;
+    RADIATIVE_POWER = 74;
+    /**
+     * Maximum fire intensity, based on ROS the standard FBP equations.
+     */
+    HFI = 75;
+    /**
+     * Maximum crown fraction burned (unitless), based on ROS from standard FBP equations.
+     */
+    HCFB = 76;
+    /**
+     * The current simulation time as of the end of the timestep.
+     */
+    CURRENT_TIME = 77;
+    /**
+     * The name of the scenario that is reporting statistics.
+     */
+    SCENARIO_NAME = 78;
+    BURN_PERCENTAGE = 79;
+    /**
+     * Change in the total perimeter growth. (metres)
+     */
+    TOTAL_PERIMETER_CHANGE = 80;
+    /**
+     * Change in the exterior perimeter growth. (metres)
+     */
+    EXTERIOR_PERIMETER_CHANGE = 81;
+    /**
+     * Change in the active perimeter growth. (metres)
+     */
+    ACTIVE_PERIMETER_CHANGE = 82;
+    /**
+     * Change in fire area. (sq. metres)
+     */
+    AREA_CHANGE = 83;
+    BURN = 84;
+    HROS_MAP = 85;
+    FROS_MAP = 86;
+    BROS_MAP = 87;
+    RSS_MAP = 88;
+    RAZ_MAP = 89;
+    FMC_MAP = 90;
+    CFB_MAP = 91;
+    CFC_MAP = 92;
+    SFC_MAP = 93;
+    TFC_MAP = 94;
+    FI_MAP = 95;
+    FL_MAP = 96;
+    CURINGDEGREE_MAP = 97;
+    GREENUP_MAP = 98;
+    PC_MAP = 99;
+    PDF_MAP = 100;
+    CBH_MAP = 101;
+    TREE_HEIGHT_MAP = 102;
+    FUEL_LOAD_MAP = 103;
+    CFL_MAP = 104;
+    GRASSPHENOLOGY_MAP = 105;
+    ROSVECTOR_MAP = 106;
+    DIRVECTOR_MAP = 107;
+
+    CRITICAL_PATH = 108;
+    CRITICAL_PATH_PERCENTAGE = 109;
+}

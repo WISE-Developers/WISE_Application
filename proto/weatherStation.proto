@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "cwfgmWeatherStation.proto";
+import "google/protobuf/wrappers.proto";
+
+package WISE.ProjectProto;
+
+
+message ProjectWeatherStation {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+    google.protobuf.UInt32Value color = 4;
+    google.protobuf.UInt64Value size = 5;
+    google.protobuf.UInt32Value display = 6;
+
+    WISE.WeatherProto.CwfgmWeatherStation station = 7;
+}
+
+message StationCollection {
+    int32 version = 1;
+
+    repeated ProjectWeatherStation stations = 2;    // [deprecated = true] this is really deprecated but can't or the code we need to generate to save an old file format isn't generated
+    repeated WISE.WeatherProto.CwfgmWeatherStation wxStationData = 3;
+}

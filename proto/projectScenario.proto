@@ -1,0 +1,188 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "math.proto";
+import "wtime.proto";
+import "cwfgmScenario.proto";
+import "cwfgmFilter.proto";
+import "google/protobuf/wrappers.proto";
+
+package WISE.ProjectProto;
+
+
+message ProjectScenario {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    google.protobuf.StringValue copyName = 3;
+    string comments = 4;
+
+    WISE.FireEngineProto.CwfgmScenario scenario = 5;
+    WISE.GridProto.TemporalCondition temporalConditions = 6;
+
+    repeated Reference fireIndex = 7;
+    repeated WeatherIndex weatherIndex = 8;
+    repeated Reference filterIndex = 9;
+    repeated Reference vectorIndex = 10;
+    
+    IdwExponent idw = 11;
+    google.protobuf.UInt32Value threadCount = 12 [deprecated = true];
+	StochasticOptions stochasticOptions = 13 [deprecated = true];
+
+    repeated Reference assetIndex = 14;
+    oneof globalAssetOperationNull {
+        AssetOperation globalAssetOperation = 15;
+    }
+    //the number of assets that can be collided into before a simulation will stop, if valid for the asset operation
+    google.protobuf.Int32Value globalCollisionCount = 16;
+
+    TargetReference windTarget = 17;
+    TargetReference vectorTarget = 18;
+
+	message StochasticOptions {
+    	option deprecated = true;
+		google.protobuf.BoolValue autoSelectWxStations = 1;
+	}
+
+    message Reference {
+        oneof reference {
+            string name = 1;
+            uint32 index = 2;
+        }
+        google.protobuf.BoolValue remove = 3;
+
+		oneof options {
+			MultiPointIgnitionOptions pointIgnitionOptions = 4 [deprecated = true];
+            PolylineIgnitionOptions polylineIgnitionOptions = 5 [deprecated = true];
+            SinglePointIgnitionOptions singlePointIgnitionOptions = 6 [deprecated = true];
+            FilterOptions filterOptions = 7;
+            AssetOptions assetOptions = 8;
+		}
+    }
+
+    message TargetReference {
+        oneof reference {
+            string name = 1;
+            uint32 index = 2;
+        }
+        google.protobuf.BoolValue remove = 3;
+
+        uint32 geometryIndex = 4;
+        uint32 pointIndex = 5;
+    }
+
+	message MultiPointIgnitionOptions {
+        option deprecated = true;
+        //A name so this sub-scenario can be referenced in file outputs
+        string subName = 1;
+		/**
+		 * Index of the point ignition to use in the specified polyline(s), or -1 to use all points.
+		 */
+		google.protobuf.Int32Value pointIndex = 2;
+	}
+
+	message PolylineIgnitionOptions {
+        option deprecated = true;
+        //A name so this sub-scenario can be referenced in file outputs
+        string subName = 1;
+        /**
+         * The spacing between points (expressed in meters), only applicable when lineToMultiPoint is true
+		 */
+        Math.Double pointSpacing = 2;
+
+		/**
+		 * Index of the polyline to use, or -1 to use all polylines.
+		 */
+		google.protobuf.Int32Value polyIndex = 3;
+
+		/**
+		 * Index of the point ignition to use in the specified polyline(s), or -1 to use all points.
+		 */
+		google.protobuf.Int32Value pointIndex = 4;
+    }
+
+    /**
+     * Options for building sub-scenarios on individual ignitions.
+     */
+    message SinglePointIgnitionOptions {
+        option deprecated = true;
+        //A name so this sub-scenario can be referenced in file outputs
+        string subName = 1;
+    }
+
+    /**
+     * Options for filters that are being added to scenarios that will be split into sub-scenarios.
+     */
+    message FilterOptions {
+        //Only apply the filter to certain sub-scenarios
+        repeated string subName = 1;
+    }
+
+    /**
+     * Options for an asset refernce to a scenario.
+     */
+    message AssetOptions {
+        oneof operationNull {
+            //The affect the asset will have on the simulation. Will only be used if it is more strict than the global asset operation
+            AssetOperation operation = 1;
+        }
+        //the number of assets that can be collided into before a simulation will stop, if valid for the asset operation
+        google.protobuf.Int32Value collisionCount = 2;
+    }
+
+    message WeatherIndex {
+        Reference stationIndex = 1;
+        Reference streamIndex = 2;
+        google.protobuf.BoolValue isPrimary = 3;
+        //Optional options if the weather streams for this scenarios should be run separately, as sub-scenarios
+        WeatherIndexOptions weatherOptions = 4;
+
+        message WeatherIndexOptions {
+            //A name so this sub-scenario can be referenced in file outputs. If you use the same name for multiple weather references they will be grouped together when sub-scenarios are created
+            //if grouped, only the start and end time of the first reference will be used
+            string subName = 1;
+            //The simulation start time, if absent the scenario start time will be used
+            HSS.Times.WTime startTime = 2;
+            //The simulation end time, if absent, the scenario end time will be used
+            HSS.Times.WTime endTime = 3;
+            //The ignition time, if absent the time that was assigned to the ignition will be used
+            HSS.Times.WTime ignitionTime = 4;
+            //A wind direction that will override every hours wind direction in the weather stream
+            Math.Double windDirection = 5;
+            //A wind direction delta that will override every hours wind direction in the weather stream
+            Math.Double deltaWindDirection = 6;
+        }
+    }
+
+    message IdwExponent {
+        Math.Double temperature = 1;
+        Math.Double windSpeed = 2;
+        Math.Double precipitation = 3;
+        Math.Double fwi = 4;
+    }
+
+    /**
+     * Defines how an asset will affect a simulation.
+     */
+    enum AssetOperation {
+        //Don't allow the assets to affect the simulation, just note arrival times - this is the default
+        NO_EFFECT = 0;
+        //Stop the simulation after it reaches the first asset
+        STOP_IMMEDIATE = 1;
+        //Stop the simulation after it reaches a certain number of assets, defaulting to all of the associated assets
+        STOP_AFTER_X = 2;
+        //Stop the simulation after it reaches all asset gemoetries, regardless of the count
+        STOP_AFTER_ALL = -1;
+    }
+}
+
+message ScenarioCollection {
+    int32 version = 1;
+    repeated ProjectScenario scenarios = 2;    // [deprecated = true] this is really deprecated but can't or the code we need to generate to save an old file format isn't generated
+    repeated WISE.FireEngineProto.CwfgmScenario scenarioData = 3;
+}

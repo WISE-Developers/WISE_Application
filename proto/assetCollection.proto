@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "math.proto";
+import "projectGridFilter.proto";
+import "cwfgmFilter.proto";
+
+package WISE.ProjectProto;
+
+
+message ProjectAsset {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+    uint32 color = 4;
+    uint32 fillColor = 5;
+    uint32 symbol = 6;
+    sint32 width = 7;
+    bool imported = 8;
+
+    oneof data {
+        WISE.GridProto.CwfgmAsset filter = 9;
+        VectorFile file = 10;
+    }
+
+    /**
+     * Information for a file to import as a fire break.
+     */
+    message VectorFile {
+        //The location of the file to import
+        string filename = 1;
+
+        //The width of the fire break
+        Math.Double assetBoundary = 2;
+    }
+}
+
+message ProjectTarget {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+    uint32 color = 4;
+    uint32 symbol = 5;
+    sint32 displaySize = 6;
+    bool imported = 7;
+
+    oneof data {
+        WISE.GridProto.CwfgmTarget filter = 8;
+        TargetFile file = 9;
+    }
+
+    /**
+     * Information for a file to import as a fire break.
+     */
+    message TargetFile {
+        //The location of the file to import
+        string filename = 1;
+    }
+}
+
+message AssetCollection {
+    int32 version = 1;
+
+    repeated ProjectAsset assets = 2 [deprecated = true];
+    repeated WISE.GridProto.CwfgmAsset valuesAtRisk = 3;
+}
+
+message TargetCollection {
+    int32 version = 1;
+
+    repeated ProjectTarget targets = 2 [deprecated = true];
+    repeated WISE.GridProto.CwfgmTarget targetData = 3;
+}

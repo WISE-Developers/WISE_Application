@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "cwfgmFilter.proto";
+import "projectGridFilter.proto";
+import "projectWindGrid.proto";
+import "weatherGridFilter.proto";
+import "windGrid.proto";
+
+package WISE.ProjectProto;
+
+
+message GridCollection {
+    int32 version = 1;
+
+    repeated Filter filters = 2;
+
+    message Filter {
+        
+        oneof filter {
+            ProjectReplaceGridFilter replace = 2 [deprecated = true];
+            ProjectPolyReplaceGridFilter polyReplace = 3 [deprecated = true];
+            AttributeFilter attribute = 4 [deprecated = true];
+            ProjectWindGrid wind = 5 [deprecated = true];
+            ProjectWeatherGridFilter weather = 6 [deprecated = true];
+            ProjectPolyWeatherGridFilter polyWeather = 7 [deprecated = true];
+            WISE.GridProto.CwfgmAttributeFilter attributeFilter = 8;
+            WISE.GridProto.CwfgmReplaceGridFilter replaceFilter = 9;
+            WISE.GridProto.CwfgmPolyReplaceGridFilter polyReplaceFilter = 10;
+            WISE.WeatherProto.WeatherGridFilter weatherGridFilter = 11;
+            WISE.WeatherProto.WindGrid windGrid = 12;
+        }
+
+        message AttributeFilter {
+            option deprecated = true;
+            
+            AttributeType type = 1;
+            ProjectAttributeGridFilter filter = 2;
+
+            enum AttributeType {
+                FUEL_GRID = 0;
+                DEGREE_CURING = 1;
+                GREENUP = 2;
+                PERCENT_CONIFER = 3;
+                PERCENT_DEAD_FIR = 4;
+                CROWN_BASE_HEIGHT = 5;
+                TREE_HEIGHT = 6;
+                FUEL_LOAD = 7;
+                FBP_VECTOR = 8;
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "cwfgmFire.proto";
+
+package WISE.ProjectProto;
+
+
+message ProjectFire {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    string name = 2;
+    string comments = 3;
+    uint32 color = 4;
+    uint32 fillColor = 5;
+    uint32 size = 6;
+    bool imported = 7;
+    uint32 symbol = 8;
+
+    WISE.FireEngineProto.CwfgmIgnition ignition = 9;
+}
+
+message FireCollection {
+    int32 version = 1;
+
+    repeated ProjectFire ignitions = 2 [deprecated = true];
+    repeated WISE.FireEngineProto.CwfgmIgnition ignitionData = 3;
+}

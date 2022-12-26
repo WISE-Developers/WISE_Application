@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option java_package = "ca.wise.project.proto";
+option csharp_namespace = "WISE.ProjectProto";
+option java_multiple_files = true;
+
+import "google/protobuf/wrappers.proto";
+import "cwfgmFuelMap.proto";
+
+package WISE.ProjectProto;
+
+
+message ProjectFuel {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    uint32 color = 2;
+    string name = 3;
+    string comments = 4;
+    Flags flags = 5;
+    string default = 6;
+
+    message Flags {
+        google.protobuf.BoolValue isNonStandard = 1;
+        google.protobuf.BoolValue isModified = 2;
+        google.protobuf.BoolValue isModifiedName = 3;
+        google.protobuf.BoolValue isUsed = 4;
+    }
+}
+
+message FuelCollection {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    google.protobuf.BoolValue importedLut = 2;
+    google.protobuf.BoolValue showUnused = 3;
+    google.protobuf.StringValue lutFilename = 4;
+
+    repeated ProjectFuel fuels = 5;
+}
+
+message LutFuelCollection {
+    option deprecated = true;
+
+    int32 version = 1;
+
+    WISE.GridProto.CwfgmFuelMap fuels = 2;
+    FuelCollection cwfgmfuels = 3;
+}
