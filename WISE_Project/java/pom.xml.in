@@ -70,12 +70,12 @@
 	</dependency>
     <dependency>
       <groupId>ca.hss.times</groupId>
-      <artifactId>WTime</artifactId>
+      <artifactId>wtime</artifactId>
       <version>@WTIME_VERSION@</version>
     </dependency>
     <dependency>
       <groupId>ca.wise</groupId>
-      <artifactId>Grid</artifactId>
+      <artifactId>grid</artifactId>
       <version>@PROMETHEUS_VERSION@</version>
     </dependency>
     <dependency>
@@ -85,7 +85,7 @@
     </dependency>
     <dependency>
       <groupId>ca.wise</groupId>
-      <artifactId>Weather</artifactId>
+      <artifactId>weather</artifactId>
       <version>@PROMETHEUS_VERSION@</version>
     </dependency>
   </dependencies>
