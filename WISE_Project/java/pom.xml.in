@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ca.cwfgm</groupId>
+  <groupId>ca.wise</groupId>
   <artifactId>project</artifactId>
   <version>@PROMETHEUS_VERSION@</version>
   <packaging>jar</packaging>
@@ -12,6 +12,19 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
+  
+  <repositories>
+    <repository>
+      <id>github_hss</id>
+      <name>Heartland Software GitHub</name>
+      <url>https://maven.pkg.github.com/HeartlandSoftware/*</url>
+    </repository>
+    <repository>
+      <id>github</id>
+      <name>WISE Developers GitHub</name>
+      <url>https://maven.pkg.github.com/WISE-Developers/*</url>
+    </repository>
+  </repositories>
 
   <dependencies>
 	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
@@ -61,17 +74,17 @@
       <version>@WTIME_VERSION@</version>
     </dependency>
     <dependency>
-      <groupId>ca.cwfgm</groupId>
+      <groupId>ca.wise</groupId>
       <artifactId>Grid</artifactId>
       <version>@PROMETHEUS_VERSION@</version>
     </dependency>
     <dependency>
-      <groupId>ca.cwfgm</groupId>
+      <groupId>ca.wise</groupId>
       <artifactId>fire_engine</artifactId>
       <version>@PROMETHEUS_VERSION@</version>
     </dependency>
     <dependency>
-      <groupId>ca.cwfgm</groupId>
+      <groupId>ca.wise</groupId>
       <artifactId>Weather</artifactId>
       <version>@PROMETHEUS_VERSION@</version>
     </dependency>
