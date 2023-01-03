@@ -66,7 +66,13 @@ find_package(Boost COMPONENTS atomic chrono date_time system iostreams program_o
 else ()
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
-find_package(Boost COMPONENTS chrono date_time system iostreams program_options filesystem REQUIRED PATHS ${BOOST_LIBRARY_DIR})
+set(Boost_Libraries
+        -L${BOOST_LIBRARY_DIR}/lib
+        -lboost_iostreams
+        -lboost_program_options
+        -lboost_filesystem
+        -lboost_system
+        -lboost_date_time)
 endif (MSVC)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_NO_MFC")
@@ -130,12 +136,12 @@ set_target_properties(wise PROPERTIES
     PUBLIC_HEADER include/WISE_P.h
 )
 
-target_link_libraries(wise ${FOUND_GDAL_LIBRARY_PATH} ${Boost_LIBRARIES} ${FOUND_PROTOBUF_LIBRARY_PATH} ${FOUND_MINIZIP_LIBRARY_PATH})
 target_link_libraries(wise ${FOUND_FWI_LIBRARY_PATH} ${FOUND_FUEL_LIBRARY_PATH} ${FOUND_GRID_LIBRARY_PATH} ${FOUND_WEATHER_LIBRARY_PATH} ${FOUND_FIREENGINE_LIBRARY_PATH} ${FOUND_PROJECT_LIBRARY_PATH})
 target_link_libraries(wise ${FOUND_KMLHELPER_LIBRARY_PATH} ${FOUND_REDAPP_LIBRARY_PATH} ${FOUND_DEFAULTS_LIBRARY_PATH} ${FOUND_STATUS_LIBRARY_PATH} ${FOUND_COMMS_LIBRARY_PATH})
 target_link_libraries(wise ${FOUND_WTIME_LIBRARY_PATH} ${FOUND_LOWLEVEL_LIBRARY_PATH} ${FOUND_MULTITHREAD_LIBRARY_PATH} ${FOUND_ERROR_CALC_LIBRARY_PATH} ${FOUND_MATH_LIBRARY_PATH} ${FOUND_GEOGRAPHY_LIBRARY_PATH})
 target_link_libraries(wise ${FOUND_PAHO_LIBRARY_PATH} ${FOUND_PAHOPP_LIBRARY_PATH})
+target_link_libraries(wise ${FOUND_GDAL_LIBRARY_PATH} ${FOUND_PROTOBUF_LIBRARY_PATH} ${FOUND_MINIZIP_LIBRARY_PATH} ${Boost_LIBRARIES})
 if (MSVC)
 else ()
-target_link_libraries(wise -lstdc++fs -lrt)
+target_link_libraries(wise -lstdc++fs -lrt -lquadmath)
 endif (MSVC)

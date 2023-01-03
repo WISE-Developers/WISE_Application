@@ -328,8 +328,8 @@ void Project::WeatherStream::FillOneDayStream(ICWFGM_FWI *FWI, const WTime &newT
 				noonStdTime += newTime.GetTimeManager()->m_worldLocation.m_amtDST();
 			noonStdTime += WTimeSpan(0, 12, 0, 0);
 
-			double min_temp, max_temp, min_ws, max_ws, min_rh, precip, wd;
-			GetDailyValues(newTime, &min_temp, &max_temp, &min_ws, &max_ws, &min_rh, &precip, &wd);
+			double min_temp, max_temp, min_ws, max_ws, min_gust, max_gust, min_rh, precip, wd;
+			GetDailyValues(newTime, &min_temp, &max_temp, &min_ws, &max_ws, &min_gust, &max_gust, &min_rh, &precip, &wd);
 
 			IWXData wx;
 			IFWIData ifwi;

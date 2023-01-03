@@ -52,9 +52,11 @@
 #include <algorithm>
 #include <bitset>
 #include <fstream>
+#include <iomanip>
+#include <sstream>
+#include <ctime>
 #include <boost/format.hpp>
 #include <boost/algorithm/string.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/chrono.hpp>
 
 #if !defined(__USE_GSL) && __has_include("gsl/gsl")
@@ -1913,6 +1915,19 @@ std::int32_t SPARCS_P::fetchNextScenarioIndex(std::int32_t defaultValue)
 }
 
 
+/**
+ * Get an ISO 8601 string of the current date/time in UTC.
+ */
+std::string getISO8601String()
+{
+	std::time_t t = std::time(nullptr);
+	std::tm tm = *std::gmtime(&t);
+	std::ostringstream oss;
+	oss << std::put_time(&tm, "%FT%TZ");
+	return oss.str();
+}
+
+
 HRESULT SPARCS_P::RunSimulations(SummaryType justSummary)
 {
 	SimMessage *msg = new SimMessage();		// queue up the cache
@@ -1938,7 +1953,7 @@ HRESULT SPARCS_P::RunSimulations(SummaryType justSummary)
 		to_run.push_back(new ScenarioRun());
 
 	UpdateStatus(2, WISEStatus::STARTED, "Running scenarios", -1, OUTPUT_STATUS_ALL);
-	DebugStatus(0, WISEStatus::INFORMATION, (boost::format("Starting simulation at %s.") % boost::posix_time::to_iso_string(boost::posix_time::microsec_clock::local_time())).str());
+	DebugStatus(0, WISEStatus::INFORMATION, (boost::format("Starting simulation at %s.") % getISO8601String()).str());
 
 #ifdef __USE_GSL
 	auto cleanup = gsl::finally([this, &msg, &to_run, &justSummary]
@@ -2194,7 +2209,7 @@ HRESULT SPARCS_P::RunSimulations(SummaryType justSummary)
 	}
 	}
 	}
-	DebugStatus(0, WISEStatus::INFORMATION, (boost::format("Simulations complete at %s.") % boost::posix_time::to_iso_string(boost::posix_time::microsec_clock::local_time())).str());
+	DebugStatus(0, WISEStatus::INFORMATION, (boost::format("Simulations complete at %s.") % getISO8601String()).str());
 
 #ifndef __USE_GSL
 	cleanup();

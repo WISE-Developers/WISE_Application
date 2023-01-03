@@ -1202,7 +1202,7 @@ static UINT AFX_CDECL stepBuildGrid(APTR parameter)
 							ep->stats->d_array[p_i] = burned;
 					}
 				}
-				else if ((ep->stats->ParaOption > 9) || (ep->stats->ParaOption < 0))
+				else if (((ep->stats->ParaOption > 9) && (ep->stats->ParaOption < 200)) || (ep->stats->ParaOption < 0))
 				{
 					if ((ep->stats->ParaOption >= 0) &&
 						(!ep->bounds.PointInside(pt))) {
@@ -1319,6 +1319,10 @@ static UINT AFX_CDECL stepBuildGrid(APTR parameter)
 								value = std::max(0.0, min(200.0, wx.WindSpeed));
 								startUnits = STORAGE_FORMAT_KM | STORAGE_FORMAT_HOUR;
 								break;
+							case PARA_GUST:
+								value = std::max(0.0, min(200.0, wx.WindGust));
+								startUnits = STORAGE_FORMAT_KM | STORAGE_FORMAT_HOUR;
+								break;
 							case PARA_PRECIP:
 								value = wx.Precipitation;
 								startUnits = STORAGE_FORMAT_MM;
@@ -1350,7 +1354,7 @@ static UINT AFX_CDECL stepBuildGrid(APTR parameter)
 				}
 			}
 			else {
-				if ((ep->stats->ParaOption > 9) || (ep->stats->ParaOption < 0))
+				if (((ep->stats->ParaOption > 9) && (ep->stats->ParaOption < 200)) || (ep->stats->ParaOption < 0))
 				{
 				std::uint16_t k;
 					if (!ep->bounds.PointInside(pt))
@@ -1472,6 +1476,10 @@ static UINT AFX_CDECL stepBuildGrid(APTR parameter)
 									break;
 								case PARA_WS:
 									value = std::max(0.0, min(200.0, wx.WindSpeed));
+									startUnits = STORAGE_FORMAT_KM | STORAGE_FORMAT_HOUR;
+									break;
+								case PARA_GUST:
+									value = std::max(0.0, min(200.0, wx.WindGust));
 									startUnits = STORAGE_FORMAT_KM | STORAGE_FORMAT_HOUR;
 									break;
 								case PARA_PRECIP:
@@ -1801,6 +1809,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
 				ep.stats[k].units = unitConversion ? unitConversion->TempDisplay() : 0;
 				break;
 			case PARA_WS:
+			case PARA_GUST:
 				ep.stats[k].units = unitConversion ? unitConversion->VelocityDisplay() : 0;
 				break;
 			case PARA_PRECIP:
@@ -2531,6 +2540,7 @@ const std::string Project::CWFGMProject::statName(const std::int16_t ParaOption,
 	case PARA_RH:						return "Relative Humidity (%)";
 	case PARA_WD:						return "Wind Direction (" DEGREE_SYMBOL ")";
 	case PARA_WS:						return strprintf("Wind Speed (%s)", unitConversion->UnitName(unitConversion->VelocityDisplay(), true).c_str());
+	case PARA_GUST:						return strprintf("Wind Gust (%s)", unitConversion->UnitName(unitConversion->VelocityDisplay(), true).c_str());
 	case PARA_PRECIP:					return strprintf("Precipitation (%s)", unitConversion->UnitName(unitConversion->SmallMeasureDisplay(), true).c_str());
 	case PARA_FFMC:						return "sFFMC";
 	case PARA_ISI:						return "sISI"; 
