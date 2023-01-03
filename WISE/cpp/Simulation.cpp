@@ -1750,7 +1750,7 @@ void SPARCS_P::SetupThreads(std::int32_t coreCount, std::int32_t coreOffset, con
 	interprocess_comms::initial_settings settings;
 	get_core_settings(settings.numa_lock, settings.job_count, settings.cpu_skip);
 	if (useSharedMemory)
-		m_sharedMemory = interprocess_comms::get_shared_memory("WISE7", settings);
+		m_sharedMemory = interprocess_comms::get_shared_memory("WISE", settings);
 	if (m_sharedMemory && memDump)
 	{
 		std::ostringstream stream;
