@@ -2172,7 +2172,7 @@ bool Project::CWFGMProject::ExportParameterGrid(const TCHAR *szPath, T* const ar
 	GetXLLCorner(&m_xllcorner);
 	GetYLLCorner(&m_yllcorner);
     GDALExporter exporter;
-    exporter.AddTag("TIFFTAG_SOFTWARE", "Prometheus");
+    exporter.AddTag("TIFFTAG_SOFTWARE", "W.I.S.E.");
     exporter.AddTag("TIFFTAG_GDAL_NODATA", "-9999");
 	exporter.setExportCompress(compression);
 	char mbstr[100];
@@ -2312,7 +2312,7 @@ bool Project::CWFGMProject::ExportParameterGrid(const TCHAR *szPath, T* const ac
 	GetXLLCorner(&m_xllcorner);
 	GetYLLCorner(&m_yllcorner);
 	GDALExporter exporter;
-	exporter.AddTag("TIFFTAG_SOFTWARE", "Prometheus");
+	exporter.AddTag("TIFFTAG_SOFTWARE", "W.I.S.E.");
 	exporter.AddTag("TIFFTAG_GDAL_NODATA", "-9999");
 	exporter.setExportCompress(compression);
 	char mbstr[100];

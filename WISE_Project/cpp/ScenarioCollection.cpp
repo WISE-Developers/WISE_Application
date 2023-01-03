@@ -650,7 +650,7 @@ bool Project::Scenario::ExportFilteredFuelGrid(const std::string &grid_file_name
 	}
 
 	GDALExporter exporter;
-	exporter.AddTag("TIFFTAG_SOFTWARE", "Prometheus");
+	exporter.AddTag("TIFFTAG_SOFTWARE", "W.I.S.E.");
 	exporter.AddTag("TIFFTAG_GDAL_NODATA", "-9999");
 	char mbstr[100];
 	struct tm newtime;
