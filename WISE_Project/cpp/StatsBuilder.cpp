@@ -114,7 +114,7 @@ void StatsFileBuilder::SaveJSON(const std::string& file, StatsFileFormat format,
 		arr.push_back(value->compiled);
 	}
 
-	writeFile << arr.dump(pretty ? 4 : -1, ' ', false, json::error_handler_t::relaxed);
+	writeFile << arr.dump(pretty ? 4 : -1, ' ', false, json::error_handler_t::ignore);
 
 	//delete the returned values
 	for (auto value : values)

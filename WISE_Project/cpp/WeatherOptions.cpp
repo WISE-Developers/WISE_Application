@@ -33,7 +33,7 @@
 #endif
 #include "WTime.h"
 
-#include <gsl/gsl_util>
+#include <gsl/util>
 
 
 Project::WeatherOptions::WeatherOptions()

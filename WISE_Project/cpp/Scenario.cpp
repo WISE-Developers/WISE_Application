@@ -47,7 +47,6 @@
 #include "FuelCom_ext.h"
 #include "CWFGM_TemporalAttributeFilter.h"
 #include "ScenarioExportRules.h"
-#include "ScenarioExportRules.cpp"
 
 #include "insert_ordered_map.h"
 #include <omp.h>

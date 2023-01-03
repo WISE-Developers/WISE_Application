@@ -33,7 +33,7 @@
 #include "ISerializeProto.h"
 #include "fuelCollection.pb.h"
 
-#include <gsl/gsl_util>
+#include <gsl/util>
 
 //	We kinda fake class inheritance off a ICWFGM_Fuel object by attaching our own data to the end of it, via the UserData field.
 //	That attached data is this Fuel object, it maintains the color, comments, etc. associated with a given ICWFGM_Fuel.  It makes

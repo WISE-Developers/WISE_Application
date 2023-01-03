@@ -25,10 +25,6 @@
 #include "poly.h"
 #include "lines.h"
 
-#if defined(_MSC_VER) || (GCC_VERSION >= 100000 && __cpp_concepts >= 201907)
-#include <concepts>
-#endif
-
 
 namespace HSS_MATH_HELPER
 {
@@ -36,13 +32,8 @@ namespace HSS_MATH_HELPER
 	using namespace std::string_literals;
 
 	template<class cls>
-#if defined(_MSC_VER) || (GCC_VERSION >= 100000 && __cpp_concepts >= 201907)
-	auto convertToGeoJSON(const cls& hssObject, Project::CWFGMProject *project)->json_type
-		requires std::derived_from<cls, XY_Point>
-#else
     typename std::enable_if<std::is_base_of<XY_Point, cls>::value, HSS_MATH_HELPER::json_type>::type
         convertToGeoJSON(const cls& hssObject, Project::CWFGMProject *project)
-#endif
 	{
 		json retval;
 		retval["type"s] = "Feature"s;
@@ -58,13 +49,8 @@ namespace HSS_MATH_HELPER
 	}
 
 	template<class cls>
-#if defined(_MSC_VER) || (GCC_VERSION >= 100000 && __cpp_concepts >= 201907)
-	auto convertToGeoJSON(const cls& hssObject, Project::CWFGMProject* project)->json_type
-		requires std::derived_from<cls, XY_PolyConst>
-#else
     typename std::enable_if<std::is_base_of<XY_PolyConst, cls>::value, HSS_MATH_HELPER::json_type>::type
         convertToGeoJSON(const cls& hssObject, Project::CWFGMProject *project)
-#endif
 	{
 		json retval;
 		retval["type"s] = "Feature"s;
@@ -96,13 +82,8 @@ namespace HSS_MATH_HELPER
 	}
 
 	template<class cls>
-#if defined(_MSC_VER) || (GCC_VERSION >= 100000 && __cpp_concepts >= 201907)
-	auto convertToGeoJSON(const cls& hssObject, Project::CWFGMProject* project)->json_type
-		requires std::derived_from<cls, XY_Line>
-#else
     typename std::enable_if<std::is_base_of<XY_Line, cls>::value, HSS_MATH_HELPER::json_type>::type
         convertToGeoJSON(const cls& hssObject, Project::CWFGMProject *project)
-#endif
 	{
 		json retval;
 		retval["type"s] = "Feature"s;

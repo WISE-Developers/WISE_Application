@@ -19,7 +19,7 @@
 #if _DLL
 #include "stdafx.h"
 #endif //_DLL
-#include "SPARCS.h"
+#include "WISE.h"
 #include "VectorExportOptions.h"
 #include "PrintReportOptions.h"
 #include "Dlgcnvt.h"

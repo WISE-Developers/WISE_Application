@@ -20,8 +20,8 @@
 #include "stdafx.h"
 #endif
 #include "types.h"
-#include "SPARCS_P.h"
-#include "SPARCS.h"
+#include "WISE_P.h"
+#include "WISE.h"
 #include "COMInit.h"
 #if _DLL
 #include "cwinapp.h"
@@ -34,7 +34,9 @@
 #include "REDappWrapper.h"
 #include "out_helper.h"
 #include <gdal.h>
+#ifdef INCLUDE_LOCAL_LIBRARIES
 #include "hss_vers.h"
+#endif
 
 #include <iostream>
 #include "filesystem.hpp"
@@ -301,9 +303,11 @@ int main(int argc, char* argv[])
 #endif
 		std::cout << "Running: " << m_path << std::endl;
 		std::cout << GDALVersionInfo("--version") << std::endl;
+#ifdef INCLUDE_LOCAL_LIBRARIES
 		std::cout << "HSS Math: " << VER_MATH_VERSION_STRING2 << std::endl;
 		std::cout << "HSS Geography: " << VER_GEOG_VERSION_STRING2 << std::endl;
 		std::cout << "WTime: " << VER_TIMES_VERSION_STRING2 << std::endl;
+#endif
 		std::cout << "Google Protocol Buffers: " << getProtobufVersion() << std::endl;
 		std::cout << getPahoVersion() << std::endl;
 		std::cout << "Boost: " << (BOOST_VERSION / 100000) << "." << (BOOST_VERSION / 100 % 1000) << "." << (BOOST_VERSION % 100) << std::endl;

@@ -25,7 +25,7 @@
 #else //_DLL
 #include "types.h"
 #endif //_DLL
-#include "SPARCS.h"
+#include "WISE.h"
 #include "ReplaceGridFilter.h"
 #include "WeatherGridFilter.h"
 #include "FontHelper.h"
@@ -38,7 +38,7 @@
 
 #include "filesystem.hpp"
 #include "VectorExportOptions.h"
-#include "cpoints.cpp"
+#include "cpoints.h"
 #include "misc_native.h"
 
 

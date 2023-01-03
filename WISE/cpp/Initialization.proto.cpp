@@ -21,7 +21,7 @@
 #endif
 
 #include "types.h"
-#include "SPARCS.h"
+#include "WISE.h"
 #include "misc_native.h"
 #include "doubleBuilder.h"
 

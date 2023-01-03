@@ -30,7 +30,7 @@
 
 #include "projectGridFilter.pb.h"
 
-#include <gsl/gsl_util>
+#include <gsl/util>
 
 
 namespace Project

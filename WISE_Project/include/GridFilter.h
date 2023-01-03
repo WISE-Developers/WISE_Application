@@ -28,7 +28,7 @@
 #include "linklist.h"
 
 #include <functional>
-#include <gsl/gsl_util>
+#include <gsl/util>
 
 
 namespace Project

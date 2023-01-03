@@ -20,7 +20,7 @@
 #include "stdafx.h"
 #endif
 #include "CWFGMProject.h"
-#include "SPARCS.h"
+#include "WISE.h"
 #include "statsentry.h"
 #include "Stats.h"
 #include "VectorExportOptions.h"

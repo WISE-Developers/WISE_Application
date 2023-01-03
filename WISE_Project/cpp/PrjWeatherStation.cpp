@@ -28,12 +28,9 @@
 
 #include "WeatherCollection.h"
 #include "BurnPeriodOption.h"
-#if _DLL
-#include "serializeCFont.h"
-#endif
 #include "CWFGM_WeatherStation.h"
 #include <boost/algorithm/string.hpp>
-#include <gsl/gsl_util>
+#include <gsl/util>
 
 using namespace std::string_literals;
 using namespace HSS_Time;
