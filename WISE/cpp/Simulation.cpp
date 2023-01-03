@@ -286,7 +286,7 @@ static UINT AFX_CDECL worker_thread(void *parm)
 				}
 				catch (...)
 				{
-					weak_assert(0);
+					weak_assert(false);;
 					retval = SUCCESS_SCENARIO_SIMULATION_COMPLETE;
 				}
 
@@ -344,7 +344,7 @@ static UINT AFX_CDECL worker_thread(void *parm)
 					}
 					catch (std::exception&)
 					{
-						weak_assert(0);
+						weak_assert(false);;
 						sm->stepInfo.finished = true;
 					}
 				}
@@ -389,7 +389,7 @@ static UINT AFX_CDECL worker_thread(void *parm)
 					}
 					catch (std::exception&)
 					{
-						weak_assert(0);
+						weak_assert(false);;
 						sm->stepInfo.finished = true;
 					}
 				}

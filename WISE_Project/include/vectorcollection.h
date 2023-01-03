@@ -51,7 +51,7 @@ namespace Project
 
 	public:
 		virtual ~Vector();
-		virtual Vector *Duplicate() const					{ weak_assert(0); return NULL; }		// this should always be overridden
+		virtual Vector *Duplicate() const					{ weak_assert(false);; return NULL; }		// this should always be overridden
 
 		virtual void SetLineWidth(long Width)				{ m_LineWidth = Width; }
 		virtual int GetLineWidth() const					{ if (m_LineWidth.has_value()) return m_LineWidth.value(); return 1; }

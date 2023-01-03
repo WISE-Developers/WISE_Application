@@ -153,7 +153,7 @@ auto Project::FuelCollection::deserialize(const google::protobuf::Message& proto
 				/// </summary>
 				/// <type>internal</type>
 				valid->add_child_validation("WISE.ProjectProto.FuelCollection", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-			weak_assert(0);
+			weak_assert(false);;
 			throw ISerializeProto::DeserializeError("FuelCollection: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 		}
 		if (collection->version() != 1)
@@ -164,7 +164,7 @@ auto Project::FuelCollection::deserialize(const google::protobuf::Message& proto
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.FuelCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-			weak_assert(0);
+			weak_assert(false);;
 			throw ISerializeProto::DeserializeError("FuelCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -236,7 +236,7 @@ auto Project::FuelCollection::deserialize(const google::protobuf::Message& proto
 						fuel = NewFuel(f, 0, "", "");
 						if (!fuel->deserialize(imported, myValid, strprintf("fuels[%d]", i)))
 						{
-							weak_assert(0);
+							weak_assert(false);;
 							return nullptr;
 						}
 					}
@@ -254,7 +254,7 @@ auto Project::FuelCollection::deserialize(const google::protobuf::Message& proto
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.FuelCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-			weak_assert(0);
+			weak_assert(false);;
 			throw ISerializeProto::DeserializeError("FuelCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -328,7 +328,7 @@ auto Project::FuelCollection::deserialize(const google::protobuf::Message& proto
 							fuel = NewFuel(f, 0, /*"",*/ "", "");
 							if (!fuel->deserialize(imported, myValid, strprintf("fuels[%d]", i)))
 							{
-								weak_assert(0);
+								weak_assert(false);;
 								return nullptr;
 							}
 						}
@@ -406,12 +406,12 @@ bool Project::FuelCollection::LoadProtoFuelmap(const char *filename)
 	{
 		if (!m_fuelMap->deserialize(*fmap, nullptr, ""))
 		{
-			weak_assert(0);
+			weak_assert(false);;
 			delete fmap;
 			return false;
 		}
 		if (!deserialize(*fmap, nullptr, "")) {
-			weak_assert(0);
+			weak_assert(false);;
 			delete fmap;
 			return false;
 		}
@@ -515,7 +515,7 @@ google::protobuf::Message* Project::Fuel::serialize(const SerializeProtoOptions&
 
 		return fuel;
 	} else {
-		weak_assert(0);
+		weak_assert(false);;
 		return nullptr;
 	}
 }
@@ -552,7 +552,7 @@ google::protobuf::Message* Project::Fuel::serialize(const SerializeProtoOptions&
 		}
 		return fueldata;
 	} else {
-		weak_assert(0);
+		weak_assert(false);;
 		return nullptr;
 	}
 }
@@ -569,14 +569,14 @@ auto Project::Fuel::deserialize(const google::protobuf::Message& proto, std::sha
 		{
 			if (valid)
 				valid->add_child_validation("WISE.ProjectProto.ProjectFuel", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-			weak_assert(0);
+			weak_assert(false);;
 			throw ISerializeProto::DeserializeError("Fuel: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 		}
 		if (fuel->version() != 1)
 		{
 			if (valid)
 				valid->add_child_validation("WISE.ProjectProto.ProjectFuel", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(fuel->version()));
-			weak_assert(0);
+			weak_assert(false);;
 			throw ISerializeProto::DeserializeError("Fuel: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -616,7 +616,7 @@ auto Project::Fuel::deserialize(const google::protobuf::Message& proto, std::sha
 		{
 			if (valid)
 				valid->add_child_validation("WISE.ProjectProto.ProjectFuel", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(fuel->version()));
-			weak_assert(0);
+			weak_assert(false);;
 			throw ISerializeProto::DeserializeError("Fuel: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
