@@ -29,8 +29,6 @@
 
 #include <gsl/util>
 
-#define VIEWCOLLECTION_BINARY_VERSION	1
-
 
 Project::ViewStateNode::ViewStateNode()
 {
