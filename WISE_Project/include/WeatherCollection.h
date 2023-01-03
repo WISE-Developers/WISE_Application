@@ -60,18 +60,9 @@ namespace Project
 		void ExportBasicInfo(FILE *fp);
 		bool IsImportedFromFile();
 		bool IsImportedFromUrl();
-		bool IsDateImportedFromFile(const HSS_Time::WTime &time);
 		HRESULT Export(ICWFGM_FWI *FWI, const TCHAR *szPath, const ExportOptions *exportOptions, SHORT export_hourly, bool include_fwi, bool need_head);
 		HRESULT Import(const std::string &fileName, USHORT options);
 		void ClearWeatherData();
-
-		HRESULT SetFFMCMethod(short method);
-		HRESULT SetWindGamma(double gamma);
-		HRESULT SetWindBeta(double beta);
-		HRESULT SetWindAlpha(double alpha);
-		HRESULT SetTempGamma(double gamma);
-		HRESULT SetTempBeta(double beta);
-		HRESULT SetTempAlpha(double alpha);
 
 	protected:
 		WeatherStream();
