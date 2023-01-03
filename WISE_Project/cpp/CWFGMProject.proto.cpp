@@ -57,6 +57,7 @@ makeBimap<WISE::ProjectProto::GlobalStatistics, WISE::ProjectProto::Project_Outp
 	{WISE::ProjectProto::GlobalStatistics::RELATIVE_HUMIDITY, WISE::ProjectProto::Project_Outputs_GridOutput::RELATIVE_HUMIDITY},
 	{WISE::ProjectProto::GlobalStatistics::WIND_DIRECTION, WISE::ProjectProto::Project_Outputs_GridOutput::WIND_DIRECTION},
 	{WISE::ProjectProto::GlobalStatistics::WIND_SPEED, WISE::ProjectProto::Project_Outputs_GridOutput::WIND_SPEED},
+	{WISE::ProjectProto::GlobalStatistics::WIND_GUST, WISE::ProjectProto::Project_Outputs_GridOutput::WIND_GUST},
 	{WISE::ProjectProto::GlobalStatistics::PRECIPITATION, WISE::ProjectProto::Project_Outputs_GridOutput::PRECIPITATION},
 	{WISE::ProjectProto::GlobalStatistics::FFMC, WISE::ProjectProto::Project_Outputs_GridOutput::FFMC},
 	{WISE::ProjectProto::GlobalStatistics::ISI, WISE::ProjectProto::Project_Outputs_GridOutput::ISI},

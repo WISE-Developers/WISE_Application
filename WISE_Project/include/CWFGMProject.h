@@ -132,6 +132,7 @@ namespace Project
 #define PARA_RH			2			// Relative Humidity
 #define PARA_WD			3			// wind direction
 #define PARA_WS			4			// wind speed
+#define PARA_GUST		200			// wind gusts
 #define PARA_PRECIP		5			// precipitation
 #define PARA_FFMC		6			// hourly FFMC
 #define PARA_ISI		7			// hourly ISI

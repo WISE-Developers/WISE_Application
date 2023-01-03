@@ -125,6 +125,7 @@ std::string Project::CWFGMStatsEntry::getUnits() const
 			case 1: /* temperature */						units = m_unitConversion->UnitName(m_unitConversion->TempDisplay(), true); break;
 			case 5: /* precip */							units = m_unitConversion->UnitName(m_unitConversion->SmallMeasureDisplay(), true); break;
 			case 4: /* wind speed */						units = m_unitConversion->UnitName(m_unitConversion->VelocityDisplay(), true); break;
+			case 200: /* wind gust */						units = m_unitConversion->UnitName(m_unitConversion->VelocityDisplay(), true); break;
 			case 3: /* wind direction */					units = m_unitConversion->UnitName(STORAGE_FORMAT_ANGLE | STORAGE_FORMAT_DEGREE, true); break;
 			case 40: /* maximum ROS */						units = m_unitConversion->UnitName(m_unitConversion->AltVelocityDisplay(), true); break;
 			case 41: /* maximum FI */						units = m_unitConversion->UnitName(m_unitConversion->IntensityDisplay(), true); break;

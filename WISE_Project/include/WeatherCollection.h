@@ -125,10 +125,10 @@ namespace Project
 		__INLINE HRESULT MakeHourlyObservations(const HSS_Time::WTime &time){return m_stream->MakeHourlyObservations(time); };
 		__INLINE HRESULT MakeDailyObservations(const HSS_Time::WTime &time){ return m_stream->MakeDailyObservations(time); };
 
-		__INLINE HRESULT GetDailyValues(const HSS_Time::WTime &time, double *min_temp, double *max_temp, double *min_ws, double *max_ws, double *rh, double *precip, double *wd)
-	 								{ return m_stream->GetDailyValues(time, min_temp, max_temp, min_ws, max_ws, rh, precip, wd); };
-		__INLINE HRESULT SetDailyValues(const HSS_Time::WTime &time, double min_temp, double max_temp, double min_ws, double max_ws,double rh, double precip, double wd)
-									{ return m_stream->SetDailyValues(time, min_temp, max_temp, min_ws, max_ws, rh, precip, wd); };
+		__INLINE HRESULT GetDailyValues(const HSS_Time::WTime &time, double *min_temp, double *max_temp, double *min_ws, double *max_ws, double* min_gust, double* max_gust, double *rh, double *precip, double *wd)
+	 								{ return m_stream->GetDailyValues(time, min_temp, max_temp, min_ws, max_ws, min_gust, max_gust, rh, precip, wd); };
+		__INLINE HRESULT SetDailyValues(const HSS_Time::WTime &time, double min_temp, double max_temp, double min_ws, double max_ws, double min_gust, double max_gust, double rh, double precip, double wd)
+									{ return m_stream->SetDailyValues(time, min_temp, max_temp, min_ws, max_ws, min_gust, max_gust, rh, precip, wd); };
 		__INLINE bool GetDailyStandardFFMC(const HSS_Time::WTime &time, double *ffmc)
 									{ return SUCCEEDED(m_stream->DailyStandardFFMC(time, ffmc)); };
 		__INLINE bool GetInstantaneousValues(const HSS_Time::WTime &time, ULONG interpolation_method, IWXData *wx, IFWIData *ifwi, DFWIData *dfwi)
