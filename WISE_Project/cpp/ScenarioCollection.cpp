@@ -676,7 +676,7 @@ bool Project::Scenario::ExportFilteredFuelGrid(const std::string &grid_file_name
 	std::string ref;
 
 	/*POLYMORPHIC CHECK*/
-	try { ref = std::get<std::string>(v); } catch (std::bad_variant_access &) { weak_assert(false);; return false; };
+	try { ref = std::get<std::string>(v); } catch (std::bad_variant_access &) { weak_assert(false); return false; };
 
 	const char* cref = ref.c_str();
 	exporter.setProjection(cref);
@@ -727,7 +727,7 @@ HRESULT Project::Scenario::GetIndexBurnCondition(USHORT index, CBurnPeriodOption
 	}
 	catch (std::bad_variant_access &)
 	{ 
-		weak_assert(false);; return E_FAIL; 
+		weak_assert(false); return E_FAIL; 
 	}
 }
 

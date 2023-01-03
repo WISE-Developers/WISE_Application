@@ -377,7 +377,7 @@ Project::Scenario *Project::Scenario::deserialize(const google::protobuf::Messag
 
 		if (!data)
 		{
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("Scenario: Parameter invalid");
 		}
 
@@ -391,7 +391,7 @@ Project::Scenario *Project::Scenario::deserialize(const google::protobuf::Messag
 				/// </summary>
 				/// <type>internal</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectScenario", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("Scenario: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 		}
 		if ((scenario->version() != 1) && (scenario->version() != 2))
@@ -402,7 +402,7 @@ Project::Scenario *Project::Scenario::deserialize(const google::protobuf::Messag
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectScenario", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(scenario->version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("Scenario: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -431,7 +431,7 @@ Project::Scenario *Project::Scenario::deserialize(const google::protobuf::Messag
 			// if there is a copyname() then this is optional
 			ISerializeProto* sp = m_scenario.get();
 			if (!sp->deserialize(scenario->scenario(), myValid, "scenario")) {
-				weak_assert(false);;
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -441,7 +441,7 @@ Project::Scenario *Project::Scenario::deserialize(const google::protobuf::Messag
 		{
 			if (!m_temporalFilter->deserialize(scenario->temporalconditions(), myValid, "temporalConditions"))
 			{
-				weak_assert(false);;
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -1022,7 +1022,7 @@ Project::Scenario *Project::Scenario::deserialize(const google::protobuf::Messag
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectScenario", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(scenario->version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("Scenario: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -1697,7 +1697,7 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ScenarioCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, proto.GetDescriptor()->name());
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ScenarioCollection: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if ((collection->version() != 1) && (collection->version() != 2))
@@ -1708,7 +1708,7 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ScenarioCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ScenarioCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -1762,7 +1762,7 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 				}
 				AddScenario(scenario);
 				if (!scenario->deserialize(scen, v, "scenarioCopy", &data)) {
-					weak_assert(false);;
+					weak_assert(false);
 					delete scenario;
 					return nullptr;
 				}
@@ -1785,7 +1785,7 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 				}
 				AddScenario(scenario);
 				if (!scenario->deserialize(scen, v, "scenario", &data)) {
-					weak_assert(false);;
+					weak_assert(false);
 					return nullptr;
 				}
 			}
@@ -1826,7 +1826,7 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 				}
 				AddScenario(scenario);
 				if (!scenario->deserialize(scen, v, "scenarioCopy", &data)) {
-					weak_assert(false);;
+					weak_assert(false);
 					delete scenario;
 					return nullptr;
 				}
@@ -1849,7 +1849,7 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 				}
 				AddScenario(scenario);
 				if (!scenario->deserialize(scen, v, "scenario", &data)) {
-					weak_assert(false);;
+					weak_assert(false);
 					return nullptr;
 				}
 			}

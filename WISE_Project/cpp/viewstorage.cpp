@@ -276,7 +276,7 @@ auto Project::ViewStateNode::deserialize(const google::protobuf::Message& proto,
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ViewStorage", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ViewStateNode: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if (view->version() != 1)
@@ -287,7 +287,7 @@ auto Project::ViewStateNode::deserialize(const google::protobuf::Message& proto,
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ViewStorage", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(view->version()));
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ViewStateNode: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -372,7 +372,7 @@ auto Project::ViewCollection::deserialize(const google::protobuf::Message& proto
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ViewCollection", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ViewCollection: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if (collection->version() != 1)
@@ -383,7 +383,7 @@ auto Project::ViewCollection::deserialize(const google::protobuf::Message& proto
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ViewCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ViewCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -393,7 +393,7 @@ auto Project::ViewCollection::deserialize(const google::protobuf::Message& proto
 		auto view = collection->views(i);
 		auto vn = new ViewStateNode();
 		if (!vn->deserialize(view, valid, name)) {
-			weak_assert(false);;
+			weak_assert(false);
 			delete vn;
 			return nullptr;
 		}

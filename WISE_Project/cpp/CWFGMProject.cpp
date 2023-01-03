@@ -453,7 +453,7 @@ USHORT Project::CWFGMProject::convertX(double x) const
 	if (SUCCEEDED(GetXLLCorner(&xll)))
 		if (SUCCEEDED(GetResolution(&r)))
 			return static_cast<std::uint16_t>((x - xll) / r);
-	weak_assert(false);;
+	weak_assert(false);
 	return (USHORT)-1;
 }
 
@@ -464,7 +464,7 @@ USHORT Project::CWFGMProject::convertY(double y) const
 	if (SUCCEEDED(GetYLLCorner(&yll)))
 		if (SUCCEEDED(GetResolution(&r)))
 			return static_cast<std::uint16_t>((y - yll) / r);
-	weak_assert(false);;
+	weak_assert(false);
 	return (USHORT)-1;
 }
 
@@ -491,7 +491,7 @@ double Project::CWFGMProject::invertX(double x) const
 	if (SUCCEEDED(GetXLLCorner(&xll)))
 		if (SUCCEEDED(GetResolution(&r)))
 			return x * r + xll;
-	weak_assert(false);;
+	weak_assert(false);
 	return -1.0;
 }
 
@@ -502,7 +502,7 @@ double Project::CWFGMProject::invertY(double y) const
 	if (SUCCEEDED(GetYLLCorner(&yll)))
 		if (SUCCEEDED(GetResolution(&r)))
 			return y * r + yll;
-	weak_assert(false);;
+	weak_assert(false);
 	return -1.0;
 }
 
@@ -1590,7 +1590,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
 		case 3:		interp_method = SCENARIO_XYSTAT_TECHNIQUE_DISCRETIZE; break;
 		case 4:		interp_method = SCENARIO_XYSTAT_TECHNIQUE_CALCULATE; break;
 		case 5:		interp_method = SCENARIO_XYSTAT_TECHNIQUE_VORONOI_OVERLAP; break;
-		default:	weak_assert(false);;
+		default:	weak_assert(false);
 			        return FALSE;
     }
 
@@ -1796,7 +1796,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
 			case PARA_CRITICAL_PATH_MEAN:
 				break;
 			default:
-				weak_assert(false);;
+				weak_assert(false);
 				return false;
 			}
 		}
@@ -2032,7 +2032,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
 											return 0;
 										double dist2 = exit->XY_DistanceToSquared(*pt_p);
 										if (dist2 > dist) {
-											weak_assert(false);;
+											weak_assert(false);
 											return 0;
 										}
 										return 1;
@@ -2714,7 +2714,7 @@ bool Project::CWFGMProject::exportParameterGridArray(std::vector<GDALExtras::Cum
 							}
 							if ((ParaOption[j] == PARA_BURNT) || (ParaOption[j] == PARA_CRITICAL_PATH))
 							{
-								weak_assert(false);;
+								weak_assert(false);
 							}
 							else if ((ParaOption[j] == PARA_BURNT_MEAN) || (ParaOption[j] == PARA_CRITICAL_PATH_MEAN) || (ParaOption[j] == PARA_PRECIP))
 							{
@@ -3142,7 +3142,7 @@ std::string Project::CWFGMProject::FormatXY(const double x, const double y, Unit
 
     #ifdef DEBUG
 	default:
-		weak_assert(false);;
+		weak_assert(false);
     #endif
 	}
 	return str;
@@ -3190,7 +3190,7 @@ std::string Project::CWFGMProject::FormatLatLon(const double latitude, const dou
 	}
 #ifdef DEBUG
 	default:
-		weak_assert(false);;
+		weak_assert(false);
 #endif
 	}
 	return str;

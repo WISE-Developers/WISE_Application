@@ -112,7 +112,7 @@ auto Project::WeatherStation::deserialize(const google::protobuf::Message& messa
 				/// </summary>
 				/// <type>internal</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWeatherStation", name, validation::error_level::SEVERE, validation::id::object_invalid, message.GetDescriptor()->name());
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("WeatherStation: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 		}
 		if (station->version() != 1)
@@ -123,7 +123,7 @@ auto Project::WeatherStation::deserialize(const google::protobuf::Message& messa
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWeatherStation", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(station->version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("WeatherStation: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -172,7 +172,7 @@ auto Project::WeatherStation::deserialize(const google::protobuf::Message& messa
 		}
 		if (!m_station->deserialize(station->station(), v, "station"))
 		{
-			weak_assert(false);;
+			weak_assert(false);
 			return nullptr;
 		}
 
@@ -182,7 +182,7 @@ auto Project::WeatherStation::deserialize(const google::protobuf::Message& messa
 			auto stream = New();
 			stream->put_CommonData(&data);
 			if (!stream->deserialize(str, v, strprintf("streams[%d]", i))) {
-				weak_assert(false);;
+				weak_assert(false);
 				delete stream;
 				return nullptr;
 			}
@@ -197,7 +197,7 @@ auto Project::WeatherStation::deserialize(const google::protobuf::Message& messa
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWeatherStation", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(station->version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("WeatherStation: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -258,7 +258,7 @@ auto Project::WeatherStation::deserialize(const google::protobuf::Message& messa
 		}
 		if (!m_station->deserialize(*station, v, "station"))
 		{
-			weak_assert(false);;
+			weak_assert(false);
 			return nullptr;
 		}
 
@@ -270,7 +270,7 @@ auto Project::WeatherStation::deserialize(const google::protobuf::Message& messa
 			data.m_timeManager = (WTimeManager*)&m_collection->m_project->m_timeManager;
 			stream->put_CommonData(&data);
 			if (!stream->deserialize(str, v, strprintf("streams[%d]", i))) {
-				weak_assert(false);;
+				weak_assert(false);
 				delete stream;
 				return nullptr;
 			}
@@ -308,7 +308,7 @@ auto Project::WeatherStream::deserialize(const google::protobuf::Message& messag
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.WeatherProto.CwfgmWeatherStream", name, validation::error_level::SEVERE, validation::id::object_invalid, message.GetDescriptor()->name());
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("WeatherStream: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if ((sstream->version() != 1) && (sstream->version() != 2))
@@ -319,7 +319,7 @@ auto Project::WeatherStream::deserialize(const google::protobuf::Message& messag
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.WeatherProto.CwfgmWeatherStream", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(sstream->version()));
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("WeatherStream: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -354,7 +354,7 @@ auto Project::WeatherStream::deserialize(const google::protobuf::Message& messag
 		m_comments = sstream->comments().value();
 	if (!m_stream->deserialize(*sstream, myValid, "stream"))
 	{
-		weak_assert(false);;
+		weak_assert(false);
 		return nullptr;
 	}
 
@@ -417,7 +417,7 @@ auto Project::CWindSpeedGrid::deserialize(const google::protobuf::Message& messa
 				/// </summary>
 				/// <type>internal</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWindGrid", name, validation::error_level::SEVERE, validation::id::object_invalid, message.GetDescriptor()->name());
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("CWindSpeedGrid: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 		}
 
@@ -429,12 +429,12 @@ auto Project::CWindSpeedGrid::deserialize(const google::protobuf::Message& messa
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWindGrid", name, validation::error_level::SEVERE, "Deserialize.Type:Invalid", "WISE.WeatherProto.WindGrid_GridType.WindGrid_GridType_WindDirection");
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("CWindSpeedGrid: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 		if (grid->type() != WISE::WeatherProto::WindGrid_GridType::WindGrid_GridType_WindSpeed)
 		{
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("CWindSpeedGrid: Type is invalid");
 		}
 
@@ -476,7 +476,7 @@ auto Project::CWindSpeedGrid::deserialize(const google::protobuf::Message& messa
 			weak_assert(filter);
 			if (filter) {
 				if (!filter->deserialize(grid->grid(), v, "grid")) {
-					weak_assert(false);;
+					weak_assert(false);
 					return nullptr;
 				}
 			}
@@ -492,12 +492,12 @@ auto Project::CWindSpeedGrid::deserialize(const google::protobuf::Message& messa
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWindGrid", name, validation::error_level::SEVERE, "Deserialize.Type:Invalid", "WISE.WeatherProto.WindGrid_GridType.WindGrid_GridType_WindDirection");
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("CWindSpeedGrid: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 		if (grid->type() != WISE::WeatherProto::WindGrid_GridType::WindGrid_GridType_WindSpeed)
 		{
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("CWindSpeedGrid: Type is invalid");
 		}
 
@@ -549,7 +549,7 @@ auto Project::CWindSpeedGrid::deserialize(const google::protobuf::Message& messa
 		weak_assert(filter);
 		if (filter) {
 			if (!filter->deserialize(*grid, v, "grid")) {
-				weak_assert(false);;
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -612,7 +612,7 @@ auto Project::CWindDirectionGrid::deserialize(const google::protobuf::Message& m
 				/// </summary>
 				/// <type>internal</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWindGrid", name, validation::error_level::SEVERE, validation::id::object_invalid, message.GetDescriptor()->name());
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("CWindDirectionGrid: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 		}
 		if (grid->version() != 1)
@@ -623,7 +623,7 @@ auto Project::CWindDirectionGrid::deserialize(const google::protobuf::Message& m
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWindGrid", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(grid->version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("CWindDirectionGrid: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 		if (grid->type() != WISE::WeatherProto::WindGrid_GridType::WindGrid_GridType_WindDirection)
@@ -634,7 +634,7 @@ auto Project::CWindDirectionGrid::deserialize(const google::protobuf::Message& m
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWindGrid", name, validation::error_level::SEVERE, validation::id::grid_type_invalid, "WISE.WeatherProto.WindGrid_GridType.WindGrid_GridType_WindSpeed");
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("CWindDirectionGrid: Type is invalid");
 		}
 
@@ -676,7 +676,7 @@ auto Project::CWindDirectionGrid::deserialize(const google::protobuf::Message& m
 			weak_assert(filter);
 			if (filter) {
 				if (!filter->deserialize(grid->grid(), v, "grid")) {
-					weak_assert(false);;
+					weak_assert(false);
 					return nullptr;
 				}
 			}
@@ -692,7 +692,7 @@ auto Project::CWindDirectionGrid::deserialize(const google::protobuf::Message& m
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWindGrid", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(grid->version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("CWindDirectionGrid: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 		if (grid->type() != WISE::WeatherProto::WindGrid_GridType::WindGrid_GridType_WindDirection)
@@ -703,7 +703,7 @@ auto Project::CWindDirectionGrid::deserialize(const google::protobuf::Message& m
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWindGrid", name, validation::error_level::SEVERE, validation::id::grid_type_invalid, "WISE.WeatherProto.WindGrid_GridType.WindGrid_GridType_WindSpeed");
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("CWindDirectionGrid: Type is invalid");
 		}
 
@@ -755,7 +755,7 @@ auto Project::CWindDirectionGrid::deserialize(const google::protobuf::Message& m
 		weak_assert(filter);
 		if (filter) {
 			if (!filter->deserialize(*grid, v, "grid")) {
-				weak_assert(false);;
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -821,7 +821,7 @@ auto Project::CWeatherGridFilter::deserialize(const google::protobuf::Message& m
 					/// </summary>
 					/// <type>user</type>
 					valid->add_child_validation("WISE.ProjectProto.ProjectPolyWeatherGridFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-				weak_assert(false);;
+				weak_assert(false);
 				throw ISerializeProto::DeserializeError("CWeatherPolyFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 			}
 
@@ -849,7 +849,7 @@ auto Project::CWeatherGridFilter::deserialize(const google::protobuf::Message& m
 			}
 			else
 			{
-				weak_assert(false);;
+				weak_assert(false);
 			}
 
 			if (filter->has_filter())
@@ -860,7 +860,7 @@ auto Project::CWeatherGridFilter::deserialize(const google::protobuf::Message& m
 					SerializeWeatherGridFilterData data;
 					data.permissible_drivers = &CWFGMProject::m_permissibleVectorReadDriversSA;
 					if (!base->deserialize(filter->filter(), v, "filter", &data)) {
-						weak_assert(false);;
+						weak_assert(false);
 						return nullptr;
 					}
 				}
@@ -878,7 +878,7 @@ auto Project::CWeatherGridFilter::deserialize(const google::protobuf::Message& m
 					/// </summary>
 					/// <type>internal</type>
 					valid->add_child_validation("WISE.ProjectProto.ProjectWeatherGridFilter", name, validation::error_level::SEVERE, validation::id::object_invalid, message.GetDescriptor()->name());
-				weak_assert(false);;
+				weak_assert(false);
 				throw ISerializeProto::DeserializeError("CWeatherGridFilter: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 			}
 			if (filter->version() != 1)
@@ -889,7 +889,7 @@ auto Project::CWeatherGridFilter::deserialize(const google::protobuf::Message& m
 					/// </summary>
 					/// <type>user</type>
 					valid->add_child_validation("WISE.ProjectProto.ProjectWeatherGridFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-				weak_assert(false);;
+				weak_assert(false);
 				throw ISerializeProto::DeserializeError("CWeatherGridFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 			}
 
@@ -920,7 +920,7 @@ auto Project::CWeatherGridFilter::deserialize(const google::protobuf::Message& m
 					data.permissible_drivers = &CWFGMProject::m_permissibleVectorReadDriversSA;
 					if (!base->deserialize(filter->filter(), v, "filter", &data))
 					{
-						weak_assert(false);;
+						weak_assert(false);
 						return nullptr;
 					}
 				}
@@ -937,7 +937,7 @@ auto Project::CWeatherGridFilter::deserialize(const google::protobuf::Message& m
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectWeatherGridFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("CWeatherGridFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -978,7 +978,7 @@ auto Project::CWeatherGridFilter::deserialize(const google::protobuf::Message& m
 			data.permissible_drivers = &CWFGMProject::m_permissibleVectorReadDriversSA;
 			if (!base->deserialize(*filter, v, "filter", &data))
 			{
-				weak_assert(false);;
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -1066,7 +1066,7 @@ auto Project::CWeatherPolyFilter::deserialize(const google::protobuf::Message& m
 				/// </summary>
 				/// <type>internal</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectPolyWeatherGridFilter", name, validation::error_level::SEVERE, validation::id::object_invalid, message.GetDescriptor()->name());
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("CWeatherPolyFilter: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 		}
 		if (filter->version() != 1)
@@ -1077,7 +1077,7 @@ auto Project::CWeatherPolyFilter::deserialize(const google::protobuf::Message& m
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectPolyWeatherGridFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("CWeatherPolyFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -1128,7 +1128,7 @@ auto Project::CWeatherPolyFilter::deserialize(const google::protobuf::Message& m
 				SerializeWeatherGridFilterData data;
 				data.permissible_drivers = &CWFGMProject::m_permissibleVectorReadDriversSA;
 				if (!base->deserialize(filter->filter(), v, "filter", &data)) {
-					weak_assert(false);;
+					weak_assert(false);
 					return nullptr;
 				}
 			}
@@ -1144,7 +1144,7 @@ auto Project::CWeatherPolyFilter::deserialize(const google::protobuf::Message& m
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectPolyWeatherGridFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("CWeatherPolyFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -1204,7 +1204,7 @@ auto Project::CWeatherPolyFilter::deserialize(const google::protobuf::Message& m
 			SerializeWeatherGridFilterData data;
 			data.permissible_drivers = &CWFGMProject::m_permissibleVectorReadDriversSA;
 			if (!base->deserialize(*filter, v, "filter", &data)) {
-				weak_assert(false);;
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -1255,7 +1255,7 @@ auto Project::WeatherStationCollection::deserialize(const google::protobuf::Mess
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.StationCollection", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("WeatherStationCollection: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if ((collection->version() != 1) &&
@@ -1267,7 +1267,7 @@ auto Project::WeatherStationCollection::deserialize(const google::protobuf::Mess
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.StationCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("WeatherStationCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -1288,7 +1288,7 @@ auto Project::WeatherStationCollection::deserialize(const google::protobuf::Mess
 			station->m_station->put_GridEngine(m_project->gridEngine());
 			if (!station->deserialize(collection->stations(i), v, strprintf("stations[%d]", i)))
 			{
-				weak_assert(false);;
+				weak_assert(false);
 				delete station;
 				return nullptr;
 			}
@@ -1304,7 +1304,7 @@ auto Project::WeatherStationCollection::deserialize(const google::protobuf::Mess
 			station->m_station->put_GridEngine(m_project->gridEngine());
 			if (!station->deserialize(collection->wxstationdata(i), v, strprintf("stations[%d]", i)))
 			{
-				weak_assert(false);;
+				weak_assert(false);
 				delete station;
 				return nullptr;
 			}

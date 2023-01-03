@@ -380,7 +380,7 @@ HRESULT Project::CWFGMProject::deserialize(const std::string& filename, std::uin
 					/// </summary>
 					/// <type>user</type>
 					valid->add_child_validation("WISE.ProjectProto.Project.Command", "preExecution", validation::error_level::WARNING, validation::id::version_mismatch, std::to_string(data->preexecution().version()));
-				weak_assert(false);;
+				weak_assert(false);
 				throw ISerializeProto::DeserializeError("CWFGMProject.Project.Command: Version invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 			}
 			m_preExecutionCommand_Linux = data->preexecution().linuxcommand();
@@ -394,7 +394,7 @@ HRESULT Project::CWFGMProject::deserialize(const std::string& filename, std::uin
 					/// </summary>
 					/// <type>user</type>
 					valid->add_child_validation("WISE.ProjectProto.Project.Command", "postExecution", validation::error_level::WARNING, validation::id::version_mismatch, std::to_string(data->postexecution().version()));
-				weak_assert(false);;
+				weak_assert(false);
 				throw ISerializeProto::DeserializeError("CWFGMProject.Project.Command: Version invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 			}
 			m_postExecutionCommand_Linux = data->postexecution().linuxcommand();
@@ -532,7 +532,7 @@ auto Project::CWFGMProject::deserialize(const google::protobuf::Message& proto, 
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.Project", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("CWFGMProject: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if ((project->version() != 1) && (project->version() != 2))
@@ -543,7 +543,7 @@ auto Project::CWFGMProject::deserialize(const google::protobuf::Message& proto, 
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.Project", name, validation::error_level::WARNING, validation::id::version_mismatch, std::to_string(project->version()));
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("CWFGMProject: Version invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -607,7 +607,7 @@ auto Project::CWFGMProject::deserialize(const google::protobuf::Message& proto, 
 			/// <type>internal</type>
 			if (valid)
 				valid->add_child_validation("WISE.ProjectProto.Project", "fuels", validation::error_level::SEVERE, validation::id::cannot_obtain_interface, "IPersistProtobufStream");
-			weak_assert(false);;
+			weak_assert(false);
 			retval = nullptr;
 		}
 
@@ -619,14 +619,14 @@ auto Project::CWFGMProject::deserialize(const google::protobuf::Message& proto, 
 		if (project->has_fuelcollection())
 			if (!m_fuelCollection.deserialize(project->fuelcollection(), myValid, "fuelCollection"))
 			{
-				weak_assert(false);;
+				weak_assert(false);
 				return nullptr;
 			}
 	}
 	else
 	{
 		if (!m_fuelCollection.deserialize(project->fuels(), myValid, "fuels")) {
-			weak_assert(false);;
+			weak_assert(false);
 			return nullptr;
 		}
 	}
@@ -635,7 +635,7 @@ auto Project::CWFGMProject::deserialize(const google::protobuf::Message& proto, 
 	{
 		if (!m_grid->deserialize(project->grid(), myValid, "grid"))
 		{
-			weak_assert(false);;
+			weak_assert(false);
 			retval = nullptr;
 		}
 		if (project->grid().has_projection() && project->grid().projection().has_filename())
@@ -655,7 +655,7 @@ auto Project::CWFGMProject::deserialize(const google::protobuf::Message& proto, 
 
 	ICWFGM_CommonData* data;
 	if (FAILED(m_grid->GetCommonData(nullptr, &data))) {
-		weak_assert(false);;
+		weak_assert(false);
 		return nullptr;
 	}
 	m_timeManager = data->m_timeManager;
@@ -2450,7 +2450,7 @@ auto Project::FGMOutputs::deserialize(const google::protobuf::Message& proto, st
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.Project.Outputs", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(false);;
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("FGMOutputs: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 
@@ -2464,7 +2464,7 @@ auto Project::FGMOutputs::deserialize(const google::protobuf::Message& proto, st
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.SummaryOutput", strprintf("summaries[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("StatsOutputs: Version is invalid");
 		}
 
@@ -2562,7 +2562,7 @@ auto Project::FGMOutputs::deserialize(const google::protobuf::Message& proto, st
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.StatsOutput", strprintf("stats[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("StatsOutputs: Unknown version");
 		}
 
@@ -2705,14 +2705,13 @@ HSS_PRAGMA_WARNING_POP
 							/// </summary>
 							/// <type>user</type>
 							statsValid->add_child_validation("WISE.ProjectProto.Project.Outputs.DiscretizedStatsOptions", strprintf("grids[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
-						weak_assert(false);;
+						weak_assert(false);
 						throw std::invalid_argument("DiscretizedStatsOptions: Unknown version");
 					}
 					so.discretize = (std::uint16_t)dopt.discretize();
 					if ((so.discretize < 1) || (so.discretize > 1000))
 					{
-						//				m_loadWarning = "Warning: WISE.ProjectProto.Project.Outputs.GridOutput: Invalid specified discretization value";
-						weak_assert(false);;
+						weak_assert(false);
 						if (statsValid) {
 							/// <summary>
 							/// The scenario's override FMC value is invalid.
@@ -2764,14 +2763,13 @@ HSS_PRAGMA_WARNING_POP
 						/// </summary>
 						/// <type>user</type>
 						statsValid->add_child_validation("WISE.ProjectProto.Project.Outputs.DiscretizedStatsOptions", strprintf("grids[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
-					weak_assert(false);;
+					weak_assert(false);
 					throw std::invalid_argument("DiscretizedStatsOptions: Unknown version");
 				}
 				so.discretize = (std::uint16_t)dopt.discretize();
 				if ((so.discretize < 1) || (so.discretize > 1000))
 				{
-					//				m_loadWarning = "Warning: WISE.ProjectProto.Project.Outputs.GridOutput: Invalid specified discretization value";
-					weak_assert(false);;
+					weak_assert(false);
 					if (statsValid) {
 						/// <summary>
 						/// The scenario's override FMC value is invalid.
@@ -2801,7 +2799,7 @@ HSS_PRAGMA_WARNING_POP
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.VectorOutput", strprintf("vectors[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto1.version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("StatsOutputs: Unknown version");
 		}
 
@@ -2977,7 +2975,7 @@ HSS_PRAGMA_WARNING_POP
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.FuelGridOutput", strprintf("fuelgrids[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto1.version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("StatsOutputs: Unknown version");
 		}
 
@@ -3079,7 +3077,7 @@ HSS_PRAGMA_WARNING_POP
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.GridOutput", strprintf("grids[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("StatsOutputs: Unknown version");
 		}
 
@@ -3234,14 +3232,13 @@ HSS_PRAGMA_WARNING_POP
 					/// </summary>
 					/// <type>user</type>
 					gridValid->add_child_validation("WISE.ProjectProto.Project.Outputs.DiscretizedStatsOptions", strprintf("grids[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
-				weak_assert(false);;
+				weak_assert(false);
 				throw std::invalid_argument("DiscretizedStatsOptions: Unknown version");
 			}
 			grid.discretize = (std::uint16_t)dopt.discretize();
 			if ((grid.discretize < 1) || (grid.discretize > 1000))
 			{
-				//				m_loadWarning = "Warning: WISE.ProjectProto.Project.Outputs.GridOutput: Invalid specified discretization value";
-				weak_assert(false);;
+				weak_assert(false);
 				if (gridValid) {
 					/// <summary>
 					/// The scenario's override FMC value is invalid.
@@ -3368,7 +3365,7 @@ HSS_PRAGMA_WARNING_POP
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.AssetStatsOutput", strprintf("assetStats[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(asset.version()));
-			weak_assert(false);;
+			weak_assert(false);
 			throw std::invalid_argument("AssetOutput: Unknown version");
 		}
 

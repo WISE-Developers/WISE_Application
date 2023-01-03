@@ -62,7 +62,7 @@ namespace Project
 		boost::intrusive_ptr<ICWFGM_GridEngine>		m_filter;		// the filter represented by this object
 
 	protected:
-		virtual void Clone(boost::intrusive_ptr<ICWFGM_GridEngine>* /*grid*/) const	{ weak_assert(false);; }
+		virtual void Clone(boost::intrusive_ptr<ICWFGM_GridEngine>* /*grid*/) const	{ weak_assert(false); }
 		virtual GridFilter* Duplicate(std::function<GridFilter*(void)> constructor) const;
 	};
 };
