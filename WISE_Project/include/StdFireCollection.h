@@ -45,19 +45,19 @@ namespace Project
 		StdFire(const StdFireCollection &fireCollection, boost::intrusive_ptr<CCWFGM_Ignition> &fire);
 		virtual ~StdFire();
 
-		__INLINE StdFire *LN_Succ() const			{ return (StdFire *)MinNode::LN_Succ(); };
-		__INLINE StdFire *LN_Pred() const			{ return (StdFire *)MinNode::LN_Pred(); };
+		StdFire *LN_Succ() const			{ return (StdFire *)MinNode::LN_Succ(); };
+		StdFire *LN_Pred() const			{ return (StdFire *)MinNode::LN_Pred(); };
 
 		bool operator==(const StdFire &toCompare) const									{ if (&toCompare == this) return true; return m_fire == toCompare.m_fire; };
 		bool operator==(const boost::intrusive_ptr<CCWFGM_Ignition> &toCompare) const	{ return m_fire == toCompare; };
 
 		HSS_Time::WTime IgnitionTime();			// Return the ignition time of this fire
-		__INLINE HRESULT IgnitionTime(const HSS_Time::WTime &time)	{ return HIgnitionTime(time); };	// Set the ignition time of this fire;
+		HRESULT IgnitionTime(const HSS_Time::WTime &time)	{ return HIgnitionTime(time); };	// Set the ignition time of this fire;
 
-		__INLINE HRESULT LockState()				{ return m_fire->MT_Lock(false, (USHORT)-1); };
+		HRESULT LockState()				{ return m_fire->MT_Lock(false, (USHORT)-1); };
 
-		__INLINE std::uint32_t GetIgnitionCount()	{ std::uint32_t i; if (SUCCEEDED(m_fire->GetIgnitionCount(&i))) return i; return 0; };
-		__INLINE void ClearAllIgnitions()			{ m_fire->ClearIgnition((ULONG)-1); };
+		std::uint32_t GetIgnitionCount()	{ std::uint32_t i; if (SUCCEEDED(m_fire->GetIgnitionCount(&i))) return i; return 0; };
+		void ClearAllIgnitions()			{ m_fire->ClearIgnition((ULONG)-1); };
 
 		HRESULT SetIgnition(std::uint32_t index, std::uint16_t ignition_type, std::uint32_t ignition_size, XY_Point *points);
 
@@ -67,11 +67,11 @@ namespace Project
 								// Set the ignition location for this fire...ignition_type is a valid define
 								// which can be found in "../FireEngine/FireEngine_ext.h" - it's passed
 								// to the COM object (if it exists)
-		__INLINE USHORT IgnitionType(ULONG index)	// Return the type of ignition that this fire object represents
+		USHORT IgnitionType(ULONG index)	// Return the type of ignition that this fire object represents
 									{ USHORT i; if (SUCCEEDED(m_fire->GetIgnitionType(index, &i))) return i;
 									  return CWFGM_FIRE_IGNITION_UNDEFINED;
 									};
-		static __INLINE USHORT IgnitionType(ULONG index, CCWFGM_Ignition *fire)
+		static USHORT IgnitionType(ULONG index, CCWFGM_Ignition *fire)
 								// Return the type of ignition that this fire object represents
 									{ USHORT i; if (SUCCEEDED(fire->GetIgnitionType(index, &i))) return i;
 									  return CWFGM_FIRE_IGNITION_UNDEFINED;
@@ -102,13 +102,13 @@ namespace Project
 		StdFireCollection(const class CWFGMProject *project);
 		virtual ~StdFireCollection();
 
-		__INLINE void AddFire(StdFire *fire)			{ m_fireList.AddTail(fire); };
-		__INLINE void RemoveFire(StdFire *fire)			{ m_fireList.Remove(fire); };
-		__INLINE ULONG GetCount() const					{ return m_fireList.GetCount(); };
-		__INLINE StdFire *FirstFire() const				{ return m_fireList.LH_Head(); };
-		__INLINE StdFire *LastFire() const				{ return m_fireList.LH_Tail(); };
-		__INLINE StdFire *FireAtIndex(ULONG index) const{ return m_fireList.IndexNode(index); };
-		__INLINE ULONG IndexOf(StdFire *fire) const		{ return m_fireList.NodeIndex(fire); };
+		void AddFire(StdFire *fire)			{ m_fireList.AddTail(fire); };
+		void RemoveFire(StdFire *fire)			{ m_fireList.Remove(fire); };
+		ULONG GetCount() const					{ return m_fireList.GetCount(); };
+		StdFire *FirstFire() const				{ return m_fireList.LH_Head(); };
+		StdFire *LastFire() const				{ return m_fireList.LH_Tail(); };
+		StdFire *FireAtIndex(ULONG index) const{ return m_fireList.IndexNode(index); };
+		ULONG IndexOf(StdFire *fire) const		{ return m_fireList.NodeIndex(fire); };
 
 		virtual StdFire *FindName(const std::string& name) const;
 

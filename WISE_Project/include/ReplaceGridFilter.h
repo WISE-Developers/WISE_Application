@@ -116,7 +116,7 @@ namespace Project
 		const std::string TypeString() const override		{ using namespace std::string_literals; return "Polygon Patch"s; }
 
 		ULONG AddPolygon(const XY_Point &points, ULONG num_points);
-		__INLINE ULONG AddPolygon(const XY_PolyConst &poly)	{ return AddPolygon(*poly.GetPointsArray(), poly.NumPoints()); };
+		ULONG AddPolygon(const XY_PolyConst &poly)	{ return AddPolygon(*poly.GetPointsArray(), poly.NumPoints()); };
 		bool ClearPolygon(ULONG index);
 		ULONG GetPolygonMaxSize();
 		ULONG GetPolygonCount();
@@ -132,12 +132,12 @@ namespace Project
 		HRESULT SetRelationship(ICWFGM_Fuel *from_fuel, UCHAR from_index, ICWFGM_Fuel *to_fuel) override;
 		HRESULT GetRelationship(ICWFGM_Fuel **from_fuel, UCHAR *from_index, ICWFGM_Fuel **to_fuel) const override;
 
-		__INLINE void SetLineWidth(ULONG Width)	noexcept	{ m_lineWidth = Width; };
-		__INLINE ULONG GetLineWidth() noexcept				{ if (m_lineWidth.has_value()) return m_lineWidth.value(); return 1; };
+		void SetLineWidth(ULONG Width)	noexcept	{ m_lineWidth = Width; };
+		ULONG GetLineWidth() noexcept				{ if (m_lineWidth.has_value()) return m_lineWidth.value(); return 1; };
 		ULONG BoundaryWidth() const noexcept override		{ if (m_lineWidth.has_value()) return m_lineWidth.value(); return 1; };
 
 		COLORREF BoundaryColor() const noexcept override	{ if (m_color.has_value()) return m_color.value(); return RGB(0, 0, 0); };
-		__INLINE COLORREF SetColor(COLORREF c) noexcept		{ m_color = c; return m_color.value(); };
+		COLORREF SetColor(COLORREF c) noexcept		{ m_color = c; return m_color.value(); };
 
 	public:
 		virtual std::int32_t serialVersionUid(const SerializeProtoOptions& options) const noexcept override;

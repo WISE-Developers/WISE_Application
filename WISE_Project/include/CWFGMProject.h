@@ -325,9 +325,9 @@ private:
 	    bool GetLLByCoord(const double x, const double y, double *Lat, double *Lon);
 		bool GetLLByAbsoluteCoord(const double x, const double y, double* Lat, double* Lon);
 
-	    __INLINE std::string FormatXY(const double x, const double y, const ::UnitConversion *uc, bool include_units)			{ return FormatXY(x, y, uc->CoordinateDisplay(), uc, include_units); };
+	    std::string FormatXY(const double x, const double y, const ::UnitConversion *uc, bool include_units)			{ return FormatXY(x, y, uc->CoordinateDisplay(), uc, include_units); };
 	    std::string FormatXY(const double x, const double y, UnitConvert::STORAGE_UNIT to_format, const ::UnitConversion *uc, bool include_units);
-	    __INLINE std::string FormatLatLon(const double latitude, const double longitude, const ::UnitConversion *uc, bool include_units)	{ return FormatLatLon(latitude, longitude, uc->CoordinateDisplay(), uc, include_units); }
+	    std::string FormatLatLon(const double latitude, const double longitude, const ::UnitConversion *uc, bool include_units)	{ return FormatLatLon(latitude, longitude, uc->CoordinateDisplay(), uc, include_units); }
 	    std::string FormatLatLon(const double latitude, const double longitude, UnitConvert::STORAGE_UNIT to_format, const ::UnitConversion *uc, bool include_units);
 
 	    void GetMinMaxElev(double *MinElev, double *MaxElev);
@@ -358,13 +358,13 @@ private:
 	FGMOutputs					m_outputs;
 	Service::TimestepSettings   m_timestepSettings;
 	CCoordinateConverter		m_CoorConverter;
-	__INLINE CCWFGM_FuelMap		*fuelMap() const		{ return m_fuelMap.get(); };
-	__INLINE CCWFGM_Grid		*grid() const			{ return m_grid.get(); };
-	__INLINE ICWFGM_GridEngine	*gridEngine() const		{ return m_gridEngine.get(); };
+	CCWFGM_FuelMap		*fuelMap() const		{ return m_fuelMap.get(); };
+	CCWFGM_Grid		*grid() const			{ return m_grid.get(); };
+	ICWFGM_GridEngine	*gridEngine() const		{ return m_gridEngine.get(); };
 
 	void AssignNewGrid(CCWFGM_Grid *grid);
 
-	__INLINE HRESULT LockState()					{ return m_gridEngine->MT_Lock(nullptr, false, (USHORT)-1); };
+	HRESULT LockState()					{ return m_gridEngine->MT_Lock(nullptr, false, (USHORT)-1); };
 
 	HRESULT GetDimensions(USHORT *xdim, USHORT *ydim) const;
 	HRESULT GetResolution(double *resolution) const;
@@ -396,7 +396,7 @@ private:
 	std::uint32_t GetTimeZoneId() const;
 	HRESULT SetTimeZoneTS(const HSS_Time::WTimeSpan &timezone);
 	HRESULT SetTimeZone(std::uint32_t timezoneId);
-	__INLINE const TimeZoneInfo *GetTimeZoneStruct(SHORT i) const	{ return m_timeManager->m_worldLocation.CurrentTimeZone(i); };
+	const TimeZoneInfo *GetTimeZoneStruct(SHORT i) const	{ return m_timeManager->m_worldLocation.CurrentTimeZone(i); };
 	const WorldLocation& worldLocation()							{ return m_timeManager->m_worldLocation; }
 
 	bool DaylightSavings(bool enable);

@@ -65,14 +65,14 @@ namespace Project
 
 		bool IsModifiable();
 
-		__INLINE COLORREF Color() const noexcept			{ if (m_col.has_value()) return m_col.value(); return RGB(0, 0, 0); };
-		__INLINE COLORREF Color(COLORREF color);
+		COLORREF Color() const noexcept			{ if (m_col.has_value()) return m_col.value(); return RGB(0, 0, 0); };
+		COLORREF Color(COLORREF color);
 
-		__INLINE CPenHolder *Pen() const noexcept			{ return m_cpen; }
-		__INLINE void Pen(CPenHolder* pen) noexcept			{ m_cpen = pen; }
+		CPenHolder *Pen() const noexcept			{ return m_cpen; }
+		void Pen(CPenHolder* pen) noexcept			{ m_cpen = pen; }
 
 		boost::intrusive_ptr<ICWFGM_Fuel>	m_fuel;				// m_fuel's UserData should point at this
-		__INLINE HRESULT LockState()						{ return m_fuel->MT_Lock(false, gsl::narrow_cast<USHORT>(-1)); };
+		HRESULT LockState()						{ return m_fuel->MT_Lock(false, gsl::narrow_cast<USHORT>(-1)); };
 
 	private:
 		std::string internalFBPName() const;
@@ -182,7 +182,7 @@ namespace Project
 
 		boost::intrusive_ptr<CCWFGM_FuelMap>	m_fuelMap;
 
-		__INLINE bool IsImported() const				{ if (m_isImportedLUT.has_value()) return m_isImportedLUT.value(); return false; };
+		bool IsImported() const				{ if (m_isImportedLUT.has_value()) return m_isImportedLUT.value(); return false; };
 
 		virtual Fuel *NewFuel(ICWFGM_Fuel *fuel, COLORREF color, const std::string &defaultFBP, const std::string &comments) const
 									{ return new Fuel(fuel, color, defaultFBP, comments); };
