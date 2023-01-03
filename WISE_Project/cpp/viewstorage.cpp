@@ -27,7 +27,7 @@
 #include "AfxIniSettings.h"
 #endif
 
-#include <gsl/gsl_util>
+#include <gsl/util>
 
 #define VIEWCOLLECTION_BINARY_VERSION	1
 

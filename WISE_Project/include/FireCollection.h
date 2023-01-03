@@ -29,7 +29,7 @@
 #include "ISerializeProto.h"
 #include "projectIgnition.pb.h"
 
-#include <gsl/gsl_util>
+#include <gsl/util>
 
 namespace Project
 {

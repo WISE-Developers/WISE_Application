@@ -371,7 +371,7 @@ void get_core_settings(bool& numa_lock, std::uint32_t& job_count, std::uint32_t&
 				auto data = new wise::confic::ServerConfiguration();
 				try
 				{
-					if (google::protobuf::util::JsonStringToMessage(json, data, options) == google::protobuf::util::Status::OK)
+					if (google::protobuf::util::JsonStringToMessage(json, data, options).ok())
 					{
 						if (data->has_manager_settings())
 						{

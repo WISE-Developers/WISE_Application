@@ -33,7 +33,6 @@
 #include <vector>
 
 #if _DLL
-//#include "comptr.h"
 #include "cwinapp.h"
 #else
 #include "AfxIniSettings.h"

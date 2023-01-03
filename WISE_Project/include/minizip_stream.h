@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include "kmllib_cfg.h"
+#include "cwfgmp_config.h"
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/io/zero_copy_stream.h>
 #include <functional>
@@ -26,7 +26,7 @@
 
 namespace hss::protobuf::io
 {
-	class KML_LIB_API MinizipInputStream : public google::protobuf::io::ZeroCopyInputStream
+	class CWFGMPROJECT_EXPORT MinizipInputStream : public google::protobuf::io::ZeroCopyInputStream
 	{
 	public:
 		explicit MinizipInputStream(const std::string& filename, const std::function<std::string(void)>& password_callback, int buffer_size = -1);
@@ -57,7 +57,7 @@ namespace hss::protobuf::io
 		GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MinizipInputStream);
 	};
 
-	class KML_LIB_API MinizipOutputStream : public google::protobuf::io::ZeroCopyOutputStream
+	class CWFGMPROJECT_EXPORT MinizipOutputStream : public google::protobuf::io::ZeroCopyOutputStream
 	{
 	public:
 		explicit MinizipOutputStream(const std::string& filename, const std::string& password, int buffer_size = -1);

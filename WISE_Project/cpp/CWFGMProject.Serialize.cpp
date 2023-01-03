@@ -30,7 +30,7 @@
 #include "WindSpeedGrid.h"
 #include "filesystem.hpp"
 
-#include <gsl/gsl_util>
+#include <gsl/util>
 
 using namespace std::string_literals;
 

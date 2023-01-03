@@ -33,7 +33,7 @@
 #include "str_printf.h"
 #include "CWFGMProject.h"
 
-#include <gsl/gsl_util>
+#include <gsl/util>
 #include <boost/algorithm/string.hpp>
 
 

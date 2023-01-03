@@ -375,7 +375,7 @@ bool Project::FuelCollection::LoadProtoFuelmap(const char *filename)
 
 			std::string json((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
 			fmap = new WISE::GridProto::CwfgmFuelMap();
-			if (google::protobuf::util::JsonStringToMessage(json, fmap, options) != google::protobuf::util::Status::OK)
+			if (google::protobuf::util::JsonStringToMessage(json, fmap, options).ok())
 			{
 				delete fmap;
 				fmap = nullptr;

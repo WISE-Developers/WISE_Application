@@ -22,7 +22,7 @@
 #include <stdint.h>
 #include <variant>
 
-#include <gsl/gsl_util>
+#include <gsl/util>
 
 #include "ISerializeProto.h"
 

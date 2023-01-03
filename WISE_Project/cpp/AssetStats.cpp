@@ -155,7 +155,7 @@ bool Project::AssetStatsCollection::save(const std::string& filename, class CWFG
 	std::ofstream writeFile;
 	writeFile.open(filename);
 
-	writeFile << js.dump(4, ' ', false, json::error_handler_t::relaxed);
+	writeFile << js.dump(4, ' ', false, json::error_handler_t::ignore);
 
 	writeFile.close();
 

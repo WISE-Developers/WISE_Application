@@ -28,7 +28,7 @@
 #include "ISerializeProto.h"
 #include "intrusive_ptr.h"
 
-#include <gsl/gsl_util>
+#include <gsl/util>
 
 #include "projectGridFilter.pb.h"
 #include "assetCollection.pb.h"

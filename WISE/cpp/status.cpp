@@ -20,7 +20,7 @@
 #include "stdafx.h"
 #endif //_MSC_VER
 #include "types.h"
-#include "SPARCS.h"
+#include "WISE.h"
 #include "misc_native.h"
 
 #if __has_include(<mathimf.h>)

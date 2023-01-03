@@ -30,10 +30,6 @@
 #include <cmath>
 #endif
 
-#if _DLL
-#include "comptr.h"
-#endif
-
 #include <stdlib.h>
 #include <ctime>
 #include "ScenarioCollection.h"
