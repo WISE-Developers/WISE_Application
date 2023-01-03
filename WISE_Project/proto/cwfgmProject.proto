@@ -275,6 +275,7 @@ message Project {
                 RELATIVE_HUMIDITY = 2;
                 WIND_DIRECTION = 3;
                 WIND_SPEED = 4;
+                WIND_GUST = 200;
                 PRECIPITATION = 5;
                 FFMC = 6;
                 ISI = 7;
@@ -408,6 +409,7 @@ message Project {
                 DEW_POINT = 4;
                 RELATIVE_HUMIDITY = 5;
                 WIND_SPEED = 6;
+                WIND_GUST = 110;
                 WIND_DIRECTION = 7;
                 PRECIPITATION = 8;
                 HFFMC = 9;
@@ -899,6 +901,7 @@ enum GlobalStatistics {
     DEW_POINT = 4;
     RELATIVE_HUMIDITY = 5;
     WIND_SPEED = 6;
+    WIND_GUST = 110;
     WIND_DIRECTION = 7;
     PRECIPITATION = 8;
     HFFMC = 9;
