@@ -364,7 +364,7 @@ Project::FuelCollection::FuelCollection(CCWFGM_FuelMap *fuelMap, const TCHAR *gr
 		revision = 36;
 
 	//if the fuel map is old, this is PSaaS, or the folder that should contain the fuelmap doesn't exist load the defaults
-	if ((revision < FUELCOLLECTION_DEFAULT_VERSION) || (CWFGMProject::m_appMode < 0) || (p1.has_parent_path() && !fs::is_directory(p1.parent_path())))
+	if ((revision < FUELCOLLECTION_DEFAULT_VERSION) || (p1.has_parent_path() && !fs::is_directory(p1.parent_path())))
 	{
 		need_initial_defaults = true;
 #if _DLL

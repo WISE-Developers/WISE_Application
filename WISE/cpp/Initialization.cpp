@@ -177,7 +177,6 @@ void SPARCS_P::initMe2()
 	m_proto = nullptr;
 	m_remainingScenarioCnt = -1;
 
-	Project::CWFGMProject::m_appMode = -2;
 	Project::CWFGMProject::m_managedMode = 1;
 	m_event = neosmart::CreateEvent();
 	m_lock = new CRWThreadSemaphore();

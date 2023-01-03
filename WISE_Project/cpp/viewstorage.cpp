@@ -51,13 +51,7 @@ Project::ViewStateNode::ViewStateNode(const TCHAR *group_name)
 	std::string str = AfxGetApp()->GetProfileString(group_name, _T("View Class"), _T(""));
 #endif
 
-#if _DLL
-	if (Project::CWFGMProject::m_appMode > 0)
-		m_pViewClass = ((CWinAppProject *)AfxGetApp())->findClass(str);
-	else
-#endif
-		m_pViewClass = nullptr;
-
+	m_pViewClass = nullptr;
 	m_viewClassName = str;
 
 	RECT rect;
@@ -291,13 +285,7 @@ auto Project::ViewStateNode::deserialize(const google::protobuf::Message& proto,
 		throw ISerializeProto::DeserializeError("ViewStateNode: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
-#if _DLL
-	if (CWFGMProject::m_appMode > 0)
-		m_pViewClass = ((CWinAppProject*)AfxGetApp())->findClass(CString(view->viewtype().c_str()));
-	else
-#endif
-		m_pViewClass = nullptr;
-
+	m_pViewClass = nullptr;
 	m_viewClassName = view->viewtype();
 
 	m_nID = view->id();

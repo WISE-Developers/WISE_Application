@@ -131,7 +131,6 @@ CWinAppProject* AfxGetProjectApp() { return &s_appImpl; }
 #endif
 
 
-std::int32_t Project::CWFGMProject::m_appMode = 0;
 std::int32_t Project::CWFGMProject::m_managedMode = 0;
 
 Project::CWFGMProject::CWFGMProject() :
@@ -142,11 +141,11 @@ Project::CWFGMProject::CWFGMProject() :
     m_fireCollection(this),
     m_weatherCollection(this),
     m_scenarioCollection(this,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getFBPOptions()) : nullptr,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getBasicScenarioOptions()) : nullptr,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getBurnPeriodOptions()) : nullptr,
-	(m_appMode > 0) ? (AfxGetProjectApp()->getCuringOptions()) : nullptr),
-    m_viewCollection((m_appMode > 0) ? (AfxGetProjectApp()->getConfigurationOptions()) : nullptr),
+    nullptr,
+    nullptr,
+    nullptr,
+	nullptr),
+    m_viewCollection(nullptr),
 	m_gridFilterCollection(this),
     m_vectorCollection(this),
 	m_assetCollection(this),
@@ -222,19 +221,17 @@ Project::CWFGMProject::CWFGMProject(CCWFGM_FuelMap *fuelMap, FuelCollection *fue
 	m_fireCollection(this),
     m_weatherCollection(this),
     m_scenarioCollection(this,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getFBPOptions()) : nullptr,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getBasicScenarioOptions()) : nullptr,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getBurnPeriodOptions()) : nullptr,
-	(m_appMode > 0) ? (AfxGetProjectApp()->getCuringOptions()) : nullptr),
-    m_viewCollection((m_appMode > 0) ? (AfxGetProjectApp()->getConfigurationOptions()) : nullptr),
+    nullptr,
+    nullptr,
+    nullptr,
+	nullptr),
+    m_viewCollection(nullptr),
     m_gridFilterCollection(this),
 	m_vectorCollection(this),
 	m_assetCollection(this),
 	m_targetCollection(this),
 	m_outputs(this)
 {
-	weak_assert(m_appMode);
-
 	boost::intrusive_ptr<ICWFGM_CommonBase> c;
 	fuelMap->Clone(&c);
 	m_fuelMap = boost::dynamic_pointer_cast<CCWFGM_FuelMap>(c);
@@ -1840,8 +1837,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
         }
 
 		HRESULT exists = E_FAIL;
-		if (CWFGMProject::m_appMode < 0)
-			exists = scenario->GetWeatherGrid()->SetCache(scenario->layerThread(), 1, true);
+		exists = scenario->GetWeatherGrid()->SetCache(scenario->layerThread(), 1, true);
         scenario->gridEngine()->PreCalculationEvent(scenario->layerThread(), *options.time, static_cast<std::uint32_t>(1 << CWFGM_SCENARIO_OPTION_WEATHER_ALTERNATE_CACHE), nullptr);
         scenario->gridEngine()->PreCalculationEvent(scenario->layerThread(), *options.time, static_cast<std::uint32_t>(1 | (1 << CWFGM_SCENARIO_OPTION_WEATHER_ALTERNATE_CACHE)), nullptr);
 
@@ -2103,7 +2099,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
 
         scenario->gridEngine()->PostCalculationEvent(scenario->layerThread(), *options.time, (ULONG)(1 | (1 << CWFGM_SCENARIO_OPTION_WEATHER_ALTERNATE_CACHE)), nullptr);
         scenario->gridEngine()->PostCalculationEvent(scenario->layerThread(), *options.time, (ULONG)(1 << CWFGM_SCENARIO_OPTION_WEATHER_ALTERNATE_CACHE), nullptr);
-		if ((exists == S_OK) && (CWFGMProject::m_appMode < 0))
+		if (exists == S_OK)
 			scenario->GetWeatherGrid()->SetCache(scenario->layerThread(), 1, false);
 	}
 

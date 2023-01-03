@@ -117,9 +117,6 @@ Project::Scenario::Scenario(const ScenarioCollection *scenarioCollection, const 
 		grid->PutGridEngine(layerThread(), ge.get());
 	}
 
-	if (((grid) && (CWFGMProject::m_appMode > 0)))
-		m_weatherGrid->SetCache(layerThread(), 1, true);
-
 	if (m_scenarioCollection->m_fbpOptions)
 	{
 		SetFBPOptions(*m_scenarioCollection->m_fbpOptions);
@@ -227,9 +224,6 @@ Project::Scenario::Scenario(const Project::Scenario &scenario, const WTimeManage
 		grid->PutGridEngine(layerThread(), ge.get());
 	}
 
-	if ((!isChild) && (grid) && (CWFGMProject::m_appMode > 0))
-		m_weatherGrid->SetCache(layerThread(), 1, true);
-
 	PolymorphicUserData v = this;
 	m_scenario->put_UserData(v);
 	ge->put_UserData(v);
@@ -289,9 +283,6 @@ Project::Scenario::~Scenario()
 	{
 		Simulation_Clear();		// stop any running simulation
 	}
-
-	if ((!m_parent) && (CWFGMProject::m_appMode > 0))
-		m_weatherGrid->SetCache(layerThread(), 1, false);
 
 	while (GetFireCount() > 0)
 	{
@@ -956,9 +947,6 @@ bool Project::Scenario::AssignNewGrid(ICWFGM_GridEngine *oldgrid, ICWFGM_GridEng
 	{
 		ge->PutGridEngine(layerThread(), newgrid);
 	}
-
-	if ((newgrid) && (CWFGMProject::m_appMode > 0))
-		m_weatherGrid->SetCache(layerThread(), 1, true);
 
 	return true;
 }
