@@ -771,8 +771,9 @@ jobs:
       shell: pwsh
       run: |
         $versions = ConvertFrom-StringData (Get-Content versions/versions.properties -raw)
-        echo "Updating to version $($versions.prometheus)"
-        echo "prometheus_version=$($versions.prometheus)" >> $env:GITHUB_OUTPUT
+        $PROM_VERSION=$($versions.prometheus).Replace("-", ".")
+        echo "Updating to version $PROM_VERSION"
+        echo "prometheus_version=$PROM_VERSION" >> $env:GITHUB_OUTPUT
         echo "hss_math_version=$($versions.hss_math)" >> $env:GITHUB_OUTPUT
         echo "wtime_version=$($versions.wtime)" >> $env:GITHUB_OUTPUT
         echo "hss_java_version=$($versions.hss_java)" >> $env:GITHUB_OUTPUT
