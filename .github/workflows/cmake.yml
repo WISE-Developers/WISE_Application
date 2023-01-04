@@ -918,7 +918,7 @@ jobs:
         Copy-Item Release/*.dll ../../../dlibs
 
     - name: Configure Weather Ubuntu
-      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_Weather_Module
         mkdir build
