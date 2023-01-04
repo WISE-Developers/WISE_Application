@@ -25,6 +25,7 @@
 #undef WriteProfileString
 #undef GetClassName
 #include "AfxIniSettings.h"
+#include "results.h"
 #endif
 
 #include <gsl/util>
