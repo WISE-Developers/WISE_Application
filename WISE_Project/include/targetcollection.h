@@ -59,32 +59,32 @@ namespace Project
 		Target* LN_Pred() const								{ return (Target*)SNode::LN_Pred(); };
 
 		const std::string& Name(const std::string& name)	{ ln_Name = name; return ln_Name; }
-		__INLINE const std::string& Name() const noexcept	{ return ln_Name; }
+		const std::string& Name() const noexcept	{ return ln_Name; }
 
 		virtual COLORREF SetColor(COLORREF color)			{ m_col = color; return m_col.value(); };
 		virtual COLORREF GetColor() const					{ if (m_col.has_value()) return m_col.value(); return RGB(0, 0, 0); };
 
-		__INLINE const std::string& Comments(const std::string& comments)	{ m_comments = comments; return m_comments; }
-		__INLINE const std::string& Comments(std::string&& comments)		{ m_comments = std::move(comments); return m_comments; }
-		__INLINE const std::string& Comments() const noexcept				{ return m_comments; }
+		const std::string& Comments(const std::string& comments)	{ m_comments = comments; return m_comments; }
+		const std::string& Comments(std::string&& comments)		{ m_comments = std::move(comments); return m_comments; }
+		const std::string& Comments() const noexcept				{ return m_comments; }
 
-		__INLINE bool IsImported() const					{ if (m_imported.has_value()) return m_imported.value(); return false; };
-		__INLINE bool IsImported(bool imported)				{ m_imported = imported; return m_imported.value(); };
+		bool IsImported() const					{ if (m_imported.has_value()) return m_imported.value(); return false; };
+		bool IsImported(bool imported)				{ m_imported = imported; return m_imported.value(); };
 
-		__INLINE LOGFONT GetFont() const					{ return PolyEditGetWingdingsFont(); }
+		LOGFONT GetFont() const					{ return PolyEditGetWingdingsFont(); }
 
-		__INLINE std::uint64_t GetSymbol() const			{ if (m_symbol.has_value()) return m_symbol.value(); return 0; }
-		__INLINE std::uint64_t SetSymbol(std::uint64_t s)	{ m_symbol = s; return m_symbol.value(); }
+		std::uint64_t GetSymbol() const			{ if (m_symbol.has_value()) return m_symbol.value(); return 0; }
+		std::uint64_t SetSymbol(std::uint64_t s)	{ m_symbol = s; return m_symbol.value(); }
 
-		__INLINE HRESULT LockState() { if (m_target) return m_target->MT_Lock(false, (USHORT)-1); return S_OK; };
+		HRESULT LockState() { if (m_target) return m_target->MT_Lock(false, (USHORT)-1); return S_OK; };
 
 		ICWFGM_GridEngine* gridEngine(ICWFGM_GridEngine* gridEngine);
 		std::string m_loadWarning;
 
 		ULONG AddPointSet(const XY_Point* points, ULONG num_points);
 		ULONG SetPointSet(ULONG index, const XY_Point* points, ULONG num_points);
-		__INLINE ULONG AddPointSet(const XY_PolyConst& poly) { return AddPointSet(poly.GetPointsArray(), poly.NumPoints()); };
-		__INLINE ULONG SetPointSet(ULONG index, const XY_PolyConst& poly) { return SetPointSet(index, poly.GetPointsArray(), poly.NumPoints()); };
+		ULONG AddPointSet(const XY_PolyConst& poly) { return AddPointSet(poly.GetPointsArray(), poly.NumPoints()); };
+		ULONG SetPointSet(ULONG index, const XY_PolyConst& poly) { return SetPointSet(index, poly.GetPointsArray(), poly.NumPoints()); };
 		BOOL ClearPointSet(ULONG index);
 		ULONG GetTargetMaxSize();
 		ULONG GetTargetTotalSize();
@@ -120,15 +120,15 @@ namespace Project
 		TargetCollection(const CWFGMProject* project) : m_project(project) { };
 		~TargetCollection();
 
-		__INLINE void AddTarget(Target* target) { m_targetList.AddTail(target); };
-		__INLINE void InsertTarget(Target* target, ULONG index) { m_targetList.InsertIndex(target, index); };
-		__INLINE void RemoveTarget(Target* target) { m_targetList.Remove(target); };
-		__INLINE ULONG GetCount() const { return m_targetList.GetCount(); };
-		__INLINE Target* FirstTarget() const { return (Target*)m_targetList.LH_Head(); };
-		__INLINE Target* TargetAtIndex(ULONG index) const { return (Target*)m_targetList.IndexNode(index); };
-		__INLINE ULONG IndexOf(Target* vector) const { return m_targetList.NodeIndex(vector); };
+		void AddTarget(Target* target) { m_targetList.AddTail(target); };
+		void InsertTarget(Target* target, ULONG index) { m_targetList.InsertIndex(target, index); };
+		void RemoveTarget(Target* target) { m_targetList.Remove(target); };
+		ULONG GetCount() const { return m_targetList.GetCount(); };
+		Target* FirstTarget() const { return (Target*)m_targetList.LH_Head(); };
+		Target* TargetAtIndex(ULONG index) const { return (Target*)m_targetList.IndexNode(index); };
+		ULONG IndexOf(Target* vector) const { return m_targetList.NodeIndex(vector); };
 		ULONG IndexOf(ICWFGM_Target* target) const;
-		__INLINE Target* FindName(const TCHAR* name) const { return (Target*)m_targetList.FindName(name); };
+		Target* FindName(const TCHAR* name) const { return (Target*)m_targetList.FindName(name); };
 
 		BOOL AssignNewGrid(ICWFGM_GridEngine* grid);
 

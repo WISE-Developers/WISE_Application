@@ -94,7 +94,7 @@ Project::GISOptions::GISOptions(CCWFGM_Grid *grid)
 	}
 	catch (std::bad_variant_access &)
 	{
-		weak_assert(0);
+		weak_assert(false);
 	}
 }
 
@@ -112,7 +112,7 @@ Project::GISOptions::GISOptions(CCWFGM_AttributeFilter *filter)
 	}
 	catch (std::bad_variant_access &)
 	{
-		weak_assert(0);
+		weak_assert(false);
 	}
 }
 
@@ -130,7 +130,7 @@ Project::GISOptions::GISOptions(CCWFGM_PolyReplaceGridFilter *filter)
 	}
 	catch (std::bad_variant_access &)
 	{
-		weak_assert(0);
+		weak_assert(false);
 	}
 }
 
@@ -148,7 +148,7 @@ Project::GISOptions::GISOptions(CCWFGM_WeatherGridFilter *filter)
 	}
 	catch (std::bad_variant_access &)
 	{
-		weak_assert(0);
+		weak_assert(false);
 	}
 }
 
@@ -166,7 +166,7 @@ Project::GISOptions::GISOptions(ICWFGM_VectorEngine *vector)
 	}
 	catch (std::bad_variant_access &)
 	{
-		weak_assert(0);
+		weak_assert(false);
 	}
 }
 
@@ -184,7 +184,7 @@ Project::GISOptions::GISOptions(CCWFGM_Ignition *ignition)
 	}
 	catch (std::bad_variant_access &)
 	{
-		weak_assert(0);
+		weak_assert(false);
 	}
 }
 

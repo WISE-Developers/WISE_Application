@@ -51,8 +51,8 @@ namespace Project
 
 		~ViewStateNode()				{ if (m_pViewSpecific) delete [] m_pViewSpecific; };
 
-		__INLINE ViewStateNode *LN_Succ() const		{ return (ViewStateNode *)MinNode::LN_Succ(); };
-		__INLINE ViewStateNode *LN_Pred() const		{ return (ViewStateNode *)MinNode::LN_Pred(); };
+		ViewStateNode *LN_Succ() const		{ return (ViewStateNode *)MinNode::LN_Succ(); };
+		ViewStateNode *LN_Pred() const		{ return (ViewStateNode *)MinNode::LN_Pred(); };
 
 		void SaveToIniFile(const TCHAR *group_name) const;
 
@@ -93,10 +93,10 @@ namespace Project
 		~ViewCollection();
 
 		void AddView(ViewStateNode *node);
-		__INLINE std::uint32_t GetViewCount() const	{ return m_viewList.GetCount(); };
-		__INLINE ViewStateNode *FirstView() const	{ return (ViewStateNode *)m_viewList.LH_Head(); };
-		__INLINE ViewStateNode *LastView() const	{ return (ViewStateNode *)m_viewList.LH_Tail(); };
-		__INLINE void RemoveViews()					{ ViewStateNode *vn; while ((vn = (ViewStateNode *)m_viewList.RemHead()) != NULL) delete vn; };
+		std::uint32_t GetViewCount() const	{ return m_viewList.GetCount(); };
+		ViewStateNode *FirstView() const	{ return (ViewStateNode *)m_viewList.LH_Head(); };
+		ViewStateNode *LastView() const	{ return (ViewStateNode *)m_viewList.LH_Tail(); };
+		void RemoveViews()					{ ViewStateNode *vn; while ((vn = (ViewStateNode *)m_viewList.RemHead()) != NULL) delete vn; };
 
 		void SaveToIniFile(const TCHAR *group_name) const;
 

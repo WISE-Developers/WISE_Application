@@ -29,8 +29,6 @@
 
 #include <gsl/util>
 
-#define VIEWCOLLECTION_BINARY_VERSION	1
-
 
 Project::ViewStateNode::ViewStateNode()
 {
@@ -51,13 +49,7 @@ Project::ViewStateNode::ViewStateNode(const TCHAR *group_name)
 	std::string str = AfxGetApp()->GetProfileString(group_name, _T("View Class"), _T(""));
 #endif
 
-#if _DLL
-	if (Project::CWFGMProject::m_appMode > 0)
-		m_pViewClass = ((CWinAppProject *)AfxGetApp())->findClass(str);
-	else
-#endif
-		m_pViewClass = nullptr;
-
+	m_pViewClass = nullptr;
 	m_viewClassName = str;
 
 	RECT rect;
@@ -276,7 +268,7 @@ auto Project::ViewStateNode::deserialize(const google::protobuf::Message& proto,
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ViewStorage", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ViewStateNode: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if (view->version() != 1)
@@ -287,17 +279,11 @@ auto Project::ViewStateNode::deserialize(const google::protobuf::Message& proto,
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ViewStorage", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(view->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ViewStateNode: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
-#if _DLL
-	if (CWFGMProject::m_appMode > 0)
-		m_pViewClass = ((CWinAppProject*)AfxGetApp())->findClass(CString(view->viewtype().c_str()));
-	else
-#endif
-		m_pViewClass = nullptr;
-
+	m_pViewClass = nullptr;
 	m_viewClassName = view->viewtype();
 
 	m_nID = view->id();
@@ -372,7 +358,7 @@ auto Project::ViewCollection::deserialize(const google::protobuf::Message& proto
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ViewCollection", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ViewCollection: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if (collection->version() != 1)
@@ -383,7 +369,7 @@ auto Project::ViewCollection::deserialize(const google::protobuf::Message& proto
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ViewCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ViewCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -393,7 +379,7 @@ auto Project::ViewCollection::deserialize(const google::protobuf::Message& proto
 		auto view = collection->views(i);
 		auto vn = new ViewStateNode();
 		if (!vn->deserialize(view, valid, name)) {
-			weak_assert(0);
+			weak_assert(false);
 			delete vn;
 			return nullptr;
 		}

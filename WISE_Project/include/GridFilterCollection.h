@@ -46,15 +46,15 @@ namespace Project
 		GridFilterCollection(const CWFGMProject *project) : m_project(project) { }
 		virtual ~GridFilterCollection();
 
-		__INLINE void AddFilter(GridFilter *filter)		{ m_filterList.AddTail(filter); }
-		__INLINE void RemoveFilter(GridFilter *filter)		{ m_filterList.Remove(filter); }
+		void AddFilter(GridFilter *filter)		{ m_filterList.AddTail(filter); }
+		void RemoveFilter(GridFilter *filter)		{ m_filterList.Remove(filter); }
 
 		template<typename T = std::uint32_t>
 		std::uint32_t GetCount(bool wxpatch_islandscape) const;
 
-		__INLINE GridFilter *FirstFilter() const		{ return m_filterList.LH_Head(); }
-		__INLINE GridFilter *FilterAtIndex(ULONG index) const	{ return m_filterList.IndexNode(index); }
-		__INLINE ULONG IndexOf(GridFilter *filter) const	{ return m_filterList.NodeIndex(filter); }
+		GridFilter *FirstFilter() const		{ return m_filterList.LH_Head(); }
+		GridFilter *FilterAtIndex(ULONG index) const	{ return m_filterList.IndexNode(index); }
+		ULONG IndexOf(GridFilter *filter) const	{ return m_filterList.NodeIndex(filter); }
 
 		GridFilter *FindName(const char *name) const;
 

@@ -131,7 +131,6 @@ CWinAppProject* AfxGetProjectApp() { return &s_appImpl; }
 #endif
 
 
-std::int32_t Project::CWFGMProject::m_appMode = 0;
 std::int32_t Project::CWFGMProject::m_managedMode = 0;
 
 Project::CWFGMProject::CWFGMProject() :
@@ -142,11 +141,11 @@ Project::CWFGMProject::CWFGMProject() :
     m_fireCollection(this),
     m_weatherCollection(this),
     m_scenarioCollection(this,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getFBPOptions()) : nullptr,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getBasicScenarioOptions()) : nullptr,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getBurnPeriodOptions()) : nullptr,
-	(m_appMode > 0) ? (AfxGetProjectApp()->getCuringOptions()) : nullptr),
-    m_viewCollection((m_appMode > 0) ? (AfxGetProjectApp()->getConfigurationOptions()) : nullptr),
+    nullptr,
+    nullptr,
+    nullptr,
+	nullptr),
+    m_viewCollection(static_cast<TCHAR*>(nullptr)),
 	m_gridFilterCollection(this),
     m_vectorCollection(this),
 	m_assetCollection(this),
@@ -222,19 +221,17 @@ Project::CWFGMProject::CWFGMProject(CCWFGM_FuelMap *fuelMap, FuelCollection *fue
 	m_fireCollection(this),
     m_weatherCollection(this),
     m_scenarioCollection(this,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getFBPOptions()) : nullptr,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getBasicScenarioOptions()) : nullptr,
-    (m_appMode > 0) ? (AfxGetProjectApp()->getBurnPeriodOptions()) : nullptr,
-	(m_appMode > 0) ? (AfxGetProjectApp()->getCuringOptions()) : nullptr),
-    m_viewCollection((m_appMode > 0) ? (AfxGetProjectApp()->getConfigurationOptions()) : nullptr),
+    nullptr,
+    nullptr,
+    nullptr,
+	nullptr),
+    m_viewCollection(static_cast<TCHAR*>(nullptr)),
     m_gridFilterCollection(this),
 	m_vectorCollection(this),
 	m_assetCollection(this),
 	m_targetCollection(this),
 	m_outputs(this)
 {
-	weak_assert(m_appMode);
-
 	boost::intrusive_ptr<ICWFGM_CommonBase> c;
 	fuelMap->Clone(&c);
 	m_fuelMap = boost::dynamic_pointer_cast<CCWFGM_FuelMap>(c);
@@ -453,7 +450,7 @@ USHORT Project::CWFGMProject::convertX(double x) const
 	if (SUCCEEDED(GetXLLCorner(&xll)))
 		if (SUCCEEDED(GetResolution(&r)))
 			return static_cast<std::uint16_t>((x - xll) / r);
-	weak_assert(0);
+	weak_assert(false);
 	return (USHORT)-1;
 }
 
@@ -464,7 +461,7 @@ USHORT Project::CWFGMProject::convertY(double y) const
 	if (SUCCEEDED(GetYLLCorner(&yll)))
 		if (SUCCEEDED(GetResolution(&r)))
 			return static_cast<std::uint16_t>((y - yll) / r);
-	weak_assert(0);
+	weak_assert(false);
 	return (USHORT)-1;
 }
 
@@ -491,7 +488,7 @@ double Project::CWFGMProject::invertX(double x) const
 	if (SUCCEEDED(GetXLLCorner(&xll)))
 		if (SUCCEEDED(GetResolution(&r)))
 			return x * r + xll;
-	weak_assert(0);
+	weak_assert(false);
 	return -1.0;
 }
 
@@ -502,7 +499,7 @@ double Project::CWFGMProject::invertY(double y) const
 	if (SUCCEEDED(GetYLLCorner(&yll)))
 		if (SUCCEEDED(GetResolution(&r)))
 			return y * r + yll;
-	weak_assert(0);
+	weak_assert(false);
 	return -1.0;
 }
 
@@ -1590,7 +1587,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
 		case 3:		interp_method = SCENARIO_XYSTAT_TECHNIQUE_DISCRETIZE; break;
 		case 4:		interp_method = SCENARIO_XYSTAT_TECHNIQUE_CALCULATE; break;
 		case 5:		interp_method = SCENARIO_XYSTAT_TECHNIQUE_VORONOI_OVERLAP; break;
-		default:	weak_assert(0);
+		default:	weak_assert(false);
 			        return FALSE;
     }
 
@@ -1796,7 +1793,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
 			case PARA_CRITICAL_PATH_MEAN:
 				break;
 			default:
-				weak_assert(0);
+				weak_assert(false);
 				return false;
 			}
 		}
@@ -1840,8 +1837,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
         }
 
 		HRESULT exists = E_FAIL;
-		if (CWFGMProject::m_appMode < 0)
-			exists = scenario->GetWeatherGrid()->SetCache(scenario->layerThread(), 1, true);
+		exists = scenario->GetWeatherGrid()->SetCache(scenario->layerThread(), 1, true);
         scenario->gridEngine()->PreCalculationEvent(scenario->layerThread(), *options.time, static_cast<std::uint32_t>(1 << CWFGM_SCENARIO_OPTION_WEATHER_ALTERNATE_CACHE), nullptr);
         scenario->gridEngine()->PreCalculationEvent(scenario->layerThread(), *options.time, static_cast<std::uint32_t>(1 | (1 << CWFGM_SCENARIO_OPTION_WEATHER_ALTERNATE_CACHE)), nullptr);
 
@@ -2032,7 +2028,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
 											return 0;
 										double dist2 = exit->XY_DistanceToSquared(*pt_p);
 										if (dist2 > dist) {
-											weak_assert(0);
+											weak_assert(false);
 											return 0;
 										}
 										return 1;
@@ -2103,7 +2099,7 @@ bool Project::CWFGMProject::ExportParameterGrid(std::vector<T*> &arr, const Scen
 
         scenario->gridEngine()->PostCalculationEvent(scenario->layerThread(), *options.time, (ULONG)(1 | (1 << CWFGM_SCENARIO_OPTION_WEATHER_ALTERNATE_CACHE)), nullptr);
         scenario->gridEngine()->PostCalculationEvent(scenario->layerThread(), *options.time, (ULONG)(1 << CWFGM_SCENARIO_OPTION_WEATHER_ALTERNATE_CACHE), nullptr);
-		if ((exists == S_OK) && (CWFGMProject::m_appMode < 0))
+		if (exists == S_OK)
 			scenario->GetWeatherGrid()->SetCache(scenario->layerThread(), 1, false);
 	}
 
@@ -2176,7 +2172,7 @@ bool Project::CWFGMProject::ExportParameterGrid(const TCHAR *szPath, T* const ar
 	GetXLLCorner(&m_xllcorner);
 	GetYLLCorner(&m_yllcorner);
     GDALExporter exporter;
-    exporter.AddTag("TIFFTAG_SOFTWARE", "Prometheus");
+    exporter.AddTag("TIFFTAG_SOFTWARE", "W.I.S.E.");
     exporter.AddTag("TIFFTAG_GDAL_NODATA", "-9999");
 	exporter.setExportCompress(compression);
 	char mbstr[100];
@@ -2316,7 +2312,7 @@ bool Project::CWFGMProject::ExportParameterGrid(const TCHAR *szPath, T* const ac
 	GetXLLCorner(&m_xllcorner);
 	GetYLLCorner(&m_yllcorner);
 	GDALExporter exporter;
-	exporter.AddTag("TIFFTAG_SOFTWARE", "Prometheus");
+	exporter.AddTag("TIFFTAG_SOFTWARE", "W.I.S.E.");
 	exporter.AddTag("TIFFTAG_GDAL_NODATA", "-9999");
 	exporter.setExportCompress(compression);
 	char mbstr[100];
@@ -2714,7 +2710,7 @@ bool Project::CWFGMProject::exportParameterGridArray(std::vector<GDALExtras::Cum
 							}
 							if ((ParaOption[j] == PARA_BURNT) || (ParaOption[j] == PARA_CRITICAL_PATH))
 							{
-								weak_assert(0);
+								weak_assert(false);
 							}
 							else if ((ParaOption[j] == PARA_BURNT_MEAN) || (ParaOption[j] == PARA_CRITICAL_PATH_MEAN) || (ParaOption[j] == PARA_PRECIP))
 							{
@@ -3142,7 +3138,7 @@ std::string Project::CWFGMProject::FormatXY(const double x, const double y, Unit
 
     #ifdef DEBUG
 	default:
-		weak_assert(0);
+		weak_assert(false);
     #endif
 	}
 	return str;
@@ -3190,7 +3186,7 @@ std::string Project::CWFGMProject::FormatLatLon(const double latitude, const dou
 	}
 #ifdef DEBUG
 	default:
-		weak_assert(0);
+		weak_assert(false);
 #endif
 	}
 	return str;

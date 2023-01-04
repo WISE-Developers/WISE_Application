@@ -161,7 +161,7 @@ ISerializeProto *Service::TimestepSettings::deserialize(const google::protobuf::
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.Project.TimestepSettings", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("TimestepSettings: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 
@@ -217,14 +217,14 @@ HSS_PRAGMA_WARNING_POP
 				/// </summary>
 				/// <type>user</type>
 				myValid->add_child_validation("WISE.ProjectProto.Project.Outputs.DiscretizedStatsOptions", "discretizedOptions", validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(dopt.version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw std::invalid_argument("DiscretizedStatsOptions: Unknown version");
 		}
 		discretize = (std::uint16_t)dopt.discretize();
 		if ((discretize < 1) || (discretize > 1000))
 		{
 			//				m_loadWarning = "Warning: WISE.ProjectProto.Project.Outputs.GridOutput: Invalid specified discretization value";
-			weak_assert(0);
+			weak_assert(false);
 			if (myValid) {
 				/// <summary>
 				/// The scenario's override FMC value is invalid.

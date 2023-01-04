@@ -87,7 +87,7 @@ std::string Project::CWindSpeedGrid::GetRangeString(USHORT sector, USHORT range)
 	}
 	else
 	{
-		weak_assert(0);
+		weak_assert(false);
 	}
 	return string;
 }
@@ -193,7 +193,7 @@ HRESULT Project::CWindSpeedGrid::Remove(const USHORT sector, const USHORT range)
 	}
 	else
 	{
-		weak_assert(0);
+		weak_assert(false);
 		hr = ERROR_SEVERITY_ERROR;
 	}
 	return hr;

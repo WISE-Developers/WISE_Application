@@ -60,18 +60,9 @@ namespace Project
 		void ExportBasicInfo(FILE *fp);
 		bool IsImportedFromFile();
 		bool IsImportedFromUrl();
-		bool IsDateImportedFromFile(const HSS_Time::WTime &time);
 		HRESULT Export(ICWFGM_FWI *FWI, const TCHAR *szPath, const ExportOptions *exportOptions, SHORT export_hourly, bool include_fwi, bool need_head);
 		HRESULT Import(const std::string &fileName, USHORT options);
 		void ClearWeatherData();
-
-		HRESULT SetFFMCMethod(short method);
-		HRESULT SetWindGamma(double gamma);
-		HRESULT SetWindBeta(double beta);
-		HRESULT SetWindAlpha(double alpha);
-		HRESULT SetTempGamma(double gamma);
-		HRESULT SetTempBeta(double beta);
-		HRESULT SetTempAlpha(double alpha);
 
 	protected:
 		WeatherStream();
@@ -80,69 +71,69 @@ namespace Project
 	public:
 		virtual ~WeatherStream()				{ };
 
-		__INLINE WeatherStream *LN_Succ() const			{ return (WeatherStream *)MinNode::LN_Succ(); };
-		__INLINE WeatherStream *LN_Pred() const			{ return (WeatherStream *)MinNode::LN_Pred(); };
+		WeatherStream *LN_Succ() const			{ return (WeatherStream *)MinNode::LN_Succ(); };
+		WeatherStream *LN_Pred() const			{ return (WeatherStream *)MinNode::LN_Pred(); };
 
-		__INLINE WeatherStation *m_weatherStation() const	{ return m_station; };
+		WeatherStation *m_weatherStation() const	{ return m_station; };
 		HRESULT GetValidTimeRange(HSS_Time::WTime &start, HSS_Time::WTimeSpan &duration);
-		__INLINE HRESULT SetStartTime(const HSS_Time::WTime &start)	{ PolymorphicAttribute v = start; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_START_TIME, v); };
-		__INLINE HRESULT SetEndTime(const HSS_Time::WTime &end)		{ PolymorphicAttribute v = end; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_END_TIME, v); };
-		__INLINE bool GetStartTime(HSS_Time::WTime &start) { PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_stream->GetAttribute(CWFGM_WEATHER_OPTION_START_TIME, &v))) { VariantToTime_(v, &start); } return SUCCEEDED(hr); };
-		__INLINE bool GetEndTime(HSS_Time::WTime &EndTime) { PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_stream->GetAttribute(CWFGM_WEATHER_OPTION_END_TIME, &v))) { VariantToTime_(v, &EndTime); } return SUCCEEDED(hr); };
-		__INLINE bool GetFirstHourOfDay(const HSS_Time::WTime& day, int& hour) { UCHAR h; if (SUCCEEDED(m_stream->GetFirstHourOfDay(day, &h))) { hour = h; return true; } hour = -1; return false; }
-		__INLINE bool GetLastHourOfDay(const HSS_Time::WTime& day, int& hour) { UCHAR h; if (SUCCEEDED(m_stream->GetLastHourOfDay(day, &h))) { hour = h; return true; } hour = -1; return false; }
-		__INLINE HRESULT SetLocation(double latitude, double longitude)
+		HRESULT SetStartTime(const HSS_Time::WTime &start)	{ PolymorphicAttribute v = start; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_START_TIME, v); };
+		HRESULT SetEndTime(const HSS_Time::WTime &end)		{ PolymorphicAttribute v = end; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_END_TIME, v); };
+		bool GetStartTime(HSS_Time::WTime &start) { PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_stream->GetAttribute(CWFGM_WEATHER_OPTION_START_TIME, &v))) { VariantToTime_(v, &start); } return SUCCEEDED(hr); };
+		bool GetEndTime(HSS_Time::WTime &EndTime) { PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_stream->GetAttribute(CWFGM_WEATHER_OPTION_END_TIME, &v))) { VariantToTime_(v, &EndTime); } return SUCCEEDED(hr); };
+		bool GetFirstHourOfDay(const HSS_Time::WTime& day, int& hour) { UCHAR h; if (SUCCEEDED(m_stream->GetFirstHourOfDay(day, &h))) { hour = h; return true; } hour = -1; return false; }
+		bool GetLastHourOfDay(const HSS_Time::WTime& day, int& hour) { UCHAR h; if (SUCCEEDED(m_stream->GetLastHourOfDay(day, &h))) { hour = h; return true; } hour = -1; return false; }
+		HRESULT SetLocation(double latitude, double longitude)
 									{ HRESULT hr; PolymorphicAttribute v = latitude; if (SUCCEEDED(hr = m_stream->SetAttribute(CWFGM_GRID_ATTRIBUTE_LATITUDE, v))) {
 										v = longitude; hr = m_stream->SetAttribute(CWFGM_GRID_ATTRIBUTE_LONGITUDE, v); } return hr; };
 
-		__INLINE bool put_CommonData(ICWFGM_CommonData* data) { return SUCCEEDED(m_stream->put_CommonData(data)); }
+		bool put_CommonData(ICWFGM_CommonData* data) { return SUCCEEDED(m_stream->put_CommonData(data)); }
 
-		__INLINE HRESULT Initial_FFMC(double ffmc)		{ PolymorphicAttribute v = ffmc; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_FFMC, v); };
-		__INLINE HRESULT Initial_HFFMC(double ffmc)		{ PolymorphicAttribute v = ffmc; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_HFFMC, v); };
-		__INLINE HRESULT Initial_HFFMCTime(const HSS_Time::WTimeSpan ts){ PolymorphicAttribute v = ts; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_HFFMCTIME, v); };
-		__INLINE HRESULT Initial_DC(double dc)			{ PolymorphicAttribute v = dc; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_DC, v); };
-		__INLINE HRESULT Initial_DMC(double dmc)		{ PolymorphicAttribute v = dmc; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_DMC, v); };
-		__INLINE HRESULT Initial_Rain(double rain)		{ PolymorphicAttribute v = rain; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_RAIN, v); };
-		__INLINE double Initial_FFMC()					{ PolymorphicAttribute v; double d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_FFMC, &v))) { VariantToDouble_(v, &d); return d; } return -1.0; };
-		__INLINE double Initial_HFFMC()					{ PolymorphicAttribute v; double d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_HFFMC, &v))) { VariantToDouble_(v, &d); return d; } return -1.0; };
-		__INLINE double Initial_DC()					{ PolymorphicAttribute v; double d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_DC, &v))) { VariantToDouble_(v, &d); return d; } return -1.0; };
-		__INLINE double Initial_DMC()					{ PolymorphicAttribute v; double d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_DMC, &v))) { VariantToDouble_(v, &d); return d; } return -1.0; };
-		__INLINE double Initial_Rain()					{ PolymorphicAttribute v; double d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_RAIN, &v))) { VariantToDouble_(v, &d); return d; } return -1.0; };
-		__INLINE HSS_Time::WTimeSpan Initial_HFFMCTime()			{ PolymorphicAttribute v; HSS_Time::WTimeSpan d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_HFFMCTIME, &v))) { VariantToTimeSpan_(v, &d); return d; } return HSS_Time::WTimeSpan(-1); };
+		HRESULT Initial_FFMC(double ffmc)		{ PolymorphicAttribute v = ffmc; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_FFMC, v); };
+		HRESULT Initial_HFFMC(double ffmc)		{ PolymorphicAttribute v = ffmc; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_HFFMC, v); };
+		HRESULT Initial_HFFMCTime(const HSS_Time::WTimeSpan ts){ PolymorphicAttribute v = ts; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_HFFMCTIME, v); };
+		HRESULT Initial_DC(double dc)			{ PolymorphicAttribute v = dc; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_DC, v); };
+		HRESULT Initial_DMC(double dmc)		{ PolymorphicAttribute v = dmc; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_DMC, v); };
+		HRESULT Initial_Rain(double rain)		{ PolymorphicAttribute v = rain; return m_stream->SetAttribute(CWFGM_WEATHER_OPTION_INITIAL_RAIN, v); };
+		double Initial_FFMC()					{ PolymorphicAttribute v; double d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_FFMC, &v))) { VariantToDouble_(v, &d); return d; } return -1.0; };
+		double Initial_HFFMC()					{ PolymorphicAttribute v; double d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_HFFMC, &v))) { VariantToDouble_(v, &d); return d; } return -1.0; };
+		double Initial_DC()					{ PolymorphicAttribute v; double d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_DC, &v))) { VariantToDouble_(v, &d); return d; } return -1.0; };
+		double Initial_DMC()					{ PolymorphicAttribute v; double d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_DMC, &v))) { VariantToDouble_(v, &d); return d; } return -1.0; };
+		double Initial_Rain()					{ PolymorphicAttribute v; double d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_RAIN, &v))) { VariantToDouble_(v, &d); return d; } return -1.0; };
+		HSS_Time::WTimeSpan Initial_HFFMCTime()			{ PolymorphicAttribute v; HSS_Time::WTimeSpan d; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_INITIAL_HFFMCTIME, &v))) { VariantToTimeSpan_(v, &d); return d; } return HSS_Time::WTimeSpan(-1); };
 
-		__INLINE bool WarnOnSunriseCalc()				{ PolymorphicAttribute v; bool b; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_WARNONSUNRISE, &v)))	{ VariantToBoolean_(v, &b); return b; } return false; };
-		__INLINE bool WarnOnSunsetCalc()				{ PolymorphicAttribute v; bool b; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_WARNONSUNSET, &v)))		{ VariantToBoolean_(v, &b); return b; } return false; };
+		bool WarnOnSunriseCalc()				{ PolymorphicAttribute v; bool b; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_WARNONSUNRISE, &v)))	{ VariantToBoolean_(v, &b); return b; } return false; };
+		bool WarnOnSunsetCalc()				{ PolymorphicAttribute v; bool b; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_WARNONSUNSET, &v)))		{ VariantToBoolean_(v, &b); return b; } return false; };
 
-		__INLINE WeatherOptions GetWeatherOptions() const	{ return WeatherOptions(m_stream.get()); };
-		__INLINE bool SetWeatherOptions(const WeatherOptions &wo){return wo.SaveToWeatherStream(m_stream.get()); };
+		WeatherOptions GetWeatherOptions() const	{ return WeatherOptions(m_stream.get()); };
+		bool SetWeatherOptions(const WeatherOptions &wo){return wo.SaveToWeatherStream(m_stream.get()); };
 
-		__INLINE bool IsHourlyObservations(const HSS_Time::WTime &t)	{ return FAILED(m_stream->IsDailyObservations(t)); };
-		__INLINE bool IsDailyObservations(const HSS_Time::WTime &t)	{ return SUCCEEDED(m_stream->IsDailyObservations(t)); };
-		__INLINE bool IsAnyDailyObservations() const { return SUCCEEDED(m_stream->IsAnyDailyObservations()); };
-		__INLINE bool IsAnyImportedFromFile() const { HSS_Time::WTime t(0, nullptr); return SUCCEEDED(m_stream->IsImportedFromFile(t)); };
-		__INLINE bool IsAnyImportedFromEnsemble() const { HSS_Time::WTime t(0, nullptr); return SUCCEEDED(m_stream->IsImportedFromEnsemble(t)); };
-		__INLINE bool IsAnyModified() const { return SUCCEEDED(m_stream->IsAnyModified()); };
-		__INLINE HRESULT MakeHourlyObservations(const HSS_Time::WTime &time){return m_stream->MakeHourlyObservations(time); };
-		__INLINE HRESULT MakeDailyObservations(const HSS_Time::WTime &time){ return m_stream->MakeDailyObservations(time); };
+		bool IsHourlyObservations(const HSS_Time::WTime &t)	{ return FAILED(m_stream->IsDailyObservations(t)); };
+		bool IsDailyObservations(const HSS_Time::WTime &t)	{ return SUCCEEDED(m_stream->IsDailyObservations(t)); };
+		bool IsAnyDailyObservations() const { return SUCCEEDED(m_stream->IsAnyDailyObservations()); };
+		bool IsAnyImportedFromFile() const { HSS_Time::WTime t(0, nullptr); return SUCCEEDED(m_stream->IsImportedFromFile(t)); };
+		bool IsAnyImportedFromEnsemble() const { HSS_Time::WTime t(0, nullptr); return SUCCEEDED(m_stream->IsImportedFromEnsemble(t)); };
+		bool IsAnyModified() const { return SUCCEEDED(m_stream->IsAnyModified()); };
+		HRESULT MakeHourlyObservations(const HSS_Time::WTime &time){return m_stream->MakeHourlyObservations(time); };
+		HRESULT MakeDailyObservations(const HSS_Time::WTime &time){ return m_stream->MakeDailyObservations(time); };
 
-		__INLINE HRESULT GetDailyValues(const HSS_Time::WTime &time, double *min_temp, double *max_temp, double *min_ws, double *max_ws, double* min_gust, double* max_gust, double *rh, double *precip, double *wd)
+		HRESULT GetDailyValues(const HSS_Time::WTime &time, double *min_temp, double *max_temp, double *min_ws, double *max_ws, double* min_gust, double* max_gust, double *rh, double *precip, double *wd)
 	 								{ return m_stream->GetDailyValues(time, min_temp, max_temp, min_ws, max_ws, min_gust, max_gust, rh, precip, wd); };
-		__INLINE HRESULT SetDailyValues(const HSS_Time::WTime &time, double min_temp, double max_temp, double min_ws, double max_ws, double min_gust, double max_gust, double rh, double precip, double wd)
+		HRESULT SetDailyValues(const HSS_Time::WTime &time, double min_temp, double max_temp, double min_ws, double max_ws, double min_gust, double max_gust, double rh, double precip, double wd)
 									{ return m_stream->SetDailyValues(time, min_temp, max_temp, min_ws, max_ws, min_gust, max_gust, rh, precip, wd); };
-		__INLINE bool GetDailyStandardFFMC(const HSS_Time::WTime &time, double *ffmc)
+		bool GetDailyStandardFFMC(const HSS_Time::WTime &time, double *ffmc)
 									{ return SUCCEEDED(m_stream->DailyStandardFFMC(time, ffmc)); };
-		__INLINE bool GetInstantaneousValues(const HSS_Time::WTime &time, ULONG interpolation_method, IWXData *wx, IFWIData *ifwi, DFWIData *dfwi)
+		bool GetInstantaneousValues(const HSS_Time::WTime &time, ULONG interpolation_method, IWXData *wx, IFWIData *ifwi, DFWIData *dfwi)
 									{ return SUCCEEDED(m_stream->GetInstantaneousValues(time, interpolation_method, wx, ifwi, dfwi)); };
-		__INLINE HRESULT SetInstantaneousValues(const HSS_Time::WTime &time, IWXData *wx)
+		HRESULT SetInstantaneousValues(const HSS_Time::WTime &time, IWXData *wx)
 									{ return m_stream->SetInstantaneousValues(time, wx); };
-		__INLINE bool UseSpecifiedFWI() { PolymorphicAttribute v; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_FWI_USE_SPECIFIED, &v))) { bool d;  VariantToBoolean_(v, &d); return d; } return false; };
+		bool UseSpecifiedFWI() { PolymorphicAttribute v; if (SUCCEEDED(m_stream->GetAttribute(CWFGM_WEATHER_OPTION_FWI_USE_SPECIFIED, &v))) { bool d;  VariantToBoolean_(v, &d); return d; } return false; };
 
 		std::string		m_name,		// name for the CWFGM weather stream object
 						m_comments,	// comments for this object
 						m_loadWarning;
 		boost::intrusive_ptr<CCWFGM_WeatherStream>	m_stream;	// m_fuel's UserData should point at this
 
-		__INLINE HRESULT LockState()				{ return m_stream->MT_Lock(false, (USHORT)-1); };
+		HRESULT LockState()				{ return m_stream->MT_Lock(false, (USHORT)-1); };
 
 	private:
 		void FillOneDayStream(ICWFGM_FWI *FWI, const HSS_Time::WTime &newTime, FILE *fp,const ExportOptions *exportOptions, SHORT export_hourly, SHORT include_fwi);
@@ -168,8 +159,8 @@ namespace Project
 	public:
 		~WeatherStation();
 
-		__INLINE WeatherStation *LN_Succ() const					{ return (WeatherStation *)MinNode::LN_Succ(); };
-		__INLINE WeatherStation *LN_Pred() const					{ return (WeatherStation *)MinNode::LN_Pred(); };
+		WeatherStation *LN_Succ() const					{ return (WeatherStation *)MinNode::LN_Succ(); };
+		WeatherStation *LN_Pred() const					{ return (WeatherStation *)MinNode::LN_Pred(); };
 
 		virtual WeatherStream *New() const							{ return new WeatherStream(); };
 		virtual WeatherStream *New(const WeatherStream &s) const	{ return new WeatherStream(s); };
@@ -178,10 +169,10 @@ namespace Project
 		bool AddStream(WeatherStream *stream);
 		bool AddStream(WeatherStream *stream, ULONG index);
 		HRESULT RemoveStream(WeatherStream *stream);
-		__INLINE ULONG GetCount() const								{ return m_streamList.GetCount(); };
-		__INLINE WeatherStream *FirstStream() const					{ return m_streamList.LH_Head(); };
-		__INLINE WeatherStream *StreamAtIndex(ULONG index) const	{ return m_streamList.IndexNode(index); };
-		__INLINE ULONG IndexOf(WeatherStream *stream) const			{ return m_streamList.NodeIndex(stream); };
+		ULONG GetCount() const								{ return m_streamList.GetCount(); };
+		WeatherStream *FirstStream() const					{ return m_streamList.LH_Head(); };
+		WeatherStream *StreamAtIndex(ULONG index) const	{ return m_streamList.IndexNode(index); };
+		ULONG IndexOf(WeatherStream *stream) const			{ return m_streamList.NodeIndex(stream); };
 
 		double Latitude() const;
 		double Longitude() const;
@@ -191,16 +182,16 @@ namespace Project
 		bool GridLocation(double x, double y);
 		HRESULT Elevation(double Elevation);
 
-		__INLINE void SetDisplaySize(ULONG Width)			{ m_displaySize = Width; };
-		__INLINE ULONG GetDisplaySize() const				{ if (m_displaySize.has_value()) return m_displaySize.value(); return 3; };
+		void SetDisplaySize(ULONG Width)			{ m_displaySize = Width; };
+		ULONG GetDisplaySize() const				{ if (m_displaySize.has_value()) return m_displaySize.value(); return 3; };
 
-		__INLINE COLORREF GetColor() const					{ if (m_color.has_value()) return m_color.value(); return RGB(0, 0, 0xff); };
-		__INLINE COLORREF SetColor(COLORREF c)				{ if (m_color != c) { m_color = c; } return m_color.value(); };
+		COLORREF GetColor() const					{ if (m_color.has_value()) return m_color.value(); return RGB(0, 0, 0xff); };
+		COLORREF SetColor(COLORREF c)				{ if (m_color != c) { m_color = c; } return m_color.value(); };
 
-		__INLINE LOGFONT GetFont() const					{ return PolyEditGetWingdingsFont(); }
+		LOGFONT GetFont() const					{ return PolyEditGetWingdingsFont(); }
 
-		__INLINE std::uint64_t GetSymbol() const			{ if (m_symbol.has_value()) return m_symbol.value(); return 0; }
-		__INLINE std::uint64_t SetSymbol(std::uint64_t s)	{ m_symbol = s; return m_symbol.value(); }
+		std::uint64_t GetSymbol() const			{ if (m_symbol.has_value()) return m_symbol.value(); return 0; }
+		std::uint64_t SetSymbol(std::uint64_t s)	{ m_symbol = s; return m_symbol.value(); }
 
 		WeatherStream *FindName(const TCHAR *name) const;
 	
@@ -214,7 +205,7 @@ namespace Project
 		std::string		m_name,		// name for the CWFGM fire object
 						m_comments;	// comments for this object
 
-		__INLINE HRESULT LockState()					{ return m_station->MT_Lock(false, (USHORT)-1); };
+		HRESULT LockState()					{ return m_station->MT_Lock(false, (USHORT)-1); };
 
 		std::string CollectLoadWarnings();
 
@@ -255,12 +246,12 @@ namespace Project
 		HRESULT PCOM_CreateWeatherStation(const char *name, WeatherStation **station);
 		HRESULT PCOM_SetWeatherStation(WeatherStation *station, CCWFGM_Grid *grid, double Latitude, double Longitude, double Elevation);
 
-		__INLINE void AddStation(WeatherStation *station)				{ m_stationList.AddTail(station); };
-		__INLINE void RemoveStation(WeatherStation *station)			{ m_stationList.Remove(station); };
-		__INLINE ULONG GetCount() const									{ return m_stationList.GetCount(); };
-		__INLINE WeatherStation *FirstStation() const					{ return m_stationList.LH_Head(); };
-		__INLINE WeatherStation *StationAtIndex(ULONG index) const		{ return m_stationList.IndexNode(index); };
-		__INLINE ULONG IndexOf(WeatherStation *station) const			{ return m_stationList.NodeIndex(station); };
+		void AddStation(WeatherStation *station)				{ m_stationList.AddTail(station); };
+		void RemoveStation(WeatherStation *station)			{ m_stationList.Remove(station); };
+		ULONG GetCount() const									{ return m_stationList.GetCount(); };
+		WeatherStation *FirstStation() const					{ return m_stationList.LH_Head(); };
+		WeatherStation *StationAtIndex(ULONG index) const		{ return m_stationList.IndexNode(index); };
+		ULONG IndexOf(WeatherStation *station) const			{ return m_stationList.NodeIndex(station); };
 
 		WeatherStation *FindName(const TCHAR *name) const;
 

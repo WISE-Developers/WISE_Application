@@ -1,0 +1,1758 @@
+name: CMake
+
+on:
+  workflow_dispatch
+
+env:
+  BUILD_TYPE: Release
+  BOOST_VERSION: 1.81.0
+  PROTO_VERSION: 21.10
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-20.04
+          - ubuntu-22.04
+          - windows-2019
+        include:
+          - os: ubuntu-20.04
+            os_version: 20.04
+            build_tool: gcc
+          - os: ubuntu-22.04
+            os_version: 22.04
+            build_tool: gcc
+          - os: windows-2019
+            os_version: 2019
+            build_tool: msvc142
+
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+
+    outputs:
+      release_version: ${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        path: WISE_Application
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/versions
+        path: versions
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_Processing_Lib
+        path: WISE_Processing_Lib
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/REDapp_Lib
+        path: REDapp_Lib
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_REDapp_Lib_Wrapper
+        path: WISE_REDapp_Lib_Wrapper
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_FWI_Module
+        path: WISE_FWI_Module
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_FBP_Module
+        path: WISE_FBP_Module
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_Grid_Module
+        path: WISE_Grid_Module
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_Weather_Module
+        path: WISE_Weather_Module
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_Scenario_Growth_Module
+        path: WISE_Scenario_Growth_Module
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_Communications_Module
+        path: WISE_Communications_Module
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: microsoft/GSL
+        path: GSL
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: eclipse/paho.mqtt.c
+        path: paho
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: eclipse/paho.mqtt.cpp
+        path: pahopp
+        token: ${{ secrets.WISE_PAT }}
+    
+    - name: Download LowLevel include files
+      uses: robinraju/release-downloader@v1.7
+      with:
+        repository: "HeartlandSoftware/HSS_LowLevel"
+        latest: true
+        fileName: "includes.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "HSS_LowLevel"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download ErrorCalc include files
+      uses: robinraju/release-downloader@v1.7
+      with:
+        repository: "HeartlandSoftware/ErrorCalc2"
+        latest: true
+        fileName: "includes.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "ErrorCalc"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Multithread include files
+      uses: robinraju/release-downloader@v1.7
+      with:
+        repository: "HeartlandSoftware/HSS_Multithread2"
+        latest: true
+        fileName: "includes.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "HSS_Multithread"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Math include files
+      uses: robinraju/release-downloader@v1.7
+      with:
+        repository: "HeartlandSoftware/HSS_Math_2"
+        latest: true
+        fileName: "includes.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "HSS_Math"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Geography include files
+      uses: robinraju/release-downloader@v1.7
+      with:
+        repository: "HeartlandSoftware/HSS_Geography_2"
+        latest: true
+        fileName: "includes.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "HSS_Geography"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Geography include files
+      uses: robinraju/release-downloader@v1.7
+      with:
+        repository: "HeartlandSoftware/WTime"
+        latest: true
+        fileName: "includes.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "WTime"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Math protobuf files
+      uses: robinraju/release-downloader@v1.7
+      with:
+        repository: "HeartlandSoftware/HSS_Math_2"
+        latest: true
+        fileName: "proto_def.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "proto/HSS_Math"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Geography protobuf files
+      uses: robinraju/release-downloader@v1.7
+      with:
+        repository: "HeartlandSoftware/HSS_Geography_2"
+        latest: true
+        fileName: "proto_def.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "proto/HSS_Geography"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Math protobuf files
+      uses: robinraju/release-downloader@v1.7
+      with:
+        repository: "HeartlandSoftware/WTime"
+        latest: true
+        fileName: "proto_def.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "proto/WTime"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download LowLevel lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'windows-2019'
+      with:
+        repository: "HeartlandSoftware/HSS_LowLevel"
+        latest: true
+        fileName: "windows.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_LowLevel"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download LowLevel lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-20.04'
+      with:
+        repository: "HeartlandSoftware/HSS_LowLevel"
+        latest: true
+        fileName: "ubuntu20.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_LowLevel"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download LowLevel lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-22.04'
+      with:
+        repository: "HeartlandSoftware/HSS_LowLevel"
+        latest: true
+        fileName: "ubuntu22.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_LowLevel"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download ErrorCalc lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'windows-2019'
+      with:
+        repository: "HeartlandSoftware/ErrorCalc2"
+        latest: true
+        fileName: "windows.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/ErrorCalc"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download ErrorCalc lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-20.04'
+      with:
+        repository: "HeartlandSoftware/ErrorCalc2"
+        latest: true
+        fileName: "ubuntu20.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/ErrorCalc"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download ErrorCalc lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-22.04'
+      with:
+        repository: "HeartlandSoftware/ErrorCalc2"
+        latest: true
+        fileName: "ubuntu22.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/ErrorCalc"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Multithread lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'windows-2019'
+      with:
+        repository: "HeartlandSoftware/HSS_Multithread2"
+        latest: true
+        fileName: "lib-Windows-2019.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_Multithread"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Multithread lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-20.04'
+      with:
+        repository: "HeartlandSoftware/HSS_Multithread2"
+        latest: true
+        fileName: "lib-Ubuntu-20.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_Multithread"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Multithread lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-22.04'
+      with:
+        repository: "HeartlandSoftware/HSS_Multithread2"
+        latest: true
+        fileName: "lib-Ubuntu-22.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_Multithread"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Math lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'windows-2019'
+      with:
+        repository: "HeartlandSoftware/HSS_Math_2"
+        latest: true
+        fileName: "lib-Windows-2019.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_Math"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Math lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-20.04'
+      with:
+        repository: "HeartlandSoftware/HSS_Math_2"
+        latest: true
+        fileName: "lib-Ubuntu-20.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_Math"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Math lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-22.04'
+      with:
+        repository: "HeartlandSoftware/HSS_Math_2"
+        latest: true
+        fileName: "lib-Ubuntu-22.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_Math"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Geography lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'windows-2019'
+      with:
+        repository: "HeartlandSoftware/HSS_Geography_2"
+        latest: true
+        fileName: "lib-Windows-2019.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_Geography"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Geography lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-20.04'
+      with:
+        repository: "HeartlandSoftware/HSS_Geography_2"
+        latest: true
+        fileName: "lib-Ubuntu-20.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_Geography"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download Geography lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-22.04'
+      with:
+        repository: "HeartlandSoftware/HSS_Geography_2"
+        latest: true
+        fileName: "lib-Ubuntu-22.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/HSS_Geography"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download WTime lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'windows-2019'
+      with:
+        repository: "HeartlandSoftware/WTime"
+        latest: true
+        fileName: "lib-Windows-2019.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/WTime"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download WTime lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-20.04'
+      with:
+        repository: "HeartlandSoftware/WTime"
+        latest: true
+        fileName: "lib-Ubuntu-20.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/WTime"
+        token: ${{ secrets.HSS_PAT }}
+
+    - name: Download WTime lib
+      uses: robinraju/release-downloader@v1.7
+      if: matrix.os == 'ubuntu-22.04'
+      with:
+        repository: "HeartlandSoftware/WTime"
+        latest: true
+        fileName: "lib-Ubuntu-22.04.zip"
+        tarBall: false
+        zipBall: false
+        out-file-path: "dlibs/WTime"
+        token: ${{ secrets.HSS_PAT }}
+        
+    - name: Unarchive downloaded include files
+      shell: pwsh
+      run: |
+        Expand-Archive proto/HSS_Math/proto_def.zip -DestinationPath . -Force
+        Expand-Archive proto/HSS_Geography/proto_def.zip -DestinationPath . -Force
+        Expand-Archive proto/WTime/proto_def.zip -DestinationPath . -Force
+        Copy-Item WISE_FBP_Module/proto/*.proto -Destination proto -Force
+        Copy-Item WISE_Grid_Module/proto/*.proto -Destination proto -Force
+        Copy-Item WISE_Weather_Module/proto/*.proto -Destination proto -Force
+        Copy-Item WISE_Scenario_Growth_Module/proto/*.proto -Destination proto -Force
+        Copy-Item WISE_Application/WISE_Project/proto/*.proto -Destination proto -Force
+        Expand-Archive HSS_LowLevel/includes.zip -DestinationPath HSS_LowLevel
+        Expand-Archive ErrorCalc/includes.zip -DestinationPath ErrorCalc
+        Expand-Archive HSS_Multithread/includes.zip -DestinationPath HSS_Multithread
+        Expand-Archive HSS_Math/includes.zip -DestinationPath HSS_Math
+        Expand-Archive HSS_Geography/includes.zip -DestinationPath HSS_Geography
+        Expand-Archive WTime/includes.zip -DestinationPath WTime
+
+    - name: Unarchive downloaded Windows libraries
+      if: matrix.os == 'windows-2019'
+      shell: pwsh
+      run: |
+        Expand-Archive dlibs/HSS_LowLevel/windows.zip -DestinationPath dlibs
+        Expand-Archive dlibs/ErrorCalc/windows.zip -DestinationPath dlibs
+        Expand-Archive dlibs/HSS_Multithread/lib-Windows-2019.zip -DestinationPath dlibs
+        Expand-Archive dlibs/HSS_Math/lib-Windows-2019.zip -DestinationPath dlibs
+        Expand-Archive dlibs/HSS_Geography/lib-Windows-2019.zip -DestinationPath dlibs
+        Expand-Archive dlibs/WTime/lib-Windows-2019.zip -DestinationPath dlibs
+        
+    - name: Unarchive downloaded Ubuntu libraries
+      if: matrix.os == 'ubuntu-20.04'
+      shell: pwsh
+      run: |
+        Expand-Archive dlibs/HSS_LowLevel/ubuntu20.04.zip -DestinationPath dlibs
+        Expand-Archive dlibs/ErrorCalc/ubuntu20.04.zip -DestinationPath dlibs
+        Expand-Archive dlibs/HSS_Multithread/lib-Ubuntu-20.04.zip -DestinationPath dlibs
+        Expand-Archive dlibs/HSS_Math/lib-Ubuntu-20.04.zip -DestinationPath dlibs
+        Expand-Archive dlibs/HSS_Geography/lib-Ubuntu-20.04.zip -DestinationPath dlibs
+        Expand-Archive dlibs/WTime/lib-Ubuntu-20.04.zip -DestinationPath dlibs
+        
+    - name: Unarchive downloaded Ubuntu libraries
+      if: matrix.os == 'ubuntu-22.04'
+      shell: pwsh
+      run: |
+        Expand-Archive dlibs/HSS_LowLevel/ubuntu22.04.zip -DestinationPath dlibs
+        Expand-Archive dlibs/ErrorCalc/ubuntu22.04.zip -DestinationPath dlibs
+        Expand-Archive dlibs/HSS_Multithread/lib-Ubuntu-22.04.zip -DestinationPath dlibs
+        Expand-Archive dlibs/HSS_Math/lib-Ubuntu-22.04.zip -DestinationPath dlibs
+        Expand-Archive dlibs/HSS_Geography/lib-Ubuntu-22.04.zip -DestinationPath dlibs
+        Expand-Archive dlibs/WTime/lib-Ubuntu-22.04.zip -DestinationPath dlibs
+        
+    - name: Set up JDK 8
+      if: matrix.os == 'windows-2019'
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+        server-id: github
+        cache: 'maven'
+
+    - name: Set up JDK 13
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      uses: actions/setup-java@v3
+      with:
+        java-version: '13'
+        distribution: 'temurin'
+        server-id: github
+        cache: 'maven'
+
+    - name: Setup the Maven configuration file
+      uses: whelk-io/maven-settings-xml-action@v21
+      with:
+        servers: '[{ "id": "github", "username": "spydmobile", "password": "${{ secrets.WISE_PAT }}" }, { "id": "github_hss", "username": "tredpath", "password": "${{ secrets.WISE_PAT }}" }]'
+
+    # Retrieve the cache, uses cache@v3
+    - name: Cache boost
+      uses: actions/cache@v3
+      id: cache-boost
+      with:
+        # Set the default path as the path to cache
+        path: '${{ runner.workspace }}/boost_*.tar.gz'
+        # Use the version as the key to only cache the correct version
+        key: boost-${{ env.BOOST_VERSION }}
+    
+    - name: Install boost
+      uses: egor-tensin/build-boost@v1
+      id: install-boost
+      with:
+        version: ${{ env.BOOST_VERSION }}
+        toolset: ${{ matrix.build_tool }}
+        libraries: system chrono atomic iostreams program_options
+
+    - name: Setup Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        sudo apt install libgtest-dev libgdal-dev
+        
+    - name: Download GDAL
+      if: matrix.os == 'windows-2019'
+      shell: pwsh
+      run: |
+        Copy-Item ${{ steps.install-boost.outputs.librarydir }}/boost_chrono* ${{ steps.install-boost.outputs.librarydir }}/boost_chrono.dll
+        cd cxx
+        Invoke-WebRequest "https://heartlandsoftwaresolutions.sharepoint.com/:u:/g/HSS_Releases/EXnrOV_5audDuUmQjHymeDYBC_nMbcSQcOjP5Wi4IcPvkA?e=d8HeAq&download=1" -OutFile gdal.7z
+        & 7z.exe x gdal.7z -ogdal -y
+        
+    - name: Build zlib
+      if: matrix.os == 'windows-2019'
+      shell: pwsh
+      run: |
+        Invoke-WebRequest "https://heartlandsoftwaresolutions.sharepoint.com/:u:/g/HSS_Releases/EUYThUR24ZZHq6GaiJ7fPFsBeilVSYM_agJV1Y8FTlJS0g?e=e3Nrmn&download=1" -OutFile zlib.zip
+        Expand-Archive zlib.zip -DestinationPath zlib
+        mv zlib/zlib-1.2.13/* zlib
+        cd zlib
+        mkdir build
+        cd build
+        cmake -DCMAKE_INSTALL_PREFIX=install ../
+        cmake --build . --config Release
+        cmake --install .
+        
+    - name: Download protobuf
+      shell: pwsh
+      run: |
+        Invoke-WebRequest "https://heartlandsoftwaresolutions.sharepoint.com/:u:/g/HSS_Releases/EUZ4knsEFP5FjNHHWR5dHc0BofAFyEPdLKRvzAgaTuDi1w?e=XW0Muc&download=1" -OutFile protobuf.zip
+        Expand-Archive protobuf.zip -DestinationPath protobuf
+        mv protobuf/protobuf-3.${{ env.PROTO_VERSION }}/* protobuf
+        
+    - name: Build protobuf
+      if: matrix.os == 'windows-2019'
+      shell: pwsh
+      run: |
+        cd protobuf
+        cd cmake
+        mkdir build
+        cd build
+        $zlibpath = Resolve-Path -path ../../../zlib/build/install
+        cmake -Dprotobuf_WITH_ZLIB=ON -DZLIB_ROOT="$zlibpath" -Dprotobuf_BUILD_SHARED_LIBS=ON ../
+        cmake --build . --config Release --target libprotobuf
+        cmake --build . --config Release --target protoc
+        Copy-Item $zlibpath/bin/* Release
+        Copy-Item $zlibpath/lib/* Release
+        Copy-Item Release/*.dll ../../../dlibs
+        
+    - name: Build protobuf
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      shell: pwsh
+      run: |
+        cd protobuf
+        cd cmake
+        mkdir build
+        cd build
+        cmake ../ -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+        cmake --build . --target libprotobuf
+        cmake --build . --target protoc
+        cp libprotobuf.a ../../../dlibs
+        
+    - name: Build Proto definition files
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      shell: pwsh
+      run: |
+        cd WISE_FBP_Module
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto accAlpha.proto
+        (Get-Content -path proto/accAlpha.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/accAlpha.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto ccwfgmFuel.proto
+        (Get-Content -path proto/ccwfgmFuel.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/ccwfgmFuel.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cfb.proto
+        (Get-Content -path proto/cfb.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/cfb.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto dbh.proto
+        (Get-Content -path proto/dbh.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/dbh.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto flame.proto
+        (Get-Content -path proto/flame.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/flame.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto fmc.proto
+        (Get-Content -path proto/fmc.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/fmc.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto fuelNames.proto
+        (Get-Content -path proto/fuelNames.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/fuelNames.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto isf.proto
+        (Get-Content -path proto/isf.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/isf.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto lb.proto
+        (Get-Content -path proto/lb.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/lb.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto rsi.proto
+        (Get-Content -path proto/rsi.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/rsi.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto sfc.proto
+        (Get-Content -path proto/sfc.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/sfc.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto spreadParms.proto
+        (Get-Content -path proto/spreadParms.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/spreadParms.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto tfc.proto
+        (Get-Content -path proto/tfc.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/tfc.pb.h
+        Move-Item proto/*.pb.cc -Destination cpp -force
+        Move-Item proto/*.pb.h -Destination include -force
+        cd ../WISE_Grid_Module
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=GRIDCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmFilter.proto
+        (Get-Content -path proto/cwfgmFilter.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"GridCOM.h`"" | Set-Content -Path proto/cwfgmFilter.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=GRIDCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmFuelMap.proto
+        (Get-Content -path proto/cwfgmFuelMap.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"GridCOM.h`"" | Set-Content -Path proto/cwfgmFuelMap.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=GRIDCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmGrid.proto
+        (Get-Content -path proto/cwfgmGrid.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"GridCOM.h`"" | Set-Content -Path proto/cwfgmGrid.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=GRIDCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto wcsData.proto
+        (Get-Content -path proto/wcsData.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"GridCOM.h`"" | Set-Content -Path proto/wcsData.pb.h
+        Move-Item proto/*.pb.cc -Destination cpp -force
+        Move-Item proto/*.pb.h -Destination include -force
+        cd ../WISE_Weather_Module
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmWeatherStation.proto
+        (Get-Content -path proto/cwfgmWeatherStation.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/cwfgmWeatherStation.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmWeatherStream.proto
+        (Get-Content -path proto/cwfgmWeatherStream.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/cwfgmWeatherStream.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto dailyConditions.proto
+        (Get-Content -path proto/dailyConditions.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/dailyConditions.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto weatherGridFilter.proto
+        (Get-Content -path proto/weatherGridFilter.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/weatherGridFilter.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto weatherStream.proto
+        (Get-Content -path proto/weatherStream.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/weatherStream.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto windGrid.proto
+        (Get-Content -path proto/windGrid.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/windGrid.pb.h
+        Move-Item proto/*.pb.cc -Destination cpp -force
+        Move-Item proto/*.pb.h -Destination include -force
+        cd ../WISE_Scenario_Growth_Module
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FIRECOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmFire.proto
+        (Get-Content -path proto/cwfgmFire.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FireEngine.h`"" | Set-Content -Path proto/cwfgmFire.pb.h
+        ../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FIRECOM_API:proto --java_out java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmScenario.proto
+        (Get-Content -path proto/cwfgmScenario.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FireEngine.h`"" | Set-Content -Path proto/cwfgmScenario.pb.h
+        Move-Item proto/*.pb.cc -Destination cpp -force
+        Move-Item proto/*.pb.h -Destination include -force
+        cd ../WISE_Application/WISE_Project
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto assetCollection.proto
+        (Get-Content -path proto/assetCollection.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/assetCollection.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto cwfgmProject.proto
+        (Get-Content -path proto/cwfgmProject.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/cwfgmProject.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto fuelCollection.proto
+        (Get-Content -path proto/fuelCollection.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/fuelCollection.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto gridCollection.proto
+        (Get-Content -path proto/gridCollection.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/gridCollection.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto projectGridFilter.proto
+        (Get-Content -path proto/projectGridFilter.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/projectGridFilter.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto projectIgnition.proto
+        (Get-Content -path proto/projectIgnition.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/projectIgnition.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto projectScenario.proto
+        (Get-Content -path proto/projectScenario.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/projectScenario.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto projectWindGrid.proto
+        (Get-Content -path proto/projectWindGrid.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/projectWindGrid.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto staticPoints.proto
+        (Get-Content -path proto/staticPoints.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/staticPoints.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto summary.proto
+        (Get-Content -path proto/summary.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/summary.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto vectorCollection.proto
+        (Get-Content -path proto/vectorCollection.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/vectorCollection.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto viewStorage.proto
+        (Get-Content -path proto/viewStorage.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/viewStorage.pb.h
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto weatherStation.proto
+        (Get-Content -path proto/weatherStation.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/weatherStation.pb.h
+        Move-Item proto/*.pb.cc -Destination cpp -force
+        Move-Item proto/*.pb.h -Destination include -force
+
+    - name: Build Proto definition files
+      if: matrix.os == 'windows-2019'
+      shell: pwsh
+      run: |
+        cd WISE_FBP_Module
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto accAlpha.proto
+        (Get-Content -path proto/accAlpha.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/accAlpha.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto ccwfgmFuel.proto
+        (Get-Content -path proto/ccwfgmFuel.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/ccwfgmFuel.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cfb.proto
+        (Get-Content -path proto/cfb.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/cfb.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto dbh.proto
+        (Get-Content -path proto/dbh.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/dbh.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto flame.proto
+        (Get-Content -path proto/flame.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/flame.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto fmc.proto
+        (Get-Content -path proto/fmc.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/fmc.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto fuelNames.proto
+        (Get-Content -path proto/fuelNames.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/fuelNames.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto isf.proto
+        (Get-Content -path proto/isf.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/isf.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto lb.proto
+        (Get-Content -path proto/lb.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/lb.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto rsi.proto
+        (Get-Content -path proto/rsi.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/rsi.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto sfc.proto
+        (Get-Content -path proto/sfc.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/sfc.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto spreadParms.proto
+        (Get-Content -path proto/spreadParms.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/spreadParms.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FUELCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto tfc.proto
+        (Get-Content -path proto/tfc.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FuelConfig.h`"" | Set-Content -Path proto/tfc.pb.h
+        Move-Item proto/*.pb.cc -Destination cpp -force
+        Move-Item proto/*.pb.h -Destination include -force
+        cd ../WISE_Grid_Module
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=GRIDCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmFilter.proto
+        (Get-Content -path proto/cwfgmFilter.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"GridCOM.h`"" | Set-Content -Path proto/cwfgmFilter.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=GRIDCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmFuelMap.proto
+        (Get-Content -path proto/cwfgmFuelMap.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"GridCOM.h`"" | Set-Content -Path proto/cwfgmFuelMap.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=GRIDCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmGrid.proto
+        (Get-Content -path proto/cwfgmGrid.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"GridCOM.h`"" | Set-Content -Path proto/cwfgmGrid.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=GRIDCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto wcsData.proto
+        (Get-Content -path proto/wcsData.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"GridCOM.h`"" | Set-Content -Path proto/wcsData.pb.h
+        Move-Item proto/*.pb.cc -Destination cpp -force
+        Move-Item proto/*.pb.h -Destination include -force
+        cd ../WISE_Weather_Module
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmWeatherStation.proto
+        (Get-Content -path proto/cwfgmWeatherStation.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/cwfgmWeatherStation.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmWeatherStream.proto
+        (Get-Content -path proto/cwfgmWeatherStream.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/cwfgmWeatherStream.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto dailyConditions.proto
+        (Get-Content -path proto/dailyConditions.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/dailyConditions.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto weatherGridFilter.proto
+        (Get-Content -path proto/weatherGridFilter.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/weatherGridFilter.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto weatherStream.proto
+        (Get-Content -path proto/weatherStream.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/weatherStream.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=WEATHERCOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto windGrid.proto
+        (Get-Content -path proto/windGrid.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"WeatherCOM.h`"" | Set-Content -Path proto/windGrid.pb.h
+        Move-Item proto/*.pb.cc -Destination cpp -force
+        Move-Item proto/*.pb.h -Destination include -force
+        cd ../WISE_Scenario_Growth_Module
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FIRECOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmFire.proto
+        (Get-Content -path proto/cwfgmFire.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FireEngine.h`"" | Set-Content -Path proto/cwfgmFire.pb.h
+        ../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=FIRECOM_API:proto --java_out=java/src/main/java --proto_path ../protobuf/src --proto_path ../proto cwfgmScenario.proto
+        (Get-Content -path proto/cwfgmScenario.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"FireEngine.h`"" | Set-Content -Path proto/cwfgmScenario.pb.h
+        Move-Item proto/*.pb.cc -Destination cpp -force
+        Move-Item proto/*.pb.h -Destination include -force
+        cd ../WISE_Application/WISE_Project
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto assetCollection.proto
+        (Get-Content -path proto/assetCollection.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/assetCollection.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto cwfgmProject.proto
+        (Get-Content -path proto/cwfgmProject.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/cwfgmProject.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto fuelCollection.proto
+        (Get-Content -path proto/fuelCollection.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/fuelCollection.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto gridCollection.proto
+        (Get-Content -path proto/gridCollection.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/gridCollection.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto projectGridFilter.proto
+        (Get-Content -path proto/projectGridFilter.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/projectGridFilter.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto projectIgnition.proto
+        (Get-Content -path proto/projectIgnition.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/projectIgnition.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto projectScenario.proto
+        (Get-Content -path proto/projectScenario.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/projectScenario.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto projectWindGrid.proto
+        (Get-Content -path proto/projectWindGrid.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/projectWindGrid.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto staticPoints.proto
+        (Get-Content -path proto/staticPoints.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/staticPoints.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto summary.proto
+        (Get-Content -path proto/summary.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/summary.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto vectorCollection.proto
+        (Get-Content -path proto/vectorCollection.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/vectorCollection.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto viewStorage.proto
+        (Get-Content -path proto/viewStorage.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/viewStorage.pb.h
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=dllexport_decl=CWFGMPROJECT_EXPORT:proto --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path ../../proto weatherStation.proto
+        (Get-Content -path proto/weatherStation.pb.h -Raw) -replace '#include <string>',"#include <string>`n#include `"cwfgmp_config.h`"" | Set-Content -Path proto/weatherStation.pb.h
+        Move-Item proto/*.pb.cc -Destination cpp -force
+        Move-Item proto/*.pb.h -Destination include -force
+
+    - name: Load values from versions
+      id: version-numbers
+      shell: pwsh
+      run: |
+        $versions = ConvertFrom-StringData (Get-Content versions/versions.properties -raw)
+        echo "Updating to version $($versions.prometheus)"
+        echo "prometheus_version=$($versions.prometheus)" >> $env:GITHUB_OUTPUT
+        echo "hss_math_version=$($versions.hss_math)" >> $env:GITHUB_OUTPUT
+        echo "wtime_version=$($versions.wtime)" >> $env:GITHUB_OUTPUT
+        echo "hss_java_version=$($versions.hss_java)" >> $env:GITHUB_OUTPUT
+      
+    - name: Configure KMLHelper Ubuntu
+      id: configure-kml-ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_Processing_Lib/KMLHelper
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DXERCES_C_INCLUDE_DIR=/usr/include/gdal -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../../WTime/include/" -DLOCAL_LIBRARY_DIR="../../dlibs/"
+        cmake --build .
+        cp *.so* ../../../../dlibs
+
+    - name: Configure KMLHelper Windows
+      id: configure-kml-windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_Processing_Lib/KMLHelper
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DXERCES_C_INCLUDE_DIR="../../gdal/include" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../../WTime/include/" -DGDAL_LIBRARY_DIR="../../gdal/lib" -DLOCAL_LIBRARY_DIR="../../dlibs/"
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../../dlibs
+        Copy-Item Release/*.dll ../../../../dlibs
+      
+    - name: Configure REDappWrapper Ubuntu
+      id: configure-ra-ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_REDapp_Lib_Wrapper
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include/" -DLOCAL_LIBRARY_DIR="../dlibs/"
+        cmake --build .
+        cp *.so* ../../../dlibs
+
+    - name: Configure REDappWrapper Windows
+      id: configure-ra-windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_REDapp_Lib_Wrapper
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include/" -DLOCAL_LIBRARY_DIR="../dlibs/"
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../dlibs
+        Copy-Item Release/*.dll ../../../dlibs
+      
+    - name: Configure FWI Ubuntu
+      id: configure-fwi-ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_FWI_Module
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/"
+        cmake --build .
+        cp *.so* ../../../dlibs
+        APPLICATION_VERSION=$(grep CMAKE_PROJECT_VERSION: CMakeCache.txt | cut -d "=" -f2)
+        APPLICATION_VERSION_MAJOR=$(grep CMAKE_PROJECT_VERSION_MAJOR: CMakeCache.txt | cut -d "=" -f2)
+        echo "release_version=$APPLICATION_VERSION" >> $GITHUB_OUTPUT
+        echo "release_version_major=$APPLICATION_VERSION_MAJOR" >> $GITHUB_OUTPUT
+
+    - name: Configure FWI Windows
+      id: configure-fwi-windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_FWI_Module
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/"
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../dlibs
+        Copy-Item Release/*.dll ../../../dlibs
+        $APPLICATION_VERSION=((Get-Content .\CMakeCache.txt | Select-String -Pattern "CMAKE_PROJECT_VERSION:") -Split "=")[1]
+        $APPLICATION_VERSION_MAJOR=((Get-Content .\CMakeCache.txt | Select-String -Pattern "CMAKE_PROJECT_VERSION_MAJOR:") -Split "=")[1]
+        echo "release_version=$APPLICATION_VERSION" >> $env:GITHUB_OUTPUT
+        echo "release_version_major=$APPLICATION_VERSION_MAJOR" >> $GITHUB_OUTPUT
+      
+    - name: Configure FBP Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_FWI_Module
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include/" -DGDAL_INCLUDE_DIR=/usr/include/gdal -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/..
+        cmake --build .
+        cp *.so* ../../../dlibs
+
+    - name: Configure FBP Windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_FWI_Module
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/..
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../dlibs
+        Copy-Item Release/*.dll ../../../dlibs
+      
+    - name: Configure Grid Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_Grid_Module
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR=/usr/include/gdal -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/..
+        cmake --build .
+        cp *.so* ../../../dlibs
+
+    - name: Configure Grid Windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_Grid_Module
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../gdal/lib"
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../dlibs
+        Copy-Item Release/*.dll ../../../dlibs
+
+    - name: Configure Weather Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04
+      run: |
+        cd WISE_Weather_Module
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR=/usr/include/gdal -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../WISE_REDapp_Lib_Wrapper/include"
+        cmake --build .
+        cp *.so* ../../../dlibs
+      
+    - name: Configure Weather Windows
+      if: matrix.os == 'windows-2019''
+      run: |
+        cd WISE_Weather_Module
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../gdal/lib" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../WISE_REDapp_Lib_Wrapper/include"
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../dlibs
+        Copy-Item Release/*.dll ../../../dlibs
+      
+    - name: Configure Fire Engine Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_Scenario_Growth_Module
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR=/usr/include/gdal -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../WISE_REDapp_Lib_Wrapper/include"
+        cmake --build .
+        cp *.so* ../../../dlibs
+      
+    - name: Configure Fire Engine Windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_Scenario_Growth_Module
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../gdal/lib" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../WISE_REDapp_Lib_Wrapper/include"
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../dlibs
+        Copy-Item Release/*.dll ../../../dlibs
+        
+    - name: Build Comms Proto definition files
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      shell: pwsh
+      run: |
+        cd WISE_Communications_Module/WISE_Defaults
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path proto wise_config.proto
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path proto wise_defaults.proto
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path proto manager_settings.proto
+        cd ../WISE_Client_Comms
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path proto file_upload.proto
+        cd ../WISE_Server_Comms
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path proto file_upload.proto
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path proto validation_report.proto
+        cd ../WISE_Status
+        ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path proto status.proto
+        Move-Item cpp/*.pb.h include -force
+
+    - name: Build Comms Proto definition files
+      if: matrix.os == 'windows-2019'
+      shell: pwsh
+      run: |
+        cd WISE_Communications_Module/WISE_Defaults
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path proto wise_config.proto
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path proto wise_defaults.proto
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path proto manager_settings.proto
+        cd ../WISE_Client_Comms
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path proto file_upload.proto
+        cd ../WISE_Server_Comms
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path proto file_upload.proto
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path proto validation_report.proto
+        cd ../WISE_Status
+        ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path proto status.proto
+        Move-Item cpp/*.pb.h include -force
+      
+    - name: Configure Defaults Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_Communications_Module/WISE_Defaults
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src"
+        cmake --build .
+        cp *.a ../../../../dlibs
+      
+    - name: Configure Defaults Windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_Communications_Module/WISE_Defaults
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src"
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../../dlibs
+        
+    - name: Configure Server Comms Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_Communications_Module/WISE_Server_Comms
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src"
+        cmake --build .
+        cp *.a ../../../../dlibs
+      
+    - name: Configure Server Comms Windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_Communications_Module/WISE_Server_Comms
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src"
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../../dlibs
+        
+    - name: Configure Status Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_Communications_Module/WISE_STATUS
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/..
+        cmake --build .
+        cp *.a ../../../../dlibs
+      
+    - name: Configure Status Windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_Communications_Module/WISE_STATUS
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/..
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../../dlibs
+      
+    - name: Build Java
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_FWI_Module/java
+        mvn versions:set -DnewVersion=${{ steps.version-numbers.outputs.prometheus_version }}
+        mvn versions:use-dep-version -Dincludes=ca.hss:hss-java -DdepVersion=${{ steps.version-numbers.outputs.hss_java_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.hss.times:wtime -DdepVersion=${{ steps.version-numbers.outputs.wtime_version }} -DforceVersion=true
+        mvn versions:commit
+        mvn --batch-mode install
+        cd ../../WISE_FBP_Module/java
+        mvn versions:set -DnewVersion=${{ steps.version-numbers.outputs.prometheus_version }}
+        mvn versions:use-dep-version -Dincludes=ca.hss:hss-java -DdepVersion=${{ steps.version-numbers.outputs.hss_java_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.hss.times:wtime -DdepVersion=${{ steps.version-numbers.outputs.wtime_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.hss:math -DdepVersion=${{ steps.version-numbers.outputs.hss_math_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.wise:fwi -DdepVersion=${{ steps.version-numbers.outputs.prometheus_version }} -DforceVersion=true
+        mvn versions:commit
+        mvn --batch-mode install
+        cd ../../WISE_Grid_Module/java
+        mvn versions:set -DnewVersion=${{ steps.version-numbers.outputs.prometheus_version }}
+        mvn versions:use-dep-version -Dincludes=ca.hss.times:wtime -DdepVersion=${{ steps.version-numbers.outputs.wtime_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.hss:math -DdepVersion=${{ steps.version-numbers.outputs.hss_math_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.wise:fuel -DdepVersion=${{ steps.version-numbers.outputs.prometheus_version }} -DforceVersion=true
+        mvn versions:commit
+        mvn --batch-mode install
+        cd ../../WISE_Weather_Module/java
+        mvn versions:set -DnewVersion=${{ steps.version-numbers.outputs.prometheus_version }}
+        mvn versions:use-dep-version -Dincludes=ca.hss:hss-java -DdepVersion=${{ steps.version-numbers.outputs.hss_java_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.hss.times:wtime -DdepVersion=${{ steps.version-numbers.outputs.wtime_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.hss:math -DdepVersion=${{ steps.version-numbers.outputs.hss_math_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.wise:grid -DdepVersion=${{ steps.version-numbers.outputs.prometheus_version }} -DforceVersion=true
+        mvn versions:commit
+        mvn --batch-mode install
+        cd ../../REDapp_Lib
+        mvn versions:set -DnewVersion=${{ steps.version-numbers.outputs.prometheus_version }}
+        mvn versions:use-dep-version -Dincludes=ca.hss:hss-java -DdepVersion=${{ steps.version-numbers.outputs.hss_java_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.hss.times:wtime -DdepVersion=${{ steps.version-numbers.outputs.wtime_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.wise:fuel -DdepVersion=${{ steps.version-numbers.outputs.prometheus_version }} -DforceVersion=true
+        mvn versions:use-dep-version -Dincludes=ca.wise:weather -DdepVersion=${{ steps.version-numbers.outputs.prometheus_version }} -DforceVersion=true
+        mvn versions:commit
+        mvn --batch-mode package
+        cp target/REDapp_Lib.jar ../dlibs
+        cp target/lib/*.jar ../dlibs
+        rm ../dlibs/log4j-*
+        
+    - name: Build Java
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_FWI_Module/java
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:set `"-DnewVersion=${{ steps.version-numbers.outputs.prometheus_version }}`"" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss:hss-java`" `"-DdepVersion=${{ steps.version-numbers.outputs.hss_java_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss.times:wtime`" `"-DdepVersion=${{ steps.version-numbers.outputs.wtime_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:commit" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "--batch-mode install" -NoNewWindow -PassThru -Wait
+        cd ../../WISE_FBP_Module/java
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:set `"-DnewVersion=${{ steps.version-numbers.outputs.prometheus_version }}`"" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss:hss-java`" `"-DdepVersion=${{ steps.version-numbers.outputs.hss_java_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss.times:wtime`" `"-DdepVersion=${{ steps.version-numbers.outputs.wtime_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss:math`" `"-DdepVersion=${{ steps.version-numbers.outputs.hss_math_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.wise:fwi`" `"-DdepVersion=${{ steps.version-numbers.outputs.prometheus_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:commit" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "--batch-mode install" -NoNewWindow -PassThru -Wait
+        cd ../../WISE_Grid_Module/java
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:set `"-DnewVersion=${{ steps.version-numbers.outputs.prometheus_version }}`"" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss.times:wtime`" `"-DdepVersion=${{ steps.version-numbers.outputs.wtime_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss:math`" `"-DdepVersion=${{ steps.version-numbers.outputs.hss_math_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.wise:fuel`" `"-DdepVersion=${{ steps.version-numbers.outputs.prometheus_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:commit" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "--batch-mode install" -NoNewWindow -PassThru -Wait
+        cd ../../WISE_Weather_Module/java
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:set `"-DnewVersion=${{ steps.version-numbers.outputs.prometheus_version }}`"" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss:hss-java`" `"-DdepVersion=${{ steps.version-numbers.outputs.hss_java_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss.times:wtime`" `"-DdepVersion=${{ steps.version-numbers.outputs.wtime_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss:math`" `"-DdepVersion=${{ steps.version-numbers.outputs.hss_math_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.wise:grid`" `"-DdepVersion=${{ steps.version-numbers.outputs.prometheus_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:commit" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "--batch-mode install" -NoNewWindow -PassThru -Wait
+        cd ../../REDapp_Lib
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:set `"-DnewVersion=${{ steps.version-numbers.outputs.prometheus_version }}`"" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss:hss-java`" `"-DdepVersion=${{ steps.version-numbers.outputs.hss_java_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.hss.times:wtime`" `"-DdepVersion=${{ steps.version-numbers.outputs.wtime_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.wise:fuel`" `"-DdepVersion=${{ steps.version-numbers.outputs.prometheus_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:use-dep-version `"-Dincludes=ca.wise:weather`" `"-DdepVersion=${{ steps.version-numbers.outputs.prometheus_version }}`" -DforceVersion=true" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "versions:commit" -NoNewWindow -PassThru -Wait
+        Start-Process -FilePath mvn.cmd -ArgumentList "--batch-mode package" -NoNewWindow -PassThru -Wait
+        Copy-Item target/REDapp_Lib.jar ../dlibs
+        Copy-Item target/lib/*.jar ../dlibs
+        del ../dlibs/log4j-*
+
+    - name: Configure Paho Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd paho
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DCMAKE_INSTALL_PREFIX="../../install" -DPAHO_ENABLE_TESTING=OFF -DPAHO_BUILD_SHARED=ON -DPAHO_BUILD_STATIC=OFF -DPAHO_WITH_SSL=OFF
+        cmake --build . --target install
+        cd ../..
+        cp install/lib/*.so* ../dlibs
+        cd ../pahopp
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPAHO_BUILD_DOCUMENTATION=OFF -DPAHO_BUILD_SAMPLES=OFF -DPAHO_BUILD_STATIC=OFF -DPAHO_BUILD_SHARED=ON -DPAHO_WITH_SSL=OFF -DCMAKE_PREFIX_PATH="$(realpath ../../../paho/install)" -DCMAKE_INSTALL_PREFIX="../../install"
+        cd ../..
+        cp install/lib/*.so* ../dlibs
+      
+    - name: Configure Paho Windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd paho
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DCMAKE_INSTALL_PREFIX="../../install" -DPAHO_ENABLE_TESTING=OFF -DPAHO_BUILD_SHARED=ON -DPAHO_BUILD_STATIC=OFF -DPAHO_WITH_SSL=OFF
+        cmake --build . --config ${{env.BUILD_TYPE}} --target install
+        cd ../..
+        Copy-Item install/bin/*.dll ../dlibs
+        cd ../pahopp
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        $PAHO_PATH = (Resolve-Path -Path "../../../paho/install").Path
+        cmake ..\.. -DPAHO_BUILD_DOCUMENTATION=OFF -DPAHO_BUILD_SAMPLES=OFF -DPAHO_BUILD_STATIC=OFF -DPAHO_BUILD_SHARED=ON -DPAHO_WITH_SSL=OFF -DCMAKE_PREFIX_PATH="${PAHO_PATH}" -DCMAKE_INSTALL_PREFIX="../../install"
+        cmake --build . --config ${{env.BUILD_TYPE}} --target install
+        cd ../..
+        Copy-Item install/bin/*.dll ../dlibs
+        
+    - name: Configure Project Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_Application/WISE_Project
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../../dlibs/" -DFWI_INCLUDE_DIR="../../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR=/usr/include/gdal -DGSL_INCLUDE_DIR="../../GSL/include" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../../protobuf/cmake/build" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGRID_INCLUDE_DIR="../../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../../WISE_REDapp_Lib_Wrapper/include" -DKMLHELPER_INCLUDE_DIR="../../WISE_Processing_Lib/KMLHelper/include" -DFIREENGINE_INCLUDE_DIR="../../WISE_Scenario_Growth_Module/include"
+        cmake --build .
+        cp *.so* ../../../../dlibs
+      
+    - name: Configure Project Windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_Application/WISE_Project
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../../dlibs/" -DFWI_INCLUDE_DIR="../../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../../gdal/include" -DGSL_INCLUDE_DIR="../../GSL/include" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../../gdal/lib" -DGRID_INCLUDE_DIR="../../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../../WISE_REDapp_Lib_Wrapper/include" -DKMLHELPER_INCLUDE_DIR="../../WISE_Processing_Lib/KMLHelper/include" -DFIREENGINE_INCLUDE_DIR="../../WISE_Scenario_Growth_Module/include"
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.lib ../../../../dlibs
+        Copy-Item Release/*.dll ../../../../dlibs
+
+    - name: Generate versions file
+      shell: pwsh
+      run: |
+        cd WISE_Application/WISE/include
+        $TOTAL_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}"
+        $SPLIT_VERSION=$TOTAL_VERSION.Split(".-")
+        echo "#ifndef VER_STRINGIFY2" > prom_vers.h
+        echo "#define VER_STRINGIFY2(ver) #ver" >> prom_vers.h
+        echo "#endif" >> prom_vers.h
+        echo "#ifndef VER_STRINGIFY" >> prom_vers.h
+        echo "#define VER_STRINGIFY(ver) VER_STRINGIFY2(ver)" >> prom_vers.h
+        echo "#endif" >> prom_vers.h
+        echo "#define VER_VERSION_MAJOR $($SPLIT_VERSION[0])" >> prom_vers.h
+        echo "#define VER_VERSION_MINOR $($SPLIT_VERSION[1])" >> prom_vers.h
+        echo "#define VER_VERSION_MAINTENANCE_INT $([int]$SPLIT_VERSION[2])" >> prom_vers.h
+        echo "#define VER_VERSION_MAINTENANCE $($SPLIT_VERSION[2])" >> prom_vers.h
+        echo "#define VER_VERSION_BUILD_INT $([int]$SPLIT_VERSION[3])" >> prom_vers.h
+        echo "#define VER_VERSION_BUILD $($SPLIT_VERSION[3])" >> prom_vers.h
+        echo "#define VER_RELEASE_DATE_SHORT $(Get-Date -UFormat "%Y-%m-%d")" >> prom_vers.h
+        echo "#define VER_RELEASE_DATE `"$(Get-Date -Format "MMMM d, yyyy")`"" >> prom_vers.h
+        echo "#define VER_RELEASE_DATE_LONG `"Release dated `" VER_RELEASE_DATE" >> prom_vers.h
+        echo "#define VER_RELEASE_DATE_SHORT_STRING VER_STRINGIFY(VER_RELEASE_DATE_SHORT)" >> prom_vers.h
+        echo "#define VER_PROMETHEUS_VERSION VER_VERSION_MINOR.VER_VERSION_MAINTENANCE.VER_VERSION_BUILD" >> prom_vers.h
+        echo "#define VER_PROMETHEUS_VERSION_STRING VER_STRINGIFY(VER_PROMETHEUS_VERSION)" >> prom_vers.h
+        echo "#define VER_PROMETHEUS_VERSION_FULL VER_VERSION_MAJOR.VER_VERSION_MINOR.VER_VERSION_MAINTENANCE.VER_VERSION_BUILD" >> prom_vers.h
+        echo "#define VER_PROMETHEUS_VERSION_FULL_STRING VER_STRINGIFY(VER_PROMETHEUS_VERSION_FULL)" >> prom_vers.h
+        echo "#define PROMETHEUS_PUBLIC_INT 1" >> prom_vers.h
+        echo "#if PROMETHEUS_PUBLIC_INT" >> prom_vers.h
+        echo "#define PROMETHEUS_PUBLIC 1" >> prom_vers.h
+        echo "#else" >> prom_vers.h
+        echo "#undef PROMETHEUS_PUBLIC" >> prom_vers.h
+        echo "#endif" >> prom_vers.h
+        
+    - name: Configure WISE Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_Application/WISE
+        mkdir build
+        cd build
+        mkdir ubuntu
+        cd ubuntu
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../../dlibs/" -DFWI_INCLUDE_DIR="../../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR=/usr/include/gdal -DGSL_INCLUDE_DIR="../../GSL/include" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../../protobuf/cmake/build" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGRID_INCLUDE_DIR="../../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../../WISE_REDapp_Lib_Wrapper/include" -DKMLHELPER_INCLUDE_DIR="../../WISE_Processing_Lib/KMLHelper/include" -DFIREENGINE_INCLUDE_DIR="../../WISE_Scenario_Growth_Module/include" -DDEFAULTS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Defaults/cpp" -DCOMMS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Server_Comms/cpp" -DSTATUS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Status/include" -DPAHO_INSTALL_PATH="../../paho/install" -DPAHOPP_INSTALL_PATH="../../pahopp/install"
+        cmake --build .
+        cp wise* ../../../../dlibs
+      
+    - name: Configure WISE Windows
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_Application/WISE
+        mkdir build
+        cd build
+        mkdir windows
+        cd windows
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../../dlibs/" -DFWI_INCLUDE_DIR="../../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../../gdal/include" -DGSL_INCLUDE_DIR="../../GSL/include" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../../gdal/lib" -DGRID_INCLUDE_DIR="../../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../../WISE_REDapp_Lib_Wrapper/include" -DKMLHELPER_INCLUDE_DIR="../../WISE_Processing_Lib/KMLHelper/include" -DFIREENGINE_INCLUDE_DIR="../../WISE_Scenario_Growth_Module/include" -DDEFAULTS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Defaults/cpp" -DCOMMS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Server_Comms/cpp" -DSTATUS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Status/include" -DPAHO_INSTALL_PATH="../../paho/install" -DPAHOPP_INSTALL_PATH="../../pahopp/install"
+        cmake --build . --config ${{env.BUILD_TYPE}}
+        Copy-Item Release/*.exe ../../../../dlibs
+      
+    - name: Build Windows Installer
+      if: matrix.os == 'windows-2019'
+      run: |
+        cd WISE_Application/Installer/Windows
+        makensis /DOUTPUT_FILENAME=wise-${{ steps.configure-fwi-ubuntu.outputs.release_version }}.exe /DBUILD_DIR=../../../dlibs /DGDAL_DIR=../../../gdal /DPROTOBUF_DIR=../../../protobuf/cmake/build/Release /DBOOST_DIR=${{ steps.install-boost.outputs.librarydir }} wise.nsi
+        
+    - name: Upload Windows Installer
+      if: matrix.os == 'windows-2019'
+      uses: actions/upload-artifact@v3
+      with:
+        name: release-libs
+        path: WISE_Application/Installer/Windows/wise-${{ steps.configure-fwi-ubuntu.outputs.release_version }}.exe
+        retention-days: 1
+        
+    - name: Build Ubuntu 20.04 Installer
+      if: matrix.os == 'ubuntu-20.04'
+      run: |
+        cd WISE_Application/Installer/Ubuntu
+        TEMP_PATH=$(pwd)/wise-ubuntu2004-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+        USR_LIB=$TEMP_PATH/usr/lib/wise
+        USR_BIN=$TEMP_PATH/usr/bin
+        mkdir $TEMP_PATH
+        mkdir -p $USR_LIB
+        mkdir -p $USR_BIN
+        mkdir -p $TEMP_PATH/DEBIAN
+        cp ../../../dlibs/*.jar $USR_LIB
+        cp ../../../dlibs/*.so.1 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.2 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.3 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.4 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.5 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.6 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.7 $USR_LIB
+        cp WISE.sh $USR_BIN/wise
+        cp ../../../dlibs/wise $USR_LIB
+        cp ${{ steps.install-boost.outputs.librarydir }}/*.so* $USR_LIB
+        cp ../../../protobuf/cmake/build/*.so* $USR_LIB 2> /dev/null || :
+        cp $(pwd)/control2004 $TEMP_PATH/DEBIAN/control
+        sed -i "s@Version: [0-9\\.\\-]\+@Version: ${{ steps.configure-fwi-ubuntu.outputs.release_version }}@gm" $TEMP_PATH/DEBIAN/control
+        dpkg-deb --build wise-ubuntu2004-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+
+    - name: Upload Ubuntu 20.04 Installer
+      if: matrix.os == 'ubuntu-20.04'
+      uses: actions/upload-artifact@v3
+      with:
+        name: release-libs
+        path: WISE_Application/Installer/Ubuntu/wise-ubuntu2004-${{ steps.configure-fwi-ubuntu.outputs.release_version }}.deb
+        retention-days: 1
+        
+    - name: Build Ubuntu 22.04 Installer
+      if: matrix.os == 'ubuntu-22.04'
+      run: |
+        cd WISE_Application/Installer/Ubuntu
+        TEMP_PATH=$(pwd)/wise-ubuntu2204-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+        USR_LIB=$TEMP_PATH/usr/lib/wise
+        USR_BIN=$TEMP_PATH/usr/bin
+        mkdir $TEMP_PATH
+        mkdir -p $USR_LIB
+        mkdir -p $USR_BIN
+        mkdir -p $TEMP_PATH/DEBIAN
+        cp ../../../dlibs/*.jar $USR_LIB
+        cp ../../../dlibs/*.so.1 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.2 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.3 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.4 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.5 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.6 $USR_LIB 2> /dev/null || :
+        cp ../../../dlibs/*.so.7 $USR_LIB
+        cp WISE.sh $USR_BIN/wise
+        cp ../../../dlibs/wise $USR_LIB
+        cp ${{ steps.install-boost.outputs.librarydir }}/*.so* $USR_LIB
+        cp ../../../protobuf/cmake/build/*.so* $USR_LIB 2> /dev/null || :
+        cp $(pwd)/control2204 $TEMP_PATH/DEBIAN/control
+        sed -i "s@Version: [0-9\\.\\-]\+@Version: ${{ steps.configure-fwi-ubuntu.outputs.release_version }}@gm" $TEMP_PATH/DEBIAN/control
+        dpkg-deb --build wise-ubuntu2204-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+
+    - name: Upload Ubuntu 22.04 Installer
+      if: matrix.os == 'ubuntu-22.04'
+      uses: actions/upload-artifact@v3
+      with:
+        name: release-libs
+        path: WISE_Application/Installer/Ubuntu/wise-ubuntu2204-${{ steps.configure-fwi-ubuntu.outputs.release_version }}.deb
+        retention-days: 1
+        
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: write
+      pull-requests: read
+  
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        path: WISE_Application
+        fetch-depth: 0
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_Processing_Lib
+        path: WISE_Processing_Lib
+        fetch-depth: 0
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/REDapp_Lib
+        path: REDapp_Lib
+        fetch-depth: 0
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_REDapp_Lib_Wrapper
+        path: WISE_REDapp_Lib_Wrapper
+        fetch-depth: 0
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_FWI_Module
+        path: WISE_FWI_Module
+        fetch-depth: 0
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_FBP_Module
+        path: WISE_FBP_Module
+        fetch-depth: 0
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_Grid_Module
+        path: WISE_Grid_Module
+        fetch-depth: 0
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_Weather_Module
+        path: WISE_Weather_Module
+        fetch-depth: 0
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_Scenario_Growth_Module
+        path: WISE_Scenario_Growth_Module
+        fetch-depth: 0
+        token: ${{ secrets.WISE_PAT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: WISE-Developers/WISE_Communications_Module
+        path: WISE_Communications_Module
+        fetch-depth: 0
+        token: ${{ secrets.WISE_PAT }}
+
+    - name: Get Last Tags
+      id: previoustag
+      run: |
+        //TODO
+        
+    - name: Tag the repository
+      run: |
+        RELEASE_TAG=w${{ needs.build.outputs.release_version }}
+        cd WISE_Application
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+        cd ../WISE_Processing_Lib
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+        cd ../REDapp_Lib
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+        cd ../WISE_REDapp_Lib_Wrapper
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+        cd ../WISE_FWI_Module
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
+        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+        cd ../WISE_FBP_Module
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
+        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+        cd ../WISE_Grid_Module
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
+        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+        cd ../WISE_Weather_Module
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
+        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+        cd ../WISE_Scenario_Growth_Module
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
+        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+        cd ../WISE_Communications_Module
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
+        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WISE_PAT }}
+        branch: ${{ github.ref }}
+        tags: true
+        directory: WISE_Application
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WISE_PAT }}
+        branch: ${{ github.ref }}
+        tags: true
+        directory: WISE_Processing_Lib
+        repository: WISE-Developers/WISE_Processing_Lib
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WISE_PAT }}
+        branch: ${{ github.ref }}
+        tags: true
+        directory: REDapp_Lib
+        repository: WISE-Developers/REDapp_Lib
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WISE_PAT }}
+        branch: ${{ github.ref }}
+        tags: true
+        directory: WISE_REDapp_Lib_Wrapper
+        repository: WISE-Developers/WISE_REDapp_Lib_Wrapper
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WISE_PAT }}
+        branch: ${{ github.ref }}
+        tags: true
+        directory: WISE_FWI_Module
+        repository: WISE-Developers/WISE_FWI_Module
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WISE_PAT }}
+        branch: ${{ github.ref }}
+        tags: true
+        directory: WISE_FBP_Module
+        repository: WISE-Developers/WISE_FBP_Module
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WISE_PAT }}
+        branch: ${{ github.ref }}
+        tags: true
+        directory: WISE_Grid_Module
+        repository: WISE-Developers/WISE_Grid_Module
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WISE_PAT }}
+        branch: ${{ github.ref }}
+        tags: true
+        directory: WISE_Weather_Module
+        repository: WISE-Developers/WISE_Weather_Module
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WISE_PAT }}
+        branch: ${{ github.ref }}
+        tags: true
+        directory: WISE_Scenario_Growth_Module
+        repository: WISE-Developers/WISE_Scenario_Growth_Module
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WISE_PAT }}
+        branch: ${{ github.ref }}
+        tags: true
+        directory: WISE_Communications_Module
+        repository: WISE-Developers/WISE_Communications_Module
+
+    - name: Download Libraries
+      uses: actions/download-artifact@v3
+      with:
+        name: release-libs
+
+    - name: Create Release Notes
+      id: WISE_Application-build-notes
+      uses: mikepenz/release-changelog-builder-action@v3.5.0
+      with:
+        toTag: w${{ needs.build.outputs.release_version }}
+        fromTag: ${{ steps.previoustag.outputs.WISE_Application_tag }}
+        owner: WISE-Developers
+        repo: WISE_Application
+        path: WISE_Application
+      env:
+        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
+
+    - name: Create Release Notes
+      id: WISE_Processing_Lib-build-notes
+      uses: mikepenz/release-changelog-builder-action@v3.5.0
+      with:
+        toTag: w${{ needs.build.outputs.release_version }}
+        fromTag: ${{ steps.previoustag.outputs.WISE_Processing_Lib_tag }}
+        owner: WISE-Developers
+        repo: WISE_Processing_Lib
+        path: WISE_Processing_Lib
+      env:
+        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
+
+    - name: Create Release Notes
+      id: REDapp_Lib-build-notes
+      uses: mikepenz/release-changelog-builder-action@v3.5.0
+      with:
+        toTag: w${{ needs.build.outputs.release_version }}
+        fromTag: ${{ steps.previoustag.outputs.REDapp_Lib_tag }}
+        owner: WISE-Developers
+        repo: REDapp_Lib
+        path: REDapp_Lib
+      env:
+        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
+
+    - name: Create Release Notes
+      id: WISE_REDapp_Lib_Wrapper-build-notes
+      uses: mikepenz/release-changelog-builder-action@v3.5.0
+      with:
+        toTag: w${{ needs.build.outputs.release_version }}
+        fromTag: ${{ steps.previoustag.outputs.WISE_REDapp_Lib_Wrapper_tag }}
+        owner: WISE-Developers
+        repo: WISE_REDapp_Lib_Wrapper
+        path: WISE_REDapp_Lib_Wrapper
+      env:
+        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
+
+    - name: Create Release Notes
+      id: WISE_FWI_Module-build-notes
+      uses: mikepenz/release-changelog-builder-action@v3.5.0
+      with:
+        toTag: w${{ needs.build.outputs.release_version }}
+        fromTag: ${{ steps.previoustag.outputs.WISE_FWI_Module_tag }}
+        owner: WISE-Developers
+        repo: WISE_FWI_Module
+        path: WISE_FWI_Module
+      env:
+        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
+
+    - name: Create Release Notes
+      id: WISE_FBP_Module-build-notes
+      uses: mikepenz/release-changelog-builder-action@v3.5.0
+      with:
+        toTag: w${{ needs.build.outputs.release_version }}
+        fromTag: ${{ steps.previoustag.outputs.WISE_FBP_Module_tag }}
+        owner: WISE-Developers
+        repo: WISE_FBP_Module
+        path: WISE_FBP_Module
+      env:
+        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
+
+    - name: Create Release Notes
+      id: WISE_Grid_Module-build-notes
+      uses: mikepenz/release-changelog-builder-action@v3.5.0
+      with:
+        toTag: w${{ needs.build.outputs.release_version }}
+        fromTag: ${{ steps.previoustag.outputs.WISE_Grid_Module_tag }}
+        owner: WISE-Developers
+        repo: WISE_Grid_Module
+        path: WISE_Grid_Module
+      env:
+        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
+
+    - name: Create Release Notes
+      id: WISE_Weather_Module-build-notes
+      uses: mikepenz/release-changelog-builder-action@v3.5.0
+      with:
+        toTag: w${{ needs.build.outputs.release_version }}
+        fromTag: ${{ steps.previoustag.outputs.WISE_Weather_Module_tag }}
+        owner: WISE-Developers
+        repo: WISE_Weather_Module
+        path: WISE_Weather_Module
+      env:
+        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
+
+    - name: Create Release Notes
+      id: WISE_Scenario_Growth_Module-build-notes
+      uses: mikepenz/release-changelog-builder-action@v3.5.0
+      with:
+        toTag: w${{ needs.build.outputs.release_version }}
+        fromTag: ${{ steps.previoustag.outputs.WISE_Scenario_Growth_Module_tag }}
+        owner: WISE-Developers
+        repo: WISE_Scenario_Growth_Module
+        path: WISE_Scenario_Growth_Module
+      env:
+        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
+
+    - name: Create Release Notes
+      id: WISE_Communications_Module-build-notes
+      uses: mikepenz/release-changelog-builder-action@v3.5.0
+      with:
+        toTag: w${{ needs.build.outputs.release_version }}
+        fromTag: ${{ steps.previoustag.outputs.WISE_Communications_Module_tag }}
+        owner: WISE-Developers
+        repo: WISE_Communications_Module
+        path: WISE_Communications_Module
+      env:
+        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
+
+    - name: Create release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: ${{ needs.build.outputs.release_version }}
+        body: |
+          # WISE Application
+
+          ${{ steps.WISE_Application-build-notes.outputs.changelog }}
+          
+          # Processing Libraries
+
+          ${{ steps.WISE_Processing_Lib-build-notes.outputs.changelog }}
+          
+          # REDapp Library
+
+          ${{ steps.REDapp_Lib-build-notes.outputs.changelog }}
+          
+          # REDapp Wrapper Library
+
+          ${{ steps.WISE_REDapp_Lib_Wrapper-build-notes.outputs.changelog }}
+          
+          # FWI Module
+
+          ${{ steps.WISE_FWI_Module-build-notes.outputs.changelog }}
+          
+          # FBP Module
+
+          ${{ steps.WISE_FBP_Module-build-notes.outputs.changelog }}
+          
+          # Grid Module
+
+          ${{ steps.WISE_Grid_Module-build-notes.outputs.changelog }}
+          
+          # Weather Module
+
+          ${{ steps.WISE_Weather_Module-build-notes.outputs.changelog }}
+          
+          # Scenario Growth Module
+
+          ${{ steps.WISE_Scenario_Growth_Module-build-notes.outputs.changelog }}
+          
+          # Communications Module
+
+          ${{ steps.WISE_Communications_Module-build-notes.outputs.changelog }}
+        files: |
+          wise-${{ needs.build.outputs.release_version }}.exe
+          wise-ubuntu2204-${{ needs.build.outputs.release_version }}.deb
+          wise-ubuntu2004-${{ needs.build.outputs.release_version }}.deb
+        tag_name: refs/tags/w${{ needs.build.outputs.release_version }}

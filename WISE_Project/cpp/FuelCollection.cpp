@@ -72,7 +72,7 @@ auto Project::Fuel::FromCOM(ICWFGM_Fuel *fuel) -> Fuel*
 	Fuel *f;
 
 	/*POLYMORPHIC CHECK*/
-	try { f = (Fuel *)std::get<void *>(llf); } catch (std::bad_variant_access &) { weak_assert(0); return nullptr; };
+	try { f = (Fuel *)std::get<void *>(llf); } catch (std::bad_variant_access &) { weak_assert(false); return nullptr; };
 	return f;
 }
 
@@ -219,21 +219,21 @@ bool Project::Fuel::NeedsFMC(ICWFGM_Fuel *fuel)
 	bool boolean;
 	if (FAILED(fuel->IsNonFuel(&boolean)))
 	{
-		weak_assert(0);
+		weak_assert(false);
 		return false;
 	}
 	if (boolean)
 		return false;
 	if (FAILED(fuel->IsMixedFuelType(&boolean)))
 	{
-		weak_assert(0);
+		weak_assert(false);
 		return false;
 	}
 	if (boolean)
 		return true;
 	if (FAILED(fuel->IsMixedDeadFirFuelType(&boolean)))
 	{
-		weak_assert(0);
+		weak_assert(false);
 		return false;
 	}
 	if (boolean)
@@ -245,7 +245,7 @@ bool Project::Fuel::NeedsFMC(ICWFGM_Fuel *fuel)
 	USHORT equation;
 	if (FAILED(fbpfuel->GetEquation(FUELCOM_EQUATION_FMC, &equation)))
 	{
-		weak_assert(0);
+		weak_assert(false);
 		return false;
 	}
 	if (equation == FUELCOM_EQUATION_SELECTION_FMC_NOCALC)
@@ -364,7 +364,7 @@ Project::FuelCollection::FuelCollection(CCWFGM_FuelMap *fuelMap, const TCHAR *gr
 		revision = 36;
 
 	//if the fuel map is old, this is PSaaS, or the folder that should contain the fuelmap doesn't exist load the defaults
-	if ((revision < FUELCOLLECTION_DEFAULT_VERSION) || (CWFGMProject::m_appMode < 0) || (p1.has_parent_path() && !fs::is_directory(p1.parent_path())))
+	if ((revision < FUELCOLLECTION_DEFAULT_VERSION) || (p1.has_parent_path() && !fs::is_directory(p1.parent_path())))
 	{
 		need_initial_defaults = true;
 #if _DLL
@@ -911,7 +911,7 @@ auto Project::FuelCollection::FuelTypeCopy(ICWFGM_FBPFuel *fuel, LONG file_index
 	if (data.index())
 	{
 		/*POLYMORPHIC CHECK*/
-		try { f = NewFuel(newfuel.get(), static_cast<Fuel *>(std::get<void *>(data))); } catch (std::bad_variant_access &) { weak_assert(0); return nullptr; };
+		try { f = NewFuel(newfuel.get(), static_cast<Fuel *>(std::get<void *>(data))); } catch (std::bad_variant_access &) { weak_assert(false); return nullptr; };
 	}
 	else
 		f = NewFuel(newfuel.get(), nullptr);

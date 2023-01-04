@@ -41,8 +41,8 @@ namespace Project
 		virtual ~GridFilter();
 		virtual GridFilter *Duplicate() const;
 
-		__INLINE GridFilter *LN_Succ() const			{ return (GridFilter *)MinNode::LN_Succ(); }
-		__INLINE GridFilter *LN_Pred() const			{ return (GridFilter *)MinNode::LN_Pred(); }
+		GridFilter *LN_Succ() const			{ return (GridFilter *)MinNode::LN_Succ(); }
+		GridFilter *LN_Pred() const			{ return (GridFilter *)MinNode::LN_Pred(); }
 
 		virtual std::string DisplayName() const			{ using namespace std::string_literals; if (m_name.length()) return m_name; else return "(No Name)"s; }
 		virtual const std::string TypeString() const    { using namespace std::string_literals; return ""s; }
@@ -54,7 +54,7 @@ namespace Project
 
 		virtual void SetFuelMap(CCWFGM_FuelMap * /*fuelMap*/) { }
 
-		__INLINE HRESULT LockState()					{ return m_filter->MT_Lock(nullptr, false, gsl::narrow_cast<USHORT>(-1)); }
+		HRESULT LockState()					{ return m_filter->MT_Lock(nullptr, false, gsl::narrow_cast<USHORT>(-1)); }
 
 		std::string	m_name,
 					m_comments,
@@ -62,7 +62,7 @@ namespace Project
 		boost::intrusive_ptr<ICWFGM_GridEngine>		m_filter;		// the filter represented by this object
 
 	protected:
-		virtual void Clone(boost::intrusive_ptr<ICWFGM_GridEngine>* /*grid*/) const	{ weak_assert(0); }
+		virtual void Clone(boost::intrusive_ptr<ICWFGM_GridEngine>* /*grid*/) const	{ weak_assert(false); }
 		virtual GridFilter* Duplicate(std::function<GridFilter*(void)> constructor) const;
 	};
 };

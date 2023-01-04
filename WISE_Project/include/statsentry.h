@@ -104,9 +104,9 @@ namespace Project
 		CWFGMStatsEntry(const char* group_name, UnitConversion* u);
 
 	public:
-		__INLINE CWFGMStatsEntry* LN_Succ() const { return (CWFGMStatsEntry*)MinNode::LN_Succ(); }
-		__INLINE CWFGMStatsEntry* LN_Pred() const { return (CWFGMStatsEntry*)MinNode::LN_Pred(); }
-		__INLINE CWFGMStatsEntry* LN_Next() const { return m_displaySucc; }
+		CWFGMStatsEntry* LN_Succ() const { return (CWFGMStatsEntry*)MinNode::LN_Succ(); }
+		CWFGMStatsEntry* LN_Pred() const { return (CWFGMStatsEntry*)MinNode::LN_Pred(); }
+		CWFGMStatsEntry* LN_Next() const { return m_displaySucc; }
 
 		virtual std::string m_attributeRule() const { return m_attributeRuleStr; }
 		virtual std::string m_attributeTitle() const { return m_attributeTitleStr; }
@@ -144,7 +144,7 @@ namespace Project
 		void Initialize(const viewentry* ve);
 #endif
 
-		__INLINE std::uint32_t NumStats() const { return m_statsList.GetCount(); }
+		std::uint32_t NumStats() const { return m_statsList.GetCount(); }
 		std::uint32_t NumDisplayableStats() const;
 		bool MakeDisplayable(CWFGMStatsEntry* stat, bool displayable, std::uint32_t index = (std::uint32_t)-1);
 		// if (displayable) then stat is added/moved to the list at (index)
@@ -154,7 +154,7 @@ namespace Project
 		// adds a completely new stat to the set, returns its index in the main list
 		void RemoveStat(CWFGMStatsEntry* stat);		// removes the stat from both lists
 
-		__INLINE std::uint32_t IndexOf(CWFGMStatsEntry* stat) const { return m_statsList.NodeIndex(stat); }
+		std::uint32_t IndexOf(CWFGMStatsEntry* stat) const { return m_statsList.NodeIndex(stat); }
 		std::uint32_t DisplayIndexOf(CWFGMStatsEntry* stat) const;
 
 		virtual CWFGMStatsEntry* New() const;
@@ -163,9 +163,9 @@ namespace Project
 
 		virtual CWFGMStatsEntryCollection* NewCollection();
 
-		__INLINE CWFGMStatsEntry* FirstStat() const { return m_statsList.LH_Head(); }
-		__INLINE CWFGMStatsEntry* StatsAt(std::uint32_t index) const { return m_statsList.IndexNode(index); }
-		__INLINE CWFGMStatsEntry* FirstDisplayStat() const { return m_displayFirst; }
+		CWFGMStatsEntry* FirstStat() const { return m_statsList.LH_Head(); }
+		CWFGMStatsEntry* StatsAt(std::uint32_t index) const { return m_statsList.IndexNode(index); }
+		CWFGMStatsEntry* FirstDisplayStat() const { return m_displayFirst; }
 
 		CWFGMStatsEntry* DisplayStatsAt(std::uint32_t index) const;
 		CWFGMStatsEntry* FindStat(const TCHAR* attributeNameStr) const;
