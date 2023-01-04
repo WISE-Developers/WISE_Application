@@ -1,0 +1,1767 @@
+<?xml version="1.0"?>
+<fuelMap xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <fuelType index="0" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=209, G=255, B=115]" inputFileIndex="1" exportFileIndex="1" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Spruce-Lichen Woodland" defaultFuelName="C1">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="1" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=34, G=102, B=51]" inputFileIndex="2" exportFileIndex="2" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Spruce" defaultFuelName="C2">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="2" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=131, G=199, B=149]" inputFileIndex="3" exportFileIndex="3" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Mature Jack or Lodgepole Pine" defaultFuelName="C3">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="3" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=112, G=168, B=0]" inputFileIndex="4" exportFileIndex="4" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Immature Jack or Lodgepole Pine" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="4" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=223, G=184, B=230]" inputFileIndex="5" exportFileIndex="5" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Red and White Pine" defaultFuelName="C5">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="5" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=172, G=102, B=237]" inputFileIndex="6" exportFileIndex="6" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Conifer Plantation" defaultFuelName="C6">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="6" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=112, G=12, B=242]" inputFileIndex="7" exportFileIndex="7" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Ponderosa Pine - Douglas-Fir" defaultFuelName="C7">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="7" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=196, G=189, B=151]" inputFileIndex="11" exportFileIndex="11" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Leafless Aspen" defaultFuelName="D1">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="8" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=137, G=112, B=68]" inputFileIndex="12" exportFileIndex="12" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Green Aspen (with BUI Thresholding)" defaultFuelName="D2">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="9" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=196, G=189, B=151]" inputFileIndex="13" exportFileIndex="13" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Aspen" defaultFuelName="D1/D2">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="10" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=251, G=190, B=185]" inputFileIndex="21" exportFileIndex="21" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Jack or Lodgepole Pine Slash" defaultFuelName="S1">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="11" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=247, G=104, B=161]" inputFileIndex="22" exportFileIndex="22" isModifiedFlag="false">
+    <comments />
+    <Fuel name="White Spruce - Balsam Slash" defaultFuelName="S2">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="12" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=174, G=1, B=126]" inputFileIndex="23" exportFileIndex="23" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Coastal Cedar - Hemlock - Douglas-Fir Slash" defaultFuelName="S3">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="13" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=255, B=190]" inputFileIndex="31" exportFileIndex="31" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Matted Grass" defaultFuelName="O1a">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="14" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=230, G=230, B=0]" inputFileIndex="32" exportFileIndex="32" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Standing Grass" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="15" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=255, B=190]" inputFileIndex="33" exportFileIndex="33" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Grass" defaultFuelName="O1ab">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="16" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="40" exportFileIndex="40" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless" defaultFuelName="M1">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="17" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="50" exportFileIndex="50" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="18" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="60" exportFileIndex="60" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood" defaultFuelName="M1/M2">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="19" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="70" exportFileIndex="70" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless" defaultFuelName="M3">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="20" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="80" exportFileIndex="80" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green" defaultFuelName="M4">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="21" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="90" exportFileIndex="90" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood" defaultFuelName="M3/M4">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="22" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=255, B=255]" inputFileIndex="100" exportFileIndex="100" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Not Available" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="23" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=130, G=130, B=130]" inputFileIndex="101" exportFileIndex="101" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Non-fuel" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="24" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=115, G=223, B=255]" inputFileIndex="102" exportFileIndex="102" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Water" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="25" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=0, B=0]" inputFileIndex="103" exportFileIndex="103" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Unknown" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="26" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=166, G=166, B=166]" inputFileIndex="104" exportFileIndex="104" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Unclassified" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="27" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=204, G=204, B=204]" inputFileIndex="105" exportFileIndex="105" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Vegetated Non-Fuel" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="28" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="405" exportFileIndex="405" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (05% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.05" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="29" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="410" exportFileIndex="410" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (10% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.1" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="30" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="415" exportFileIndex="415" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (15% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.15" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="31" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="420" exportFileIndex="420" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (20% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.2" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="32" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="425" exportFileIndex="425" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (25% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.25" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="33" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="430" exportFileIndex="430" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (30% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.3" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="34" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="435" exportFileIndex="435" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (35% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.35" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="35" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="440" exportFileIndex="440" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (40% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.4" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="36" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="445" exportFileIndex="445" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (45% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.45" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="37" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="450" exportFileIndex="450" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (50% Conifer)" defaultFuelName="M1">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="38" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="455" exportFileIndex="455" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (55% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.55" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="39" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="460" exportFileIndex="460" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (60% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="40" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="465" exportFileIndex="465" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (65% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.65" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="41" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="470" exportFileIndex="470" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (70% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.7" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="42" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="475" exportFileIndex="475" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (75% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.75" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="43" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="480" exportFileIndex="480" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (80% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.8" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="44" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="485" exportFileIndex="485" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (85% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.85" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="45" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="490" exportFileIndex="490" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (90% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.9" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="46" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="495" exportFileIndex="495" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Leafless (95% Conifer)" defaultFuelName="M1">
+      <isModified PC="0.95" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="47" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="505" exportFileIndex="505" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (05% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.05" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="48" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="510" exportFileIndex="510" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (10% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.1" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="49" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="515" exportFileIndex="515" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (15% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.15" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="50" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="520" exportFileIndex="520" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (20% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.2" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="51" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="525" exportFileIndex="525" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (25% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.25" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="52" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="530" exportFileIndex="530" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (30% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.3" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="53" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="535" exportFileIndex="535" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (35% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.35" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="54" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="540" exportFileIndex="540" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (40% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.4" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="55" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="545" exportFileIndex="545" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (45% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.45" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="56" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="550" exportFileIndex="550" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (50% Conifer)" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="57" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="555" exportFileIndex="555" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (55% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.55" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="58" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="560" exportFileIndex="560" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (60% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="59" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="565" exportFileIndex="565" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (65% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.65" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="60" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="570" exportFileIndex="570" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (70% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.7" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="61" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="575" exportFileIndex="575" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (75% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.75" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="62" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="580" exportFileIndex="580" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (80% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.8" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="63" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="585" exportFileIndex="585" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (85% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.85" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="64" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="590" exportFileIndex="590" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (90% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.9" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="65" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=170, B=0]" inputFileIndex="595" exportFileIndex="595" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood - Green (95% Conifer)" defaultFuelName="M2">
+      <isModified PC="0.95" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="66" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="605" exportFileIndex="605" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (05% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.05" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="67" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="610" exportFileIndex="610" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (10% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.1" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="68" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="615" exportFileIndex="615" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (15% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.15" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="69" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="620" exportFileIndex="620" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (20% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.2" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="70" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="625" exportFileIndex="625" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (25% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.25" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="71" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="630" exportFileIndex="630" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (30% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.3" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="72" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="635" exportFileIndex="635" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (35% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.35" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="73" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="640" exportFileIndex="640" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (40% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.4" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="74" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="645" exportFileIndex="645" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (45% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.45" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="75" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="650" exportFileIndex="650" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (50% Conifer)" defaultFuelName="M1/M2">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="76" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="655" exportFileIndex="655" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (55% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.55" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="77" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="660" exportFileIndex="660" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (60% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="78" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="665" exportFileIndex="665" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (65% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.65" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="79" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="670" exportFileIndex="670" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (70% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.7" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="80" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="675" exportFileIndex="675" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (75% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.75" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="81" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="680" exportFileIndex="680" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (80% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.8" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="82" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="685" exportFileIndex="685" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (85% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.85" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="83" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="690" exportFileIndex="690" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (90% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.9" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="84" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="695" exportFileIndex="695" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Boreal Mixedwood (95% Conifer)" defaultFuelName="M1/M2">
+      <isModified PC="0.95" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="85" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="705" exportFileIndex="705" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (05% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.05" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="86" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="710" exportFileIndex="710" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (10% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.1" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="87" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="715" exportFileIndex="715" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (15% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.15" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="88" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="720" exportFileIndex="720" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (20% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.2" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="89" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="725" exportFileIndex="725" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (25% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.25" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="90" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="730" exportFileIndex="730" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (30% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.3" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="91" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="735" exportFileIndex="735" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (35% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.35" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="92" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="740" exportFileIndex="740" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (40% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.4" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="93" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="745" exportFileIndex="745" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (45% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.45" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="94" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="750" exportFileIndex="750" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (50% Dead Fir)" defaultFuelName="M3">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="95" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="755" exportFileIndex="755" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (55% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.55" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="96" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="760" exportFileIndex="760" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (60% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.6" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="97" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="765" exportFileIndex="765" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (65% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.65" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="98" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="770" exportFileIndex="770" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (70% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.7" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="99" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="775" exportFileIndex="775" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (75% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.75" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="100" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="780" exportFileIndex="780" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (80% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.8" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="101" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="785" exportFileIndex="785" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (85% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.85" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="102" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="790" exportFileIndex="790" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (90% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.9" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="103" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="795" exportFileIndex="795" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Leafless (95% Dead Fir)" defaultFuelName="M3">
+      <isModified PDF="0.95" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="104" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="805" exportFileIndex="805" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (05% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.05" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="105" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="810" exportFileIndex="810" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (10% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.1" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="106" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="815" exportFileIndex="815" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (15% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.15" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="107" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="820" exportFileIndex="820" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (20% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.2" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="108" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="825" exportFileIndex="825" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (25% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.25" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="109" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="830" exportFileIndex="830" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (30% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.3" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="110" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="835" exportFileIndex="835" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (35% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.35" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="111" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="840" exportFileIndex="840" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (40% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.4" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="112" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="845" exportFileIndex="845" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (45% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.45" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="113" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="850" exportFileIndex="850" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (50% Dead Fir)" defaultFuelName="M4">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="114" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="855" exportFileIndex="855" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (55% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.55" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="115" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="860" exportFileIndex="860" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (60% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.6" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="116" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="865" exportFileIndex="865" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (65% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.65" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="117" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="870" exportFileIndex="870" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (70% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.7" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="118" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="875" exportFileIndex="875" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (75% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.75" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="119" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="880" exportFileIndex="880" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (80% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.8" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="120" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="885" exportFileIndex="885" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (85% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.85" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="121" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="890" exportFileIndex="890" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (90% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.9" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="122" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=170, G=0, B=0]" inputFileIndex="895" exportFileIndex="895" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood - Green (95% Dead Fir)" defaultFuelName="M4">
+      <isModified PDF="0.95" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="123" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="905" exportFileIndex="905" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (05% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.05" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="124" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="910" exportFileIndex="910" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (10% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.1" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="125" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="915" exportFileIndex="915" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (15% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.15" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="126" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="920" exportFileIndex="920" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (20% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.2" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="127" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="925" exportFileIndex="925" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (25% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.25" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="128" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="930" exportFileIndex="930" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (30% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.3" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="129" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="935" exportFileIndex="935" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (35% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.35" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="130" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="940" exportFileIndex="940" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (40% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.4" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="131" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="945" exportFileIndex="945" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (45% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.45" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="132" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="950" exportFileIndex="950" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (50% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="133" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="955" exportFileIndex="955" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (55% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.55" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="134" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="960" exportFileIndex="960" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (60% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.6" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="135" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="965" exportFileIndex="965" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (65% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.65" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="136" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="970" exportFileIndex="970" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (70% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.7" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="137" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="975" exportFileIndex="975" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (75% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.75" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="138" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="980" exportFileIndex="980" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (80% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.8" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="139" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="985" exportFileIndex="985" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (85% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.85" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="140" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="990" exportFileIndex="990" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (90% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.9" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="141" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=99, G=0, B=0]" inputFileIndex="995" exportFileIndex="995" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dead Balsam Fir Mixedwood (95% Dead Fir)" defaultFuelName="M3/M4">
+      <isModified PDF="0.95" xmlns="FBP_Schema">
+        <C2 defaultFuelName="C2">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+</fuelMap>

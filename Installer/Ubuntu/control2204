@@ -1,0 +1,8 @@
+Package: WISE
+Version: 2021.06-01
+Section: utils
+Priority: optional
+Architecture: amd64
+Depends: libxerces-c3.2 (>= 3.2.3), libgdal30 (>= 3.4.1), proj-bin (>= 8.2.1-1), libc6 (>= 2.35), libstdc++6 (>= 12.1.0-2ubuntu1), libnuma1 (>= 2.0.14-3ubuntu2)
+Maintainer: Heartland Software Solutions
+Description: W.I.S.E.
