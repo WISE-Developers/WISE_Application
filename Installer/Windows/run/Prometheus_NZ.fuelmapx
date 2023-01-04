@@ -1,0 +1,503 @@
+<?xml version="1.0"?>
+<fuelMap xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <fuelType index="0" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=156, G=156, B=156]" inputFileIndex="1" exportFileIndex="1" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Built-up Area (settlement)" defaultFuelName="NZ1">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="1" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=104, G=133, B=120]" inputFileIndex="2" exportFileIndex="2" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Urban Parkland/Open Space" defaultFuelName="NZ2">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="2" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=112, G=68, B=137]" inputFileIndex="3" exportFileIndex="3" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Surface Mine" defaultFuelName="NZ3">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="3" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=112, G=68, B=137]" inputFileIndex="4" exportFileIndex="4" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Dump" defaultFuelName="NZ4">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="4" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=168, G=0, B=0]" inputFileIndex="5" exportFileIndex="5" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Transport Infrastructure" defaultFuelName="NZ5">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="5" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=112, G=68, B=137]" inputFileIndex="6" exportFileIndex="6" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Surface Mines and Dump" defaultFuelName="NZ6">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="6" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=255, B=115]" inputFileIndex="10" exportFileIndex="10" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Sand and Gravel" defaultFuelName="NZ10">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="7" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=156, G=186, B=156]" inputFileIndex="11" exportFileIndex="11" isModifiedFlag="false">
+    <comments />
+    <Fuel name="River and Lakeshore Gravel and Rock" defaultFuelName="NZ11">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="8" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=202, G=122, B=245]" inputFileIndex="12" exportFileIndex="12" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Landslide" defaultFuelName="NZ12">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="9" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=156, G=186, B=156]" inputFileIndex="13" exportFileIndex="13" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Alpine Gravel and Rock" defaultFuelName="NZ13">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="10" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=219, G=212, B=255]" inputFileIndex="14" exportFileIndex="14" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Permanent Snow and Ice" defaultFuelName="NZ14">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="11" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=171, G=205, B=102]" inputFileIndex="15" exportFileIndex="15" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Alpine Grass/Herbfield" defaultFuelName="NZ15">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="12" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=156, G=186, B=156]" inputFileIndex="16" exportFileIndex="16" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Gravel and Rock" defaultFuelName="NZ16">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="13" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=190, G=232, B=255]" inputFileIndex="20" exportFileIndex="20" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Lake and Pond" defaultFuelName="NZ20">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="14" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=190, G=232, B=255]" inputFileIndex="21" exportFileIndex="21" isModifiedFlag="false">
+    <comments />
+    <Fuel name="River" defaultFuelName="NZ21">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="15" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=214, G=245, B=232]" inputFileIndex="22" exportFileIndex="22" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Estuarine Open Water" defaultFuelName="NZ22">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="16" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=255, G=211, B=127]" inputFileIndex="30" exportFileIndex="30" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Short-rotation Cropland" defaultFuelName="NZ30">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="17" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=230, G=152, B=0]" inputFileIndex="31" exportFileIndex="31" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Vineyard" defaultFuelName="NZ31">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="18" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=230, G=152, B=0]" inputFileIndex="32" exportFileIndex="32" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Orchard and Other Perennial Crops" defaultFuelName="NZ32">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="19" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=230, G=152, B=0]" inputFileIndex="33" exportFileIndex="33" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Orchard Vineyard and Other Perennial Crops" defaultFuelName="NZ33">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="20" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=190, G=255, B=140]" inputFileIndex="40" exportFileIndex="40" isModifiedFlag="false">
+    <comments />
+    <Fuel name="High Producing Exotic Grassland" defaultFuelName="NZ40">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="21" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=163, G=212, B=0]" inputFileIndex="41" exportFileIndex="41" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Low Producing Grassland" defaultFuelName="NZ41">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="22" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=230, G=230, B=140]" inputFileIndex="43" exportFileIndex="43" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Tall Tussock Grassland" defaultFuelName="NZ43">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="23" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=210, G=210, B=90]" inputFileIndex="44" exportFileIndex="44" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Depleted Grassland" defaultFuelName="NZ44">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="24" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=194, G=255, B=214]" inputFileIndex="45" exportFileIndex="45" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Herbaceous Freshwater Vegetation" defaultFuelName="NZ45">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="25" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=222, G=245, B=222]" inputFileIndex="46" exportFileIndex="46" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Herbaceous Saline Vegetation" defaultFuelName="NZ46">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="26" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=122, G=245, B=202]" inputFileIndex="47" exportFileIndex="47" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Flaxland" defaultFuelName="NZ47">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="27" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=112, G=92, B=0]" inputFileIndex="50" exportFileIndex="50" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Fernland" defaultFuelName="NZ50">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="28" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=125, G=105, B=15]" inputFileIndex="51" exportFileIndex="51" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Gorse and/or Broom" defaultFuelName="NZ51">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="29" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=140, G=121, B=34]" inputFileIndex="52" exportFileIndex="52" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Manuka and/or Kanuka" defaultFuelName="NZ52">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="30" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=212, G=205, B=174]" inputFileIndex="53" exportFileIndex="53" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Matagouri" defaultFuelName="NZ53">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="31" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=168, G=153, B=79]" inputFileIndex="54" exportFileIndex="54" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Broadleafed Indigenous Hardwoods" defaultFuelName="NZ54">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C5">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="32" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=184, G=171, B=106]" inputFileIndex="55" exportFileIndex="55" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Sub Alpine Shrubland" defaultFuelName="NZ55">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="33" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=196, G=187, B=137]" inputFileIndex="56" exportFileIndex="56" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Mixed Exotic Shrubland" defaultFuelName="NZ56">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="34" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=212, G=205, B=174]" inputFileIndex="57" exportFileIndex="57" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Grey Scrub" defaultFuelName="NZ57">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="35" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=212, G=205, B=174]" inputFileIndex="58" exportFileIndex="58" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Matagouri or Grey Scrub" defaultFuelName="NZ58">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="36" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=56, G=168, B=0]" inputFileIndex="60" exportFileIndex="60" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Minor Shelterbelts" defaultFuelName="NZ60">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="37" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=56, G=168, B=0]" inputFileIndex="61" exportFileIndex="61" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Major Shelterbelts" defaultFuelName="NZ61">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="38" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=56, G=168, B=0]" inputFileIndex="62" exportFileIndex="62" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Afforestation (not imaged)" defaultFuelName="NZ62">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="39" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=56, G=168, B=0]" inputFileIndex="63" exportFileIndex="63" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Afforestation (imaged post LCDB1)" defaultFuelName="NZ63">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="40" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=161, G=173, B=97]" inputFileIndex="64" exportFileIndex="64" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Forest - Harvested" defaultFuelName="NZ54">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="41" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=56, G=168, B=0]" inputFileIndex="65" exportFileIndex="65" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Pine Forest - Open Canopy" defaultFuelName="NZ65">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="42" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=56, G=168, B=0]" inputFileIndex="66" exportFileIndex="66" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Pine Forest - Closed Canopy" defaultFuelName="NZ66">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="43" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=56, G=168, B=0]" inputFileIndex="67" exportFileIndex="67" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Other Exotic Forest" defaultFuelName="NZ67">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="44" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=71, G=127, B=0]" inputFileIndex="68" exportFileIndex="68" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Deciduous Hardwoods" defaultFuelName="NZ68">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="45" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=40, G=70, B=0]" inputFileIndex="69" exportFileIndex="69" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Indigenous Forest" defaultFuelName="NZ69">
+      <isModified xmlns="FBP_Schema">
+        <C2 defaultFuelName="C5">
+          <isModified />
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="46" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=68, G=137, B=137]" inputFileIndex="70" exportFileIndex="70" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Mangrove" defaultFuelName="NZ70">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="47" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=56, G=168, B=0]" inputFileIndex="71" exportFileIndex="71" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Exotic Forest" defaultFuelName="NZ71">
+      <isModified xmlns="FBP_Schema" />
+    </Fuel>
+  </fuelType>
+  <fuelType index="48" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=130, G=130, B=130]" inputFileIndex="101" exportFileIndex="101" isModifiedFlag="false">
+    <comments />
+    <Fuel name="Non-fuel" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+</fuelMap>

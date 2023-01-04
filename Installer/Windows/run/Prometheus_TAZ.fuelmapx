@@ -1,0 +1,4735 @@
+<?xml version="1.0"?>
+<fuelMap xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <fuelType index="0" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=43, G=221, B=185]" inputFileIndex="1" exportFileIndex="1" isModifiedFlag="false">
+    <comments />
+    <Fuel name="AHF - Fresh water aquatic herbland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="1" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=21, G=174, B=143]" inputFileIndex="2" exportFileIndex="2" isModifiedFlag="false">
+    <comments />
+    <Fuel name="AHL - lacustrine herbland" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="2" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=21, G=174, B=143]" inputFileIndex="3" exportFileIndex="3" isModifiedFlag="false">
+    <comments />
+    <Fuel name="AHS - saline aquatic herbland" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="3" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=21, G=174, B=143]" inputFileIndex="4" exportFileIndex="4" isModifiedFlag="false">
+    <comments />
+    <Fuel name="ARS - Saline grassland" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="4" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=43, G=221, B=185]" inputFileIndex="5" exportFileIndex="5" isModifiedFlag="false">
+    <comments />
+    <Fuel name="ASF - Fresh water aquatic sedgeland and rushland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="5" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=21, G=174, B=143]" inputFileIndex="6" exportFileIndex="6" isModifiedFlag="false">
+    <comments />
+    <Fuel name="ASS - Succulent saline herbland" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="6" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=21, G=174, B=143]" inputFileIndex="7" exportFileIndex="7" isModifiedFlag="false">
+    <comments />
+    <Fuel name="AUS - Saltmarsh (undifferntiated)" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="7" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=43, G=221, B=185]" inputFileIndex="8" exportFileIndex="8" isModifiedFlag="false">
+    <comments />
+    <Fuel name="AWU - wetland (undifferentiated)" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="8" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="9" exportFileIndex="9" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DAC - Eucalyptus amygdalina coastal forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="9" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="10" exportFileIndex="10" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DAD - Eucalyptus amygdalina forest and woodland on dolerite" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="10" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="11" exportFileIndex="11" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DAI - Eucalyptus amygdalina inland forest and woodland (undifferentiated)" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="11" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="12" exportFileIndex="12" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DAM - Eucalyptus amygdalina forest and woodland on mudstone" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="12" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="13" exportFileIndex="13" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DAS - Eucalyptus amygdalina forest and woodland on sandstone" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="13" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="14" exportFileIndex="14" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DAZ - Eucalyptus amygdalina inland forest and woodland on Cainozoic deposits" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="14" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="15" exportFileIndex="15" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DBA - Eucalyptus barberi forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="15" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="16" exportFileIndex="16" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DCO - Eucalyptus coccifera forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="16" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="17" exportFileIndex="17" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DCR - Eucalyptus cordata forest" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="17" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="18" exportFileIndex="18" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DDE - Eucalyptus delegatensis dry forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="18" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="19" exportFileIndex="19" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DDP - Eucalyptus dalrympleana - Eucalyptus pauciflora forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="19" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="20" exportFileIndex="20" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DGL - Eucalyptus globulus dry forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="20" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="21" exportFileIndex="21" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DGW - Eucalyptus gunnii woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="21" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="22" exportFileIndex="22" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DKW - King Island Eucalypt woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="22" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="23" exportFileIndex="23" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DMO - Eucalyptus morrisbyi forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="23" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="24" exportFileIndex="24" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DMW - Midlands woodland complex" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="24" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="25" exportFileIndex="25" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DNF - Eucalyptus nitida Furneaux forest" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="25" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="26" exportFileIndex="26" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DNI - Eucalyptus nitida dry forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="26" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="27" exportFileIndex="27" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DOB - Eucalyptus obliqua dry forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="27" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="28" exportFileIndex="28" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DOV - Eucalyptus ovata forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="28" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="29" exportFileIndex="29" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DOW - Eucalyptus ovata heathy woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="29" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="30" exportFileIndex="30" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DPD - Eucalyptus pauciflora forest and woodland on dolerite" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="30" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="31" exportFileIndex="31" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DPE - Eucalyptus perriniana forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="31" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="32" exportFileIndex="32" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DPO - Eucalyptus pauciflora forest and woodland not on dolerite substrates" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="32" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="33" exportFileIndex="33" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DPU - Eucalyptus pulchella forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="33" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="34" exportFileIndex="34" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DRI - Eucalyptus risdonii forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="34" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="35" exportFileIndex="35" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DRO - Eucalyptus rodwayi forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="35" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="36" exportFileIndex="36" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DSC - Eucalyptus amygdalina - Eucalyptus obliqua damp sclerophyll forest" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="36" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="37" exportFileIndex="37" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DSG - Eucalyptus sieberi forest and woodland on granite" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="37" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="38" exportFileIndex="38" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DSO - Eucalyptus sieberi forest and woodland not on granite substrates" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="38" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="39" exportFileIndex="39" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DTD - Eucalyptus tenuiramis forest and woodland on dolerite" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="39" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="40" exportFileIndex="40" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DTG - Eucalyptus tenuiramis forest and woodland on granite" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="40" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="41" exportFileIndex="41" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DTO - Eucalyptus tenuiramis forest and woodland on sediments" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="41" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="42" exportFileIndex="42" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DVC - Eucalyptus viminalis - Eucalyptus globulus coastal forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="42" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="43" exportFileIndex="43" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DVF - Eucalyptus viminalis Furneaux forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="43" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="44" exportFileIndex="44" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DVG - Eucalyptus viminalis grassy forest and woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="44" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="45" exportFileIndex="45" isModifiedFlag="false">
+    <comments />
+    <Fuel name="DVS - Eucalyptus viminalis shrubby/heathy woodland" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="45" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=154, G=227, B=45]" inputFileIndex="46" exportFileIndex="46" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FAG - Agricultural land" defaultFuelName="O1a">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ41</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="46" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=104, G=143, B=14]" inputFileIndex="47" exportFileIndex="47" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FMG - Marram grassland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ51</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ51</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="47" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=92, G=92, B=92]" inputFileIndex="48" exportFileIndex="48" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPE - Permanent easements" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="48" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=147, G=189, B=2]" inputFileIndex="49" exportFileIndex="49" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPF - Pteridium esculentum fernland" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ47</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="49" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=79, B=0]" inputFileIndex="50" exportFileIndex="50" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL - Plantations Softwood" defaultFuelName="C6">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ66</Default>
+          </S1>
+        </SFC>
+        <SFC_Greenup>
+          <S1>
+            <Default>NZ66</Default>
+          </S1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="50" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=209, G=218, B=173]" inputFileIndex="51" exportFileIndex="51" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5a1 - Plantations Softwood" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="51" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=128, G=64, B=0]" inputFileIndex="52" exportFileIndex="52" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5a2 - Plantations Softwood" defaultFuelName="S1">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ64</Default>
+          </S1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="52" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=226, G=231, B=199]" inputFileIndex="53" exportFileIndex="53" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5a3 - Plantations Softwood" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ63</Default>
+          </S1>
+        </SFC>
+        <SFC_Greenup>
+          <S1>
+            <Default>NZ63</Default>
+          </S1>
+        </SFC_Greenup>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="53" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=46, G=148, B=31]" inputFileIndex="54" exportFileIndex="54" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5a4 - Plantations Softwood" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ65</Default>
+          </S1>
+        </SFC>
+        <SFC_Greenup>
+          <S1>
+            <Default>NZ65</Default>
+          </S1>
+        </SFC_Greenup>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="54" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=79, B=0]" inputFileIndex="55" exportFileIndex="55" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5a5 - Plantations Softwood" defaultFuelName="C6">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ66</Default>
+          </S1>
+        </SFC>
+        <SFC_Greenup>
+          <S1>
+            <Default>NZ66</Default>
+          </S1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="55" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=79, B=0]" inputFileIndex="56" exportFileIndex="56" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5a6 - Plantations Softwood" defaultFuelName="C6">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ66</Default>
+          </S1>
+        </SFC>
+        <SFC_Greenup>
+          <S1>
+            <Default>NZ66</Default>
+          </S1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="56" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=79, B=0]" inputFileIndex="57" exportFileIndex="57" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5a7 - Plantations Softwood" defaultFuelName="C6">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ66</Default>
+          </S1>
+        </SFC>
+        <SFC_Greenup>
+          <S1>
+            <Default>NZ66</Default>
+          </S1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="57" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=128, G=64, B=0]" inputFileIndex="58" exportFileIndex="58" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5b1 - Plantations Hardwood" defaultFuelName="S1">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ64</Default>
+          </S1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="58" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=79, B=0]" inputFileIndex="59" exportFileIndex="59" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5b2 - Plantations Hardwood" defaultFuelName="C6">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ66</Default>
+          </S1>
+        </SFC>
+        <SFC_Greenup>
+          <S1>
+            <Default>NZ66</Default>
+          </S1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="59" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=46, G=148, B=31]" inputFileIndex="60" exportFileIndex="60" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5b3 - Plantations Hardwood" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ65</Default>
+          </S1>
+        </SFC>
+        <SFC_Greenup>
+          <S1>
+            <Default>NZ65</Default>
+          </S1>
+        </SFC_Greenup>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="60" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="61" exportFileIndex="61" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPL-5b4 - Plantations Hardwood" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="61" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=209, G=218, B=173]" inputFileIndex="62" exportFileIndex="62" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FPU - Unverified plantations for silviculture" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="62" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=209, G=218, B=173]" inputFileIndex="63" exportFileIndex="63" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FRG - Regenerating cleared land" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="63" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=43, G=221, B=185]" inputFileIndex="64" exportFileIndex="64" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FSM - Spartina marshland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="64" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=232, G=100, B=109]" inputFileIndex="65" exportFileIndex="65" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FUM - Extra-urban miscellaneous" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="65" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=172, G=255, B=89]" inputFileIndex="66" exportFileIndex="66" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FUR - Urban areas" defaultFuelName="O1a">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ2</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="66" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=104, G=143, B=14]" inputFileIndex="67" exportFileIndex="67" isModifiedFlag="false">
+    <comments />
+    <Fuel name="FWU - Weed infestation" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ51</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ51</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="67" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=154, G=227, B=45]" inputFileIndex="68" exportFileIndex="68" isModifiedFlag="false">
+    <comments />
+    <Fuel name="GCL - Lowland grassland complex" defaultFuelName="O1a">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ41</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="68" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=154, G=227, B=45]" inputFileIndex="69" exportFileIndex="69" isModifiedFlag="false">
+    <comments />
+    <Fuel name="GHC - Coastal grass and herbfield" defaultFuelName="O1a">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ41</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="69" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=154, G=227, B=45]" inputFileIndex="70" exportFileIndex="70" isModifiedFlag="false">
+    <comments />
+    <Fuel name="GPH - Highland Poa grassland" defaultFuelName="O1a">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ41</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="70" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=154, G=227, B=45]" inputFileIndex="71" exportFileIndex="71" isModifiedFlag="false">
+    <comments />
+    <Fuel name="GPL - Lowland Poa labillardierei grassland" defaultFuelName="O1a">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ41</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="71" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=154, G=227, B=45]" inputFileIndex="72" exportFileIndex="72" isModifiedFlag="false">
+    <comments />
+    <Fuel name="GRP - Rockplate grassland" defaultFuelName="O1a">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ41</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="72" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=154, G=227, B=45]" inputFileIndex="73" exportFileIndex="73" isModifiedFlag="false">
+    <comments />
+    <Fuel name="GSL - Lowland sedgy grassland" defaultFuelName="O1a">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ41</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="73" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=154, G=227, B=45]" inputFileIndex="74" exportFileIndex="74" isModifiedFlag="false">
+    <comments />
+    <Fuel name="GTL - Lowland Themeda grassland" defaultFuelName="O1a">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ41</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="74" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="75" exportFileIndex="75" isModifiedFlag="false">
+    <comments />
+    <Fuel name="HCH - Alpine coniferous heathland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="75" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="76" exportFileIndex="76" isModifiedFlag="false">
+    <comments />
+    <Fuel name="HCM - Cushion moorland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="76" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="77" exportFileIndex="77" isModifiedFlag="false">
+    <comments />
+    <Fuel name="HHE - Eastern alpine heathland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="77" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="78" exportFileIndex="78" isModifiedFlag="false">
+    <comments />
+    <Fuel name="HHW - Western alpine heathland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="78" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="79" exportFileIndex="79" isModifiedFlag="false">
+    <comments />
+    <Fuel name="HSE - Eastern alpine sedgeland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="79" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="80" exportFileIndex="80" isModifiedFlag="false">
+    <comments />
+    <Fuel name="HSW - Western alpine sedgeland/herbland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="80" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="81" exportFileIndex="81" isModifiedFlag="false">
+    <comments />
+    <Fuel name="HUE - Eastern alpine vegetation (undifferentiated)" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="81" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=230, G=231, B=169]" inputFileIndex="82" exportFileIndex="82" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MAP - Alkaline pans" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ2</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="82" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=213, G=213, B=0]" inputFileIndex="83" exportFileIndex="83" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MBE - Eastern buttongrass moorland" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ43</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="83" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=213, G=213, B=0]" inputFileIndex="84" exportFileIndex="84" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MBP - Pure buttongrass moorland" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ43</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="84" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=230, G=231, B=169]" inputFileIndex="85" exportFileIndex="85" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MBR - Sparse buttongrass moorland on slopes" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ2</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="85" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=213, G=213, B=0]" inputFileIndex="86" exportFileIndex="86" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MBS - Buttongrass moorland with emergent shrubs" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ43</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="86" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=213, G=213, B=0]" inputFileIndex="87" exportFileIndex="87" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MBU - Buttongrass moorland (undifferentiated)" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ43</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="87" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=213, G=213, B=0]" inputFileIndex="88" exportFileIndex="88" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MBW - Western buttongrass moorland" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ43</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="88" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="89" exportFileIndex="89" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MDS - Subalpine Diplarrena latifolia rushland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="89" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="90" exportFileIndex="90" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MGH - Highland grassy sedgeland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="90" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=213, G=213, B=0]" inputFileIndex="91" exportFileIndex="91" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MRR - Restionaceae rushland" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ43</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="91" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="92" exportFileIndex="92" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MSP - Sphagnum peatland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="92" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=230, G=231, B=169]" inputFileIndex="93" exportFileIndex="93" isModifiedFlag="false">
+    <comments />
+    <Fuel name="MSW - Western lowland sedgeland" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ2</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="93" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="94" exportFileIndex="94" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NAD - Acacia dealbata forest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="94" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="95" exportFileIndex="95" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NAF - Acacia melanoxylon swamp forest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="95" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="96" exportFileIndex="96" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NAL - Allocasuarina littoralis forest" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="96" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="97" exportFileIndex="97" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NAR - Acacia melanoxylon on rises" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="97" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="98" exportFileIndex="98" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NAV - Allocasuarina verticillata forest" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="98" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="99" exportFileIndex="99" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NBA - Bursaria - Acacia woodland and scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="99" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="100" exportFileIndex="100" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NBS - Banksia serrata woodland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="100" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="101" exportFileIndex="101" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NCR - Callitris rhomboidea forest" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="101" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=64]" inputFileIndex="102" exportFileIndex="102" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NLA - Leptospermum scoparium - Acacia mucronata forest" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="102" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=64]" inputFileIndex="103" exportFileIndex="103" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NLE - Leptospermum forest" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <O1>
+            <Default>NZ30</Default>
+          </O1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="103" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="104" exportFileIndex="104" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NLM - Leptospermum lanigerum - Melaleuca squarrosa swamp forest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="104" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="105" exportFileIndex="105" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NLN - Subalpine Leptospermum nitidum woodland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="105" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="106" exportFileIndex="106" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NME - Melaleuca ericifolia swamp forest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="106" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="107" exportFileIndex="107" isModifiedFlag="false">
+    <comments />
+    <Fuel name="NNP - Notelaea - Pomaderris - Beyeria forest" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="107" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=0, B=255]" inputFileIndex="108" exportFileIndex="108" isModifiedFlag="false">
+    <comments />
+    <Fuel name="OAQ - Water- sea" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="108" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=182, G=182, B=182]" inputFileIndex="109" exportFileIndex="109" isModifiedFlag="false">
+    <comments />
+    <Fuel name="ORO - Rock (cryptogamic lithosere )" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="109" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=181, B=181]" inputFileIndex="110" exportFileIndex="110" isModifiedFlag="false">
+    <comments />
+    <Fuel name="OSM - Sand- mud" defaultFuelName="NonFuel">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="110" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="111" exportFileIndex="111" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RCO - Coastal rainforest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="111" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="112" exportFileIndex="112" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RFE - Rainforest fernland" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="112" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="113" exportFileIndex="113" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RFS - Nothofagus gunnii rainforest and scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="113" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="114" exportFileIndex="114" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RHP - Lagarostrobos franklinii rainforest and scrub" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="114" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="115" exportFileIndex="115" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RKF - Athrotaxis selaginoides - Nothofagus gunnii short rainforest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="115" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="116" exportFileIndex="116" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RKP - Athrotaxis selaginoides rainforest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="116" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="117" exportFileIndex="117" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RKS - Athrotaxis selaginoides subalpine scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="117" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="118" exportFileIndex="118" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RKX - Highland rainforest scrub with dead Athrotaxis selaginoides" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="118" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="119" exportFileIndex="119" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RLS - Leptospermum with rainforest scrub" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="119" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="120" exportFileIndex="120" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RML - Nothofagus - Leptospermum short rainforest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="120" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="121" exportFileIndex="121" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RMS - Nothofagus / Phyllocladus short rainforest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="121" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="122" exportFileIndex="122" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RMT - Nothofagus - Atherosperma rainforest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="122" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="123" exportFileIndex="123" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RMU - Nothofagus rainforest undifferentiated" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="123" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="124" exportFileIndex="124" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RPF - Athrotaxis cupressoides/Nothofagus gunnii short rainforest" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="124" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="125" exportFileIndex="125" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RPP - Athrotaxis cupressoides rainforest" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="125" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="126" exportFileIndex="126" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RPW - Athrotaxis cupressoides open woodland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="126" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="127" exportFileIndex="127" isModifiedFlag="false">
+    <comments />
+    <Fuel name="RSH - Highland low rainforest and scrub" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="127" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="128" exportFileIndex="128" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SAC - Acacia longifolia coastal scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="128" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="129" exportFileIndex="129" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SBM - Banksia marginata wet scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="129" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="130" exportFileIndex="130" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SBR - Broadleaf scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="130" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="131" exportFileIndex="131" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SCA - Coastal scrub on alkaline sands" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="131" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="132" exportFileIndex="132" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SCH - Coastal heathland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="132" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="133" exportFileIndex="133" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SCK - Coastal complex on King Island" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="133" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="134" exportFileIndex="134" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SCW - Heathland scrub complex at Wingaroo" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="134" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="135" exportFileIndex="135" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SDU - Dry scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="135" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="136" exportFileIndex="136" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SHC - Heathland on calcarenite" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="136" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="137" exportFileIndex="137" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SHF - Heathland scrub mosaic on Flinders Island" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="137" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="138" exportFileIndex="138" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SHG - Heathland on granite" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="138" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="139" exportFileIndex="139" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SHL - Lowland sedgy heathland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="139" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="140" exportFileIndex="140" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SHS - Subalpine heathland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="140" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="141" exportFileIndex="141" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SHU - Inland Heathland (undifferentiated)" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="141" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="142" exportFileIndex="142" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SHW - Wet heathland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="142" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=128, G=64, B=0]" inputFileIndex="144" exportFileIndex="144" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SLA-10a - Slash Unburned" defaultFuelName="S1">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <S1>
+            <Default>NZ64</Default>
+          </S1>
+        </SFC>
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="143" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=209, G=218, B=173]" inputFileIndex="145" exportFileIndex="145" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SLA-10b - Slash Burned" defaultFuelName="O1b">
+      <isModified xmlns="FBP_Schema">
+        <DBH>
+          <None>
+            <Default>O1a</Default>
+          </None>
+        </DBH>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="144" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="146" exportFileIndex="146" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SLW - Leptospermum scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="145" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="147" exportFileIndex="147" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SMM - Melaleuca squamea heathland" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="146" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="148" exportFileIndex="148" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SMP - Melaleuca pustulata scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="147" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="149" exportFileIndex="149" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SMR - Melaleuca squarrosa scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="148" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="150" exportFileIndex="150" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SQR - Queenstown regrowth mosaic" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="149" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="151" exportFileIndex="151" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SRC - Seabird rookery complex" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="150" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="152" exportFileIndex="152" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SRI - Riparian scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="151" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="153" exportFileIndex="153" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SSC - Coastal Scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="152" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="154" exportFileIndex="154" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SSK - Scrub complex on King Island" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="153" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=181, G=238, B=185]" inputFileIndex="155" exportFileIndex="155" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SSW - Western subalpine scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ55</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="154" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=128, B=0]" inputFileIndex="156" exportFileIndex="156" isModifiedFlag="false">
+    <comments />
+    <Fuel name="SWW - Western wet scrub" defaultFuelName="C4">
+      <isModified xmlns="FBP_Schema">
+        <Growth A="82" B="0.1" Q="1" BUI_0="1" />
+        <SFC>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC>
+        <SFC_Greenup>
+          <O1>
+            <Default>NZ52</Default>
+          </O1>
+        </SFC_Greenup>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="155" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="157" exportFileIndex="157" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WBR - Eucalyptus brookeriana wet forest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="156" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="158" exportFileIndex="158" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WDA - Eucalyptus dalrympleana forest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="157" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="159" exportFileIndex="159" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WDB - Eucalyptus delegatensis forest with broadleaf shrubs" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="158" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="160" exportFileIndex="160" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WDL - Eucalyptus delegatensis forest over Leptospermum" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="159" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="161" exportFileIndex="161" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WDR - Eucalyptus delegatensis over rainforest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="160" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="162" exportFileIndex="162" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WDU - Eucalyptus delegatensis wet forest (undifferentiated)" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="161" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=0, G=196, B=98]" inputFileIndex="163" exportFileIndex="163" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WGK - Eucalyptus globulus King Island forest" defaultFuelName="M2">
+      <isModified PC="0.6" xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="162" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="164" exportFileIndex="164" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WGL - Eucalyptus globulus wet forest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="163" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="165" exportFileIndex="165" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WNL - Eucalyptus nitida forest over Leptospermum" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="164" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="166" exportFileIndex="166" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WNR - Eucalyptus nitida over rainforest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="165" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="167" exportFileIndex="167" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WNU - Eucalyptus nitida wet forest (undifferentiated)" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="166" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="168" exportFileIndex="168" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WOB - Eucalyptus obliqua forest with broadleaf shrubs" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="167" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="169" exportFileIndex="169" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WOL - Eucalyptus obliqua forest over Leptospermum" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="168" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="170" exportFileIndex="170" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WOR - Eucalyptus obliqua forest over rainforest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="169" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="171" exportFileIndex="171" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WOU - Eucalyptus obliqua wet forest (undifferentiated)" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="170" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="172" exportFileIndex="172" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WRE - Eucalyptus regnans forest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="171" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="173" exportFileIndex="173" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WSU - Eucalyptus subcrenulata forest and woodland" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+  <fuelType index="172" isNonStandard="false" isModifiedName="false" fillColor="Color [A=255, R=2, G=130, B=60]" inputFileIndex="174" exportFileIndex="174" isModifiedFlag="false">
+    <comments />
+    <Fuel name="WVI - Eucalyptus viminalis wet forest" defaultFuelName="M2">
+      <isModified xmlns="FBP_Schema">
+        <SFC>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC>
+        <SFC_Greenup>
+          <C2>
+            <Default>C5</Default>
+          </C2>
+        </SFC_Greenup>
+        <C2 name="C-5 Red and White Pine" defaultFuelName="C2">
+          <isModified CBH="18" TH="25" CFL="1.2">
+            <Growth A="30" B="0.0697" C="4" Q="0.8" BUI_0="50" Max_BE="1.22" />
+            <SFC>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC>
+            <SFC_Greenup>
+              <C2>
+                <Default>C5</Default>
+              </C2>
+            </SFC_Greenup>
+            <DBH>
+              <Huang_1>
+                <Default>C5</Default>
+              </Huang_1>
+            </DBH>
+          </isModified>
+        </C2>
+        <D1 defaultFuelName="D1">
+          <isModified />
+        </D1>
+      </isModified>
+    </Fuel>
+  </fuelType>
+</fuelMap>
