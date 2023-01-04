@@ -559,6 +559,7 @@ jobs:
         cmake --build . --config Release --target protoc
         Copy-Item $zlibpath/bin/* Release
         Copy-Item $zlibpath/lib/* Release
+        Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
         
     - name: Build protobuf
