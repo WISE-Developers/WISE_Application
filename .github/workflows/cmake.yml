@@ -1180,6 +1180,7 @@ jobs:
         mkdir ubuntu
         cd ubuntu
         cmake ../.. -DPAHO_BUILD_DOCUMENTATION=OFF -DPAHO_BUILD_SAMPLES=OFF -DPAHO_BUILD_STATIC=OFF -DPAHO_BUILD_SHARED=ON -DPAHO_WITH_SSL=OFF -DCMAKE_PREFIX_PATH="$(realpath ../../../paho/install)" -DCMAKE_INSTALL_PREFIX="../../install"
+        cmake --build . --target install
         cd ../..
         cp install/lib/*.so* ../dlibs
       
