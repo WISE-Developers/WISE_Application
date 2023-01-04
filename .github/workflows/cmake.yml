@@ -930,7 +930,7 @@ jobs:
         cp *.so* ../../../dlibs
       
     - name: Configure Weather Windows
-      if: matrix.os == 'windows-2019''
+      if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Weather_Module
         mkdir build
