@@ -1441,7 +1441,36 @@ jobs:
     - name: Get Last Tags
       id: previoustag
       run: |
-        //TODO
+        cd WISE_Communications_Module
+        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        echo "WISE_Communications_Module_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+        cd ../WISE_Scenario_Growth_Module
+        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        echo "WISE_Scenario_Growth_Module_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+        cd ../WISE_Weather_Module
+        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        echo "WISE_Weather_Module_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+        cd ../WISE_Grid_Module
+        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        echo "WISE_Grid_Module_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+        cd ../WISE_FBP_Module
+        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        echo "WISE_FBP_Module_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+        cd ../WISE_FWI_Module
+        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        echo "WISE_FWI_Module_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+        cd ../WISE_REDapp_Lib_Wrapper
+        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        echo "WISE_REDapp_Lib_Wrapper_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+        cd ../REDapp_Lib
+        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        echo "REDapp_Lib_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+        cd ../WISE_Processing_Lib
+        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        echo "WISE_Processing_Lib_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+        cd ../WISE_Application
+        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        echo "WISE_Application_tag=$LAST_TAG" >> $GITHUB_OUTPUT
         
     - name: Tag the repository
       run: |
