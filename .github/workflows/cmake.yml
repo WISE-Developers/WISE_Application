@@ -1052,7 +1052,7 @@ jobs:
     - name: Configure Status Ubuntu
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
-        cd WISE_Communications_Module/WISE_STATUS
+        cd WISE_Communications_Module/WISE_Status
         mkdir build
         cd build
         mkdir ubuntu
@@ -1064,7 +1064,7 @@ jobs:
     - name: Configure Status Windows
       if: matrix.os == 'windows-2019'
       run: |
-        cd WISE_Communications_Module/WISE_STATUS
+        cd WISE_Communications_Module/WISE_Status
         mkdir build
         cd build
         mkdir windows
