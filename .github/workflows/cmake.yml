@@ -870,7 +870,7 @@ jobs:
     - name: Configure FBP Ubuntu
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
-        cd WISE_FWI_Module
+        cd WISE_FBP_Module
         mkdir build
         cd build
         mkdir ubuntu
@@ -882,7 +882,7 @@ jobs:
     - name: Configure FBP Windows
       if: matrix.os == 'windows-2019'
       run: |
-        cd WISE_FWI_Module
+        cd WISE_FBP_Module
         mkdir build
         cd build
         mkdir windows
