@@ -521,7 +521,6 @@ jobs:
       shell: pwsh
       run: |
         If(!(Test-Path ${{ steps.install-boost.outputs.librarydir }}/boost_chrono.dll)){Copy-Item ${{ steps.install-boost.outputs.librarydir }}/boost_chrono* ${{ steps.install-boost.outputs.librarydir }}/boost_chrono.dll}
-        cd cxx
         Invoke-WebRequest "https://heartlandsoftwaresolutions.sharepoint.com/:u:/g/HSS_Releases/EXnrOV_5audDuUmQjHymeDYBC_nMbcSQcOjP5Wi4IcPvkA?e=d8HeAq&download=1" -OutFile gdal.7z
         & 7z.exe x gdal.7z -ogdal -y
         
