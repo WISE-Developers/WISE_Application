@@ -80,14 +80,14 @@ auto Project::Fire::deserialize(const google::protobuf::Message& proto, std::sha
 		{
 			if (valid)
 				valid->add_child_validation("WISE.ProjectProto.ProjectFire", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("Fire: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 		}
 		if (fire->version() != 1)
 		{
 			if (valid)
 				valid->add_child_validation("WISE.ProjectProto.ProjectFire", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(fire->version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("Fire: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -121,7 +121,7 @@ auto Project::Fire::deserialize(const google::protobuf::Message& proto, std::sha
 			ISerializeProto* sp = m_fire.get();
 			if (!sp->deserialize(fire->ignition(), v, "ignition", &data))
 			{
-				weak_assert(0);
+				weak_assert(false);
 				m_fire = nullptr; //clear the intrusive pointer, hopefully that is what was meant
 				return nullptr; //isn't really meaningful
 			}
@@ -139,7 +139,7 @@ auto Project::Fire::deserialize(const google::protobuf::Message& proto, std::sha
 		{
 			if (valid)
 				valid->add_child_validation("WISE.ProjectProto.ProjectFire", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(fire->version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("Fire: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -189,7 +189,7 @@ auto Project::Fire::deserialize(const google::protobuf::Message& proto, std::sha
 		ISerializeProto* sp = m_fire.get();
 		if (!sp->deserialize(*fire, v, "ignition", &data))
 		{
-			weak_assert(0);
+			weak_assert(false);
 			m_fire = nullptr; //clear the intrusive pointer, hopefully that is what was meant
 			return nullptr; //isn't really meaningful
 		}
@@ -236,7 +236,7 @@ auto Project::FireCollection::deserialize(const google::protobuf::Message& proto
 	{
 		if (valid)
 			valid->add_child_validation("WISE.ProjectProto.FireCollection", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("FireCollection: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 
@@ -244,7 +244,7 @@ auto Project::FireCollection::deserialize(const google::protobuf::Message& proto
 	{
 		if (valid)
 			valid->add_child_validation("WISE.ProjectProto.FireCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("FireCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -268,7 +268,7 @@ auto Project::FireCollection::deserialize(const google::protobuf::Message& proto
 				/// <type>internal</type>
 				if (v)
 					v->add_child_validation("WISE.ProjectProto.ProjectFire", "ignition", validation::error_level::SEVERE, validation::id::cannot_allocate, "CLSID_CWFGM_Ignition");
-				weak_assert(0);
+				weak_assert(false);
 				return nullptr;
 			}
 
@@ -279,7 +279,7 @@ auto Project::FireCollection::deserialize(const google::protobuf::Message& proto
 			try {
 				if (!fire->deserialize(collection->ignitions(i), v, strprintf("ignitions[%d]", i)))
 				{
-					weak_assert(0);
+					weak_assert(false);
 					delete fire;
 					return nullptr; //isn't really meaningful
 				}
@@ -305,7 +305,7 @@ auto Project::FireCollection::deserialize(const google::protobuf::Message& proto
 				/// <type>internal</type>
 				if (v)
 					v->add_child_validation("WISE.ProjectProto.ProjectFire", "ignition", validation::error_level::SEVERE, validation::id::cannot_allocate, "CLSID_CWFGM_Ignition");
-				weak_assert(0);
+				weak_assert(false);
 				return nullptr;
 			}
 			ICWFGM_CommonData data;
@@ -315,7 +315,7 @@ auto Project::FireCollection::deserialize(const google::protobuf::Message& proto
 			try {
 				if (!fire->deserialize(collection->ignitiondata(i), v, strprintf("ignitions[%d]", i)))
 				{
-					weak_assert(0);
+					weak_assert(false);
 					delete fire;
 					return nullptr; //isn't really meaningful
 				}

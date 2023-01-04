@@ -60,7 +60,7 @@ std::string Project::CWindDirectionGrid::GetRangeString(USHORT sector, USHORT ra
 	}
 	else
 	{
-		weak_assert(0);
+		weak_assert(false);
 	}
 	return string;
 }
@@ -193,7 +193,7 @@ HRESULT Project::CWindDirectionGrid::Remove(const USHORT sector, const USHORT ra
 	}
 	else
 	{
-		weak_assert(0);
+		weak_assert(false);
 		hr = ERROR_SEVERITY_ERROR;
 	}
 	return hr;

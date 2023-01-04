@@ -57,10 +57,10 @@ namespace Project
 
 		CWeatherGridBase* Duplicate() const override;
 
-		__INLINE bool GetStartTime(WTime &start) { PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_filter->GetAttribute(0, CWFGM_WEATHER_OPTION_START_TIME, &v))) { VariantToTime_(v, &start); } return SUCCEEDED(hr); };
-		__INLINE bool GetEndTime(WTime &EndTime) { PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_filter->GetAttribute(0, CWFGM_WEATHER_OPTION_END_TIME, &v))) { VariantToTime_(v, &EndTime); } return SUCCEEDED(hr); };
-		__INLINE bool GetStartTimeOfDay(WTimeSpan &start)	{ PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_filter->GetAttribute(0, CWFGM_WEATHER_OPTION_START_TIMESPAN, &v))) { VariantToTimeSpan_(v, &start); } return SUCCEEDED(hr); };
-		__INLINE bool GetEndTimeOfDay(WTimeSpan &EndTime)	{ PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_filter->GetAttribute(0, CWFGM_WEATHER_OPTION_END_TIMESPAN, &v))) { VariantToTimeSpan_(v, &EndTime); } return SUCCEEDED(hr); };
+		bool GetStartTime(WTime &start) { PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_filter->GetAttribute(0, CWFGM_WEATHER_OPTION_START_TIME, &v))) { VariantToTime_(v, &start); } return SUCCEEDED(hr); };
+		bool GetEndTime(WTime &EndTime) { PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_filter->GetAttribute(0, CWFGM_WEATHER_OPTION_END_TIME, &v))) { VariantToTime_(v, &EndTime); } return SUCCEEDED(hr); };
+		bool GetStartTimeOfDay(WTimeSpan &start)	{ PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_filter->GetAttribute(0, CWFGM_WEATHER_OPTION_START_TIMESPAN, &v))) { VariantToTimeSpan_(v, &start); } return SUCCEEDED(hr); };
+		bool GetEndTimeOfDay(WTimeSpan &EndTime)	{ PolymorphicAttribute v; HRESULT hr; if (SUCCEEDED(hr = m_filter->GetAttribute(0, CWFGM_WEATHER_OPTION_END_TIMESPAN, &v))) { VariantToTimeSpan_(v, &EndTime); } return SUCCEEDED(hr); };
 
 		virtual HRESULT SetStartTime(const WTime &time);
 		virtual HRESULT SetEndTime(const WTime &time);
@@ -109,9 +109,9 @@ namespace Project
 		const std::string TypeString() const override { using namespace std::string_literals; return "Weather Patch"s; }
 
 		std::uint32_t AddPolygon(const XY_Point &points, std::uint32_t num_points);
-		__INLINE std::uint32_t AddPolygon(const XY_PolyConst &poly)	{ return AddPolygon(*poly.GetPointsArray(), poly.NumPoints()); };
-		__INLINE void SetLandscapeWxFlag(bool newValue) { if(newValue){ m_flags |= 0x1; } else {m_flags &= (~(0x1));} };
-		__INLINE bool GetLandscapeWxFlag() const { return (m_flags & 0x1) ? true : false; }
+		std::uint32_t AddPolygon(const XY_PolyConst &poly)	{ return AddPolygon(*poly.GetPointsArray(), poly.NumPoints()); };
+		void SetLandscapeWxFlag(bool newValue) { if(newValue){ m_flags |= 0x1; } else {m_flags &= (~(0x1));} };
+		bool GetLandscapeWxFlag() const { return (m_flags & 0x1) ? true : false; }
 		bool ClearPolygon(std::uint32_t index);
 		std::uint32_t GetPolygonMaxSize();
 		std::uint32_t GetPolygonCount();
@@ -146,12 +146,12 @@ namespace Project
 		HRESULT ImportPolygonsWFS(const std::string &server, const std::string &layer, const std::string &uid, const std::string &pwd);
 		HRESULT ExportPolygons(const std::string &driver_name, const std::string &export_projection, const std::string &file_name);
 
-		__INLINE void SetLineWidth(ULONG Width)						{ m_lineWidth = Width; };
-		__INLINE ULONG GetLineWidth()								{ return m_lineWidth; };
+		void SetLineWidth(ULONG Width)						{ m_lineWidth = Width; };
+		ULONG GetLineWidth()								{ return m_lineWidth; };
 		virtual ULONG BoundaryWidth() const noexcept override		{ return m_lineWidth; };
 
 		virtual COLORREF BoundaryColor() const noexcept	override	{ return m_color; };
-		__INLINE COLORREF SetColor(COLORREF color)					{ m_color = color; return m_color; };
+		COLORREF SetColor(COLORREF color)					{ m_color = color; return m_color; };
 
 	public:
 		virtual std::int32_t serialVersionUid(const SerializeProtoOptions& options) const noexcept override;

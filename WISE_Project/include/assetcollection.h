@@ -59,39 +59,39 @@ namespace Project
 		virtual void SetLineWidth(long Width)								{ m_LineWidth = Width; }
 		virtual int GetLineWidth() const									{ if (m_LineWidth.has_value()) return m_LineWidth.value(); return 1; }
 
-		__INLINE Asset* LN_Succ() const										{ return (Asset*)SNode::LN_Succ(); }
-		__INLINE Asset* LN_Pred() const										{ return (Asset*)SNode::LN_Pred(); }
+		Asset* LN_Succ() const										{ return (Asset*)SNode::LN_Succ(); }
+		Asset* LN_Pred() const										{ return (Asset*)SNode::LN_Pred(); }
 
 		const std::string& Name(const std::string& name)					{ ln_Name = name; return ln_Name; }
-		__INLINE const std::string& Name() const noexcept					{ return ln_Name; }
+		const std::string& Name() const noexcept					{ return ln_Name; }
 
 		virtual COLORREF SetColor(COLORREF color) noexcept					{ m_col = color; return m_col.value(); }
 		virtual COLORREF GetColor() const noexcept							{ if (m_col.has_value()) return m_col.value(); return RGB(0, 0, 0); }
 
-		__INLINE COLORREF GetFillColor() const noexcept						{ if (m_fillColor.has_value()) return m_fillColor.value(); return RGB(0, 0, 0); }
-		__INLINE void SetFillColor(COLORREF color) noexcept					{ m_fillColor = color; }
+		COLORREF GetFillColor() const noexcept						{ if (m_fillColor.has_value()) return m_fillColor.value(); return RGB(0, 0, 0); }
+		void SetFillColor(COLORREF color) noexcept					{ m_fillColor = color; }
 
-		__INLINE const std::string& Comments(const std::string& comments)	{ m_comments = comments; return m_comments; }
-		__INLINE const std::string& Comments(std::string&& comments)		{ m_comments = std::move(comments); return m_comments; }
-		__INLINE const std::string& Comments() const noexcept				{ return m_comments; }
+		const std::string& Comments(const std::string& comments)	{ m_comments = comments; return m_comments; }
+		const std::string& Comments(std::string&& comments)		{ m_comments = std::move(comments); return m_comments; }
+		const std::string& Comments() const noexcept				{ return m_comments; }
 
-		__INLINE bool IsImported() const noexcept							{ if (m_imported.has_value()) return m_imported.value(); return false; }
-		__INLINE bool IsImported(bool imported) noexcept					{ m_imported = imported; return m_imported.value(); }
+		bool IsImported() const noexcept							{ if (m_imported.has_value()) return m_imported.value(); return false; }
+		bool IsImported(bool imported) noexcept					{ m_imported = imported; return m_imported.value(); }
 
-		__INLINE LOGFONT GetFont() const									{ return PolyEditGetWingdingsFont(); }
+		LOGFONT GetFont() const									{ return PolyEditGetWingdingsFont(); }
 
-		__INLINE std::uint64_t GetSymbol() const noexcept					{ if (m_symbol.has_value()) return m_symbol.value(); return (std::uint64_t)0; }
-		__INLINE std::uint64_t SetSymbol(std::uint64_t s) noexcept			{ m_symbol = s; return m_symbol.value(); }
+		std::uint64_t GetSymbol() const noexcept					{ if (m_symbol.has_value()) return m_symbol.value(); return (std::uint64_t)0; }
+		std::uint64_t SetSymbol(std::uint64_t s) noexcept			{ m_symbol = s; return m_symbol.value(); }
 
-		__INLINE HRESULT LockState()										{ if (m_filter) return m_filter->MT_Lock(false, gsl::narrow_cast<USHORT>(-1)); return S_OK; }
+		HRESULT LockState()										{ if (m_filter) return m_filter->MT_Lock(false, gsl::narrow_cast<USHORT>(-1)); return S_OK; }
 
 		ICWFGM_GridEngine* gridEngine(ICWFGM_GridEngine* gridEngine);
 		std::string m_loadWarning;
 
 		std::uint32_t AddPoly(const XY_Point* points, std::uint32_t num_points, std::uint16_t interpret);
 		std::uint32_t SetPoly(std::uint32_t index, const XY_Point* points, std::uint32_t num_points, std::uint16_t interpret);
-		__INLINE ULONG AddPoly(const XY_PolyConst& poly, std::uint16_t interpret) { return AddPoly(poly.GetPointsArray(), poly.NumPoints(), interpret); };
-		__INLINE ULONG SetPoly(ULONG index, const XY_PolyConst& poly, std::uint16_t interpret) { return SetPoly(index, poly.GetPointsArray(), poly.NumPoints(), interpret); };
+		ULONG AddPoly(const XY_PolyConst& poly, std::uint16_t interpret) { return AddPoly(poly.GetPointsArray(), poly.NumPoints(), interpret); };
+		ULONG SetPoly(ULONG index, const XY_PolyConst& poly, std::uint16_t interpret) { return SetPoly(index, poly.GetPointsArray(), poly.NumPoints(), interpret); };
 		bool ClearPoly(std::uint32_t index);
 		std::uint32_t GetPolyMaxSize();
 		std::uint32_t GetPolyTotalSize();
@@ -133,14 +133,14 @@ namespace Project
 		AssetCollection(const CWFGMProject* project) : m_project(project) { }
 		virtual ~AssetCollection();
 
-		__INLINE void AddAsset(Asset* asset) { m_assetList.AddTail(asset); }
-		__INLINE void InsertAsset(Asset* asset, std::uint32_t index) { m_assetList.InsertIndex(asset, index); }
-		__INLINE void RemoveAsset(Asset* asset) { m_assetList.Remove(asset); }
-		__INLINE std::uint32_t GetCount() const { return m_assetList.GetCount(); }
-		__INLINE Asset* FirstAsset() const { return (Asset*)m_assetList.LH_Head(); }
-		__INLINE Asset* AssetAtIndex(std::uint32_t index) const { return (Asset*)m_assetList.IndexNode(index); }
-		__INLINE std::uint32_t IndexOf(const Asset* vector) const { return m_assetList.NodeIndex(vector); }
-		__INLINE Asset* FindName(const std::string& name) const { return (Asset*)m_assetList.FindName(name); }
+		void AddAsset(Asset* asset) { m_assetList.AddTail(asset); }
+		void InsertAsset(Asset* asset, std::uint32_t index) { m_assetList.InsertIndex(asset, index); }
+		void RemoveAsset(Asset* asset) { m_assetList.Remove(asset); }
+		std::uint32_t GetCount() const { return m_assetList.GetCount(); }
+		Asset* FirstAsset() const { return (Asset*)m_assetList.LH_Head(); }
+		Asset* AssetAtIndex(std::uint32_t index) const { return (Asset*)m_assetList.IndexNode(index); }
+		std::uint32_t IndexOf(const Asset* vector) const { return m_assetList.NodeIndex(vector); }
+		Asset* FindName(const std::string& name) const { return (Asset*)m_assetList.FindName(name); }
 
 		bool AssignNewGrid(ICWFGM_GridEngine* grid);
 

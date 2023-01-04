@@ -97,7 +97,7 @@ auto Project::AttributeGridFilter::deserialize(const google::protobuf::Message& 
 				/// </summary>
 				/// <type>internal</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectAttributeGridFilter", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("AttributeGridFilter: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 		}
 		if (filter->version() != 1)
@@ -108,7 +108,7 @@ auto Project::AttributeGridFilter::deserialize(const google::protobuf::Message& 
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectAttributeGridFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("AttributeGridFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -135,7 +135,7 @@ auto Project::AttributeGridFilter::deserialize(const google::protobuf::Message& 
 			auto gf = boost::dynamic_pointer_cast<CCWFGM_AttributeFilter>(m_filter);
 			if (!gf->deserialize(filter->filter(), v, "filter"))
 			{
-				weak_assert(0);
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -156,7 +156,7 @@ auto Project::AttributeGridFilter::deserialize(const google::protobuf::Message& 
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.GridProto.CwfgmAttributeFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("AttributeGridFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -198,7 +198,7 @@ auto Project::AttributeGridFilter::deserialize(const google::protobuf::Message& 
 		//	gf = new CCWFGM_AttributeFilter();
 		if (!gf->deserialize(*filter, v, "filter"))
 		{
-			weak_assert(0);
+			weak_assert(false);
 			return nullptr;
 		}
 	}
@@ -264,7 +264,7 @@ auto Project::ReplaceGridFilter::deserialize(const google::protobuf::Message& pr
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectReplaceGridFilter", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ReplaceGridFilter: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if (filter->version() != 1)
@@ -275,7 +275,7 @@ auto Project::ReplaceGridFilter::deserialize(const google::protobuf::Message& pr
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectReplaceGridFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ReplaceGridFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -299,7 +299,7 @@ auto Project::ReplaceGridFilter::deserialize(const google::protobuf::Message& pr
 
 	if (!ReplaceGridBase::deserialize(filter->filter(), v, "filter", data))
 	{
-		weak_assert(0);
+		weak_assert(false);
 		return nullptr;
 	}
 
@@ -309,7 +309,7 @@ auto Project::ReplaceGridFilter::deserialize(const google::protobuf::Message& pr
 		if (replace)
 		{
 			if (!replace->deserialize(filter->area(), v, "area")) {
-				weak_assert(0);
+				weak_assert(false);
 				delete replace;
 				return nullptr;
 			}
@@ -326,7 +326,7 @@ auto Project::ReplaceGridFilter::deserialize(const google::protobuf::Message& pr
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectReplaceGridFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("ReplaceGridFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -362,7 +362,7 @@ auto Project::ReplaceGridFilter::deserialize(const google::protobuf::Message& pr
 
 		if (!ReplaceGridBase::deserialize(filter->filter(), v, "filter", data))
 		{
-			weak_assert(0);
+			weak_assert(false);
 			return nullptr;
 		}
 
@@ -370,7 +370,7 @@ auto Project::ReplaceGridFilter::deserialize(const google::protobuf::Message& pr
 		if (replace)
 		{
 			if (!replace->deserialize(*filter, v, "area")) {
-				weak_assert(0);
+				weak_assert(false);
 				delete replace;
 				return nullptr;
 			}
@@ -442,7 +442,7 @@ auto Project::PolyReplaceGridFilter::deserialize(const google::protobuf::Message
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectPolyReplaceGridFilter", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("PolyReplaceGridFilter: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if (filter->version() != 1)
@@ -453,7 +453,7 @@ auto Project::PolyReplaceGridFilter::deserialize(const google::protobuf::Message
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectPolyReplaceGridFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("PolyReplaceGridFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -485,7 +485,7 @@ auto Project::PolyReplaceGridFilter::deserialize(const google::protobuf::Message
 		auto replace = boost::dynamic_pointer_cast<CCWFGM_PolyReplaceGridFilter>(m_filter);
 		if (!replace->deserialize(filter->polygon(), v, "polygon"))
 		{
-			weak_assert(0);
+			weak_assert(false);
 			return nullptr;
 		}
 	}
@@ -528,7 +528,7 @@ auto Project::PolyReplaceGridFilter::deserialize(const google::protobuf::Message
 
 	if (!ReplaceGridBase::deserialize(filter->filter(), v, "filter", data))
 	{
-		weak_assert(0);
+		weak_assert(false);
 		return nullptr;
 	}
 	}
@@ -541,7 +541,7 @@ auto Project::PolyReplaceGridFilter::deserialize(const google::protobuf::Message
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.GridProto.PolyCwfgmReplaceGridFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(filter->version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("PolyReplaceGridFilter: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -585,7 +585,7 @@ auto Project::PolyReplaceGridFilter::deserialize(const google::protobuf::Message
 			auto replace = boost::dynamic_pointer_cast<CCWFGM_PolyReplaceGridFilter>(m_filter);
 			if (!replace->deserialize(*filter, v, "polygon"))
 			{
-				weak_assert(0);
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -628,7 +628,7 @@ auto Project::PolyReplaceGridFilter::deserialize(const google::protobuf::Message
 
 		if (!ReplaceGridBase::deserialize(filter->filter(), v, "filter", data))
 		{
-			weak_assert(0);
+			weak_assert(false);
 			return nullptr;
 		}
 	}
@@ -706,7 +706,7 @@ auto Project::StaticVector::deserialize(const google::protobuf::Message& proto, 
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectVectorFilter", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("StaticVector: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if (vector->version() != 1)
@@ -717,7 +717,7 @@ auto Project::StaticVector::deserialize(const google::protobuf::Message& proto, 
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectVectorFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(vector->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("StaticVector: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -750,7 +750,7 @@ auto Project::StaticVector::deserialize(const google::protobuf::Message& proto, 
 		if (vector->data_case() == WISE::ProjectProto::ProjectVectorFilter::kFilter)
 		{
 			if (!filter->deserialize(vector->filter(), v, "filter")) {
-				weak_assert(0);
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -866,7 +866,7 @@ auto Project::StaticVector::deserialize(const google::protobuf::Message& proto, 
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectVectorFilter", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(vector->version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("StaticVector: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -917,7 +917,7 @@ auto Project::StaticVector::deserialize(const google::protobuf::Message& proto, 
 			if (vector->data_case() == WISE::GridProto::CwfgmVectorFilter::kPolygons)
 			{
 				if (!filter->deserialize(*vector, v, "filter")) {
-					weak_assert(0);
+					weak_assert(false);
 					return nullptr;
 				}
 			}
@@ -1055,7 +1055,7 @@ auto Project::Asset::deserialize(const google::protobuf::Message& proto, std::sh
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectAsset", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("Asset: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if (asset->version() != 1)
@@ -1066,7 +1066,7 @@ auto Project::Asset::deserialize(const google::protobuf::Message& proto, std::sh
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectAsset", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(asset->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("Asset: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -1100,7 +1100,7 @@ auto Project::Asset::deserialize(const google::protobuf::Message& proto, std::sh
 		{
 			if (!vf->deserialize(asset->filter(), v, "filter"))
 			{
-				weak_assert(0);
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -1173,7 +1173,7 @@ auto Project::Asset::deserialize(const google::protobuf::Message& proto, std::sh
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectAsset", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(asset->version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("Asset: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -1357,7 +1357,7 @@ Project::Target* Project::Target::deserialize(const google::protobuf::Message& p
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectTarget", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("Target: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if (target->version() != 1)
@@ -1368,7 +1368,7 @@ Project::Target* Project::Target::deserialize(const google::protobuf::Message& p
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectTarget", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(target->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("Target: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -1398,7 +1398,7 @@ Project::Target* Project::Target::deserialize(const google::protobuf::Message& p
 		if (target->data_case() == WISE::ProjectProto::ProjectTarget::kFilter) {
 			auto protos = boost::dynamic_pointer_cast<CCWFGM_Target>(m_target);
 			if (!(protos->deserialize(target->filter(), v, "target"))) {
-				weak_assert(0);
+				weak_assert(false);
 				return nullptr;
 			}
 		}
@@ -1447,7 +1447,7 @@ Project::Target* Project::Target::deserialize(const google::protobuf::Message& p
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectTarget", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(target->version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("Target: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -1494,7 +1494,7 @@ Project::Target* Project::Target::deserialize(const google::protobuf::Message& p
 			if (target->data_case() == WISE::GridProto::CwfgmTarget::kTargets) {
 				auto protos = boost::dynamic_pointer_cast<CCWFGM_Target>(m_target);
 				if (!(protos->deserialize(*target, v, "target"))) {
-					weak_assert(0);
+					weak_assert(false);
 					return nullptr;
 				}
 			}
@@ -1706,7 +1706,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.GridCollection", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("GridFilterCollection: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if ((collection->version() != 1) && (collection->version() != 2))
@@ -1717,7 +1717,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.GridCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("GridFilterCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -1747,7 +1747,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 			d.m_project = m_project;
 			if (!gf->deserialize(filter.replace(), v, strprintf("filters[%d]", i), &d))
 			{
-				weak_assert(0);
+				weak_assert(false);
 				delete gf;
 				return nullptr;
 			}
@@ -1765,7 +1765,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 			d.m_project = m_project;
 			if (!gf->deserialize(filter.polyreplace(), v, strprintf("filters[%d]", i), &d))
 			{
-				weak_assert(0);
+				weak_assert(false);
 				delete gf;
 				return nullptr;
 			}
@@ -1817,7 +1817,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 				gf->Reset();
 				if (!gf->deserialize(filter.attribute().filter(), v, strprintf("filters[%d]", i)))
 				{
-					weak_assert(0);
+					weak_assert(false);
 					delete gf;
 					return nullptr;
 				}
@@ -1867,7 +1867,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 				gf->m_filter->PutGridEngine(nullptr, m_project->gridEngine());
 				if (!gf->deserialize(filter.wind(), v, strprintf("filters[%d]", i)))
 				{
-					weak_assert(0);
+					weak_assert(false);
 					delete gf;
 					return nullptr;
 				}
@@ -1881,7 +1881,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 				gf->m_filter->PutGridEngine(nullptr, m_project->gridEngine());
 				if (!gf->deserialize(filter.wind(), v, strprintf("filters[%d]", i)))
 				{
-					weak_assert(0);
+					weak_assert(false);
 					delete gf;
 					return nullptr;
 				}
@@ -1896,7 +1896,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 			gf->m_filter->PutGridEngine(nullptr, m_project->gridEngine());
 			if (!gf->deserialize(filter.weather(), v, strprintf("filters[%d]", i)))
 			{
-				weak_assert(0);
+				weak_assert(false);
 				delete gf;
 				return nullptr;
 			}
@@ -1911,7 +1911,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 				gf->m_filter->PutGridEngine(nullptr, m_project->gridEngine());
 				if (!gf->deserialize(filter.polyweather(), v, strprintf("filters[%d]", i)))
 				{
-					weak_assert(0);
+					weak_assert(false);
 					delete gf;
 					return nullptr;
 				}
@@ -1925,7 +1925,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 			gf->m_filter->PutGridEngine(nullptr, m_project->gridEngine());
 			if (!gf->deserialize(filter.polyweather(), v, strprintf("filters[%d]", i)))
 			{
-				weak_assert(0);
+				weak_assert(false);
 				delete gf;
 				return nullptr;
 			}
@@ -1951,7 +1951,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 				d.m_project = m_project;
 				if (!gf->deserialize(filter.replacefilter(), v, strprintf("filters[%d]", i), &d))
 				{
-					weak_assert(0);
+					weak_assert(false);
 					delete gf;
 					return nullptr;
 				}
@@ -1969,7 +1969,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 				d.m_project = m_project;
 				if (!gf->deserialize(filter.polyreplacefilter(), v, strprintf("filters[%d]", i), &d))
 				{
-					weak_assert(0);
+					weak_assert(false);
 					delete gf;
 					return nullptr;
 				}
@@ -2022,7 +2022,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 				default:
 					if (v)
 						v->add_child_validation("DataKey", "datakey", validation::error_level::SEVERE, validation::id::unspecified, "unknown filter type"); break;
-					weak_assert(0);
+					weak_assert(false);
 				}
 
 				if (gf)
@@ -2034,7 +2034,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 					gf->Reset();
 					if (!gf->deserialize(af, v, strprintf("filters[%d]", i)))
 					{
-						weak_assert(0);
+						weak_assert(false);
 						delete gf;
 						return nullptr;
 					}
@@ -2074,7 +2074,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 					AddFilter(gf);
 				}
 				else {
-					weak_assert(0);
+					weak_assert(false);
 				}
 			}
 			else if (filter.filter_case() == WISE::ProjectProto::GridCollection_Filter::kWindGrid)
@@ -2087,7 +2087,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 					gf->m_filter->PutGridEngine(nullptr, m_project->gridEngine());
 					if (!gf->deserialize(filter.windgrid(), v, strprintf("filters[%d]", i)))
 					{
-						weak_assert(0);
+						weak_assert(false);
 						delete gf;
 						return nullptr;
 					}
@@ -2101,7 +2101,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 					gf->m_filter->PutGridEngine(nullptr, m_project->gridEngine());
 					if (!gf->deserialize(filter.windgrid(), v, strprintf("filters[%d]", i)))
 					{
-						weak_assert(0);
+						weak_assert(false);
 						delete gf;
 						return nullptr;
 					}
@@ -2118,7 +2118,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 					gf->m_filter->PutGridEngine(nullptr, m_project->gridEngine());
 					if (!gf->deserialize(filter.weathergridfilter(), v, strprintf("filters[%d]", i)))
 					{
-						weak_assert(0);
+						weak_assert(false);
 						delete gf;
 						return nullptr;
 					}
@@ -2132,7 +2132,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 					gf->m_filter->PutGridEngine(nullptr, m_project->gridEngine());
 					if (!gf->deserialize(filter.weathergridfilter(), v, strprintf("filters[%d]", i)))
 					{
-						weak_assert(0);
+						weak_assert(false);
 						delete gf;
 						return nullptr;
 					}
@@ -2140,7 +2140,7 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 				}
 			}
 			else {
-				weak_assert(0);
+				weak_assert(false);
 			}
 		}
 	}
@@ -2207,7 +2207,7 @@ auto Project::ReplaceGridBase::deserialize(const google::protobuf::Message& prot
 	ReplaceGridBaseData *dproject = dynamic_cast<ReplaceGridBaseData *>(data);
 	if (!dproject)
 	{
-		weak_assert(0);
+		weak_assert(false);
 		throw std::invalid_argument("ReplaceGridBase: Parameter invalid");
 	}
 	const CWFGMProject* project = dproject->m_project;;
@@ -2226,7 +2226,7 @@ auto Project::ReplaceGridBase::deserialize(const google::protobuf::Message& prot
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectReplaceGridFilterBase", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ReplaceGridBase: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 
@@ -2238,7 +2238,7 @@ auto Project::ReplaceGridBase::deserialize(const google::protobuf::Message& prot
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.ProjectReplaceGridFilterBase", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(grid->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("ReplaceGridBase: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -2299,7 +2299,7 @@ auto Project::ReplaceGridBase::deserialize(const google::protobuf::Message& prot
 				/// </summary>
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.ProjectReplaceGridFilterBase", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(grid->version()));
-			weak_assert(0);
+			weak_assert(false);
 			throw ISerializeProto::DeserializeError("ReplaceGridBase: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
@@ -2400,7 +2400,7 @@ auto Project::VectorCollection::deserialize(const google::protobuf::Message& pro
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.VectorCollection", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("VectorCollection: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if ((collection->version() != 1) && (collection->version() != 2))
@@ -2411,7 +2411,7 @@ auto Project::VectorCollection::deserialize(const google::protobuf::Message& pro
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.VectorCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("VectorCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -2436,7 +2436,7 @@ auto Project::VectorCollection::deserialize(const google::protobuf::Message& pro
 				v->gridEngine(m_gridEngine.get());
 				if (!v->deserialize(filter.filter(), v2, strprintf("vectors[%d]", i)))
 				{
-					weak_assert(0);
+					weak_assert(false);
 					return nullptr;
 				}
 
@@ -2471,7 +2471,7 @@ auto Project::VectorCollection::deserialize(const google::protobuf::Message& pro
 				v->gridEngine(m_gridEngine.get());
 				if (!v->deserialize(filter, v2, strprintf("vectors[%d]", i)))
 				{
-					weak_assert(0);
+					weak_assert(false);
 					return nullptr;
 				}
 
@@ -2542,7 +2542,7 @@ auto Project::AssetCollection::deserialize(const google::protobuf::Message& prot
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.AssetCollection", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("AssetCollection: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if ((collection->version() != 1) && (collection->version() != 2))
@@ -2553,7 +2553,7 @@ auto Project::AssetCollection::deserialize(const google::protobuf::Message& prot
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.AssetCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("AssetCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -2583,7 +2583,7 @@ auto Project::AssetCollection::deserialize(const google::protobuf::Message& prot
 		AddAsset(v);
 		v->gridEngine(m_project->gridEngine());
 		if (!v->deserialize(filter, v2, strprintf("assets[%d]", i))) {
-			weak_assert(0);
+			weak_assert(false);
 			return nullptr;
 		}
 
@@ -2621,7 +2621,7 @@ auto Project::AssetCollection::deserialize(const google::protobuf::Message& prot
 				/// <type>internal</type>
 				valid->add_child_validation("WISE.ProjectProto.AssetCollection", name, validation::error_level::SEVERE,
 					validation::id::initialization_incomplete, "resolution");
-			weak_assert(0);
+			weak_assert(false);
 			m_loadWarning = "Error: WISE.ProjectProto.AssetCollection: Incomplete initialization";
 			return nullptr;
 		}
@@ -2647,7 +2647,7 @@ auto Project::AssetCollection::deserialize(const google::protobuf::Message& prot
 			AddAsset(v);
 			v->gridEngine(m_project->gridEngine());
 			if (!v->deserialize(filter, v2, strprintf("assets[%d]", i))) {
-				weak_assert(0);
+				weak_assert(false);
 				return nullptr;
 			}
 
@@ -2685,7 +2685,7 @@ auto Project::AssetCollection::deserialize(const google::protobuf::Message& prot
 					/// <type>internal</type>
 					valid->add_child_validation("WISE.ProjectProto.AssetCollection", name, validation::error_level::SEVERE,
 						validation::id::initialization_incomplete, "resolution");
-				weak_assert(0);
+				weak_assert(false);
 				m_loadWarning = "Error: WISE.ProjectProto.AssetCollection: Incomplete initialization";
 				return nullptr;
 			}
@@ -2739,7 +2739,7 @@ Project::TargetCollection* Project::TargetCollection::deserialize(const google::
 			/// </summary>
 			/// <type>internal</type>
 			valid->add_child_validation("WISE.ProjectProto.TargetCollection", name, validation::error_level::SEVERE, validation::id::object_invalid, proto.GetDescriptor()->name());
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("TargetCollection: Protobuf object invalid", ERROR_PROTOBUF_OBJECT_INVALID);
 	}
 	if ((collection->version() != 1) && (collection->version() != 2))
@@ -2750,7 +2750,7 @@ Project::TargetCollection* Project::TargetCollection::deserialize(const google::
 			/// </summary>
 			/// <type>user</type>
 			valid->add_child_validation("WISE.ProjectProto.TargetCollection", name, validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(collection->version()));
-		weak_assert(0);
+		weak_assert(false);
 		throw ISerializeProto::DeserializeError("TargetCollection: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 	}
 
@@ -2783,7 +2783,7 @@ Project::TargetCollection* Project::TargetCollection::deserialize(const google::
 			AddTarget(v);
 		v->gridEngine(m_project->gridEngine());
 		if (!v->deserialize(filter, v2, strprintf("targets[%d]", i))) {
-			weak_assert(0);
+			weak_assert(false);
 			return nullptr;
 		}
 	}
@@ -2811,7 +2811,7 @@ Project::TargetCollection* Project::TargetCollection::deserialize(const google::
 			AddTarget(v);
 			v->gridEngine(m_project->gridEngine());
 			if (!v->deserialize(filter, v2, strprintf("targets[%d]", i))) {
-				weak_assert(0);
+				weak_assert(false);
 				return nullptr;
 			}
 		}

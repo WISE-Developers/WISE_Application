@@ -87,7 +87,7 @@ const struct Project::_error_msg _error_msgs[] = {
 	{ E_POINTER,								"Invalid pointer." },
 	{ E_INVALIDARG,								"Invalid parameter arguement." },
 #if _DLL //TODO add more error codes
-	{ ERROR_INVALID_ACCESS | ERROR_SEVERITY_WARNING,			"There is no valid PrometheusCOM license registered on this machine." },
+	{ ERROR_INVALID_ACCESS | ERROR_SEVERITY_WARNING,			"Invalid access requested in W.I.S.E." },
 #endif
 	{ ERROR_GRID_UNINITIALIZED,						"Fuel grid is uninitialized." },
 	{ ERROR_GRID_INITIALIZED,						"Fuel grid has already been initialized." },

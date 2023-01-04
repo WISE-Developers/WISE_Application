@@ -353,7 +353,7 @@ Project::CuringOptions::CuringOptions(CCWFGM_TemporalAttributeFilter *filter)
 			}
 			catch (std::bad_variant_access &)
 			{
-				weak_assert(0);
+				weak_assert(false);
 				delete cn;
 			}
 		}

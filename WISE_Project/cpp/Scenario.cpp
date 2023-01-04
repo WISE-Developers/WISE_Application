@@ -117,9 +117,6 @@ Project::Scenario::Scenario(const ScenarioCollection *scenarioCollection, const 
 		grid->PutGridEngine(layerThread(), ge.get());
 	}
 
-	if (((grid) && (CWFGMProject::m_appMode > 0)))
-		m_weatherGrid->SetCache(layerThread(), 1, true);
-
 	if (m_scenarioCollection->m_fbpOptions)
 	{
 		SetFBPOptions(*m_scenarioCollection->m_fbpOptions);
@@ -227,9 +224,6 @@ Project::Scenario::Scenario(const Project::Scenario &scenario, const WTimeManage
 		grid->PutGridEngine(layerThread(), ge.get());
 	}
 
-	if ((!isChild) && (grid) && (CWFGMProject::m_appMode > 0))
-		m_weatherGrid->SetCache(layerThread(), 1, true);
-
 	PolymorphicUserData v = this;
 	m_scenario->put_UserData(v);
 	ge->put_UserData(v);
@@ -289,9 +283,6 @@ Project::Scenario::~Scenario()
 	{
 		Simulation_Clear();		// stop any running simulation
 	}
-
-	if ((!m_parent) && (CWFGMProject::m_appMode > 0))
-		m_weatherGrid->SetCache(layerThread(), 1, false);
 
 	while (GetFireCount() > 0)
 	{
@@ -387,7 +378,7 @@ LONG Project::Scenario::CheckFiltersAndPatches(flags in_flags, bool warnOnFireBe
 		{
 			if ((in_flags.spatialWS || in_flags.temporal) && results.temporal)
 			{
-				weak_assert(0);						// shouldn't occur any more
+				weak_assert(false);						// shouldn't occur any more
 				return Scenario::ERROR_SPATIAL_AND_TEMPORAL_MIXED; // spatial and temporal interpolation may not be mixed
 			}
 			results.spatialWS = 1;
@@ -399,7 +390,7 @@ LONG Project::Scenario::CheckFiltersAndPatches(flags in_flags, bool warnOnFireBe
 		{
 			if ((in_flags.spatialWD || in_flags.temporal) && results.temporal)
 			{
-				weak_assert(0);						// shouldn't occur any more
+				weak_assert(false);						// shouldn't occur any more
 				return Scenario::ERROR_SPATIAL_AND_TEMPORAL_MIXED; // spatial and temporal interpolation may not be mixed
 			}
 			results.spatialWD = 1;
@@ -427,10 +418,10 @@ LONG Project::Scenario::CheckFiltersAndPatches(flags in_flags, bool warnOnFireBe
 		auto wgf = dynamic_cast<CWeatherGridFilter*>(pFilter);
 		if (wgf)
 		{
-			weak_assert(0);						// these aren't even used any more
+			weak_assert(false);						// these aren't even used any more
 			if ((in_flags.spatialWD || in_flags.spatialWS || in_flags.temporal) && (results.spatialWD || results.spatialWS))
 			{
-				weak_assert(0);						// shouldn't occur any more
+				weak_assert(false);						// shouldn't occur any more
 				return Scenario::ERROR_SPATIAL_AND_TEMPORAL_MIXED; // spatial and temporal interpolation may not be mixed
 			}
 			WTime wxGridStartTime((ULONGLONG)0, m_timeManager);
@@ -957,9 +948,6 @@ bool Project::Scenario::AssignNewGrid(ICWFGM_GridEngine *oldgrid, ICWFGM_GridEng
 		ge->PutGridEngine(layerThread(), newgrid);
 	}
 
-	if ((newgrid) && (CWFGMProject::m_appMode > 0))
-		m_weatherGrid->SetCache(layerThread(), 1, true);
-
 	return true;
 }
 
@@ -971,7 +959,7 @@ Project::Scenario::IgnitionOptions* Project::Scenario::AddFire(Fire *fire, bool 
 		HRESULT state = Simulation_State();
 		if ((state == SUCCESS_SCENARIO_SIMULATION_RUNNING) || (state == SUCCESS_SCENARIO_SIMULATION_RESET))
 		{
-			weak_assert(0);
+			weak_assert(false);
 			return nullptr;
 		}
 	}
@@ -1013,7 +1001,7 @@ auto Project::Scenario::AddStream(WeatherStream *stream, bool constructing) -> W
 		HRESULT state = Simulation_State();
 		if ((state == SUCCESS_SCENARIO_SIMULATION_RUNNING) || (state == SUCCESS_SCENARIO_SIMULATION_RESET))
 		{
-			weak_assert(0);
+			weak_assert(false);
 			return nullptr;
 		}
 	}
@@ -1215,7 +1203,7 @@ bool Project::Scenario::AddVector(Vector *vector, bool during_serialization)
 		HRESULT state = Simulation_State();
 		if ((state == SUCCESS_SCENARIO_SIMULATION_RUNNING) || (state == SUCCESS_SCENARIO_SIMULATION_RESET))
 		{
-			weak_assert(0);
+			weak_assert(false);
 			return false;
 		}
 	}
@@ -1260,7 +1248,7 @@ bool Project::Scenario::AddAsset(Asset* asset, ULONG operation, bool during_seri
 		HRESULT state = Simulation_State();
 		if ((state == SUCCESS_SCENARIO_SIMULATION_RUNNING) || (state == SUCCESS_SCENARIO_SIMULATION_RESET))
 		{
-			weak_assert(0);
+			weak_assert(false);
 			return false;
 		}
 	}
@@ -1780,7 +1768,7 @@ bool Project::Scenario::getTimes(WTimeSpan *start, WTimeSpan *end, USHORT option
 			VariantToBoolean_(val, &on);
 			
 			HSS_Time::WTimeSpan ts;
-			try { ts = std::get<WTimeSpan>(time); } catch (std::bad_variant_access &) { weak_assert(0); return false; };
+			try { ts = std::get<WTimeSpan>(time); } catch (std::bad_variant_access &) { weak_assert(false); return false; };
 
 			if (on)
 			{
@@ -1843,7 +1831,7 @@ bool Project::Scenario::setTimes(const WTimeSpan &start, const WTimeSpan &end, U
 			VariantToBoolean_(val, &on);
 			
 			WTimeSpan wtime;
-			try { wtime = std::get<WTimeSpan>(time); } catch (std::bad_variant_access &) { weak_assert(0); return false; };
+			try { wtime = std::get<WTimeSpan>(time); } catch (std::bad_variant_access &) { weak_assert(false); return false; };
 
 			if (on)
 			{

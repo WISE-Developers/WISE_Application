@@ -49,27 +49,27 @@ namespace Project
 		Fire(const FireCollection &fireCollection, boost::intrusive_ptr<CCWFGM_Ignition> &fire);
 		virtual ~Fire();
 
-		__INLINE Fire *LN_Succ() const								{ return (Fire *)StdFire::LN_Succ(); };
-		__INLINE Fire *LN_Pred() const								{ return (Fire *)StdFire::LN_Pred(); };
+		Fire *LN_Succ() const								{ return (Fire *)StdFire::LN_Succ(); };
+		Fire *LN_Pred() const								{ return (Fire *)StdFire::LN_Pred(); };
 
 		bool operator==(const Fire &toCompare) const				{ if (&toCompare == this) return true; return m_fire == toCompare.m_fire; };
 
-		__INLINE void SetLineWidth(std::uint32_t Width) noexcept	{ m_lineWidth = Width; };
-		__INLINE std::uint32_t GetLineWidth() const noexcept		{ if (m_lineWidth.has_value()) return m_lineWidth.value(); return 3; };
+		void SetLineWidth(std::uint32_t Width) noexcept	{ m_lineWidth = Width; };
+		std::uint32_t GetLineWidth() const noexcept		{ if (m_lineWidth.has_value()) return m_lineWidth.value(); return 3; };
 
-		__INLINE COLORREF GetColor() const noexcept					{ if (m_color.has_value()) return m_color.value(); return RGB(0xff, 0, 0); };
-		__INLINE COLORREF SetColor(COLORREF c) noexcept				{ if (m_color != c) { m_color = c; } return m_color.value(); };
+		COLORREF GetColor() const noexcept					{ if (m_color.has_value()) return m_color.value(); return RGB(0xff, 0, 0); };
+		COLORREF SetColor(COLORREF c) noexcept				{ if (m_color != c) { m_color = c; } return m_color.value(); };
 
-		__INLINE COLORREF GetFillColor() const noexcept				{ if (m_fillColor.has_value()) return m_fillColor.value(); return RGB(0xff, 0, 0); }
-		__INLINE void SetFillColor(COLORREF color) noexcept			{ m_fillColor = color; }
+		COLORREF GetFillColor() const noexcept				{ if (m_fillColor.has_value()) return m_fillColor.value(); return RGB(0xff, 0, 0); }
+		void SetFillColor(COLORREF color) noexcept			{ m_fillColor = color; }
 
-		__INLINE bool IsImported() const noexcept					{ if (m_imported.has_value()) return m_imported.value(); return false; };
-		__INLINE bool IsImported(bool imported) noexcept			{ m_imported = imported; return m_imported.value(); };
+		bool IsImported() const noexcept					{ if (m_imported.has_value()) return m_imported.value(); return false; };
+		bool IsImported(bool imported) noexcept			{ m_imported = imported; return m_imported.value(); };
 
-		__INLINE LOGFONT GetFont() const							{ return PolyEditGetWingdingsFont(); };
+		LOGFONT GetFont() const							{ return PolyEditGetWingdingsFont(); };
 
-		__INLINE std::uint64_t GetSymbol() const noexcept			{ if (m_symbol.has_value()) return m_symbol.value(); return 0; }
-		__INLINE std::uint64_t SetSymbol(std::uint64_t s) noexcept	{ m_symbol = s; return m_symbol.value(); }
+		std::uint64_t GetSymbol() const noexcept			{ if (m_symbol.has_value()) return m_symbol.value(); return 0; }
+		std::uint64_t SetSymbol(std::uint64_t s) noexcept	{ m_symbol = s; return m_symbol.value(); }
 
 	public:
 		virtual std::int32_t serialVersionUid(const SerializeProtoOptions& options) const noexcept override;
@@ -89,11 +89,11 @@ namespace Project
 															{ };
 		virtual ~FireCollection()							{ };
 
-		__INLINE Fire *FirstFire() const					{ return (Fire *)m_fireList.LH_Head(); };
-		__INLINE Fire *LastFire() const						{ return (Fire *)m_fireList.LH_Tail(); };
-		__INLINE Fire *FireAtIndex(ULONG index) const		{ return (Fire *)m_fireList.IndexNode(index); };
+		Fire *FirstFire() const					{ return (Fire *)m_fireList.LH_Head(); };
+		Fire *LastFire() const						{ return (Fire *)m_fireList.LH_Tail(); };
+		Fire *FireAtIndex(ULONG index) const		{ return (Fire *)m_fireList.IndexNode(index); };
 
-		__INLINE Fire *FindName(const std::string &name) const		{ return dynamic_cast<Fire *>(StdFireCollection::FindName(name)); };
+		Fire *FindName(const std::string &name) const		{ return dynamic_cast<Fire *>(StdFireCollection::FindName(name)); };
 
 		std::string CollectLoadWarnings();
 

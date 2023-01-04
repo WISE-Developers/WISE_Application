@@ -206,7 +206,7 @@ bool Project::WeatherOptions::SaveToWeatherStream(CCWFGM_WeatherStream *weather)
 		}
 		break;
 	default:				
-		weak_assert(0);
+		weak_assert(false);
 		return false;
 	}
     return true;

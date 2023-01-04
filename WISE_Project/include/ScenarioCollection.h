@@ -159,8 +159,8 @@ namespace Project
 		public:
 			IgnitionOptions() = default;
 
-			DEVICE __INLINE IgnitionOptions* LN_Succ() const { return (IgnitionOptions*)RefNode<Fire>::LN_Succ(); };
-			DEVICE __INLINE IgnitionOptions* LN_Pred() const { return (IgnitionOptions*)RefNode<Fire>::LN_Pred(); };
+			DEVICE IgnitionOptions* LN_Succ() const { return (IgnitionOptions*)RefNode<Fire>::LN_Succ(); };
+			DEVICE IgnitionOptions* LN_Pred() const { return (IgnitionOptions*)RefNode<Fire>::LN_Pred(); };
 
 			std::string		m_name;											// the sub-scenario's name
 
@@ -177,8 +177,8 @@ namespace Project
 
 		LONG CheckFiltersAndPatches(flags in_flags, bool warnOnFireBeforeScenario = false);
 
-		__INLINE Project::Scenario *LN_Succ() const { return (Project::Scenario *)MinNode::LN_Succ(); };
-		__INLINE Project::Scenario *LN_Pred() const { return (Project::Scenario *)MinNode::LN_Pred(); };
+		Project::Scenario *LN_Succ() const { return (Project::Scenario *)MinNode::LN_Succ(); };
+		Project::Scenario *LN_Pred() const { return (Project::Scenario *)MinNode::LN_Pred(); };
 
 	    ICWFGM_GridEngine *gridEngine() const;
 
@@ -199,8 +199,8 @@ namespace Project
 		public:
 		    WSNode(const HSS_Time::WTimeManager *manager) : m_valid(false), m_startTime(0, manager), m_endTime(0, manager), m_ignitionTime(0, manager) { }
 
-			DEVICE __INLINE WSNode* LN_Succ() const { return (WSNode*)RefNode<Project::WeatherStream>::LN_Succ(); };
-			DEVICE __INLINE WSNode* LN_Pred() const { return (WSNode*)RefNode<Project::WeatherStream>::LN_Pred(); };
+			DEVICE WSNode* LN_Succ() const { return (WSNode*)RefNode<Project::WeatherStream>::LN_Succ(); };
+			DEVICE WSNode* LN_Pred() const { return (WSNode*)RefNode<Project::WeatherStream>::LN_Pred(); };
 
 			bool			m_valid;										// whether the rest of the data here is valid
 			std::string		m_name;											// the sub-scenario's name
@@ -216,8 +216,8 @@ namespace Project
 		class GFNode : public RefNode<GridFilter>
 		{
 		public:
-			DEVICE __INLINE GFNode* LN_Succ() const { return (GFNode*)RefNode<GridFilter>::LN_Succ(); };
-			DEVICE __INLINE GFNode* LN_Pred() const { return (GFNode*)RefNode<GridFilter>::LN_Pred(); };
+			DEVICE GFNode* LN_Succ() const { return (GFNode*)RefNode<GridFilter>::LN_Succ(); };
+			DEVICE GFNode* LN_Pred() const { return (GFNode*)RefNode<GridFilter>::LN_Pred(); };
 
 			std::vector<std::string> m_subNames;							// a list of sub-scenario names that the filter should be applied to
 
@@ -227,10 +227,10 @@ namespace Project
 		IgnitionOptions* AddFire(Fire* fire, bool constructing = false);	// adds a ignition/fire to this scenario, a scenario needs at least one fire to
 																			// simulate
 		bool RemoveFire(Fire *fire);			// various other routines to handle the set of fires attached to this scenario
-		__INLINE ULONG GetFireCount() const { return m_fireList.GetCount(); };
-		__INLINE Fire *FireAtIndex(ULONG index) const { return m_fireList.IndexPtr(index); };
-		__INLINE IgnitionOptions* IgnitionOptionsAtIndex(ULONG index) const { return m_fireList.IndexNode(index); };
-		__INLINE ULONG IndexOfFire(Fire *fire) const { return m_fireList.FindPtrIndex(fire); };
+		ULONG GetFireCount() const { return m_fireList.GetCount(); };
+		Fire *FireAtIndex(ULONG index) const { return m_fireList.IndexPtr(index); };
+		IgnitionOptions* IgnitionOptionsAtIndex(ULONG index) const { return m_fireList.IndexNode(index); };
+		ULONG IndexOfFire(Fire *fire) const { return m_fireList.FindPtrIndex(fire); };
 
 		WSNode *AddStream(WeatherStream *stream, bool constructing = false);
 		HRESULT RemoveStream(WeatherStream *stream);
@@ -239,9 +239,9 @@ namespace Project
 		/// </summary>
 		HRESULT FilterStreams(const std::vector<WSNode*>& streams);
 		HRESULT FilterFilters();
-		__INLINE ULONG GetStreamCount() const { return m_streamList.GetCount(); };
-		__INLINE WeatherStream *StreamAtIndex(ULONG index) const  { return m_streamList.IndexPtr(index); }
-		__INLINE ULONG IndexOfStream(WeatherStream *stream) const { return m_streamList.FindPtrIndex(stream); }
+		ULONG GetStreamCount() const { return m_streamList.GetCount(); };
+		WeatherStream *StreamAtIndex(ULONG index) const  { return m_streamList.IndexPtr(index); }
+		ULONG IndexOfStream(WeatherStream *stream) const { return m_streamList.FindPtrIndex(stream); }
 		// routines to get/set various options to this scenario
 		GFNode *InsertFilter(GridFilter *filter, ULONG index, bool during_serialization = false);
 		bool RemoveFilter(GridFilter *filter);
@@ -254,31 +254,31 @@ namespace Project
 			const char* driver_name, const char* export_projection, const char* file_path) const;
 		HRESULT BuildCriticalPath(const Asset* a, const std::uint32_t index, const std::uint16_t flags, MinListTempl<CriticalPath>& polyset) const;
 
-		__INLINE ULONG GetFilterCount() const { return m_filterList.GetCount(); };
+		ULONG GetFilterCount() const { return m_filterList.GetCount(); };
 		GridFilter *FilterAtIndex(ULONG index) const;
 		ULONG IndexOfFilter(GridFilter *filter) const;
 
 		bool AddVector(Vector *vector, bool during_serialization = false);
 		bool RemoveVector(Vector *vector);
-		__INLINE ULONG GetVectorCount() const { return m_vFilterList.GetCount(); };
-		__INLINE Vector *VectorAtIndex(ULONG index) const { return m_vFilterList.IndexPtr(index); };
-		__INLINE ULONG IndexOfVector(Vector *v) const { return m_vFilterList.FindPtrIndex(v); };
+		ULONG GetVectorCount() const { return m_vFilterList.GetCount(); };
+		Vector *VectorAtIndex(ULONG index) const { return m_vFilterList.IndexPtr(index); };
+		ULONG IndexOfVector(Vector *v) const { return m_vFilterList.FindPtrIndex(v); };
 
 	    bool AddAsset(Asset* asset, ULONG operation, bool during_serialization = false);
 	    bool RemoveAsset(Asset* asset);
-	    __INLINE ULONG GetAssetCount() const { return m_assetList.GetCount(); };
-	    __INLINE Asset* AssetAtIndex(ULONG index) const { return m_assetList.IndexPtr(index); };
-	    __INLINE ULONG IndexOfAsset(Asset* asset) const { return m_assetList.FindPtrIndex(asset); };
+	    ULONG GetAssetCount() const { return m_assetList.GetCount(); };
+	    Asset* AssetAtIndex(ULONG index) const { return m_assetList.IndexPtr(index); };
+	    ULONG IndexOfAsset(Asset* asset) const { return m_assetList.FindPtrIndex(asset); };
 
 
-		__INLINE FBPOptions GetFBPOptions() const { return FBPOptions(m_scenario.get()); };
-		__INLINE bool SetFBPOptions(const FBPOptions &options) { bool retval = options.SaveToScenario(m_scenario.get()); return retval; }
+		FBPOptions GetFBPOptions() const { return FBPOptions(m_scenario.get()); };
+		bool SetFBPOptions(const FBPOptions &options) { bool retval = options.SaveToScenario(m_scenario.get()); return retval; }
 
 		double GetDefaultFMC(bool &active) const;
 		void SetDefaultFMC(double fmc, bool active);
 
-		__INLINE BasicScenarioOptions GetBasicOptions() const { BasicScenarioOptions bsc(m_scenario.get()); return bsc; }
-		__INLINE bool SetBasicOptions(const BasicScenarioOptions &bsc) { return bsc.SaveToScenario(m_scenario.get()); }
+		BasicScenarioOptions GetBasicOptions() const { BasicScenarioOptions bsc(m_scenario.get()); return bsc; }
+		bool SetBasicOptions(const BasicScenarioOptions &bsc) { return bsc.SaveToScenario(m_scenario.get()); }
 
 		HRESULT Simulation_State();
 		HRESULT Simulation_Reset(bool init_child_cache = true);
@@ -286,18 +286,18 @@ namespace Project
 		HRESULT Simulation_Step();
 		// tells the simulation to proceed to the next output interval - returns 0 for failure,
 		// 1 for success, or SUCCESS_SCENARIO_SIMULATION_COMPLETE for success and finished.
-		__INLINE HRESULT Simulation_StepBack();
+		HRESULT Simulation_StepBack();
 		HRESULT Simulation_Clear();
-		__INLINE WTime Simulation_StartTime() const { PolymorphicAttribute v; m_scenario->GetAttribute(CWFGM_SCENARIO_OPTION_START_TIME, &v); HSS_Time::WTime time(m_timeManager); VariantToTime_(v, &time); time.SetTimeManager(m_timeManager); return time; };
+		WTime Simulation_StartTime() const { PolymorphicAttribute v; m_scenario->GetAttribute(CWFGM_SCENARIO_OPTION_START_TIME, &v); HSS_Time::WTime time(m_timeManager); VariantToTime_(v, &time); time.SetTimeManager(m_timeManager); return time; };
 		// retrieve basic things
 		WTime Simulation_CurrentTime() const;
-		__INLINE WTime Simulation_EndTime() const { PolymorphicAttribute v; m_scenario->GetAttribute(CWFGM_SCENARIO_OPTION_END_TIME, &v); HSS_Time::WTime time(m_timeManager); VariantToTime_(v, &time); time.SetTimeManager(m_timeManager); return time; };
-		__INLINE HRESULT Simulation_StartTime(const HSS_Time::WTime &time) { PolymorphicAttribute v = time; return m_scenario->SetAttribute(CWFGM_SCENARIO_OPTION_START_TIME, v); }
+		WTime Simulation_EndTime() const { PolymorphicAttribute v; m_scenario->GetAttribute(CWFGM_SCENARIO_OPTION_END_TIME, &v); HSS_Time::WTime time(m_timeManager); VariantToTime_(v, &time); time.SetTimeManager(m_timeManager); return time; };
+		HRESULT Simulation_StartTime(const HSS_Time::WTime &time) { PolymorphicAttribute v = time; return m_scenario->SetAttribute(CWFGM_SCENARIO_OPTION_START_TIME, v); }
 		// set basic things
-		__INLINE HRESULT Simulation_EndTime(const HSS_Time::WTime &time) { PolymorphicAttribute v = time; return m_scenario->SetAttribute(CWFGM_SCENARIO_OPTION_END_TIME, v); };
-		__INLINE HRESULT Ignition_OverrideStartTime(const HSS_Time::WTime& time) { PolymorphicAttribute v = time; return m_scenario->SetAttribute(CWFGM_SCENARIO_OPTION_IGNITION_START_TIME_OVERRIDE, v); };
+		HRESULT Simulation_EndTime(const HSS_Time::WTime &time) { PolymorphicAttribute v = time; return m_scenario->SetAttribute(CWFGM_SCENARIO_OPTION_END_TIME, v); };
+		HRESULT Ignition_OverrideStartTime(const HSS_Time::WTime& time) { PolymorphicAttribute v = time; return m_scenario->SetAttribute(CWFGM_SCENARIO_OPTION_IGNITION_START_TIME_OVERRIDE, v); };
 
-		__INLINE HRESULT ValidateStreams() { return m_weatherGrid->Valid(0, this->Simulation_StartTime(), Simulation_EndTime() - Simulation_StartTime(), 0, 0); };
+		HRESULT ValidateStreams() { return m_weatherGrid->Valid(0, this->Simulation_StartTime(), Simulation_EndTime() - Simulation_StartTime(), 0, 0); };
 
 		std::string										m_name,
 														m_subName,
@@ -355,10 +355,10 @@ namespace Project
 		void ExportScenarioFireInfo(FILE *fp);
 
 	public:
-		__INLINE const HSS_Time::WTimeManager *TimeManager() const { return m_timeManager; }
-		__INLINE Layer *layerThread() const { return m_layerThread; }
-		__INLINE CCWFGM_WeatherGrid *GetWeatherGrid() const { return m_weatherGrid.get(); }
-		__INLINE CCWFGM_TemporalAttributeFilter *GetTemporalAttributeFilter() const { return m_temporalFilter.get(); }
+		const HSS_Time::WTimeManager *TimeManager() const { return m_timeManager; }
+		Layer *layerThread() const { return m_layerThread; }
+		CCWFGM_WeatherGrid *GetWeatherGrid() const { return m_weatherGrid.get(); }
+		CCWFGM_TemporalAttributeFilter *GetTemporalAttributeFilter() const { return m_temporalFilter.get(); }
 
 		bool GetGreenupTimes(HSS_Time::WTimeSpan *start, HSS_Time::WTimeSpan *end, bool *effective);
 		bool SetGreenupTimes(const HSS_Time::WTimeSpan &start, const HSS_Time::WTimeSpan &end, bool effective);
@@ -412,12 +412,12 @@ namespace Project
 		ScenarioCollection(CWFGMProject *project, const FBPOptions *fbpo, const BasicScenarioOptions *bso, const CBurnPeriodOption *bo, const CuringOptions *co);
 		virtual ~ScenarioCollection();
 
-		__INLINE void AddScenario(Project::Scenario *scenario)			{ m_scenarioList.AddTail(scenario); };
-		__INLINE void RemoveScenario(Project::Scenario *scenario)		{ m_scenarioList.Remove(scenario); };
-		__INLINE ULONG GetCount() const									{ return m_scenarioList.GetCount(); };
-		__INLINE Project::Scenario *FirstScenario() const				{ return m_scenarioList.LH_Head(); };
-		__INLINE Project::Scenario *ScenarioAtIndex(ULONG index) const	{ return m_scenarioList.IndexNode(index); };
-		__INLINE ULONG IndexOf(Project::Scenario *scenario) const		{ return m_scenarioList.NodeIndex(scenario); };
+		void AddScenario(Project::Scenario *scenario)			{ m_scenarioList.AddTail(scenario); };
+		void RemoveScenario(Project::Scenario *scenario)		{ m_scenarioList.Remove(scenario); };
+		ULONG GetCount() const									{ return m_scenarioList.GetCount(); };
+		Project::Scenario *FirstScenario() const				{ return m_scenarioList.LH_Head(); };
+		Project::Scenario *ScenarioAtIndex(ULONG index) const	{ return m_scenarioList.IndexNode(index); };
+		ULONG IndexOf(Project::Scenario *scenario) const		{ return m_scenarioList.NodeIndex(scenario); };
 
 		ULONG GetCountUsing(Fire *fire);
 		ULONG GetCountUsing(WeatherStream *stream);

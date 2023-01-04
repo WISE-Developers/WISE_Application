@@ -61,7 +61,7 @@ const struct _error_msg _error_msgs[] = {
 	{ ERROR_FILE_FORMAT_INVALID,						"Invalid/unknown file format." },
 	{ E_POINTER,								"Invalid pointer." },
 	{ E_INVALIDARG,								"Invalid parameter arguement." },
-	{ ERROR_INVALID_ACCESS | ERROR_SEVERITY_WARNING,			"There is no valid PrometheusCOM license registered on this machine." },
+	{ ERROR_INVALID_ACCESS | ERROR_SEVERITY_WARNING,			"Invalid access requested in W.I.S.E." },
 	{ ERROR_GRID_UNINITIALIZED,						"Fuel grid is uninitialized." },
 	{ ERROR_GRID_INITIALIZED,						"Fuel grid has already been initialized." },
 	{ ERROR_GRID_LOCATION_OUT_OF_RANGE,					"Requested for data for a location out of range." },
@@ -177,7 +177,6 @@ void SPARCS_P::initMe2()
 	m_proto = nullptr;
 	m_remainingScenarioCnt = -1;
 
-	Project::CWFGMProject::m_appMode = -2;
 	Project::CWFGMProject::m_managedMode = 1;
 	m_event = neosmart::CreateEvent();
 	m_lock = new CRWThreadSemaphore();

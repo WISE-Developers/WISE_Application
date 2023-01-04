@@ -71,8 +71,8 @@ namespace Project
 
 	class CWFGMPROJECT_EXPORT CuringNode : public MinNode {
 	public:
-		__INLINE CuringNode *LN_Succ() const { return (CuringNode *)MinNode::LN_Succ(); };
-		__INLINE CuringNode *LN_Pred() const { return (CuringNode *)MinNode::LN_Pred(); };
+		CuringNode *LN_Succ() const { return (CuringNode *)MinNode::LN_Succ(); };
+		CuringNode *LN_Pred() const { return (CuringNode *)MinNode::LN_Pred(); };
 
 		WTimeSpan m_date;
 		double m_curing;

@@ -286,7 +286,7 @@ static UINT AFX_CDECL worker_thread(void *parm)
 				}
 				catch (...)
 				{
-					weak_assert(0);
+					weak_assert(false);
 					retval = SUCCESS_SCENARIO_SIMULATION_COMPLETE;
 				}
 
@@ -344,7 +344,7 @@ static UINT AFX_CDECL worker_thread(void *parm)
 					}
 					catch (std::exception&)
 					{
-						weak_assert(0);
+						weak_assert(false);
 						sm->stepInfo.finished = true;
 					}
 				}
@@ -389,7 +389,7 @@ static UINT AFX_CDECL worker_thread(void *parm)
 					}
 					catch (std::exception&)
 					{
-						weak_assert(0);
+						weak_assert(false);
 						sm->stepInfo.finished = true;
 					}
 				}
@@ -1750,7 +1750,7 @@ void SPARCS_P::SetupThreads(std::int32_t coreCount, std::int32_t coreOffset, con
 	interprocess_comms::initial_settings settings;
 	get_core_settings(settings.numa_lock, settings.job_count, settings.cpu_skip);
 	if (useSharedMemory)
-		m_sharedMemory = interprocess_comms::get_shared_memory("WISE7", settings);
+		m_sharedMemory = interprocess_comms::get_shared_memory("WISE", settings);
 	if (m_sharedMemory && memDump)
 	{
 		std::ostringstream stream;
