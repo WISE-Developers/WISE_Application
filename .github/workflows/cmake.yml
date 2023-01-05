@@ -503,29 +503,18 @@ jobs:
         # Use the version as the key to only cache the correct version
         key: boost-${{ env.BOOST_VERSION }}
     
-    - name: Install boost
+    - name: Install boost Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       uses: egor-tensin/build-boost@v1
       id: install-boost
       with:
         version: ${{ env.BOOST_VERSION }}
         toolset: ${{ matrix.build_tool }}
         libraries: system chrono atomic iostreams program_options
-
-    - name: Setup Ubuntu
-      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
-      run: |
-        sudo apt install libgtest-dev libgdal-dev
-        
-    - name: Download GDAL
-      if: matrix.os == 'windows-2019'
-      shell: pwsh
-      run: |
-        If(!(Test-Path ${{ steps.install-boost.outputs.librarydir }}/boost_chrono.dll)){Copy-Item ${{ steps.install-boost.outputs.librarydir }}/boost_chrono* ${{ steps.install-boost.outputs.librarydir }}/boost_chrono.dll}
-        Invoke-WebRequest "https://heartlandsoftwaresolutions.sharepoint.com/:u:/g/HSS_Releases/EXnrOV_5audDuUmQjHymeDYBC_nMbcSQcOjP5Wi4IcPvkA?e=d8HeAq&download=1" -OutFile gdal.7z
-        & 7z.exe x gdal.7z -ogdal -y
-        
+    
     - name: Build zlib
       if: matrix.os == 'windows-2019'
+      id: install-zlib-windows
       shell: pwsh
       run: |
         Invoke-WebRequest "https://heartlandsoftwaresolutions.sharepoint.com/:u:/g/HSS_Releases/EUYThUR24ZZHq6GaiJ7fPFsBeilVSYM_agJV1Y8FTlJS0g?e=e3Nrmn&download=1" -OutFile zlib.zip
@@ -537,6 +526,36 @@ jobs:
         cmake -DCMAKE_INSTALL_PREFIX=install ../
         cmake --build . --config Release
         cmake --install .
+        $zlibpath = Resolve-Path -path install
+        echo "zlib_install_dir=$zlibpath" >> $env:GITHUB_OUTPUT
+        
+    - name: Install boost Windows
+      if: matrix.os == 'windows-2019'
+      id: install-boost-windows
+      shell: pwsh
+      run: |
+        $BOOST_VER="${{ env.BOOST_VERSION }}".Replace(".", "_")
+        Invoke-WebRequest "https://boostorg.jfrog.io/artifactory/main/release/${{ env.BOOST_VERSION }}/source/boost_${BOOST_VER}.tar.gz" -OutFile boost.tar.gz
+        tar -xzf boost.tar.gz
+        Move-Item .\boost_$BOOST_VER -Destination .\boost
+        cd .\boost
+        .\bootstrap.bat
+        .\b2.exe --build-dir=builddir --layout=system address-model=64 --stagedir=stage\\x64\\Release variant=release link=shared runtime-link=shared warnings=off -d0 --with-system --with-chrono --with-atomic --with-iostreams --with-program_options -sZLIB_INCLUDE="${{ steps.install-zlib-windows.outputs.zlib_install_dir }}\include" -sZLIB_LIBPATH="${{ steps.install-zlib-windows.outputs.zlib_install_dir }}\lib"
+        echo "librarydir=$(Resolve-Path -path stage\x64\Release\lib)" >> $env:GITHUB_OUTPUT
+        echo "root=$(Resolve-Path -path .)" >> $env:GITHUB_OUTPUT
+
+    - name: Setup Ubuntu
+      if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+      run: |
+        sudo apt install libgtest-dev libgdal-dev
+        
+    - name: Download GDAL
+      if: matrix.os == 'windows-2019'
+      shell: pwsh
+      run: |
+        If(!(Test-Path ${{ steps.install-boost-windows.outputs.librarydir }}/boost_chrono.dll)){Copy-Item ${{ steps.install-boost-windows.outputs.librarydir }}/boost_chrono* ${{ steps.install-boost-windows.outputs.librarydir }}/boost_chrono.dll}
+        Invoke-WebRequest "https://heartlandsoftwaresolutions.sharepoint.com/:u:/g/HSS_Releases/EXnrOV_5audDuUmQjHymeDYBC_nMbcSQcOjP5Wi4IcPvkA?e=d8HeAq&download=1" -OutFile gdal.7z
+        & 7z.exe x gdal.7z -ogdal -y
         
     - name: Download protobuf
       shell: pwsh
@@ -828,7 +847,7 @@ jobs:
         cd build
         mkdir windows
         cd windows
-        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include/" -DLOCAL_LIBRARY_DIR="../dlibs/"
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DBOOST_INCLUDE_DIR=${{ steps.install-boost-windows.outputs.root }} -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include/" -DLOCAL_LIBRARY_DIR="../dlibs/"
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
@@ -859,7 +878,7 @@ jobs:
         cd build
         mkdir windows
         cd windows
-        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/"
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost-windows.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/"
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
@@ -888,7 +907,7 @@ jobs:
         cd build
         mkdir windows
         cd windows
-        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/..
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost-windows.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost-windows.outputs.librarydir }}/..
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
@@ -913,7 +932,7 @@ jobs:
         cd build
         mkdir windows
         cd windows
-        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../gdal/lib"
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost-windows.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost-windows.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../gdal/lib"
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
@@ -938,7 +957,7 @@ jobs:
         cd build
         mkdir windows
         cd windows
-        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../gdal/lib" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../WISE_REDapp_Lib_Wrapper/include"
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost-windows.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DFIREENGINE_INCLUDE_DIR="../WISE_Scenario_Growth_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost-windows.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../gdal/lib" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../WISE_REDapp_Lib_Wrapper/include"
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
@@ -963,7 +982,7 @@ jobs:
         cd build
         mkdir windows
         cd windows
-        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../gdal/lib" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../WISE_REDapp_Lib_Wrapper/include"
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost-windows.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/" -DFWI_INCLUDE_DIR="../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../gdal/include" -DGSL_INCLUDE_DIR="../GSL/include" -DPROTOBUF_INCLUDE_DIR="../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost-windows.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../gdal/lib" -DGRID_INCLUDE_DIR="../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../WISE_REDapp_Lib_Wrapper/include"
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
@@ -1070,7 +1089,7 @@ jobs:
         cd build
         mkdir windows
         cd windows
-        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/..
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DBOOST_LIBRARY_DIR=${{ steps.install-boost-windows.outputs.librarydir }}/..
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../../dlibs
       
@@ -1227,7 +1246,7 @@ jobs:
         cd build
         mkdir windows
         cd windows
-        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../../dlibs/" -DFWI_INCLUDE_DIR="../../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../../gdal/include" -DGSL_INCLUDE_DIR="../../GSL/include" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../../gdal/lib" -DGRID_INCLUDE_DIR="../../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../../WISE_REDapp_Lib_Wrapper/include" -DKMLHELPER_INCLUDE_DIR="../../WISE_Processing_Lib/KMLHelper/include" -DFIREENGINE_INCLUDE_DIR="../../WISE_Scenario_Growth_Module/include"
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost-windows.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../../dlibs/" -DFWI_INCLUDE_DIR="../../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../../gdal/include" -DGSL_INCLUDE_DIR="../../GSL/include" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost-windows.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../../gdal/lib" -DGRID_INCLUDE_DIR="../../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../../WISE_REDapp_Lib_Wrapper/include" -DKMLHELPER_INCLUDE_DIR="../../WISE_Processing_Lib/KMLHelper/include" -DFIREENGINE_INCLUDE_DIR="../../WISE_Scenario_Growth_Module/include"
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../../dlibs
         Copy-Item Release/*.dll ../../../../dlibs
@@ -1285,7 +1304,7 @@ jobs:
         cd build
         mkdir windows
         cd windows
-        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../../dlibs/" -DFWI_INCLUDE_DIR="../../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../../gdal/include" -DGSL_INCLUDE_DIR="../../GSL/include" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../../gdal/lib" -DGRID_INCLUDE_DIR="../../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../../WISE_REDapp_Lib_Wrapper/include" -DKMLHELPER_INCLUDE_DIR="../../WISE_Processing_Lib/KMLHelper/include" -DFIREENGINE_INCLUDE_DIR="../../WISE_Scenario_Growth_Module/include" -DDEFAULTS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Defaults/cpp" -DCOMMS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Server_Comms/cpp" -DSTATUS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Status/include" -DPAHO_INSTALL_PATH="../../paho/install" -DPAHOPP_INSTALL_PATH="../../pahopp/install"
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../../HSS_Math/include/" -DGEOGRAPHY_INCLUDE_DIR="../../HSS_Geography/include/" -DWTIME_INCLUDE_DIR="../../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost-windows.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../../dlibs/" -DFWI_INCLUDE_DIR="../../WISE_FWI_Module/include" -DWEATHER_INCLUDE_DIR="../../WISE_Weather_Module/include" -DFUEL_INCLUDE_DIR="../../WISE_FBP_Module/include/" -DGDAL_INCLUDE_DIR="../../gdal/include" -DGSL_INCLUDE_DIR="../../GSL/include" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DPROTOBUF_LIBRARY_DIR="../../protobuf/cmake/build/Release" -DBOOST_LIBRARY_DIR=${{ steps.install-boost-windows.outputs.librarydir }}/.. -DGDAL_LIBRARY_DIR="../../gdal/lib" -DGRID_INCLUDE_DIR="../../WISE_Grid_Module/include" -DREDAPP_INCLUDE_DIR="../../WISE_REDapp_Lib_Wrapper/include" -DKMLHELPER_INCLUDE_DIR="../../WISE_Processing_Lib/KMLHelper/include" -DFIREENGINE_INCLUDE_DIR="../../WISE_Scenario_Growth_Module/include" -DDEFAULTS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Defaults/cpp" -DCOMMS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Server_Comms/cpp" -DSTATUS_INCLUDE_DIR="../../WISE_Communications_Module/WISE_Status/include" -DPAHO_INSTALL_PATH="../../paho/install" -DPAHOPP_INSTALL_PATH="../../pahopp/install"
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.exe ../../../../dlibs
       
@@ -1293,7 +1312,7 @@ jobs:
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Application/Installer/Windows
-        makensis /DOUTPUT_FILENAME=wise-${{ steps.configure-fwi-ubuntu.outputs.release_version }}.exe /DBUILD_DIR=../../../dlibs /DGDAL_DIR=../../../gdal /DPROTOBUF_DIR=../../../protobuf/cmake/build/Release /DBOOST_DIR=${{ steps.install-boost.outputs.librarydir }} wise.nsi
+        makensis /DOUTPUT_FILENAME=wise-${{ steps.configure-fwi-ubuntu.outputs.release_version }}.exe /DBUILD_DIR=../../../dlibs /DGDAL_DIR=../../../gdal /DPROTOBUF_DIR=../../../protobuf/cmake/build/Release /DBOOST_DIR=${{ steps.install-boost-windows.outputs.librarydir }} wise.nsi
         
     - name: Upload Windows Installer
       if: matrix.os == 'windows-2019'
