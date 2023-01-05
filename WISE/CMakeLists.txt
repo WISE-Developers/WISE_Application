@@ -66,7 +66,7 @@ find_package(Boost COMPONENTS atomic chrono date_time system iostreams program_o
 else ()
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
-set(Boost_Libraries
+set(Boost_LIBRARIES
         -L${BOOST_LIBRARY_DIR}/lib
         -lboost_iostreams
         -lboost_program_options
