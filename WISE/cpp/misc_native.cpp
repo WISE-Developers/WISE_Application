@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <boost/filesystem.hpp>
 #include <thread>
 #include <mutex>
 
@@ -44,13 +43,6 @@
 #include "interprocess_comms.h"
 
 #include <google/protobuf/util/json_util.h>
-
-
-std::string boost_filename(const char *path)
-{
-	boost::filesystem::path p(path);
-	return p.filename().string();
-}
 
 
 std::string getProtobufVersion()

@@ -29,8 +29,6 @@ namespace google
 	}
 }
 
-std::string boost_filename(const char *path);
-
 std::string getProtobufVersion();
 std::string getPahoVersion();
 void createProtoStatus(const std::string& path);
