@@ -1077,7 +1077,7 @@ jobs:
         cd build
         mkdir ubuntu
         cd ubuntu
-        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DBOOST_LIBRARY_DIR=${{ steps.install-boost.outputs.librarydir }}/..
+        cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }}
         cmake --build .
         cp *.a ../../../../dlibs
       
@@ -1089,7 +1089,7 @@ jobs:
         cd build
         mkdir windows
         cd windows
-        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DBOOST_LIBRARY_DIR=${{ steps.install-boost-windows.outputs.librarydir }}/..
+        cmake ../.. -DMSVC=1 -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}" -DLOWLEVEL_INCLUDE_DIR="../../HSS_LowLevel/include/" -DPROTOBUF_INCLUDE_DIR="../../protobuf/src" -DTHIRD_PARTY_INCLUDE_DIR="../../HSS_LowLevel/third_party/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost-windows.outputs.root }}
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../../dlibs
       
