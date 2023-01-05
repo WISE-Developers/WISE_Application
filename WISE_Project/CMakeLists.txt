@@ -229,6 +229,7 @@ target_link_libraries(project ${FOUND_FWI_LIBRARY_PATH} ${FOUND_FUEL_LIBRARY_PAT
 target_link_libraries(project ${FOUND_KMLHELPER_LIBRARY_PATH} ${FOUND_REDAPP_LIBRARY_PATH})
 target_link_libraries(project ${FOUND_WTIME_LIBRARY_PATH} ${FOUND_LOWLEVEL_LIBRARY_PATH} ${FOUND_MULTITHREAD_LIBRARY_PATH} ${FOUND_ERROR_CALC_LIBRARY_PATH} ${FOUND_MATH_LIBRARY_PATH} ${FOUND_GEOGRAPHY_LIBRARY_PATH})
 if (MSVC)
+target_link_directories(project PUBLIC ${LOCAL_LIBRARY_DIR})
 else ()
 target_link_libraries(project -lstdc++fs)
 endif (MSVC)
