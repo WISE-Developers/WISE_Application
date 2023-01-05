@@ -510,7 +510,7 @@ jobs:
       with:
         version: ${{ env.BOOST_VERSION }}
         toolset: ${{ matrix.build_tool }}
-        libraries: system chrono atomic iostreams program_options
+        libraries: system chrono atomic iostreams program_options filesystem date_time
     
     - name: Build zlib
       if: matrix.os == 'windows-2019'
@@ -540,7 +540,7 @@ jobs:
         Move-Item .\boost_$BOOST_VER -Destination .\boost
         cd .\boost
         .\bootstrap.bat
-        .\b2.exe --build-dir=builddir --layout=system address-model=64 --stagedir=stage\\x64\\Release variant=release link=shared runtime-link=shared warnings=off -d0 --with-system --with-chrono --with-atomic --with-iostreams --with-program_options -sZLIB_INCLUDE="${{ steps.install-zlib-windows.outputs.zlib_install_dir }}\include" -sZLIB_LIBPATH="${{ steps.install-zlib-windows.outputs.zlib_install_dir }}\lib"
+        .\b2.exe --build-dir=builddir --layout=system address-model=64 --stagedir=stage\\x64\\Release variant=release link=shared runtime-link=shared warnings=off -d0 --with-system --with-chrono --with-atomic --with-iostreams --with-program_options --with-filesystem --with-date_time -sZLIB_INCLUDE="${{ steps.install-zlib-windows.outputs.zlib_install_dir }}\include" -sZLIB_LIBPATH="${{ steps.install-zlib-windows.outputs.zlib_install_dir }}\lib"
         echo "librarydir=$(Resolve-Path -path stage\x64\Release\lib)" >> $env:GITHUB_OUTPUT
         echo "root=$(Resolve-Path -path .)" >> $env:GITHUB_OUTPUT
 
