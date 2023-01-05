@@ -230,6 +230,7 @@ target_link_libraries(project ${FOUND_KMLHELPER_LIBRARY_PATH} ${FOUND_REDAPP_LIB
 target_link_libraries(project ${FOUND_WTIME_LIBRARY_PATH} ${FOUND_LOWLEVEL_LIBRARY_PATH} ${FOUND_MULTITHREAD_LIBRARY_PATH} ${FOUND_ERROR_CALC_LIBRARY_PATH} ${FOUND_MATH_LIBRARY_PATH} ${FOUND_GEOGRAPHY_LIBRARY_PATH})
 if (MSVC)
 target_link_directories(project PUBLIC ${LOCAL_LIBRARY_DIR})
+target_link_libraries(project -lzlib)
 else ()
 target_link_libraries(project -lstdc++fs)
 endif (MSVC)

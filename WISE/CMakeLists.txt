@@ -142,6 +142,7 @@ target_link_libraries(wise ${FOUND_PAHO_LIBRARY_PATH} ${FOUND_PAHOPP_LIBRARY_PAT
 target_link_libraries(wise ${FOUND_GDAL_LIBRARY_PATH} ${FOUND_PROTOBUF_LIBRARY_PATH} ${FOUND_MINIZIP_LIBRARY_PATH} ${Boost_LIBRARIES})
 if (MSVC)
 target_link_directories(wise PUBLIC ${LOCAL_LIBRARY_DIR})
+target_link_libraries(project -lzlib)
 else ()
 target_link_libraries(wise -lstdc++fs -lrt -lquadmath)
 target_link_directories(wise PUBLIC ${BOOST_LIBRARY_DIR}/lib)
