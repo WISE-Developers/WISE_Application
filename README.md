@@ -1,4 +1,5 @@
-# WISE_Application
+# WISE Application
+WISE_Application formerly known as WISE
 This is the main repo from which the application is built.
 
 This project actively discourages forking of our repositories. 
