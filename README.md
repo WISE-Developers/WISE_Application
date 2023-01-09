@@ -1,5 +1,5 @@
 # WISE_Application
-This is the main repo from which the aplplication is built.
+This is the main repo from which the application is built.
 
 This project actively discourages forking of our repositories. 
 Contributors do not use forks, we use Barnaches and Pull Requests.
