@@ -1665,18 +1665,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
 
     - name: Create Release Notes
-      id: REDapp_Lib-build-notes
-      uses: mikepenz/release-changelog-builder-action@v3.5.0
-      with:
-        toTag: w${{ needs.build.outputs.release_version }}
-        fromTag: ${{ steps.previoustag.outputs.REDapp_Lib_tag }}
-        owner: WISE-Developers
-        repo: REDapp_Lib
-        path: REDapp_Lib
-      env:
-        GITHUB_TOKEN: ${{ secrets.WISE_PAT }}
-
-    - name: Create Release Notes
       id: WISE_REDapp_Lib_Wrapper-build-notes
       uses: mikepenz/release-changelog-builder-action@v3.5.0
       with:
@@ -1772,10 +1760,6 @@ jobs:
           # Processing Libraries
 
           ${{ steps.WISE_Processing_Lib-build-notes.outputs.changelog }}
-          
-          # REDapp Library
-
-          ${{ steps.REDapp_Lib-build-notes.outputs.changelog }}
           
           # REDapp Wrapper Library
 
