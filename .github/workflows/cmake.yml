@@ -1345,12 +1345,13 @@ jobs:
         cp ../../../dlibs/*.so.6 $USR_LIB 2> /dev/null || :
         cp ../../../dlibs/*.so.7 $USR_LIB
         cp WISE.sh $USR_BIN/wise
+        chmod 755 $USR_BIN/wise
         cp ../../../dlibs/wise $USR_LIB
         cp ${{ steps.install-boost.outputs.librarydir }}/*.so* $USR_LIB
         cp ../../../protobuf/cmake/build/*.so* $USR_LIB 2> /dev/null || :
         cp $(pwd)/control2004 $TEMP_PATH/DEBIAN/control
         sed -i "s@Version: [0-9\\.\\-]\+@Version: ${{ steps.configure-fwi-ubuntu.outputs.release_version }}@gm" $TEMP_PATH/DEBIAN/control
-        dpkg-deb --build wise-ubuntu2004-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+        dpkg-deb --root-owner-group --build wise-ubuntu2004-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
 
     - name: Upload Ubuntu 20.04 Installer
       if: matrix.os == 'ubuntu-20.04'
@@ -1380,12 +1381,13 @@ jobs:
         cp ../../../dlibs/*.so.6 $USR_LIB 2> /dev/null || :
         cp ../../../dlibs/*.so.7 $USR_LIB
         cp WISE.sh $USR_BIN/wise
+        chmod 755 $USR_BIN/wise
         cp ../../../dlibs/wise $USR_LIB
         cp ${{ steps.install-boost.outputs.librarydir }}/*.so* $USR_LIB
         cp ../../../protobuf/cmake/build/*.so* $USR_LIB 2> /dev/null || :
         cp $(pwd)/control2204 $TEMP_PATH/DEBIAN/control
         sed -i "s@Version: [0-9\\.\\-]\+@Version: ${{ steps.configure-fwi-ubuntu.outputs.release_version }}@gm" $TEMP_PATH/DEBIAN/control
-        dpkg-deb --build wise-ubuntu2204-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+        dpkg-deb --root-owner-group --build wise-ubuntu2204-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
 
     - name: Upload Ubuntu 22.04 Installer
       if: matrix.os == 'ubuntu-22.04'
