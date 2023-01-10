@@ -1315,14 +1315,14 @@ jobs:
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Application/Installer/Windows
-        makensis /DOUTPUT_FILENAME=wise-${{ steps.configure-fwi-ubuntu.outputs.release_version }}.exe /DBUILD_DIR=../../../dlibs /DGDAL_DIR=../../../gdal /DPROTOBUF_DIR=../../../protobuf/cmake/build/Release /DBOOST_DIR=${{ steps.install-boost-windows.outputs.librarydir }} wise.nsi
+        makensis /DOUTPUT_FILENAME=wise-${{ steps.configure-fwi-windows.outputs.release_version }}.exe /DBUILD_DIR=../../../dlibs /DGDAL_DIR=../../../gdal /DPROTOBUF_DIR=../../../protobuf/cmake/build/Release /DBOOST_DIR=${{ steps.install-boost-windows.outputs.librarydir }} wise.nsi
         
     - name: Upload Windows Installer
       if: matrix.os == 'windows-2019'
       uses: actions/upload-artifact@v3
       with:
         name: release-libs
-        path: WISE_Application/Installer/Windows/wise-${{ steps.configure-fwi-ubuntu.outputs.release_version }}.exe
+        path: WISE_Application/Installer/Windows/wise-${{ steps.configure-fwi-windows.outputs.release_version }}.exe
         retention-days: 1
         
     - name: Build Ubuntu 20.04 Installer
