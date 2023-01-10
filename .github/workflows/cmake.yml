@@ -1258,7 +1258,7 @@ jobs:
       run: |
         cd WISE_Application/WISE/include
         $TOTAL_VERSION="${{ steps.version-numbers.outputs.prometheus_version }}"
-        $SPLIT_VERSION=$TOTAL_VERSION.Split(".-")
+        $SPLIT_VERSION=$TOTAL_VERSION.Split(".-".ToCharArray())
         echo "#ifndef VER_STRINGIFY2" > prom_vers.h
         echo "#define VER_STRINGIFY2(ver) #ver" >> prom_vers.h
         echo "#endif" >> prom_vers.h
