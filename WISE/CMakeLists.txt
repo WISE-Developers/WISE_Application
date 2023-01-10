@@ -144,7 +144,7 @@ if (MSVC)
 add_library(ZLib STATIC IMPORTED)
 set(ZLIB_FILE_PATH "${LOCAL_LIBRARY_DIR}/zlib.lib")
 set_target_properties(ZLib PROPERTIES IMPORTED_LOCATION ${ZLIB_FILE_PATH})
-target_link_libraries(project ZLib)
+target_link_libraries(wise ZLib)
 
 target_link_directories(wise PUBLIC ${LOCAL_LIBRARY_DIR})
 else ()
