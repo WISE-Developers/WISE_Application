@@ -141,8 +141,12 @@ target_link_libraries(wise ${FOUND_WTIME_LIBRARY_PATH} ${FOUND_LOWLEVEL_LIBRARY_
 target_link_libraries(wise ${FOUND_PAHO_LIBRARY_PATH} ${FOUND_PAHOPP_LIBRARY_PATH})
 target_link_libraries(wise ${FOUND_GDAL_LIBRARY_PATH} ${FOUND_PROTOBUF_LIBRARY_PATH} ${FOUND_MINIZIP_LIBRARY_PATH} ${Boost_LIBRARIES})
 if (MSVC)
+add_library(ZLib SHARED IMPORTED)
+set(ZLIB_FILE_PATH "${LOCAL_LIBRARY_DIR}/zlib.lib")
+set_target_properties(ZLib PROPERTIES IMPORTED_LOCATION ${ZLIB_FILE_PATH})
+target_link_libraries(project ZLib)
+
 target_link_directories(wise PUBLIC ${LOCAL_LIBRARY_DIR})
-target_link_libraries(project ${LOCAL_LIBRARY_DIR}/zlib)
 else ()
 target_link_libraries(wise -lstdc++fs -lrt -lquadmath)
 target_link_directories(wise PUBLIC ${BOOST_LIBRARY_DIR}/lib)
