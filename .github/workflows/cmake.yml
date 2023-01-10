@@ -1518,32 +1518,26 @@ jobs:
         cd ../WISE_FWI_Module
         git config user.name github-actions
         git config user.email github-actions@github.com
-        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
         git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
         cd ../WISE_FBP_Module
         git config user.name github-actions
         git config user.email github-actions@github.com
-        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
         git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
         cd ../WISE_Grid_Module
         git config user.name github-actions
         git config user.email github-actions@github.com
-        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
         git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
         cd ../WISE_Weather_Module
         git config user.name github-actions
         git config user.email github-actions@github.com
-        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
         git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
         cd ../WISE_Scenario_Growth_Module
         git config user.name github-actions
         git config user.email github-actions@github.com
-        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
         git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
         cd ../WISE_Communications_Module
         git config user.name github-actions
         git config user.email github-actions@github.com
-        RELEASE_TAG=c${{ needs.build.outputs.release_version }}
         git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
 
     - name: Push changes
