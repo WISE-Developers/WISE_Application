@@ -1,4 +1,6 @@
 # WISE Application
+[![CMake](https://github.com/WISE-Developers/WISE_Application/actions/workflows/cmake.yml/badge.svg)](https://github.com/WISE-Developers/WISE_Application/actions/workflows/cmake.yml)
+
 WISE_Application formerly known as WISE
 This is the main repo from which the application is built.
 
