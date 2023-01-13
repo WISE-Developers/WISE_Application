@@ -278,7 +278,7 @@ HRESULT Project::CWFGMProject::deserialize(const std::string& filename, std::uin
 			std::string json((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
 			data = new WISE::ProjectProto::PrometheusData();
 			try {
-				if (google::protobuf::util::JsonStringToMessage(json, data, options).ok())
+				if (!google::protobuf::util::JsonStringToMessage(json, data, options).ok())
 				{
 					delete data;
 					data = nullptr;
@@ -443,7 +443,7 @@ std::string Project::CWFGMProject::serializeOutputs(const SerializeProtoOptions&
 		options1.always_print_primitive_fields = true;
 		options1.preserve_proto_field_names = true;
 
-		if (google::protobuf::util::MessageToJsonString(*outputs, &retval, options1).ok())
+		if (!google::protobuf::util::MessageToJsonString(*outputs, &retval, options1).ok())
 			std::cerr << "Failed to save output data";
 	}
 
