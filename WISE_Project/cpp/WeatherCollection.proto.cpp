@@ -267,7 +267,7 @@ auto Project::WeatherStation::deserialize(const google::protobuf::Message& messa
 			auto str = station->streams(i);
 			auto stream = New();
 			ICWFGM_CommonData data;
-			data.m_timeManager = (WTimeManager*)&m_collection->m_project->m_timeManager;
+			data.m_timeManager = m_collection->m_project->m_timeManager;
 			stream->put_CommonData(&data);
 			if (!stream->deserialize(str, v, strprintf("streams[%d]", i))) {
 				weak_assert(false);
