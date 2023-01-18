@@ -197,7 +197,7 @@ int main(int argc, char* argv[])
 	desc.add_options()
 		("help,h", "print this message")
 		("version,v", "print the W.I.S.E. version")
-		("ignore-shared-memory,i", "ignore shared memory block recording used cores")
+		("include-shared-memory,i", "include shared memory block recording used cores")
 		("output,o", po::value(&format), "optional output for the conversion function. Must use a supported file extension. If the same file extension is specified as the input type no conversion will be carried out")
 		("convert,c", "convert the input file to a different format, the job will not be run. Both the input and output files must use one of the supported file extensions")
 		("convertversion,V", po::value(&formatVersion), "if converting, then this specifies the version of the FGMJ output file")
@@ -260,6 +260,8 @@ int main(int argc, char* argv[])
 	std::string javaOverridePath = getJavaOverridePath();
 	if (javaOverridePath.size())
 		REDapp::REDappWrapper::SetPathOverride(javaOverridePath);
+
+	bool useShmem = vm.count("include-shared-memory") > 0;
 
 	//output the version number
 	if (vm.count("v2"))
@@ -335,7 +337,7 @@ int main(int argc, char* argv[])
 		}
 		SPARCS_P sp;
 		std::string memoryContents;
-		sp.SetupThreads(coreCount, coreOffset, coreMask, vm.count("ignore-shared-memory") ? false : true, vm.count("mem-dump") ? &memoryContents : nullptr);
+		sp.SetupThreads(coreCount, coreOffset, coreMask, useShmem, vm.count("mem-dump") ? &memoryContents : nullptr);
 
 		std::cout << std::endl << out_helper::format_color(out_helper::Color::Ignore, out_helper::Color::Ignore, out_helper::Style::Underline) << "Thread allocation mask" << out_helper::format_color() << std::endl;
         for (std::uint32_t i = 0; i < CWorkerThreadPool::NumberNUMA(); i++)
@@ -479,7 +481,7 @@ int main(int argc, char* argv[])
 						}
 						else
 						{
-							sp.SetupThreads(coreCount, coreOffset, coreMask, vm.count("ignore-shared-memory") ? false : true);
+							sp.SetupThreads(coreCount, coreOffset, coreMask, useShmem);
 							HRESULT hr;
 							std::uint32_t fileVersion;
 							if (FAILED(hr = sp.LoadProtobuf(input.string().c_str(), fileVersion, [&password]() { return password; }, justSummary)))
