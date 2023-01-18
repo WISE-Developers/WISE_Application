@@ -1343,7 +1343,7 @@ jobs:
         cp ../../../dlibs/*.so.4 $USR_LIB 2> /dev/null || :
         cp ../../../dlibs/*.so.5 $USR_LIB 2> /dev/null || :
         cp ../../../dlibs/*.so.6 $USR_LIB 2> /dev/null || :
-        cp ../../../dlibs/*.so.7 $USR_LIB
+        cp ../../../dlibs/*.so.7 $USR_LIB 2> /dev/null || :
         cp WISE.sh $USR_BIN/wise
         chmod 755 $USR_BIN/wise
         cp ../../../dlibs/wise $USR_LIB
@@ -1379,7 +1379,7 @@ jobs:
         cp ../../../dlibs/*.so.4 $USR_LIB 2> /dev/null || :
         cp ../../../dlibs/*.so.5 $USR_LIB 2> /dev/null || :
         cp ../../../dlibs/*.so.6 $USR_LIB 2> /dev/null || :
-        cp ../../../dlibs/*.so.7 $USR_LIB
+        cp ../../../dlibs/*.so.7 $USR_LIB 2> /dev/null || :
         cp WISE.sh $USR_BIN/wise
         chmod 755 $USR_BIN/wise
         cp ../../../dlibs/wise $USR_LIB
