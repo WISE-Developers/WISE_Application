@@ -60,7 +60,7 @@ namespace po = boost::program_options;
 
 void printUsage(const po::options_description& options)
 {
-	std::cout << "WISE version " VER_PROMETHEUS_VERSION_STRING << std::endl;
+	std::cout << "WISE version " VER_PROMETHEUS_VERSION_FULL_STRING << std::endl;
 	std::cout << options << std::endl;
 }
 
@@ -270,7 +270,7 @@ int main(int argc, char* argv[])
 	//output the version number in a human readable format
 	else if (vm.count("version"))
 	{
-		std::cout << "W.I.S.E. version " VER_PROMETHEUS_VERSION_STRING << std::endl;
+		std::cout << "W.I.S.E. version " VER_PROMETHEUS_VERSION_FULL_STRING << std::endl;
 		std::cout << "Released " VER_RELEASE_DATE << std::endl;
 		nRetCode = 1;
 	}
