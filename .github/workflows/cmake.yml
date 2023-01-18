@@ -32,7 +32,7 @@ jobs:
       contents: write
 
     outputs:
-      release_version: ${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+      release_version: ${{ steps.version-numbers.outputs.prometheus_version }}
 
     steps:
     - uses: actions/checkout@v3
@@ -856,7 +856,6 @@ jobs:
         Copy-Item Release/*.dll ../../../dlibs
       
     - name: Configure FWI Ubuntu
-      id: configure-fwi-ubuntu
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_FWI_Module
@@ -867,13 +866,8 @@ jobs:
         cmake ../.. -DPROMETHEUS_VERSION="${{ steps.version-numbers.outputs.prometheus_cmake_version }}" -DLOWLEVEL_INCLUDE_DIR="../HSS_LowLevel/include/" -DTHIRD_PARTY_INCLUDE_DIR="../HSS_LowLevel/third_party/" -DMULTITHREAD_INCLUDE_DIR="../HSS_Multithread/include/" -DMATH_INCLUDE_DIR="../HSS_Math/include/" -DWTIME_INCLUDE_DIR="../WTime/include/" -DBOOST_INCLUDE_DIR=${{ steps.install-boost.outputs.root }} -DERROR_CALC_INCLUDE_DIR="../ErrorCalc/include/" -DLOCAL_LIBRARY_DIR="../dlibs/"
         cmake --build .
         cp *.so* ../../../dlibs
-        APPLICATION_VERSION=$(grep CMAKE_PROJECT_VERSION: CMakeCache.txt | cut -d "=" -f2)
-        APPLICATION_VERSION_MAJOR=$(grep CMAKE_PROJECT_VERSION_MAJOR: CMakeCache.txt | cut -d "=" -f2)
-        echo "release_version=$APPLICATION_VERSION" >> $GITHUB_OUTPUT
-        echo "release_version_major=$APPLICATION_VERSION_MAJOR" >> $GITHUB_OUTPUT
 
     - name: Configure FWI Windows
-      id: configure-fwi-windows
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_FWI_Module
@@ -885,10 +879,6 @@ jobs:
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
-        $APPLICATION_VERSION=((Get-Content .\CMakeCache.txt | Select-String -Pattern "CMAKE_PROJECT_VERSION:") -Split "=")[1]
-        $APPLICATION_VERSION_MAJOR=((Get-Content .\CMakeCache.txt | Select-String -Pattern "CMAKE_PROJECT_VERSION_MAJOR:") -Split "=")[1]
-        echo "release_version=$APPLICATION_VERSION" >> $env:GITHUB_OUTPUT
-        echo "release_version_major=$APPLICATION_VERSION_MAJOR" >> $GITHUB_OUTPUT
       
     - name: Configure FBP Ubuntu
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
@@ -1315,21 +1305,21 @@ jobs:
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Application/Installer/Windows
-        makensis /DOUTPUT_FILENAME=wise-${{ steps.configure-fwi-windows.outputs.release_version }}.exe /DBUILD_DIR=../../../dlibs /DGDAL_DIR=../../../gdal /DPROTOBUF_DIR=../../../protobuf/cmake/build/Release /DBOOST_DIR=${{ steps.install-boost-windows.outputs.librarydir }} wise.nsi
+        makensis /DOUTPUT_FILENAME=wise-${{ steps.version-numbers.outputs.prometheus_version }}.exe /DBUILD_DIR=../../../dlibs /DGDAL_DIR=../../../gdal /DPROTOBUF_DIR=../../../protobuf/cmake/build/Release /DBOOST_DIR=${{ steps.install-boost-windows.outputs.librarydir }} wise.nsi
         
     - name: Upload Windows Installer
       if: matrix.os == 'windows-2019'
       uses: actions/upload-artifact@v3
       with:
         name: release-libs
-        path: WISE_Application/Installer/Windows/wise-${{ steps.configure-fwi-windows.outputs.release_version }}.exe
+        path: WISE_Application/Installer/Windows/wise-${{ steps.version-numbers.outputs.prometheus_version }}.exe
         retention-days: 1
         
     - name: Build Ubuntu 20.04 Installer
       if: matrix.os == 'ubuntu-20.04'
       run: |
         cd WISE_Application/Installer/Ubuntu
-        TEMP_PATH=$(pwd)/wise-ubuntu2004-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+        TEMP_PATH=$(pwd)/wise-ubuntu2004-${{ steps.version-numbers.outputs.prometheus_version }}
         USR_LIB=$TEMP_PATH/usr/lib/wise
         USR_BIN=$TEMP_PATH/usr/bin
         mkdir $TEMP_PATH
@@ -1350,22 +1340,22 @@ jobs:
         cp ${{ steps.install-boost.outputs.librarydir }}/*.so* $USR_LIB
         cp ../../../protobuf/cmake/build/*.so* $USR_LIB 2> /dev/null || :
         cp $(pwd)/control2004 $TEMP_PATH/DEBIAN/control
-        sed -i "s@Version: [0-9\\.\\-]\+@Version: ${{ steps.configure-fwi-ubuntu.outputs.release_version }}@gm" $TEMP_PATH/DEBIAN/control
-        dpkg-deb --root-owner-group --build wise-ubuntu2004-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+        sed -i "s@Version: [0-9\\.\\-]\+@Version: ${{ steps.version-numbers.outputs.prometheus_version }}@gm" $TEMP_PATH/DEBIAN/control
+        dpkg-deb --root-owner-group --build wise-ubuntu2004-${{ steps.version-numbers.outputs.prometheus_version }}
 
     - name: Upload Ubuntu 20.04 Installer
       if: matrix.os == 'ubuntu-20.04'
       uses: actions/upload-artifact@v3
       with:
         name: release-libs
-        path: WISE_Application/Installer/Ubuntu/wise-ubuntu2004-${{ steps.configure-fwi-ubuntu.outputs.release_version }}.deb
+        path: WISE_Application/Installer/Ubuntu/wise-ubuntu2004-${{ steps.version-numbers.outputs.prometheus_version }}.deb
         retention-days: 1
         
     - name: Build Ubuntu 22.04 Installer
       if: matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_Application/Installer/Ubuntu
-        TEMP_PATH=$(pwd)/wise-ubuntu2204-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+        TEMP_PATH=$(pwd)/wise-ubuntu2204-${{ steps.version-numbers.outputs.prometheus_version }}
         USR_LIB=$TEMP_PATH/usr/lib/wise
         USR_BIN=$TEMP_PATH/usr/bin
         mkdir $TEMP_PATH
@@ -1386,15 +1376,15 @@ jobs:
         cp ${{ steps.install-boost.outputs.librarydir }}/*.so* $USR_LIB
         cp ../../../protobuf/cmake/build/*.so* $USR_LIB 2> /dev/null || :
         cp $(pwd)/control2204 $TEMP_PATH/DEBIAN/control
-        sed -i "s@Version: [0-9\\.\\-]\+@Version: ${{ steps.configure-fwi-ubuntu.outputs.release_version }}@gm" $TEMP_PATH/DEBIAN/control
-        dpkg-deb --root-owner-group --build wise-ubuntu2204-${{ steps.configure-fwi-ubuntu.outputs.release_version }}
+        sed -i "s@Version: [0-9\\.\\-]\+@Version: ${{ steps.version-numbers.outputs.prometheus_version }}@gm" $TEMP_PATH/DEBIAN/control
+        dpkg-deb --root-owner-group --build wise-ubuntu2204-${{ steps.version-numbers.outputs.prometheus_version }}
 
     - name: Upload Ubuntu 22.04 Installer
       if: matrix.os == 'ubuntu-22.04'
       uses: actions/upload-artifact@v3
       with:
         name: release-libs
-        path: WISE_Application/Installer/Ubuntu/wise-ubuntu2204-${{ steps.configure-fwi-ubuntu.outputs.release_version }}.deb
+        path: WISE_Application/Installer/Ubuntu/wise-ubuntu2204-${{ steps.version-numbers.outputs.prometheus_version }}.deb
         retention-days: 1
         
   release:
