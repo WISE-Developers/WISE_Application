@@ -792,7 +792,7 @@ jobs:
       shell: pwsh
       run: |
         $versions = ConvertFrom-StringData (Get-Content versions/versions.properties -raw)
-        $PROM_VERSION=$($versions.prometheus).Replace("-", ".")
+        $PROM_VERSION=$($versions.prometheus)
         echo "Updating to version $PROM_VERSION"
         echo "prometheus_version=$PROM_VERSION" >> $env:GITHUB_OUTPUT
         echo "hss_math_version=$($versions.hss_math)" >> $env:GITHUB_OUTPUT
@@ -1267,9 +1267,7 @@ jobs:
         echo "#endif" >> prom_vers.h
         echo "#define VER_VERSION_MAJOR $($SPLIT_VERSION[0])" >> prom_vers.h
         echo "#define VER_VERSION_MINOR $($SPLIT_VERSION[1])" >> prom_vers.h
-        echo "#define VER_VERSION_MAINTENANCE_INT $([int]$SPLIT_VERSION[2])" >> prom_vers.h
         echo "#define VER_VERSION_MAINTENANCE $($SPLIT_VERSION[2])" >> prom_vers.h
-        echo "#define VER_VERSION_BUILD_INT $([int]$SPLIT_VERSION[3])" >> prom_vers.h
         echo "#define VER_VERSION_BUILD $($SPLIT_VERSION[3])" >> prom_vers.h
         echo "#define VER_RELEASE_DATE_SHORT $(Get-Date -UFormat "%Y-%m-%d")" >> prom_vers.h
         echo "#define VER_RELEASE_DATE `"$(Get-Date -Format "MMMM d, yyyy")`"" >> prom_vers.h
@@ -1277,7 +1275,7 @@ jobs:
         echo "#define VER_RELEASE_DATE_SHORT_STRING VER_STRINGIFY(VER_RELEASE_DATE_SHORT)" >> prom_vers.h
         echo "#define VER_PROMETHEUS_VERSION VER_VERSION_MINOR.VER_VERSION_MAINTENANCE.VER_VERSION_BUILD" >> prom_vers.h
         echo "#define VER_PROMETHEUS_VERSION_STRING VER_STRINGIFY(VER_PROMETHEUS_VERSION)" >> prom_vers.h
-        echo "#define VER_PROMETHEUS_VERSION_FULL VER_VERSION_MAJOR.VER_VERSION_MINOR.VER_VERSION_MAINTENANCE.VER_VERSION_BUILD" >> prom_vers.h
+        echo "#define VER_PROMETHEUS_VERSION_FULL VER_VERSION_MAJOR.VER_VERSION_MINOR.VER_VERSION_MAINTENANCE-VER_VERSION_BUILD" >> prom_vers.h
         echo "#define VER_PROMETHEUS_VERSION_FULL_STRING VER_STRINGIFY(VER_PROMETHEUS_VERSION_FULL)" >> prom_vers.h
         echo "#define PROMETHEUS_PUBLIC_INT 1" >> prom_vers.h
         echo "#if PROMETHEUS_PUBLIC_INT" >> prom_vers.h
