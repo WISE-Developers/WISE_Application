@@ -80,7 +80,7 @@ jobs:
       - name: unzip the builder
         run: ls -lha;cd builder; ls -lha; unzip *.zip
       - name: install the builder
-        run: cd builder/; cp WISE_Builder.jar /usr/bin/; cp -R WISE_Builder_lib/ /usr/bin/
+        run: ls -lha;cd builder;ls -lha; cp WISE_Builder.jar /usr/bin/; cp -R WISE_Builder_lib/ /usr/bin/
       - name: Install NodeJS and WISE JS API
         uses: actions/setup-node@v3
         with:
