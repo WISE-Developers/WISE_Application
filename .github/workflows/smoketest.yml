@@ -90,7 +90,6 @@ jobs:
           node-version: 16
       - run: npm init -y
       - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
-      - run: npm 
 
 
       # - name: Run the test job
