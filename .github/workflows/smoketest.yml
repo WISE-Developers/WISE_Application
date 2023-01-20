@@ -74,11 +74,11 @@ jobs:
         uses: robinraju/release-downloader@v1.7
         with:
           latest: true
-          fileName: WISE_Builder-*.zip"
-          out-file-path: "builder/wise"
+          fileName: "WISE_Builder-*.zip"
+          out-file-path: "builder"
           repository: "WISE-Developers/WISE_Builder_Component"
       - name: unzip the builder
-        run: ls -lha;cd builder/wise/; ls -lha; unzip WISE_Builder-1.0.0-beta.zip
+        run: ls -lha;cd builder; ls -lha; unzip *.zip
       - name: install the builder
         run: cd builder/wise/; cp WISE_Builder.jar /usr/bin/; cp -R WISE_Builder_lib/ /usr/bin/
       - name: Install NodeJS and WISE JS API
