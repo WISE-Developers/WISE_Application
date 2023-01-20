@@ -1,15 +1,9 @@
-name: Smoke Test
+name: Test for Bug 172
 
 on: workflow_dispatch
 
-env:
-  BUILD_TYPE: Release
-  BOOST_VERSION: 1.81.0
-  PROTO_VERSION: 21.10
-
 jobs:
-
-  smoketest:
+  bugtest172:
     runs-on: ubuntu-20.04
     steps:
 
@@ -60,7 +54,7 @@ jobs:
          # github-api-url: ""
       - name: Install WISE
         run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004-1.0.0-beta.deb
-      - name: Check exect Ubuntu Version
+      - name: Check exact Ubuntu Version
         run: cat /etc/issue; uname -a;
-      - name: Check Wise version
-        run: message=$(wise --version); echo $message;
+      - name: Test for Bug #172
+        run: wise --version;
