@@ -63,6 +63,6 @@ jobs:
       - name: Check exect Ubuntu Version
         run: cat /etc/issue; uname -a;
       - name: Capture WISE version - Workaround for Bug #172
-        run: echo "WISE_VER=$(wise --version)" >> $GITHUB_ENV
+        run: echo "WISE_VER=$(/usr/bin/wise --version)" >> $GITHUB_ENV
       - name: Display WISE Version
         run: echo $WISE_VER
