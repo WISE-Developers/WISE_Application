@@ -63,4 +63,4 @@ jobs:
       - name: Check exect Ubuntu Version
         run: cat /etc/issue; uname -a;
       - name: Check Wise version
-        run: message=$(wise --version); echo $message;
+        run: verString=`wise --version`; echo $verString;
