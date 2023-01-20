@@ -60,5 +60,7 @@ jobs:
          # github-api-url: ""
       - name: Install WISE
         run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004-1.0.0-beta.deb
+      - name: Check exect Ubuntu Version
+        run: cat /etc/issue; uname -a;
       - name: Check Wise version
         run: wise --version
