@@ -77,20 +77,21 @@ jobs:
           fileName: WISE_Builder-*.zip"
           out-file-path: "builder/wise"
           repository: "WISE-Developers/WISE_Builder_Component"
-      - name: get the builder
-        uses: robinraju/release-downloader@v1.7
-        with:
-          latest: true
-          fileName: WISE_Builder-*.zip"
-          out-file-path: "builder/wise"
-          repository: "WISE-Developers/WISE_Builder_Component"
+      - name: unzip the builder
+        run: cd builder/wise/; unzip WISE_Builder-1.0.0-beta.zip
+      - name: install the builder
+        run: cd builder/wise/; cp WISE_Builder.jar /usr/bin/; cp -R WISE_Builder_lib/ /usr/bin/
       - name: Install NodeJS and WISE JS API
         uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm init -y
       - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
-
-
+      - name: install deps
+        run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
+      - name: create a test job from a model script
+        run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
+      - name: execute the test job
+        run: node testjob.js
       # - name: Run the test job
       #   run: mkdir jobs; wget https://spyd.com/fgm.ca/datasets/bcjob.fgmj -O jobs/testjob.fgmj
