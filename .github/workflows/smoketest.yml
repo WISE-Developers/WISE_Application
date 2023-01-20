@@ -12,7 +12,6 @@ jobs:
   smoketest:
     runs-on: ubuntu-20.04
     steps:
-
       - name: Download WISE Ubuntu 20.04
         uses: robinraju/release-downloader@v1.7
         with:
@@ -64,4 +63,35 @@ jobs:
         run: cat /etc/issue; uname -a;
       - name: show WISE version - Workaround for Bug #172
         run: wise -v | grep version
-      
+      - name: get the manager
+        uses: robinraju/release-downloader@v1.7
+        with:
+          latest: true
+          fileName: "WISE_Manager-*.zip"
+          out-file-path: "manager/wise"
+          repository: "WISE-Developers/WISE_Manager_Component"
+      - name: get the builder
+        uses: robinraju/release-downloader@v1.7
+        with:
+          latest: true
+          fileName: WISE_Builder-*.zip"
+          out-file-path: "builder/wise"
+          repository: "WISE-Developers/WISE_Builder_Component"
+      - name: get the builder
+        uses: robinraju/release-downloader@v1.7
+        with:
+          latest: true
+          fileName: WISE_Builder-*.zip"
+          out-file-path: "builder/wise"
+          repository: "WISE-Developers/WISE_Builder_Component"
+      - name: Install NodeJS and WISE JS API
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm init -y
+      - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
+      - run: npm 
+
+
+      # - name: Run the test job
+      #   run: mkdir jobs; wget https://spyd.com/fgm.ca/datasets/bcjob.fgmj -O jobs/testjob.fgmj
