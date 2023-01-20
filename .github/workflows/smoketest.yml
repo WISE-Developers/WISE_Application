@@ -62,7 +62,6 @@ jobs:
         run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004-1.0.0-beta.deb
       - name: Check exect Ubuntu Version
         run: cat /etc/issue; uname -a;
-      - name: Capture WISE version - Workaround for Bug #172
-        run: echo "WISE_VER=$(/usr/bin/wise --version)" >> $GITHUB_ENV
-      - name: Display WISE Version
-        run: echo $WISE_VER
+      - name: show WISE version - Workaround for Bug #172
+        run: wise -v | grep version
+      
