@@ -87,11 +87,12 @@ jobs:
           node-version: 16
       - run: npm init -y
       - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
-      - name: install deps
-        run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
-      - name: create a test job from a model script
-        run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
+      - run: cd node_modules/wise_js_api/dist/; npm i; 
+      #- name: install deps
+      #  run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
+      #- name: create a test job from a model script
+      #  run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
       - name: execute the test job
-        run: node testjob.js
+        run:  node example_job.js
       # - name: Run the test job
       #   run: mkdir jobs; wget https://spyd.com/fgm.ca/datasets/bcjob.fgmj -O jobs/testjob.fgmj
