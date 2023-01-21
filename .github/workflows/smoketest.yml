@@ -93,6 +93,6 @@ jobs:
       #- name: create a test job from a model script
       #  run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
       - name: execute the test job
-        run:  pwd;node example_job.js
+        run:  cd node_modules/wise_js_api/dist/;node example_job.js
       # - name: Run the test job
       #   run: mkdir jobs; wget https://spyd.com/fgm.ca/datasets/bcjob.fgmj -O jobs/testjob.fgmj
