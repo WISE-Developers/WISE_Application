@@ -88,6 +88,16 @@ jobs:
       - run: npm init -y
       - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
       - run: cd node_modules/wise_js_api/dist/; npm i; 
+      - name: Install and run Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          check-latest: true
+      - run: java -jar /usr/bin/PSaaS_Builder.jar
+
+      
+      
       #- name: install deps
       #  run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
       #- name: create a test job from a model script
