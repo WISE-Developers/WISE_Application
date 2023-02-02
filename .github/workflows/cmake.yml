@@ -40,7 +40,7 @@ jobs:
         path: WISE_Application
     - uses: actions/checkout@v3
       with:
-        repository: WISE-Developers/versions
+        repository: WISE-Developers/WISE_Versions
         path: versions
         token: ${{ secrets.WISE_PAT }}
     - uses: actions/checkout@v3
@@ -792,7 +792,7 @@ jobs:
       shell: pwsh
       run: |
         $versions = ConvertFrom-StringData (Get-Content versions/versions.properties -raw)
-        $PROM_VERSION=$($versions.prometheus)
+        $PROM_VERSION=$($versions.wise)
         $PROM_CMAKE_VERSION=$PROM_VERSION.split('-')[0]
         echo "Updating to version $PROM_VERSION"
         echo "prometheus_version=$PROM_VERSION" >> $env:GITHUB_OUTPUT
