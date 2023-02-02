@@ -3,6 +3,6 @@ Version: 2021.06-01
 Section: utils
 Priority: optional
 Architecture: amd64
-Depends: libxerces-c3.2 (>= 3.2.2), libgdal26 (>= 3.0.4), proj-bin (>= 6.3.1-1), libc6 (>= 2.31), libstdc++6 (>= 10-20200411-0ubuntu1), libnuma1 (>= 2.0.12-1)
+Depends: libxerces-c3.2 (>= 3.2.2), libgdal26 (>= 3.0.4), proj-bin (>= 6.3.1-1), libc6 (>= 2.31), libstdc++6 (>= 10-20200411-0ubuntu1), libnuma1 (>= 2.0.12-1), libgomp1 (>=10)
 Maintainer: Heartland Software Solutions
 Description: W.I.S.E.

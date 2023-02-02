@@ -8,9 +8,9 @@
 !define PRODUCT_VERSION "${VER_MINOR}.${VER_MAINTENANCE}.${VER_BUILD}"
 !define SETUP_VERSION "${PRODUCT_VERSION}_${VER_RELEASE_DATE}"
 !define PRODUCT_PUBLISHER "The W.I.S.E. Development Team"
-!define REGISTRY_LOCATION "CWFGM Project Steering Committee"
+!define REGISTRY_LOCATION "WISE"
 !define PRODUCT_WEB_SITE "http://www.firegrowthmodel.ca"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\Prometheus.exe"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\WISE.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define MULTIUSER_EXECUTIONLEVEL "Highest"
 !define sysGetDiskFreeSpaceEx 'kernel32::GetDiskFreeSpaceExA(t, *l, *l, *l) i'
@@ -822,7 +822,7 @@ Section Uninstall
 
   SetShellVarContext current
   Delete "$SMPROGRAMS\WISE\Uninstall.lnk"
-  Delete "$DESKTOP\Prometheus v7.lnk"
+  Delete "$DESKTOP\WISE.lnk"
   Delete "$SMPROGRAMS\WISE\WISE.lnk"
   RMDir "$SMPROGRAMS\WISE"
   SetShellVarContext all ; this exists so that all icons/menu entries are properly cleaned up regardless of whether WISE was installed for all users or a single user
