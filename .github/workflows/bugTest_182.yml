@@ -1,0 +1,42 @@
+name: Test for Bug 182
+
+on: workflow_dispatch
+
+jobs:
+
+  bugtest_182:
+    runs-on: ubuntu-20.04
+    steps:
+      # - name: Download WISE Ubuntu 20.04
+      #   uses: robinraju/release-downloader@v1.7
+      #   with:
+      #     repository: "WISE-Developers/WISE_Application"
+      #     latest: true
+      #     fileName: "wise-ubuntu2004-*.deb"
+      #     tarBall: false
+      #     zipBall: false
+      #     out-file-path: "test/wise"
+      # - name: Install WISE
+      #   run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004-1*beta.deb
+
+      - name: get the builder
+        uses: robinraju/release-downloader@v1.7
+        with:
+          latest: true
+          fileName: "WISE_Builder-*.zip"
+          out-file-path: "builder"
+          repository: "WISE-Developers/WISE_Builder_Component"
+      - name: unzip the builder
+        run: ls -lha;cd builder; ls -lha; unzip *.zip
+      - name: install the builder
+        run: ls -lha;cd builder;chmod 777 WISE_Builder.jar; ls -lha; sudo cp -f WISE_Builder.jar /usr/bin/; sudo cp -Rf WISE_Builder_lib/ /usr/bin/
+   
+      - name: Install JDK 17 and run builder
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          check-latest: true
+      - run: java -jar /usr/bin/WISE_Builder.jar --version
+
+      
