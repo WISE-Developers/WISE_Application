@@ -284,7 +284,7 @@ int main(int argc, char* argv[])
 	}
 	else if (vm.count("verbose-version"))
 	{
-		std::cout << "Testing Prometheus setup" << std::endl;
+		std::cout << "Testing W.I.S.E. setup" << std::endl;
 		std::cout << "Version: " VER_PROMETHEUS_VERSION_FULL_STRING << std::endl;
 		std::cout << "Released: " VER_RELEASE_DATE << std::endl;
 		std::string m_path;
