@@ -1485,16 +1485,17 @@ jobs:
         LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
         echo "WISE_Processing_Lib_tag=$LAST_TAG" >> $GITHUB_OUTPUT
         cd ../WISE_Application
-        LAST_TAG=$(git describe --match "w[0-9\.\-]*" --abbrev=0 --tags)
+        LAST_TAG=$(git describe --abbrev=0 --tags)
         echo "WISE_Application_tag=$LAST_TAG" >> $GITHUB_OUTPUT
         
     - name: Tag the repository
       run: |
+        RELEASE_VERSION=${{ needs.build.outputs.release_version }}
         RELEASE_TAG=w${{ needs.build.outputs.release_version }}
         cd WISE_Application
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git tag -a $RELEASE_TAG -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
+        git tag -a $RELEASE_VERSION -m "W.I.S.E. release on $(date +'%Y-%m-%d') for commit $(git rev-parse HEAD)"
         cd ../WISE_Processing_Lib
         git config user.name github-actions
         git config user.email github-actions@github.com
@@ -1630,7 +1631,7 @@ jobs:
       id: WISE_Application-build-notes
       uses: mikepenz/release-changelog-builder-action@v3.5.0
       with:
-        toTag: w${{ needs.build.outputs.release_version }}
+        toTag: ${{ needs.build.outputs.release_version }}
         fromTag: ${{ steps.previoustag.outputs.WISE_Application_tag }}
         owner: WISE-Developers
         repo: WISE_Application
@@ -1778,4 +1779,4 @@ jobs:
           wise-${{ needs.build.outputs.release_version }}.exe
           wise-ubuntu2204-${{ needs.build.outputs.release_version }}.deb
           wise-ubuntu2004-${{ needs.build.outputs.release_version }}.deb
-        tag_name: refs/tags/w${{ needs.build.outputs.release_version }}
+        tag_name: refs/tags/${{ needs.build.outputs.release_version }}
