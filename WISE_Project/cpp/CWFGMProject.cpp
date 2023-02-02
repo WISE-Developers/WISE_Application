@@ -2387,15 +2387,15 @@ bool Project::CWFGMProject::ExportParameterGrid(const TCHAR *szPath, T* const ac
 		void *context;
 		res = exporter.GDALExport_Open(szPath, GDT_Float64, (ParaOption == PARA_RAZ) ? 8 : 7, &context);
 		int l = 1;
-		stat = "Accumulated "; stat += stat_name; res = exporter.GDALExport_Append(sacc, "Prometheus Statistic", stat.c_str(), l++, &context);
+		stat = "Accumulated "; stat += stat_name; res = exporter.GDALExport_Append(sacc, "W.I.S.E. Statistic", stat.c_str(), l++, &context);
 		if (ParaOption == PARA_RAZ)
 		{
-			exporter.GDALExport_Append(sacc2, "Prometheus Statistic", (stat + " 2").c_str(), l++, &context);
+			exporter.GDALExport_Append(sacc2, "W.I.S.E. Statistic", (stat + " 2").c_str(), l++, &context);
 		}
-		stat = "Minimum "; stat += stat_name; res = exporter.GDALExport_Append(smin, "Prometheus Statistic", stat.c_str(), l++, &context);
-		stat = "Maximum "; stat += stat_name; res = exporter.GDALExport_Append(smax, "Prometheus Statistic", stat.c_str(), l++, &context);
+		stat = "Minimum "; stat += stat_name; res = exporter.GDALExport_Append(smin, "W.I.S.E. Statistic", stat.c_str(), l++, &context);
+		stat = "Maximum "; stat += stat_name; res = exporter.GDALExport_Append(smax, "W.I.S.E. Statistic", stat.c_str(), l++, &context);
 
-		stat = "Count of "; stat += stat_name; res = exporter.GDALExport_Append(scnt, "Prometheus Statistic", stat.c_str(), l++, &context);
+		stat = "Count of "; stat += stat_name; res = exporter.GDALExport_Append(scnt, "W.I.S.E. Statistic", stat.c_str(), l++, &context);
 
 		std::int64_t size = (std::int64_t)sxSize * (std::int64_t)sySize;
 		for (std::int64_t ii = 0; ii < size; ii++)
@@ -2421,7 +2421,7 @@ bool Project::CWFGMProject::ExportParameterGrid(const TCHAR *szPath, T* const ac
 				}
 			}
 		}
-		stat = "Mean "; stat += stat_name; res = exporter.GDALExport_Append(stddev, "Prometheus Statistic", stat.c_str(), l++, &context);
+		stat = "Mean "; stat += stat_name; res = exporter.GDALExport_Append(stddev, "W.I.S.E. Statistic", stat.c_str(), l++, &context);
 
 		for (std::int64_t ii = 0; ii < size; ii++)
 		{
@@ -2446,7 +2446,7 @@ bool Project::CWFGMProject::ExportParameterGrid(const TCHAR *szPath, T* const ac
 					stddev[ii] = -9999.0;
 			}
 		}
-		stat = "Std. Dev. "; stat += stat_name; res = exporter.GDALExport_Append(stddev, "Prometheus Statistic", stat.c_str(), l++, &context);
+		stat = "Std. Dev. "; stat += stat_name; res = exporter.GDALExport_Append(stddev, "W.I.S.E. Statistic", stat.c_str(), l++, &context);
 
 		for (std::int64_t ii = 0; ii < size; ii++)
 		{
@@ -2455,7 +2455,7 @@ bool Project::CWFGMProject::ExportParameterGrid(const TCHAR *szPath, T* const ac
 			else
 				stddev[ii] = 0.0;
 		}
-		stat = "Std. Err. "; stat += stat_name; res = exporter.GDALExport_Append(stddev, "Prometheus Statistic", stat.c_str(), l++, &context);
+		stat = "Std. Err. "; stat += stat_name; res = exporter.GDALExport_Append(stddev, "W.I.S.E. Statistic", stat.c_str(), l++, &context);
 
 		res = exporter.GDALExport_Complete(&context);
 
@@ -3252,7 +3252,7 @@ HRESULT Project::CWFGMProject::PrintReportTxt(const TCHAR *szPath, const PrintRe
 
 	std::string resultString;
 	WTime today = WTime::Now(m_timeManager, WTIME_FORMAT_AS_LOCAL | WTIME_FORMAT_WITHDST);
-	resultString += _T("Prometheus Fire Growth Model (Version ") + std::string(VersionNumber) + _T(" released on ") + ReleaseDate + _T(")\n\n");
+	resultString += _T("W.I.S.E. Fire Growth Model (Version ") + std::string(VersionNumber) + _T(" released on ") + ReleaseDate + _T(")\n\n");
 	if (FGMName)
 		resultString += _T("FGM File Name: ") + std::string(FGMName) + _T("\n");
 	resultString += _T("Date of Report: ") + today.ToString(WTIME_FORMAT_AS_LOCAL | WTIME_FORMAT_WITHDST | WTIME_FORMAT_DATE | WTIME_FORMAT_YEAR | WTIME_FORMAT_TIME | WTIME_FORMAT_EXCLUDE_SECONDS) + _T("\n");

@@ -945,7 +945,7 @@ void exportVectors(const int w_export_i, const int w_export_cnt, worker_struct* 
 						a_unit = ws->sp->m_unitConversion.AreaDisplay();
 					}
 
-					std::string version("Prometheus ");
+					std::string version("W.I.S.E. ");
 					version += VER_PROMETHEUS_VERSION_FULL_STRING;
 
 					bool really_exported = true;

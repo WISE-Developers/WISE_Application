@@ -48,7 +48,7 @@ struct _error_msg
 	const char* msg;
 };
 
-const char* _internal_error_msg = "Internal Error - Please report this to the Prometheus support team.";
+const char* _internal_error_msg = "Internal Error - Please report this to the W.I.S.E. support team.";
 const struct _error_msg _error_msgs[] = {
 	{ E_OUTOFMEMORY,							"Insufficient memory." },
 	{ ERROR_ACCESS_DENIED | ERROR_SEVERITY_WARNING,				"Cannot open file - access denied." },
@@ -89,10 +89,10 @@ const struct _error_msg _error_msgs[] = {
 	{ ERROR_FIRE_INVALID_TIME,						"Request for statistics for an invalid time." },
 	{ ERROR_FIRE_STAT_UNKNOWN,						"Request for an unknown statistics value." },
 	{ ERROR_POINT_NOT_IN_FIRE,						"Request for a data point inside the fire perimeter, which actually is not." },
-	{ E_NOTIMPL,								"Internal E_NOTIMPL Error - please report this to the Prometheus support team.", },
-	{ E_UNEXPECTED,								"Internal E_UNEXPECTED Error - please report this to the Prometheus support team." },
-	{ E_FAIL,								"Internal E_FAIL Error - Please report this to the Prometheus support team." },
-	{ E_NOINTERFACE,							"Internal E_NOINTERFACE Error - Please report this to the Prometheus support team." },
+	{ E_NOTIMPL,								"Internal E_NOTIMPL Error - please report this to the W.I.S.E. support team.", },
+	{ E_UNEXPECTED,								"Internal E_UNEXPECTED Error - please report this to the W.I.S.E. support team." },
+	{ E_FAIL,								"Internal E_FAIL Error - Please report this to the W.I.S.E. support team." },
+	{ E_NOINTERFACE,							"Internal E_NOINTERFACE Error - Please report this to the W.I.S.E. support team." },
 	{ ERROR_GRID_WEATHER_NOT_IMPLEMENTED,					_internal_error_msg },
 	{ ERROR_GRID_WEATHER_NO_DATA,						_internal_error_msg },
 	{ ERROR_FIRE_IGNITION_TYPE_UNKNOWN,					_internal_error_msg },
@@ -137,7 +137,7 @@ const struct _error_msg _error_msgs[] = {
 	{ ERROR_SECTOR_TOO_SMALL,						"The sector angle specified span an angle less than MINIMUM_SECTOR_ANGLE." },
 	{ ERROR_SPEED_OUT_OF_RANGE,						"The wind speed specified is out of range." },
 
-	{ (HRESULT)0,									"Undescribed Error - Please report this to the Prometheus support team." }
+	{ (HRESULT)0,									"Undescribed Error - Please report this to the W.I.S.E. support team." }
 };
 
 
@@ -228,11 +228,11 @@ HRESULT SPARCS_P::Initialize_SPARCS_P()
     	if (!Project::FuelCollection::m_fuelCollection_Canada)
 		{
 			if (FAILED(hr = (Project::FuelCollection::m_fuelMap_Canada = new CCWFGM_FuelMap()) ? S_OK : E_FAIL))
-				RETURN_MSG(hr, "FuelCom.DLL is not registered or an invalid version for this version of Prometheus.");
+				RETURN_MSG(hr, "FuelCom.DLL is not registered or an invalid version for this version of W.I.S.E.");
 			if (FAILED(hr = (Project::FuelCollection::m_fuelMap_NewZealand = new CCWFGM_FuelMap()) ? S_OK : E_FAIL))
-				RETURN_MSG(hr, "FuelCom.DLL is not registered or an invalid version for this version of Prometheus.");
+				RETURN_MSG(hr, "FuelCom.DLL is not registered or an invalid version for this version of W.I.S.E.");
 			if (FAILED(hr = (Project::FuelCollection::m_fuelMap_Tasmania = new CCWFGM_FuelMap()) ? S_OK : E_FAIL))
-				RETURN_MSG(hr, "FuelCom.DLL is not registered or an invalid version for this version of Prometheus.");
+				RETURN_MSG(hr, "FuelCom.DLL is not registered or an invalid version for this version of W.I.S.E.");
 
 			Project::FuelCollection::m_fuelCollection_Canada = new Project::FuelCollection(Project::FuelCollection::m_fuelMap_Canada.get(), "Fuel Defaults");
 			Project::FuelCollection::m_fuelCollection_NewZealand = new Project::FuelCollection(Project::FuelCollection::m_fuelMap_NewZealand.get(), "NZ Fuel Defaults");
