@@ -169,7 +169,7 @@ int _tmain(int argc, TCHAR* argv[])
 int main(int argc, char* argv[])
 #endif
 {
-	int nRetCode = 0;
+	int nRetCode = 1;
 
 #ifdef _MSC_VER
 	HMODULE hModule = ::GetModuleHandle(NULL);
@@ -267,20 +267,20 @@ int main(int argc, char* argv[])
 	if (vm.count("v2"))
 	{
 		std::cout << VER_PROMETHEUS_VERSION_FULL_STRING << std::endl;
-		nRetCode = 1;
+		nRetCode = 0;
 	}
 	//output the version number in a human readable format
 	else if (vm.count("version"))
 	{
 		std::cout << "W.I.S.E. version " VER_PROMETHEUS_VERSION_FULL_STRING << std::endl;
 		std::cout << "Released " VER_RELEASE_DATE << std::endl;
-		nRetCode = 1;
+		nRetCode = 0;
 	}
 	//output the help message
 	else if (vm.count("help"))
 	{
 		printUsage(desc);
-		nRetCode = 1;
+		nRetCode = 0;
 	}
 	else if (vm.count("verbose-version"))
 	{
@@ -317,7 +317,7 @@ int main(int argc, char* argv[])
 			std::cout << "Unable to load Java: " << REDapp::REDappWrapper::GetErrorDescription() << std::endl << "Tested Paths:" << std::endl << REDapp::REDappWrapper::GetDetailedError() << std::endl;
         else
             std::cout << "Found Java at " << REDapp::REDappWrapper::GetJavaPath() << std::endl;
-		nRetCode = 1;
+		nRetCode = 0;
 	}
 	else if (vm.count("sysinfo"))
 	{
@@ -360,13 +360,14 @@ int main(int argc, char* argv[])
 		}
 		if (memoryContents.size())
 			std::cout << memoryContents << std::endl;
-		nRetCode = 1;
+		nRetCode = 0;
 #ifdef _MSC_VER
 		SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), origMode);
 #endif
 	}
 	else
 	{
+		nRetCode = 0;
 		bool isValid = true;
 		bool doConvert = false;
 		fs::path input;
