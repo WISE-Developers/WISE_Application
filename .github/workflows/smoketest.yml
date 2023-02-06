@@ -94,12 +94,15 @@ jobs:
         with:
           node-version: 16
    
-      - run: npm init -y
-      - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
-      - run: cp node_modules/wise_js_api/package.json ./
-      - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
-      - run: npm install
-      - run: npm config set WISE_JS_API:job_directory=/home/runner/work/WISE_Application/WISE_Application/jobs
+      # - run: npm init -y
+      # - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
+      # - run: cp node_modules/wise_js_api/package.json ./
+      - run: |
+          mkdir -p /home/runner/work/WISE_Application/WISE_Application/jobs;
+          cd node_modules/wise_js_api/dist/; 
+          npm i git+https://github.com/WISE-Developers/WISE_JS_API.git ;
+          npm install;
+          npm config set WISE_JS_API:job_directory=/home/runner/work/WISE_Application/WISE_Application/jobs;
       
       - name: Install and run Java
         uses: actions/setup-java@v3
@@ -118,13 +121,12 @@ jobs:
       # - name: execute the test job
       #   run:  cd node_modules/wise_js_api/dist/;node example_job.js
       
-      - name: create a test job from a model script
-        run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
+      # - name: create a test job from a model script
+      #   run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
       - name: execute the test job
-        run: | 
-          ls -lha;
-          cat testjob.js;
-          node testjob.js;
+        run: |
+          cat node_modules/wise_js_api/dist/example_job.js;
+          node node_modules/wise_js_api/dist/example_job.js;
 
       # - name: Setup test job
       #   run: mkdir jobs; wget https://spyd.com/fgm.ca/datasets/bcjob.fgmj -O jobs/testjob.fgmj
