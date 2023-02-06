@@ -94,8 +94,8 @@ jobs:
         with:
           node-version: 16
    
-      # - run: npm init -y
-      # - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
+      - run: npm init -y
+      - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
       # - run: cp node_modules/wise_js_api/package.json ./
       - run: |
           mkdir -p /home/runner/work/WISE_Application/WISE_Application/jobs;
