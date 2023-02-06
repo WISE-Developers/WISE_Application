@@ -94,7 +94,11 @@ jobs:
           node-version: 16
       - run: npm init -y
       - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
-      - run: cd node_modules/wise_js_api/dist/; npm i; 
+      - run: |
+            cd node_modules/wise_js_api/dist
+            npm i
+            
+        # npm config set WISE_JS_API:job_directory=/usr/src/app/wisedemo/$HOST_JOBS_FOLDER
       - name: Install and run Java
         uses: actions/setup-java@v3
         with:
@@ -102,7 +106,7 @@ jobs:
           java-version: '17'
           check-latest: true
       - run: java -jar /usr/bin/WISE_Builder.jar --version
-
+      - run: pwd
       
       
       #- name: install deps
