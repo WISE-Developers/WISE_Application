@@ -96,9 +96,8 @@ jobs:
       - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
       - run: |
             cd node_modules/wise_js_api/dist
-            npm i
-            
-        # npm config set WISE_JS_API:job_directory=/usr/src/app/wisedemo/$HOST_JOBS_FOLDER
+            npm i          
+            npm config set WISE_JS_API:job_directory=/home/runner/work/WISE_Application/WISE_Application/jobs
       - name: Install and run Java
         uses: actions/setup-java@v3
         with:
