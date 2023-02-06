@@ -93,7 +93,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
+   
+      - run: npm init -y
+      - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
       - run: cp node_modules/wise_js_api/package.json ./
       - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
       - run: npm install
