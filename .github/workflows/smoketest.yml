@@ -80,14 +80,21 @@ jobs:
       - name: unzip the builder
         run: ls -lha;cd builder; ls -lha; unzip *.zip
       - name: install the builder
-        run: ls -lha;cd builder;chmod 777 WISE_Builder.jar; ls -lha; sudo cp -f WISE_Builder.jar /usr/bin/; sudo cp -Rf WISE_Builder_lib/ /usr/bin/
-      - name: Install NodeJS and WISE JS API
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm init -y
-      - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
-      - run: cd node_modules/wise_js_api/dist/; npm i; 
+        run: |
+          ls -lha
+          cd builder
+          chmod 777 WISE_Builder.jar
+          chmod -R 777 WISE_Builder_lib/
+          ls -lha
+          sudo cp -f WISE_Builder.jar /usr/bin/
+          sudo cp -Rf WISE_Builder_lib/ /usr/bin/
+      # - name: Install NodeJS and WISE JS API
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16
+      # - run: npm init -y
+      # - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
+      # - run: cd node_modules/wise_js_api/dist/; npm i; 
       - name: Install and run Java
         uses: actions/setup-java@v3
         with:
@@ -102,7 +109,7 @@ jobs:
       #  run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
       #- name: create a test job from a model script
       #  run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
-      - name: execute the test job
-        run:  cd node_modules/wise_js_api/dist/;node example_job.js
+      # - name: execute the test job
+      #   run:  cd node_modules/wise_js_api/dist/;node example_job.js
       # - name: Run the test job
       #   run: mkdir jobs; wget https://spyd.com/fgm.ca/datasets/bcjob.fgmj -O jobs/testjob.fgmj
