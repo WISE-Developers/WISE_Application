@@ -61,8 +61,8 @@ jobs:
         run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004-1*beta.deb
       - name: Check exect Ubuntu Version
         run: cat /etc/issue; uname -a;
-      - name: show WISE version - Workaround for Bug #172
-        run: wise -v | grep version
+      # - name: show WISE version - Workaround for Bug #172
+      #   run: wise -v | grep version
       - name: get the manager
         uses: robinraju/release-downloader@v1.7
         with:
@@ -111,5 +111,11 @@ jobs:
       #  run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
       # - name: execute the test job
       #   run:  cd node_modules/wise_js_api/dist/;node example_job.js
-      # - name: Run the test job
+      
+      - name: create a test job from a model script
+        run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
+      - name: execute the test job
+        run: node testjob.js
+
+      # - name: Setup test job
       #   run: mkdir jobs; wget https://spyd.com/fgm.ca/datasets/bcjob.fgmj -O jobs/testjob.fgmj
