@@ -88,17 +88,17 @@ jobs:
           ls -lha
           sudo cp -f WISE_Builder.jar /usr/bin/
           sudo cp -Rf WISE_Builder_lib/ /usr/bin/
+
       - name: Install NodeJS and WISE JS API
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      #- run: npm init -y
 
+      - run: cp node_modules/wise_js_api/package.json ./
       - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
-      - run: |
-            cp node_modules/wise_js_api/package.json ./
-            npm i          
-            npm config set WISE_JS_API:job_directory=/home/runner/work/WISE_Application/WISE_Application/jobs
+      - run: npm install
+      - run: npm config set WISE_JS_API:job_directory=/home/runner/work/WISE_Application/WISE_Application/jobs
+      
       - name: Install and run Java
         uses: actions/setup-java@v3
         with:
