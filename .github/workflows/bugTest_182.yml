@@ -29,7 +29,14 @@ jobs:
       - name: unzip the builder
         run: ls -lha;cd builder; ls -lha; unzip *.zip
       - name: install the builder
-        run: ls -lha;cd builder;chmod 777 WISE_Builder.jar; ls -lha; sudo cp -f WISE_Builder.jar /usr/bin/; sudo cp -Rf WISE_Builder_lib/ /usr/bin/
+        run: |
+          ls -lha
+          cd builder
+          chmod 777 WISE_Builder.jar
+          chmod -R 777 WISE_Builder_lib/
+          ls -lha
+          sudo cp -f WISE_Builder.jar /usr/bin/
+          sudo cp -Rf WISE_Builder_lib/ /usr/bin/
    
       - name: Install JDK 17 and run builder
         uses: actions/setup-java@v3
