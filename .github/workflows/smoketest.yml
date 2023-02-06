@@ -94,7 +94,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           check-latest: true
-      - run: java -jar /usr/bin/WISE_Builder.jar
+      - run: java -jar /usr/bin/WISE_Builder.jar --version
 
       
       
