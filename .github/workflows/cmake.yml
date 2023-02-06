@@ -203,7 +203,7 @@ jobs:
         out-file-path: "proto/WTime"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download LowLevel lib
+    - name: Download LowLevel lib (Win)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'windows-2019'
       with:
@@ -215,7 +215,7 @@ jobs:
         out-file-path: "dlibs/HSS_LowLevel"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download LowLevel lib
+    - name: Download LowLevel lib (Ubuntu 20.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-20.04'
       with:
@@ -227,7 +227,7 @@ jobs:
         out-file-path: "dlibs/HSS_LowLevel"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download LowLevel lib
+    - name: Download LowLevel lib (Ubuntu 22.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-22.04'
       with:
@@ -239,7 +239,7 @@ jobs:
         out-file-path: "dlibs/HSS_LowLevel"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download ErrorCalc lib
+    - name: Download ErrorCalc lib (Win)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'windows-2019'
       with:
@@ -251,7 +251,7 @@ jobs:
         out-file-path: "dlibs/ErrorCalc"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download ErrorCalc lib
+    - name: Download ErrorCalc lib (Ubuntu 20.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-20.04'
       with:
@@ -263,7 +263,7 @@ jobs:
         out-file-path: "dlibs/ErrorCalc"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download ErrorCalc lib
+    - name: Download ErrorCalc lib Ubuntu 22.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-22.04'
       with:
@@ -275,7 +275,7 @@ jobs:
         out-file-path: "dlibs/ErrorCalc"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download Multithread lib
+    - name: Download Multithread lib (Win)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'windows-2019'
       with:
@@ -287,7 +287,7 @@ jobs:
         out-file-path: "dlibs/HSS_Multithread"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download Multithread lib
+    - name: Download Multithread lib (Ubuntu 20.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-20.04'
       with:
@@ -299,7 +299,7 @@ jobs:
         out-file-path: "dlibs/HSS_Multithread"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download Multithread lib
+    - name: Download Multithread lib Ubuntu 22.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-22.04'
       with:
@@ -311,7 +311,7 @@ jobs:
         out-file-path: "dlibs/HSS_Multithread"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download Math lib
+    - name: Download Math lib (Win)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'windows-2019'
       with:
@@ -323,7 +323,7 @@ jobs:
         out-file-path: "dlibs/HSS_Math"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download Math lib
+    - name: Download Math lib (Ubuntu 20.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-20.04'
       with:
@@ -335,7 +335,7 @@ jobs:
         out-file-path: "dlibs/HSS_Math"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download Math lib
+    - name: Download Math lib (Ubuntu 22.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-22.04'
       with:
@@ -347,7 +347,7 @@ jobs:
         out-file-path: "dlibs/HSS_Math"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download Geography lib
+    - name: Download Geography lib (Win)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'windows-2019'
       with:
@@ -359,7 +359,7 @@ jobs:
         out-file-path: "dlibs/HSS_Geography"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download Geography lib
+    - name: Download Geography lib (Ubuntu 20.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-20.04'
       with:
@@ -371,7 +371,7 @@ jobs:
         out-file-path: "dlibs/HSS_Geography"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download Geography lib
+    - name: Download Geography lib (Ubuntu 22.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-22.04'
       with:
@@ -383,7 +383,7 @@ jobs:
         out-file-path: "dlibs/HSS_Geography"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download WTime lib
+    - name: Download WTime lib (Win)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'windows-2019'
       with:
@@ -395,7 +395,7 @@ jobs:
         out-file-path: "dlibs/WTime"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download WTime lib
+    - name: Download WTime lib (Ubuntu 20.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-20.04'
       with:
@@ -407,7 +407,7 @@ jobs:
         out-file-path: "dlibs/WTime"
         token: ${{ secrets.HSS_PAT }}
 
-    - name: Download WTime lib
+    - name: Download WTime lib (Ubuntu 22.04)
       uses: robinraju/release-downloader@v1.7
       if: matrix.os == 'ubuntu-22.04'
       with:
@@ -448,7 +448,7 @@ jobs:
         Expand-Archive dlibs/HSS_Geography/lib-Windows-2019.zip -DestinationPath dlibs
         Expand-Archive dlibs/WTime/lib-Windows-2019.zip -DestinationPath dlibs
         
-    - name: Unarchive downloaded Ubuntu libraries
+    - name: Unarchive downloaded Ubuntu 20.04 libraries
       if: matrix.os == 'ubuntu-20.04'
       shell: pwsh
       run: |
@@ -459,7 +459,7 @@ jobs:
         Expand-Archive dlibs/HSS_Geography/lib-Ubuntu-20.04.zip -DestinationPath dlibs
         Expand-Archive dlibs/WTime/lib-Ubuntu-20.04.zip -DestinationPath dlibs
         
-    - name: Unarchive downloaded Ubuntu libraries
+    - name: Unarchive downloaded Ubuntu 22.04 libraries
       if: matrix.os == 'ubuntu-22.04'
       shell: pwsh
       run: |
@@ -470,7 +470,7 @@ jobs:
         Expand-Archive dlibs/HSS_Geography/lib-Ubuntu-22.04.zip -DestinationPath dlibs
         Expand-Archive dlibs/WTime/lib-Ubuntu-22.04.zip -DestinationPath dlibs
         
-    - name: Set up JDK 8
+    - name: Set up JDK 8 (Win)
       if: matrix.os == 'windows-2019'
       uses: actions/setup-java@v3
       with:
@@ -479,7 +479,7 @@ jobs:
         server-id: github
         cache: 'maven'
 
-    - name: Set up JDK 11
+    - name: Set up JDK 11 (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       uses: actions/setup-java@v3
       with:
@@ -503,7 +503,7 @@ jobs:
         # Use the version as the key to only cache the correct version
         key: boost-${{ env.BOOST_VERSION }}
     
-    - name: Install boost Ubuntu
+    - name: Install boost (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       uses: egor-tensin/build-boost@v1
       id: install-boost
@@ -512,7 +512,7 @@ jobs:
         toolset: ${{ matrix.build_tool }}
         libraries: system chrono atomic iostreams program_options filesystem date_time
     
-    - name: Build zlib
+    - name: Build zlib (Win)
       if: matrix.os == 'windows-2019'
       id: install-zlib-windows
       shell: pwsh
@@ -529,7 +529,7 @@ jobs:
         $zlibpath = Resolve-Path -path install
         echo "zlib_install_dir=$zlibpath" >> $env:GITHUB_OUTPUT
         
-    - name: Install boost Windows
+    - name: Install boost (Win)
       if: matrix.os == 'windows-2019'
       id: install-boost-windows
       shell: pwsh
@@ -550,7 +550,7 @@ jobs:
         sudo apt update
         sudo apt install -y libgtest-dev libgdal-dev
         
-    - name: Download GDAL
+    - name: Download GDAL (Win)
       if: matrix.os == 'windows-2019'
       shell: pwsh
       run: |
@@ -565,7 +565,7 @@ jobs:
         Expand-Archive protobuf.zip -DestinationPath protobuf
         mv protobuf/protobuf-3.${{ env.PROTO_VERSION }}/* protobuf
         
-    - name: Build protobuf
+    - name: Build protobuf (Win)
       if: matrix.os == 'windows-2019'
       shell: pwsh
       run: |
@@ -582,7 +582,7 @@ jobs:
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
         
-    - name: Build protobuf
+    - name: Build protobuf (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       shell: pwsh
       run: |
@@ -595,7 +595,7 @@ jobs:
         cmake --build . --target protoc
         cp libprotobuf.a ../../../dlibs
         
-    - name: Build Proto definition files
+    - name: Build Proto definition files (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       shell: pwsh
       run: |
@@ -691,7 +691,7 @@ jobs:
         Move-Item proto/*.pb.cc -Destination cpp -force
         Move-Item proto/*.pb.h -Destination include -force
 
-    - name: Build Proto definition files
+    - name: Build Proto definition files (Win)
       if: matrix.os == 'windows-2019'
       shell: pwsh
       run: |
@@ -801,7 +801,7 @@ jobs:
         echo "wtime_version=$($versions.wtime)" >> $env:GITHUB_OUTPUT
         echo "hss_java_version=$($versions.hss_java)" >> $env:GITHUB_OUTPUT
       
-    - name: Configure KMLHelper Ubuntu
+    - name: Configure KMLHelper (Ubuntu)
       id: configure-kml-ubuntu
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
@@ -814,7 +814,7 @@ jobs:
         cmake --build .
         cp *.so* ../../../../dlibs
 
-    - name: Configure KMLHelper Windows
+    - name: Configure KMLHelper (Win)
       id: configure-kml-windows
       if: matrix.os == 'windows-2019'
       run: |
@@ -828,7 +828,7 @@ jobs:
         Copy-Item Release/*.lib ../../../../dlibs
         Copy-Item Release/*.dll ../../../../dlibs
       
-    - name: Configure REDappWrapper Ubuntu
+    - name: Configure REDappWrapper (Ubuntu)
       id: configure-ra-ubuntu
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
@@ -841,7 +841,7 @@ jobs:
         cmake --build .
         cp *.so* ../../../dlibs
 
-    - name: Configure REDappWrapper Windows
+    - name: Configure REDappWrapper (Win)
       id: configure-ra-windows
       if: matrix.os == 'windows-2019'
       run: |
@@ -855,7 +855,7 @@ jobs:
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
       
-    - name: Configure FWI Ubuntu
+    - name: Configure FWI (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_FWI_Module
@@ -867,7 +867,7 @@ jobs:
         cmake --build .
         cp *.so* ../../../dlibs
 
-    - name: Configure FWI Windows
+    - name: Configure FWI (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_FWI_Module
@@ -880,7 +880,7 @@ jobs:
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
       
-    - name: Configure FBP Ubuntu
+    - name: Configure FBP (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_FBP_Module
@@ -892,7 +892,7 @@ jobs:
         cmake --build .
         cp *.so* ../../../dlibs
 
-    - name: Configure FBP Windows
+    - name: Configure FBP (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_FBP_Module
@@ -905,7 +905,7 @@ jobs:
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
       
-    - name: Configure Grid Ubuntu
+    - name: Configure Grid (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_Grid_Module
@@ -917,7 +917,7 @@ jobs:
         cmake --build .
         cp *.so* ../../../dlibs
 
-    - name: Configure Grid Windows
+    - name: Configure Grid (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Grid_Module
@@ -930,7 +930,7 @@ jobs:
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
 
-    - name: Configure Weather Ubuntu
+    - name: Configure Weather (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_Weather_Module
@@ -942,7 +942,7 @@ jobs:
         cmake --build .
         cp *.so* ../../../dlibs
       
-    - name: Configure Weather Windows
+    - name: Configure Weather (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Weather_Module
@@ -955,7 +955,7 @@ jobs:
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
       
-    - name: Configure Fire Engine Ubuntu
+    - name: Configure Fire Engine (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_Scenario_Growth_Module
@@ -967,7 +967,7 @@ jobs:
         cmake --build .
         cp *.so* ../../../dlibs
       
-    - name: Configure Fire Engine Windows
+    - name: Configure Fire Engine (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Scenario_Growth_Module
@@ -980,7 +980,7 @@ jobs:
         Copy-Item Release/*.lib ../../../dlibs
         Copy-Item Release/*.dll ../../../dlibs
         
-    - name: Build Comms Proto definition files
+    - name: Build Comms Proto definition files (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       shell: pwsh
       run: |
@@ -997,7 +997,7 @@ jobs:
         ../../protobuf/cmake/build/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out java/src/main/java --proto_path ../../protobuf/src --proto_path proto status.proto
         Move-Item cpp/*.pb.h include -force
 
-    - name: Build Comms Proto definition files
+    - name: Build Comms Proto definition files (Win)
       if: matrix.os == 'windows-2019'
       shell: pwsh
       run: |
@@ -1014,7 +1014,7 @@ jobs:
         ../../protobuf/cmake/build/Release/protoc --experimental_allow_proto3_optional --cpp_out=cpp --java_out=java/src/main/java --proto_path ../../protobuf/src --proto_path proto status.proto
         Move-Item cpp/*.pb.h include -force
       
-    - name: Configure Defaults Ubuntu
+    - name: Configure Defaults (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_Communications_Module/WISE_Defaults
@@ -1026,7 +1026,7 @@ jobs:
         cmake --build .
         cp *.a ../../../../dlibs
       
-    - name: Configure Defaults Windows
+    - name: Configure Defaults (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Communications_Module/WISE_Defaults
@@ -1038,7 +1038,7 @@ jobs:
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../../dlibs
         
-    - name: Configure Server Comms Ubuntu
+    - name: Configure Server Comms (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_Communications_Module/WISE_Server_Comms
@@ -1050,7 +1050,7 @@ jobs:
         cmake --build .
         cp *.a ../../../../dlibs
       
-    - name: Configure Server Comms Windows
+    - name: Configure Server Comms (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Communications_Module/WISE_Server_Comms
@@ -1062,7 +1062,7 @@ jobs:
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../../dlibs
         
-    - name: Configure Status Ubuntu
+    - name: Configure Status (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_Communications_Module/WISE_Status
@@ -1074,7 +1074,7 @@ jobs:
         cmake --build .
         cp *.a ../../../../dlibs
       
-    - name: Configure Status Windows
+    - name: Configure Status (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Communications_Module/WISE_Status
@@ -1086,7 +1086,7 @@ jobs:
         cmake --build . --config ${{env.BUILD_TYPE}}
         Copy-Item Release/*.lib ../../../../dlibs
       
-    - name: Build Java
+    - name: Build Java (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_FWI_Module/java
@@ -1130,7 +1130,7 @@ jobs:
         cp target/lib/*.jar ../dlibs
         rm ../dlibs/log4j-*
         
-    - name: Build Java
+    - name: Build Java (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_FWI_Module/java
@@ -1174,7 +1174,7 @@ jobs:
         Copy-Item target/lib/*.jar ../dlibs
         del ../dlibs/log4j-*
 
-    - name: Configure Paho Ubuntu
+    - name: Configure Paho (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd paho
@@ -1196,7 +1196,7 @@ jobs:
         cd ../..
         cp install/lib/*.so* ../dlibs
       
-    - name: Configure Paho Windows
+    - name: Configure Paho (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd paho
@@ -1219,7 +1219,7 @@ jobs:
         cd ../..
         Copy-Item install/bin/*.dll ../dlibs
         
-    - name: Configure Project Ubuntu
+    - name: Configure Project (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_Application/WISE_Project
@@ -1231,7 +1231,7 @@ jobs:
         cmake --build .
         cp *.so* ../../../../dlibs
       
-    - name: Configure Project Windows
+    - name: Configure Project (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Application/WISE_Project
@@ -1276,7 +1276,7 @@ jobs:
         echo "#undef PROMETHEUS_PUBLIC" >> prom_vers.h
         echo "#endif" >> prom_vers.h
         
-    - name: Configure WISE Ubuntu
+    - name: Configure WISE (Ubuntu)
       if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
       run: |
         cd WISE_Application/WISE
@@ -1288,7 +1288,7 @@ jobs:
         cmake --build .
         cp wise* ../../../../dlibs
       
-    - name: Configure WISE Windows
+    - name: Configure WISE (Win)
       if: matrix.os == 'windows-2019'
       run: |
         cd WISE_Application/WISE
