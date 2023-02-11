@@ -243,8 +243,6 @@ int main(int argc, char* argv[])
 	//if the cores to use were set on the command line try to lock to those cores
 	if (coreCount > 0 || std::count(coreMask.begin(), coreMask.end(), '1') > 0)
 		GuessProcessorGroup(coreCount, coreOffset, coreMask);
-
-	hss::InitializeCOM(-1, hss::INIT_WITH_SECURITY);
 #if _DLL
 	theApp.InitInstance();	// ***** don't know if this is needed!
 #endif
