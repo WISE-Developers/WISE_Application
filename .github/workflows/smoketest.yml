@@ -22,7 +22,10 @@ jobs:
           
       - name: Install WISE
         run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004*.deb     
-        
+      
+      - name: Make the some important folders
+        run: mkdir -p /opt/wise && mkdir -p /opt/builder && mkdir -p /opt/jobs && mkdir -p /opt/jobs/examples/test
+      
       - name: Create Config File
         run: wget -c https://raw.githubusercontent.com/WISE-Developers/wise_demo/main/demo_data/test_helpers/sample_config.json -O /opt/jobs/config.json
 
@@ -37,8 +40,7 @@ jobs:
           out-file-path: "builder"
           repository: "WISE-Developers/WISE_Builder_Component"
           
-      - name: Make the some important folders
-        run: mkdir -p /opt/wise && mkdir -p /opt/builder && mkdir -p /opt/jobs && mkdir -p /opt/jobs/examples/test
+     
 
       - name: unzip the builder
         run: unzip WISE_Builder*.zip -d /opt/builder && rm WISE_Builder*.zip
