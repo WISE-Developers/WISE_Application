@@ -1384,7 +1384,7 @@ bool Project::Scenario::duplicateFilterList(const Scenario &s)
 
 
 HRESULT Project::Scenario::ExportFireFronts(Fire* fires, WTime& start_time, WTime& end_time, VectorExportOptions* options, USHORT flags,
-	const std::string& driver_name, const std::string& export_projection, const std::string& file_name,
+	std::string_view driver_name, const std::string& export_projection, const std::filesystem::path& file_name,
 	const TCHAR* fgm_name, const TCHAR* prometheus_version, ::UnitConvert::STORAGE_UNIT perimeter_units,
 	::UnitConvert::STORAGE_UNIT area_units, ::UnitConversion* uc, const USHORT child_flags) const
 {
@@ -1480,7 +1480,7 @@ HRESULT Project::Scenario::ExportFireFronts(Fire* fires, WTime& start_time, WTim
 	{
 		rules.AddStatistic(_T("DATE"), CWFGM_FIRE_STAT_DATE, 0);
 		rules.AddStatistic(_T("TIME"), CWFGM_FIRE_STAT_TIME, 0);
-		if ((!_tcsicmp(driver_name.c_str(), _T("LIBKML"))) || (!_tcsicmp(driver_name.c_str(), _T("KML"))))
+		if ((!_tcsicmp(driver_name.data(), _T("LIBKML"))) || (!_tcsicmp(driver_name.data(), _T("KML"))))
 			rules.AddStatistic(_T("TIMESTAMP"), CWFGM_FIRE_STAT_DATETIME, 0);
 	}
 
@@ -1677,7 +1677,7 @@ HRESULT Project::Scenario::ExportFireFronts(Fire* fires, WTime& start_time, WTim
 
 
 HRESULT Project::Scenario::ExportCriticalPath(const Asset* a, const std::uint32_t index, const std::uint16_t flags,
-	const char* driver_name, const char* export_projection, const char* file_path) const {
+	std::string_view driver_name, std::string& export_projection, const std::filesystem::path& file_path) const {
 	ScenarioExportRules rules;
 
 	rules.AddAttributeString(_T("SCENARIO"), m_name.c_str());

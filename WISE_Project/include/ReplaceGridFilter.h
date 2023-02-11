@@ -125,9 +125,9 @@ namespace Project
 		double Area() override;
 		bool ClearAllPolygons();
 
-		HRESULT ImportPolygons(const std::string &file_name, const std::vector<std::string> *pd);
+		HRESULT ImportPolygons(const std::filesystem::path &file_name, const std::vector<std::string_view> &permissible_drivers);
 		HRESULT ImportPolygonsWFS(const std::string &server, const std::string &layer, const std::string &uid, const std::string &pwd);
-		HRESULT ExportPolygons(const std::string &driver_name, const std::string &export_projection, const std::string &file_name);
+		HRESULT ExportPolygons(std::string_view driver_name, const std::string &export_projection, const std::filesystem::path &file_name);
 
 		HRESULT SetRelationship(ICWFGM_Fuel *from_fuel, UCHAR from_index, ICWFGM_Fuel *to_fuel) override;
 		HRESULT GetRelationship(ICWFGM_Fuel **from_fuel, UCHAR *from_index, ICWFGM_Fuel **to_fuel) const override;

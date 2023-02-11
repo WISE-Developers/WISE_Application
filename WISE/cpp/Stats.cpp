@@ -1643,8 +1643,9 @@ HRESULT exportAssetStats(UnitConversion& unitConversion, Project::CWFGMProject* 
 							builder->globalStats.arrivalCount++;
 
 							if (stats.criticalPathFilename.length()) {
-								auto [driver_name, projection_name] = sp->guessDriverNameFromFilename(stats.criticalPathFilename.c_str());
-								s->ExportCriticalPath(asset, j, 0, driver_name, projection_name, stats.criticalPathFilename.c_str());
+								std::filesystem::path fname(stats.criticalPathFilename);
+								auto [driver_name, projection_name] = sp->guessDriverNameFromFilename(fname);
+								s->ExportCriticalPath(asset, j, 0, driver_name, projection_name, fname);
 							}
 						}
 					}

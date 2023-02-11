@@ -115,9 +115,8 @@ auto Project::Fire::deserialize(const google::protobuf::Message& proto, std::sha
 
 		if (fire->has_ignition())
 		{
-			std::vector<std::string> drivers = GDAL_READ_DRIVERS;
 			SerializeIgnitionData data;
-			data.permissible_drivers = &drivers;
+			data.permissible_drivers = &Project::CWFGMProject::m_permissibleVectorReadDriversSA;
 			ISerializeProto* sp = m_fire.get();
 			if (!sp->deserialize(fire->ignition(), v, "ignition", &data))
 			{
@@ -183,9 +182,8 @@ auto Project::Fire::deserialize(const google::protobuf::Message& proto, std::sha
 		if (fire->has_symbol())
 			m_symbol = fire->symbol();
 
-		std::vector<std::string> drivers = GDAL_READ_DRIVERS;
 		SerializeIgnitionData data;
-		data.permissible_drivers = &drivers;
+		data.permissible_drivers = &Project::CWFGMProject::m_permissibleVectorReadDriversSA;
 		ISerializeProto* sp = m_fire.get();
 		if (!sp->deserialize(*fire, v, "ignition", &data))
 		{

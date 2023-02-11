@@ -18,5 +18,5 @@
 
 #pragma once
 
-#define GDAL_READ_DRIVERS_LENGTH 6
-#define GDAL_READ_DRIVERS { "ESRI Shapefile", "GPKG", "LIBKML", "KML", "ESRIJSON", "GeoJSON",  }
+#define GDAL_READ_DRIVERS { "ESRI Shapefile", "GPKG", "LIBKML", "KML", "ESRIJSON", "GeoJSON"  }
+static const std::vector<std::string_view> permissibleVectorReadDrivers = GDAL_READ_DRIVERS;

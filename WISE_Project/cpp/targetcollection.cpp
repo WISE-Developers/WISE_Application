@@ -75,13 +75,13 @@ void Project::Target::Clone(boost::intrusive_ptr<ICWFGM_Target>* target) const
 }
 
 
-HRESULT Project::Target::ImportPointSet(const std::string& file_name, const std::vector<std::string>& pd) {
+HRESULT Project::Target::ImportPointSet(const std::filesystem::path& file_name, const std::vector<std::string_view>& pd) {
 	auto vf = boost::dynamic_pointer_cast<CCWFGM_Target>(m_target);
-	return vf->ImportPointSet(file_name.c_str(), &pd);
+	return vf->ImportPointSet(file_name, pd);
 }
 
 
-HRESULT Project::Target::ExportPointSet(const std::string& driver_name, const std::string& export_projection, const std::string& file_name) {
+HRESULT Project::Target::ExportPointSet(std::string_view driver_name, const std::string& export_projection, const std::filesystem::path& file_name) {
 	auto vf = boost::dynamic_pointer_cast<CCWFGM_Target>(m_target);
 	return vf->ExportPointSet(driver_name, export_projection, file_name);
 }

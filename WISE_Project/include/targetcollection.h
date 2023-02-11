@@ -93,8 +93,8 @@ namespace Project
 		XY_Point* GetTargetSet(ULONG index, XY_Point* points, std::uint32_t* size);
 		BOOL ClearPointSets();
 
-		HRESULT ImportPointSet(const std::string& file_name, const std::vector<std::string>& pd);
-		HRESULT ExportPointSet(const std::string& driver_name, const std::string& export_projection, const std::string& file_name);
+		HRESULT ImportPointSet(const std::filesystem::path& file_name, const std::vector<std::string_view>& pd);
+		HRESULT ExportPointSet(std::string_view driver_name, const std::string& export_projection, const std::filesystem::path& file_name);
 
 	protected:
 		virtual void Clone(boost::intrusive_ptr<ICWFGM_Target>* /*target*/) const;

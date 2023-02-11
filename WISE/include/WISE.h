@@ -81,7 +81,7 @@ public:
 	MinListTempl<class SimMessage> m_list;
 
 	std::unique_ptr<ICWFGM_FWI>	m_fwi;
-	std::tuple<const char*, const char*> guessDriverNameFromFilename(const char *filename);
+	std::tuple<std::string_view, std::string> guessDriverNameFromFilename(std::filesystem::path& filename);
 
 	HRESULT Initialize_SPARCS_P();
 	virtual HRESULT ConnectMQTT(bool justSummary) { return ConnectMQTTProto(justSummary); }
