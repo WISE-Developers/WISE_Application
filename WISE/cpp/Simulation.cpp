@@ -29,7 +29,6 @@
 #include "Stats.h"
 #include "str_printf.h"
 #include "pevents.h"
-#include "COMInit.h"
 
 #ifdef __GNUC__
 #include <unistd.h>
@@ -193,9 +192,6 @@ static bool hasCumulativeOutputs(const Project::FGMOutputs& outputs, const std::
 
 static UINT AFX_CDECL worker_thread(void *parm)
 {
-#if _DLL
-		hss::InitializeCOM(COINIT_MULTITHREADED);
-#endif
 		struct worker_struct* ws = (struct worker_struct*)parm;
 		ws->worker->SetThreadPriority(THREAD_PRIORITY_BELOW_NORMAL);
 
@@ -323,16 +319,7 @@ static UINT AFX_CDECL worker_thread(void *parm)
 						WTime endTime = ws->scenario->Simulation_EndTime();
 						ws->scenario->GetStats((std::uint32_t)-1, endTime, CWFGM_FIRE_STAT_TIMESTEP_CUMULATIVE_REALTIME, ws->sp->m_project->m_timestepSettings.discretize, &v);
 						VariantToDouble_(v, &val);
-#ifdef _NO_MFC
 						WTimeSpan nts(gsl::narrow_cast<std::int64_t>(val), false);
-#else
-#ifdef _MSC_VER
-						COleDateTimeSpan tspan(val);
-						WTimeSpan nts(tspan);
-#else
-						WTimeSpan nts((std::int64_t)(val * 24.0 * 60.0 * 60.0));
-#endif
-#endif
 						sm->stepInfo.duration = nts;
 
 						ws->scenario->GetStats((std::uint32_t)-1, endTime, CWFGM_FIRE_STAT_TIMESTEP_CUMULATIVE_TICKS, ws->sp->m_project->m_timestepSettings.discretize, &v);
