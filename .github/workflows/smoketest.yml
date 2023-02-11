@@ -34,7 +34,7 @@ jobs:
           # The name of the file to download.
           # Use this field only to specify filenames other than tarball or zipball, if any.
           # Supports wildcard pattern (eg: '*', '*.deb', '*.zip' etc..)
-          fileName: "wise-ubuntu2004-*.deb"
+          fileName: "wise-ubuntu2004*.deb"
       
 
           # Download the attached tarball (*.tar.gz)
@@ -58,7 +58,7 @@ jobs:
           # Use http(s)://[hostname]/api/v3 to access the API for GitHub Enterprise Server
          # github-api-url: ""
       - name: Install WISE
-        run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004-1*beta.deb
+        run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004*.deb
       - name: Check exect Ubuntu Version
         run: cat /etc/issue; uname -a;
       # - name: show WISE version - Workaround for Bug #172
