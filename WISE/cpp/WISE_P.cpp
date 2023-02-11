@@ -22,7 +22,6 @@
 #include "types.h"
 #include "WISE_P.h"
 #include "WISE.h"
-#include "COMInit.h"
 #if _DLL
 #include "cwinapp.h"
 #else
