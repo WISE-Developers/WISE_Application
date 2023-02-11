@@ -1,4 +1,4 @@
-name: Deb Test
+name: DebTest
 
 on: workflow_dispatch
 
