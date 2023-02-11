@@ -1714,6 +1714,7 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 
 	auto s = FirstScenario();
 	RemoveScenario(s);
+	ScenarioCollection* retval = this;
 
 	ScenarioSerializationData data(m_project->m_gridFilterCollection,
 		m_project->m_vectorCollection, m_project->m_assetCollection, m_project->m_targetCollection, m_project->m_weatherCollection, m_project->m_fireCollection);
@@ -1758,13 +1759,15 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 					/// <type>internal</type>
 					if (valid)
 						valid->add_child_validation("WISE.ProjectProto.ScenarioCollection", strprintf("scenarios[%d]", i), validation::error_level::SEVERE, validation::id::cannot_allocate, "CLSID_CWFGM_scenario");
-					return nullptr;
+					retval = nullptr;
+					break;
 				}
 				AddScenario(scenario);
 				if (!scenario->deserialize(scen, v, "scenarioCopy", &data)) {
 					weak_assert(false);
 					delete scenario;
-					return nullptr;
+					retval = nullptr;
+					break;
 				}
 			}
 			//new scenario
@@ -1781,12 +1784,14 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 					/// <type>internal</type>
 					if (valid)
 						valid->add_child_validation("WISE.ProjectProto.ScenarioCollection", strprintf("scenarios[%d]", i), validation::error_level::SEVERE, validation::id::cannot_allocate, "CLSID_CWFGM_scenario");
-					return nullptr;
+					retval = nullptr;
+					break;
 				}
 				AddScenario(scenario);
 				if (!scenario->deserialize(scen, v, "scenario", &data)) {
 					weak_assert(false);
-					return nullptr;
+					retval = nullptr;
+					break;
 				}
 			}
 		}
@@ -1822,13 +1827,15 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 					/// <type>internal</type>
 					if (valid)
 						valid->add_child_validation("WISE.ProjectProto.ScenarioCollection", strprintf("scenarios[%d]", i), validation::error_level::SEVERE, validation::id::cannot_allocate, "CLSID_CWFGM_scenario");
-					return nullptr;
+					retval = nullptr;
+					break;
 				}
 				AddScenario(scenario);
 				if (!scenario->deserialize(scen, v, "scenarioCopy", &data)) {
 					weak_assert(false);
 					delete scenario;
-					return nullptr;
+					retval = nullptr;
+					break;
 				}
 			}
 			//new scenario
@@ -1845,12 +1852,14 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 					/// <type>internal</type>
 					if (valid)
 						valid->add_child_validation("WISE.ProjectProto.ScenarioCollection", strprintf("scenarios[%d]", i), validation::error_level::SEVERE, validation::id::cannot_allocate, "CLSID_CWFGM_scenario");
-					return nullptr;
+					retval = nullptr;
+					break;
 				}
 				AddScenario(scenario);
 				if (!scenario->deserialize(scen, v, "scenario", &data)) {
 					weak_assert(false);
-					return nullptr;
+					retval = nullptr;
+					break;
 				}
 			}
 		}
@@ -1861,5 +1870,5 @@ auto Project::ScenarioCollection::deserialize(const google::protobuf::Message& p
 		AddScenario(s);
 	} else
 		delete s;
-	return this;
+	return retval;
 }
