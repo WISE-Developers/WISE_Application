@@ -72,10 +72,6 @@ ${StrTrimNewLines}
 
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 
-; define the UI
-!define MUI_WELCOMEFINISHPAGE_BITMAP "wizard.bmp"
-!define MUI_HEADERIMAGE
-!define MUI_HEADERIMAGE_BITMAP "header.bmp"
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
 ; Prerequisites page
@@ -117,7 +113,7 @@ LangString DESC_SEC03 ${LANG_ENGLISH} "This will install W.I.S.E."
 ; MUI end ------
 
 Name "${PRODUCT_NAME}"
-Icon "Prometheus.ico"
+Icon "wise.ico"
 InstallDir "$PROGRAMFILES64\WISE"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
@@ -170,20 +166,20 @@ Section "WISE" SEC03
   WriteRegExpandStr HKLM "SYSTEM\CurrentControlSet\Control\Session Manager\Environment" PROJ_LIB "$INSTDIR\proj_nad\"
   
   ; Write user modifiable data to the program data directory
-  SetOutPath "$APPDATA\CWFGM\Prometheus"
-  File "run\Prometheus.clrtbl"
-  WriteRegStr HKCU "SOFTWARE\${REGISTRY_LOCATION}\Prometheus" "ColourTable" "$APPDATA\CWFGM\Prometheus\Prometheus.clrtbl"
-  File "run\Prometheus.fuelmapx"
-  WriteRegStr HKCU "SOFTWARE\${REGISTRY_LOCATION}\Prometheus" "FuelMap" "$APPDATA\CWFGM\Prometheus\Prometheus.fuelmapx"
-  File "run\Prometheus_NZ.fuelmapx"
-  WriteRegStr HKCU "SOFTWARE\${REGISTRY_LOCATION}\Prometheus" "FuelMapNZ" "$APPDATA\CWFGM\Prometheus\Prometheus_NZ.fuelmapx"
-  File "run\Prometheus_TAZ.fuelmapx"
-  WriteRegStr HKCU "SOFTWARE\${REGISTRY_LOCATION}\Prometheus" "FuelMapTAZ" "$APPDATA\CWFGM\Prometheus\Prometheus_TAZ.fuelmapx"
+  SetOutPath "$APPDATA\CWFGM\WISE"
+  File "run\WISE.clrtbl"
+  WriteRegStr HKCU "SOFTWARE\${REGISTRY_LOCATION}\WISE" "ColourTable" "$APPDATA\CWFGM\WISE\WISE.clrtbl"
+  File "run\WISE.fuelmapx"
+  WriteRegStr HKCU "SOFTWARE\${REGISTRY_LOCATION}\WISE" "FuelMap" "$APPDATA\CWFGM\WISE\WISE.fuelmapx"
+  File "run\WISE_NZ.fuelmapx"
+  WriteRegStr HKCU "SOFTWARE\${REGISTRY_LOCATION}\WISE" "FuelMapNZ" "$APPDATA\CWFGM\WISE\WISE_NZ.fuelmapx"
+  File "run\WISE_TAZ.fuelmapx"
+  WriteRegStr HKCU "SOFTWARE\${REGISTRY_LOCATION}\WISE" "FuelMapTAZ" "$APPDATA\CWFGM\WISE\WISE_TAZ.fuelmapx"
 
   ; Grant access to all users to the data written to the program data directory
   AccessControl::GrantOnFile "$APPDATA\CWFGM" "(S-1-5-32-545)" "FullAccess"
-  AccessControl::GrantOnFile "$APPDATA\CWFGM\Prometheus" "(S-1-5-32-545)" "FullAccess"
-  AccessControl::GrantOnFile "$APPDATA\CWFGM\Prometheus\*" "(S-1-5-32-545)" "FullAccess"
+  AccessControl::GrantOnFile "$APPDATA\CWFGM\WISE" "(S-1-5-32-545)" "FullAccess"
+  AccessControl::GrantOnFile "$APPDATA\CWFGM\WISE\*" "(S-1-5-32-545)" "FullAccess"
 SectionEnd
 
 Section -AdditionalIcons
@@ -395,7 +391,7 @@ Function PrereqChecker
   StrCpy $R3 $R2
 	Delete $8 # delete the temporary file
   ${If} $9 != "0"
-    FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+    FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
       FileSeek $4 0 END
       FileWrite $4 "Unable to execute Java detection script: $9$\r$\n"
     FileClose $4
@@ -413,7 +409,7 @@ Function PrereqChecker
 		strcmp $1 "10" +2
     Goto JavaNotInstalled
 		DetailPrint "Java Version $R3"
-    FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+    FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
       FileSeek $4 0 END
       FileWrite $4 "Java version: $1$\r$\n"
     FileClose $4
@@ -421,7 +417,7 @@ Function PrereqChecker
 	${Else}
 		${If} $0 > 9
 			DetailPrint "Java Version $R3"
-      FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+      FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
         FileSeek $4 0 END
         FileWrite $4 "Java version: $0$\r$\n"
       FileClose $4
@@ -442,7 +438,7 @@ JavaNotInstalled:
   ${Else}
     MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "The installer was unable to run the Java detection script. If Java is not installed W.I.S.E. may not run correctly.$\r$\nDo you want to continue anyways?" IDNO AfterJava
   ${EndIf}
-  FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+  FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
     FileSeek $4 0 END
     FileWrite $4 "User continued without Java"
   FileClose $4
@@ -472,7 +468,7 @@ AfterJava:
     ${Else}
       StrCpy $1 1
       ReadRegDWORD $0 HKLM 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client' Version
-      FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+      FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
         FileSeek $4 0 END
         FileWrite $4 ".NET version: $0$\r$\n"
         ${NSD_SetText} $NetPrereqLabel ".NET version: $0"
@@ -481,7 +477,7 @@ AfterJava:
   ${Else}
     StrCpy $1 1
     ReadRegDWORD $0 HKLM 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full' Version
-    FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+    FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
       FileSeek $4 0 END
       FileWrite $4 ".NET version: $0$\r$\n"
       ${NSD_SetText} $NetPrereqLabel ".NET version: $0"
@@ -502,7 +498,7 @@ AfterJava:
   ;check the Windows version
   StrCpy $1 0
   ${GetWindowsVersion} $R0
-  FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+  FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
     FileSeek $4 0 END
     FileWrite $4 "Windows Version: $R0$\r$\n"
   FileClose $4
@@ -533,7 +529,7 @@ AfterJava:
     ${Else}
       ${If} $3 > 14
         StrCpy $1 1
-        FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+        FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
           FileSeek $4 0 END
           FileWrite $4 "vcredist 2019 already installed: $3$\r$\n"
           ${NSD_SetText} $VcPrereqLabel "VC redist: $3"
@@ -542,7 +538,7 @@ AfterJava:
         ReadRegDWORD $3 HKLM "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x64" "Minor"
         ${If} $3 >= 20
           StrCpy $1 1
-          FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+          FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
             FileSeek $4 0 END
             FileWrite $4 "vcredist 2019 already installed: $3$\r$\n"
             ReadRegStr $3 HKLM "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x64" "Version"
@@ -555,7 +551,7 @@ AfterJava:
     StrCpy $2 $3 2
     ${If} $2 > 14
       StrCpy $1 1
-      FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+      FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
         FileSeek $4 0 END
         FileWrite $4 "vcredist 2019 already installed: $3$\r$\n"
         ${NSD_SetText} $VcPrereqLabel "VC redist: $3"
@@ -565,7 +561,7 @@ AfterJava:
       ${If} $2 < 20
       ${Else}
         StrCpy $1 1
-        FileOpen $4 "$APPDATA\CWFGM\Prometheus\install.log" a
+        FileOpen $4 "$APPDATA\CWFGM\WISE\install.log" a
           FileSeek $4 0 END
           FileWrite $4 "vcredist 2019 already installed: $3$\r$\n"
           ${NSD_SetText} $VcPrereqLabel "VC redist: $3"
