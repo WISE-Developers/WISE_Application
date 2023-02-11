@@ -21,22 +21,17 @@ jobs:
           out-file-path: "test/wise"
           
       - name: Install WISE
-        run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004*.deb
+        run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004*.deb     
         
-        # Create a config file that will be used by the JS API and WISE Builder. I haven't configured the MQTT options which will cause some warnings in the build process later but the test will still work.
-        # To add MQTT options, add the following to the config.json file just before "signals": "mqtt": {"hostname": "example.ca","port": 1883,"topic": "wise","verbosity": "INFO","qos": 1,"username": "username","password": "password"},
       - name: Create Config File
-       # run: echo '{"log": {"filename": "logfile.log","verbosity": "WARN"},"signals": {"start": "start.txt","complete": "complete.txt"},"hardware": {"processes": 1,"cores": 2},"builder": {"hostname": "127.0.0.1","port": 32479},"exampleDirectory": "/opt/jobs/examples","alreadyV2": true}' > /opt/jobs/config.json
         run: wget -c https://raw.githubusercontent.com/WISE-Developers/wise_demo/main/demo_data/test_helpers/sample_config.json -O /opt/jobs/config.json
-      
-        # Copy the default.json file from the WISE JS API to the jobs directory
+
       - name: Copy Deafaults.json
         run: cp /opt/api/files/defaults.json /opt/jobs/defaults.json
       
       - name: Check exect Ubuntu Version
         run: cat /etc/issue; uname -a;
-      # - name: show WISE version - Workaround for Bug #172
-      #   run: wise -v | grep version
+      
       - name: get the manager
         uses: robinraju/release-downloader@v1.7
         with:
@@ -44,6 +39,7 @@ jobs:
           fileName: "WISE_Manager-*.zip"
           out-file-path: "manager/wise"
           repository: "WISE-Developers/WISE_Manager_Component"
+          
       - name: get the builder
         uses: robinraju/release-downloader@v1.7
         with:
@@ -51,49 +47,25 @@ jobs:
           fileName: "WISE_Builder*.zip"
           out-file-path: "builder"
           repository: "WISE-Developers/WISE_Builder_Component"
+          
       - name: Make the some important folders
-      # - run: mkdir -p /home/runner/work/WISE_Application/WISE_Application/jobs;
-      - run: mkdir -p /opt/wise && mkdir -p /opt/builder && mkdir -p /opt/jobs && mkdir -p /opt/jobs/examples/test
+        run: mkdir -p /opt/wise && mkdir -p /opt/builder && mkdir -p /opt/jobs && mkdir -p /opt/jobs/examples/test
 
       - name: unzip the builder
-     #   run: ls -lha;cd builder; ls -lha; unzip *.zip
         run: unzip WISE_Builder*.zip -d /opt/builder && rm WISE_Builder*.zip
-#       - name: install the builder
-#         run: |
-#           ls -lha
-#           cd builder
-#           chmod 777 WISE_Builder.jar
-#           chmod -R 777 WISE_Builder_lib/
-#           ls -lha
-#           sudo cp -f WISE_Builder.jar /usr/bin/
-#           sudo cp -Rf WISE_Builder_lib/ /usr/bin/
 
       - name: Install NodeJS and WISE JS API
         uses: actions/setup-node@v3
         with:
           node-version: 16
-#       - name: Create a package.json   
-#         run: npm init -y
-        
-#       - name: Install latest the JS API 
-#       - run: npm i git+https://github.com/WISE-Developers/WISE_JS_API.git
-#       # - run: cp node_modules/wise_js_api/package.json ./
-      
+
       
       - name: Download the WISE JS API and unzip the example job data
-      - run: git clone https://github.com/WISE-Developers/WISE_JS_API.git /opt/api && unzip /opt/api/files/dogrib.zip -d /opt/jobs/examples/test
+        run: git clone https://github.com/WISE-Developers/WISE_JS_API.git /opt/api && unzip /opt/api/files/dogrib.zip -d /opt/jobs/examples/test
 
       - name: Install the dependencies for the WISE JS API
         run: npm --prefix /opt/api i && npm config set WISE_JS_API:job_directory /opt/jobs
-      
-      
-#       - run: |
-          
-#           cd node_modules/wise_js_api/dist/; 
-#           npm i github:WISE-Developers/WISE_JS_API ;
-#           npm install;
-#           npm config set WISE_JS_API:job_directory=/home/runner/work/WISE_Application/WISE_Application/jobs;
-      
+     
       - name: Install and run Java
         uses: actions/setup-java@v3
         with:
@@ -102,11 +74,13 @@ jobs:
           check-latest: true
       - run: java -jar /usr/bin/WISE_Builder.jar --version
       - run: pwd
+      
       - name: Build the model
       - run: |
             cd /opt/api;
             nohup java -jar /opt/builder/WISE_Builder.jar -o json_v2 -j /opt/jobs -l 32479 2>&1 >/dev/null & echo $! > builder_pid.txt && sleep 5 && node /opt/api/dist/example_job.js && kill $(cat builder_pid.txt) && rm builder_pid.txt;
-      # Run WISE on the most recent job in the jobs directory
+      
+      
       - name: Run the model
         run: | 
             pwd;
@@ -117,20 +91,4 @@ jobs:
               tree /opt/jobs/
       
       
-      #- name: install deps
-      #  run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
-      #- name: create a test job from a model script
-      #  run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
-      # - name: execute the test job
-      #   run:  cd node_modules/wise_js_api/dist/;node example_job.js
-      
-      # - name: create a test job from a model script
-      #   run: cp node_modules/wise_js_api/dist/example_job.js ./testjob.js;
-      - name: execute the test job
-        run: |
-          cd node_modules/wise_js_api/dist/;
-          npm i 
-          node node_modules/wise_js_api/dist/example_job.js;
-
-      # - name: Setup test job
-      #   run: mkdir jobs; wget https://spyd.com/fgm.ca/datasets/bcjob.fgmj -O jobs/testjob.fgmj
+    
