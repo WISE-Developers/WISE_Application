@@ -1,4 +1,4 @@
-name: smoketest-wise-ubuntu-2004
+name: smoketest
 
 on: workflow_dispatch
 
