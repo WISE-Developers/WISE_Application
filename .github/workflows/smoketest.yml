@@ -1,4 +1,4 @@
-name: SmokeTest
+name: smoketest
 
 on: workflow_dispatch
 
