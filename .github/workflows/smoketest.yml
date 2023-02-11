@@ -65,6 +65,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           check-latest: true
+          
+      - name: fix builder permissions
+        run: |
+          chmod 777 /opt/builder/WISE_Builder.jar
+          chmod -R 777 /opt/builder/WISE_Builder_lib/
+          
       - name: Show Builder Version
         run: java -jar /opt/builder/WISE_Builder.jar --version
       
