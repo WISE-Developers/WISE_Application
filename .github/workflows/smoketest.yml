@@ -1,4 +1,4 @@
-name: smoke_test
+name: smoketest-wise-ubuntu-2004
 
 on: workflow_dispatch
 
@@ -29,17 +29,6 @@ jobs:
       - name: Copy Deafaults.json
         run: cp /opt/api/files/defaults.json /opt/jobs/defaults.json
       
-      - name: Check exect Ubuntu Version
-        run: cat /etc/issue; uname -a;
-      
-      - name: get the manager
-        uses: robinraju/release-downloader@v1.7
-        with:
-          latest: true
-          fileName: "WISE_Manager-*.zip"
-          out-file-path: "manager/wise"
-          repository: "WISE-Developers/WISE_Manager_Component"
-          
       - name: get the builder
         uses: robinraju/release-downloader@v1.7
         with:
@@ -72,8 +61,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           check-latest: true
-      - run: java -jar /usr/bin/WISE_Builder.jar --version
-      - run: pwd
+      - name: Show Builder Version
+        run: java -jar /usr/bin/WISE_Builder.jar --version
       
       - name: Build the model
       - run: |
@@ -85,6 +74,7 @@ jobs:
         run: | 
             pwd;
             wise -r 4 -f 0 -t $(find /opt/jobs/ -maxdepth 1 -type d -name 'job_*' -print -quit)/job.fgmj
+            
       - name: Examine outputs
         run: | 
               ls -lha /opt/jobs/
