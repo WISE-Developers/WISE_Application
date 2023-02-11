@@ -65,7 +65,7 @@ jobs:
         run: java -jar /usr/bin/WISE_Builder.jar --version
       
       - name: Build the model
-      - run: |
+        run: |
             cd /opt/api;
             nohup java -jar /opt/builder/WISE_Builder.jar -o json_v2 -j /opt/jobs -l 32479 2>&1 >/dev/null & echo $! > builder_pid.txt && sleep 5 && node /opt/api/dist/example_job.js && kill $(cat builder_pid.txt) && rm builder_pid.txt;
       
