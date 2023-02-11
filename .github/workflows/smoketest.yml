@@ -23,10 +23,11 @@ jobs:
       - name: Install WISE
         run: sudo apt-get install -y /home/runner/work/WISE_Application/WISE_Application/test/wise/wise-ubuntu2004*.deb
         
-      # Create a config file that will be used by the JS API and WISE Builder. I haven't configured the MQTT options which will cause some warnings in the build process later but the test will still work.
-      # To add MQTT options, add the following to the config.json file just before "signals": "mqtt": {"hostname": "example.ca","port": 1883,"topic": "wise","verbosity": "INFO","qos": 1,"username": "username","password": "password"},
+        # Create a config file that will be used by the JS API and WISE Builder. I haven't configured the MQTT options which will cause some warnings in the build process later but the test will still work.
+        # To add MQTT options, add the following to the config.json file just before "signals": "mqtt": {"hostname": "example.ca","port": 1883,"topic": "wise","verbosity": "INFO","qos": 1,"username": "username","password": "password"},
       - name: Create Config File
-        run: echo '{"log": {"filename": "logfile.log","verbosity": "WARN"},"signals": {"start": "start.txt","complete": "complete.txt"},"hardware": {"processes": 1,"cores": 2},"builder": {"hostname": "127.0.0.1","port": 32479},"exampleDirectory": "/opt/jobs/examples","alreadyV2": true}' > /opt/jobs/config.json
+       # run: echo '{"log": {"filename": "logfile.log","verbosity": "WARN"},"signals": {"start": "start.txt","complete": "complete.txt"},"hardware": {"processes": 1,"cores": 2},"builder": {"hostname": "127.0.0.1","port": 32479},"exampleDirectory": "/opt/jobs/examples","alreadyV2": true}' > /opt/jobs/config.json
+        run: wget -c https://raw.githubusercontent.com/WISE-Developers/wise_demo/main/demo_data/test_helpers/sample_config.json -O /opt/jobs/config.json
       
         # Copy the default.json file from the WISE JS API to the jobs directory
       - name: Copy Deafaults.json
