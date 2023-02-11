@@ -29,8 +29,7 @@ jobs:
       - name: Create Config File
         run: wget -c https://raw.githubusercontent.com/WISE-Developers/wise_demo/main/demo_data/test_helpers/sample_config.json -O /opt/jobs/config.json
 
-      - name: Copy Deafaults.json
-        run: cp /opt/api/files/defaults.json /opt/jobs/defaults.json
+      
       
       - name: get the builder
         uses: robinraju/release-downloader@v1.7
@@ -54,6 +53,9 @@ jobs:
       - name: Download the WISE JS API and unzip the example job data
         run: git clone https://github.com/WISE-Developers/WISE_JS_API.git /opt/api && unzip /opt/api/files/dogrib.zip -d /opt/jobs/examples/test
 
+      - name: Copy Deafaults.json
+        run: cp /opt/api/files/defaults.json /opt/jobs/defaults.json
+        
       - name: Install the dependencies for the WISE JS API
         run: npm --prefix /opt/api i && npm config set WISE_JS_API:job_directory /opt/jobs
      
