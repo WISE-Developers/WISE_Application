@@ -66,7 +66,7 @@ jobs:
           java-version: '17'
           check-latest: true
       - name: Show Builder Version
-        run: java -jar /usr/bin/WISE_Builder.jar --version
+        run: java -jar /opt/builder/WISE_Builder.jar --version
       
       - name: Build the model
         run: |
