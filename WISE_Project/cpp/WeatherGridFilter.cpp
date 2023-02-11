@@ -120,10 +120,10 @@ auto Project::CWeatherPolyFilter::Duplicate(std::function<GridFilter*(void)> con
 }
 
 
-HRESULT Project::CWeatherPolyFilter::ImportPolygons(const std::string &file_name, const std::vector<std::string> *pd)
+HRESULT Project::CWeatherPolyFilter::ImportPolygons(const std::filesystem::path &file_name, const std::vector<std::string_view> &permissible_drivers)
 {
 	auto vf = boost::dynamic_pointer_cast<CCWFGM_WeatherGridFilter>(m_filter);
-	return vf->ImportPolygons(file_name, pd);
+	return vf->ImportPolygons(file_name, permissible_drivers);
 }
 
 
@@ -134,7 +134,7 @@ HRESULT Project::CWeatherPolyFilter::ImportPolygonsWFS(const std::string &server
 }
 
 
-HRESULT Project::CWeatherPolyFilter::ExportPolygons(const std::string &driver_name, const std::string &export_projection, const std::string &file_name)
+HRESULT Project::CWeatherPolyFilter::ExportPolygons(std::string_view driver_name, const std::string &export_projection, const std::filesystem::path &file_name)
 {
 	auto vf = boost::dynamic_pointer_cast<CCWFGM_WeatherGridFilter>(m_filter);
 	return vf->ExportPolygons(driver_name, export_projection, file_name);

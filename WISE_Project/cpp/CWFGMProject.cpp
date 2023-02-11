@@ -4285,19 +4285,15 @@ HRESULT Project::CWFGMProject::PrintReportTxt(const TCHAR *szPath, const PrintRe
 }
 
 #include "PermissibleVectorReadDrivers.h"
-const char *Project::CWFGMProject::m_permissibleVectorReadDrivers[] = GDAL_READ_DRIVERS;
-std::vector<std::string> Project::CWFGMProject::m_permissibleVectorReadDriversSA;
+std::vector<std::string_view> Project::CWFGMProject::m_permissibleVectorReadDriversSA;
 
 class StaticInitializer
 {
 public:
 	StaticInitializer()
 	{
-		for (int iii = 0; iii < GDAL_READ_DRIVERS_LENGTH; iii++)
-		{
-			std::string c(Project::CWFGMProject::m_permissibleVectorReadDrivers[iii]);
-			Project::CWFGMProject::m_permissibleVectorReadDriversSA.push_back(c);
-		}
+		for (int iii = 0; iii < permissibleVectorReadDrivers.size(); iii++)
+			Project::CWFGMProject::m_permissibleVectorReadDriversSA.push_back(permissibleVectorReadDrivers[iii]);
 	}
 };
 static StaticInitializer init;

@@ -142,7 +142,7 @@ void Project::StaticVector::SetPolyLineWidth(double width)
 }
 
 
-HRESULT Project::StaticVector::ImportPolylines(const std::string &file_name, const std::vector<std::string> *pd)
+HRESULT Project::StaticVector::ImportPolylines(const std::filesystem::path &file_name, const std::vector<std::string_view> &pd)
 {
 	auto vf = boost::dynamic_pointer_cast<CCWFGM_VectorFilter>(m_filter);
 	return vf->ImportPolylines(file_name, pd);
@@ -156,7 +156,7 @@ HRESULT Project::StaticVector::ImportPolylinesWFS(const std::string &server, con
 }
 
 
-HRESULT Project::StaticVector::ExportPolylines(const std::string &driver_name, const std::string &export_projection, const std::string &file_name)
+HRESULT Project::StaticVector::ExportPolylines(std::string_view driver_name, const std::string &export_projection, const std::filesystem::path &file_name)
 {
 	auto vf = boost::dynamic_pointer_cast<CCWFGM_VectorFilter>(m_filter);
 	return vf->ExportPolylines(driver_name, export_projection, file_name);

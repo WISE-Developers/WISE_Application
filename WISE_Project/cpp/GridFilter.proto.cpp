@@ -498,7 +498,8 @@ auto Project::PolyReplaceGridFilter::deserialize(const google::protobuf::Message
 #endif
 		{
 			HRESULT hr;
-			if (FAILED(hr = ImportPolygons(filter->filename().value(), &CWFGMProject::m_permissibleVectorReadDriversSA))) {
+			std::filesystem::path fname(filter->filename().value());
+			if (FAILED(hr = ImportPolygons(fname, CWFGMProject::m_permissibleVectorReadDriversSA))) {
 				if (v) {
 					switch (hr) {
 					case E_POINTER:						v->add_child_validation("string", "shape.filename", validation::error_level::SEVERE, validation::id::e_pointer, filter->filename().value()); break;
@@ -598,7 +599,8 @@ auto Project::PolyReplaceGridFilter::deserialize(const google::protobuf::Message
 #endif
 			{
 				HRESULT hr;
-				if (FAILED(hr = ImportPolygons(filter->filename(), &CWFGMProject::m_permissibleVectorReadDriversSA))) {
+				std::filesystem::path fname(filter->filename());
+				if (FAILED(hr = ImportPolygons(fname, CWFGMProject::m_permissibleVectorReadDriversSA))) {
 					if (v) {
 						switch (hr) {
 						case E_POINTER:						v->add_child_validation("string", "shape.filename", validation::error_level::SEVERE, validation::id::e_pointer, filter->filename()); break;
@@ -765,7 +767,8 @@ auto Project::StaticVector::deserialize(const google::protobuf::Message& proto, 
 			if (fs::exists(fs::relative(vector->filename())))
 #endif
 			{
-				if (FAILED(hr = ImportPolylines(vector->file().filename(), &CWFGMProject::m_permissibleVectorReadDriversSA))) {
+				std::filesystem::path fname(vector->file().filename());
+				if (FAILED(hr = ImportPolylines(fname, CWFGMProject::m_permissibleVectorReadDriversSA))) {
 					if (v) {
 						switch (hr) {
 						case E_POINTER:						v->add_child_validation("string", "data.filename", validation::error_level::SEVERE, validation::id::e_pointer, vector->file().filename()); break;
@@ -808,7 +811,8 @@ auto Project::StaticVector::deserialize(const google::protobuf::Message& proto, 
 			if (fs::exists(fs::relative(file.filename())))
 #endif
 			{
-				if (FAILED(hr = ImportPolylines(file.filename(), &CWFGMProject::m_permissibleVectorReadDriversSA))) {
+				std::filesystem::path fname(file.filename());
+				if (FAILED(hr = ImportPolylines(fname, CWFGMProject::m_permissibleVectorReadDriversSA))) {
 					if (v2) {
 						switch (hr) {
 						case E_POINTER:						v2->add_child_validation("string", "filename", validation::error_level::SEVERE, validation::id::e_pointer, vector->file().filename()); break;
@@ -932,7 +936,8 @@ auto Project::StaticVector::deserialize(const google::protobuf::Message& proto, 
 				if (fs::exists(fs::relative(vector->filename())))
 #endif
 				{
-					if (FAILED(hr = ImportPolylines(vector->filename(), &CWFGMProject::m_permissibleVectorReadDriversSA))) {
+					std::filesystem::path fname(vector->filename());
+					if (FAILED(hr = ImportPolylines(fname, CWFGMProject::m_permissibleVectorReadDriversSA))) {
 						if (v2) {
 							switch (hr) {
 							case E_POINTER:						v2->add_child_validation("string", "filename", validation::error_level::SEVERE, validation::id::e_pointer, vector->filename()); break;
@@ -1114,7 +1119,8 @@ auto Project::Asset::deserialize(const google::protobuf::Message& proto, std::sh
 #endif
 			{
 				HRESULT hr;
-				if (FAILED(hr = ImportPolylines(file.filename(), CWFGMProject::m_permissibleVectorReadDriversSA))) {
+				std::filesystem::path fname(file.filename());
+				if (FAILED(hr = ImportPolylines(fname, CWFGMProject::m_permissibleVectorReadDriversSA))) {
 					switch (hr) {
 					case E_POINTER:							if (v) v->add_child_validation("string", "data.filename", validation::error_level::SEVERE, validation::id::e_pointer, file.filename()); break;
 					case E_INVALIDARG:						if (v) v->add_child_validation("string", "data.filename", validation::error_level::SEVERE, validation::id::e_invalidarg, file.filename()); break;
@@ -1237,7 +1243,8 @@ auto Project::Asset::deserialize(const google::protobuf::Message& proto, std::sh
 #endif
 				{
 					HRESULT hr;
-					if (FAILED(hr = ImportPolylines(asset->filename(), CWFGMProject::m_permissibleVectorReadDriversSA))) {
+					std::filesystem::path fname(asset->filename());
+					if (FAILED(hr = ImportPolylines(fname, CWFGMProject::m_permissibleVectorReadDriversSA))) {
 						switch (hr) {
 						case E_POINTER:							if (v) v->add_child_validation("string", "data.filename", validation::error_level::SEVERE, validation::id::e_pointer, asset->filename()); break;
 						case E_INVALIDARG:						if (v) v->add_child_validation("string", "data.filename", validation::error_level::SEVERE, validation::id::e_invalidarg, asset->filename()); break;
@@ -1408,7 +1415,8 @@ Project::Target* Project::Target::deserialize(const google::protobuf::Message& p
 			if (std::filesystem::exists(std::filesystem::relative(file.filename())))
 			{
 				HRESULT hr;
-				if (FAILED(hr = ImportPointSet(file.filename(), CWFGMProject::m_permissibleVectorReadDriversSA))) {
+				std::filesystem::path fname(file.filename());
+				if (FAILED(hr = ImportPointSet(fname, CWFGMProject::m_permissibleVectorReadDriversSA))) {
 					switch (hr) {
 					case E_POINTER:							if (v) v->add_child_validation("string", "data.filename", validation::error_level::SEVERE, validation::id::e_pointer, file.filename()); break;
 					case E_INVALIDARG:						if (v) v->add_child_validation("string", "data.filename", validation::error_level::SEVERE, validation::id::e_invalidarg, file.filename()); break;
@@ -1504,7 +1512,8 @@ Project::Target* Project::Target::deserialize(const google::protobuf::Message& p
 				if (std::filesystem::exists(std::filesystem::relative(target->filename())))
 				{
 					HRESULT hr;
-					if (FAILED(hr = ImportPointSet(target->filename(), CWFGMProject::m_permissibleVectorReadDriversSA))) {
+					std::filesystem::path fname(target->filename());
+					if (FAILED(hr = ImportPointSet(fname, CWFGMProject::m_permissibleVectorReadDriversSA))) {
 						switch (hr) {
 						case E_POINTER:							if (v) v->add_child_validation("string", "data.filename", validation::error_level::SEVERE, validation::id::e_pointer, target->filename()); break;
 						case E_INVALIDARG:						if (v) v->add_child_validation("string", "data.filename", validation::error_level::SEVERE, validation::id::e_invalidarg, target->filename()); break;
@@ -2038,7 +2047,6 @@ auto Project::GridFilterCollection::deserialize(const google::protobuf::Message&
 						delete gf;
 						return nullptr;
 					}
-
 
 					if (af.data_case() == WISE::GridProto::CwfgmAttributeFilter::kFile)
 					{

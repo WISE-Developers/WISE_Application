@@ -247,11 +247,11 @@ namespace Project
 		bool RemoveFilter(GridFilter *filter);
 
 		HRESULT ExportFireFronts(Fire *fires, HSS_Time::WTime &start_time, HSS_Time::WTime &end_time, VectorExportOptions *options, USHORT flags,
-			const std::string &driver_name, const std::string &export_projection, const std::string &file_name,
+			std::string_view driver_name, const std::string &export_projection, const std::filesystem::path &file_name,
 			const TCHAR *fgm_name, const TCHAR *prometheus_version, ::UnitConvert::STORAGE_UNIT perimeter_units,
 			::UnitConvert::STORAGE_UNIT area_units, ::UnitConversion *uc = nullptr, const USHORT child_flags = 0x0001) const;
 		HRESULT ExportCriticalPath(const Asset* a, const std::uint32_t index, const std::uint16_t flags,
-			const char* driver_name, const char* export_projection, const char* file_path) const;
+			std::string_view driver_name, std::string& export_projection, const std::filesystem::path& file_path) const;
 		HRESULT BuildCriticalPath(const Asset* a, const std::uint32_t index, const std::uint16_t flags, MinListTempl<CriticalPath>& polyset) const;
 
 		ULONG GetFilterCount() const { return m_filterList.GetCount(); };

@@ -881,7 +881,8 @@ void exportVectors(const int w_export_i, const int w_export_cnt, worker_struct* 
 					std::string ext = fs::path(csPath).extension().string();
 					if (ext.length() == 0)
 						csPath += ".gpkg"s;
-					auto [driver_name, projection_name] = ws->sp->guessDriverNameFromFilename(csPath.c_str());
+					std::filesystem::path fname(csPath);
+					auto [driver_name, projection_name] = ws->sp->guessDriverNameFromFilename(fname);
 
 					USHORT flags = 0;
 					if (out.activePerimeters)			flags |= SCENARIO_EXPORT_SUBSET_ACTIVE;
@@ -2253,13 +2254,13 @@ void SPARCS_P::UpdateJob(const std::vector<std::string>& topic, std::vector<JSON
 }
 
 
-std::tuple<const char*, const char*> SPARCS_P::guessDriverNameFromFilename(const char *filename)
+std::tuple<std::string_view, std::string> SPARCS_P::guessDriverNameFromFilename(std::filesystem::path &filename)
 {
-	std::string ext = fs::path(filename).extension().string();
+	std::string ext = filename.extension().string();
 	const char *driver_name;
 	const char* projection_name = "";
-    if (boost::iequals(ext, ".SHP"))	driver_name = "ESRI Shapefile";
-	else if (boost::iequals(ext, ".GPKG"))	driver_name = "GeoPackage vector";
+    if (boost::iequals(ext, ".SHP"))		driver_name = "ESRI Shapefile";
+	else if (boost::iequals(ext, ".GPKG"))	driver_name = "GPKG";
 	else if (boost::iequals(ext, ".TAB"))	driver_name = "MapInfo File";
 	else if (boost::iequals(ext, ".DAT"))	driver_name = "MapInfo File";
 	else if (boost::iequals(ext, ".MAP"))	driver_name = "MapInfo File";

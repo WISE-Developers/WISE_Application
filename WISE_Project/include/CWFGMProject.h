@@ -212,8 +212,7 @@ protected:
 
 public:
 	boost::intrusive_ptr<CCWFGM_LayerManager>	m_layerManager;
-	static const char *m_permissibleVectorReadDrivers[];
-	static std::vector<std::string> m_permissibleVectorReadDriversSA;
+	static std::vector<std::string_view> m_permissibleVectorReadDriversSA;
 	static std::int32_t		m_managedMode;
 
 	std::string				m_comments;

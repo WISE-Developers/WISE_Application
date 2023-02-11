@@ -88,9 +88,9 @@ HRESULT Project::StdFire::SetIgnition(std::uint32_t index, std::uint16_t ignitio
 }
 
 
-HRESULT Project::StdFire::ImportIgnition(const std::string &file_name, const std::vector<std::string> *pd)
+HRESULT Project::StdFire::ImportIgnition(const std::filesystem::path &file_name, const std::vector<std::string_view> &permissible_drivers)
 {
-	return m_fire->ImportIgnition(file_name, pd, nullptr);
+	return m_fire->ImportIgnition(file_name, permissible_drivers, nullptr);
 }
 
 
@@ -100,7 +100,7 @@ HRESULT Project::StdFire::ImportIgnitionWFS(const std::string &server, const std
 }
 
 
-HRESULT Project::StdFire::ExportIgnition(const std::string &driver_name, const std::string &export_projection, const std::string &file_name)
+HRESULT Project::StdFire::ExportIgnition(std::string_view driver_name, const std::string &export_projection, const std::filesystem::path &file_name)
 {
 	return m_fire->ExportIgnition(driver_name, export_projection, file_name);
 }

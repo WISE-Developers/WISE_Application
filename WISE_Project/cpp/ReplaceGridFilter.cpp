@@ -474,11 +474,11 @@ bool Project::PolyReplaceGridFilter::ClearAllPolygons()
 }
 
 
-HRESULT Project::PolyReplaceGridFilter::ImportPolygons(const std::string &file_name, const std::vector<std::string> *pd)
+HRESULT Project::PolyReplaceGridFilter::ImportPolygons(const std::filesystem::path &file_name, const std::vector<std::string_view> &permissible_drivers)
 {
 	auto vf = boost::dynamic_pointer_cast<CCWFGM_PolyReplaceGridFilter>(m_filter);
 	if (vf)
-		return vf->ImportPolygons(file_name, pd);
+		return vf->ImportPolygons(file_name, permissible_drivers);
 	return E_FAIL;
 }
 
@@ -492,7 +492,7 @@ HRESULT Project::PolyReplaceGridFilter::ImportPolygonsWFS(const std::string &ser
 }
 
 
-HRESULT Project::PolyReplaceGridFilter::ExportPolygons(const std::string &driver_name, const std::string &export_projection, const std::string &file_name)
+HRESULT Project::PolyReplaceGridFilter::ExportPolygons(std::string_view driver_name, const std::string& export_projection, const std::filesystem::path &file_name)
 {
 	auto vf = boost::dynamic_pointer_cast<CCWFGM_PolyReplaceGridFilter>(m_filter);
 	if (vf)

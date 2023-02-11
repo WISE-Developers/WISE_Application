@@ -104,16 +104,16 @@ void Project::Asset::SetPolyLineWidth(double width)
 }
 
 
-HRESULT Project::Asset::ImportPolylines(const std::string& file_name, const std::vector<std::string>& pd)
+HRESULT Project::Asset::ImportPolylines(const std::filesystem::path& file_name, const std::vector<std::string_view>& pd)
 {
 	auto vf = boost::dynamic_pointer_cast<CCWFGM_Asset>(m_filter);
 	if (vf)
-		return vf->ImportPolylines(file_name, &pd);
+		return vf->ImportPolylines(file_name, pd);
 	return ERROR_INVALID_STATE;
 }
 
 
-HRESULT Project::Asset::ExportPolylines(const std::string& driver_name, const std::string& export_projection, const std::string& file_name)
+HRESULT Project::Asset::ExportPolylines(std::string_view driver_name, const std::string& export_projection, const std::filesystem::path& file_name)
 {
 	auto vf = boost::dynamic_pointer_cast<CCWFGM_Asset>(m_filter);
 	if (vf)

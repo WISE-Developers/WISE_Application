@@ -127,9 +127,9 @@ namespace Project
 		virtual double GetPolyLineWidth();			// in grid units
 		virtual void SetPolyLineWidth(double width);		// in grid units
 
-		HRESULT ImportPolylines(const std::string &file_name, const std::vector<std::string> *pd);
+		HRESULT ImportPolylines(const std::filesystem::path &file_name, const std::vector<std::string_view> &pd);
 		HRESULT ImportPolylinesWFS(const std::string &server, const std::string &layer, const std::string &uid, const std::string &pwd);
-		HRESULT ExportPolylines(const std::string &driver_name, const std::string &export_projection, const std::string &file_name);
+		HRESULT ExportPolylines(std::string_view driver_name, const std::string &export_projection, const std::filesystem::path &file_name);
 
 	public:
 		virtual std::int32_t serialVersionUid(const SerializeProtoOptions& options) const noexcept override;
