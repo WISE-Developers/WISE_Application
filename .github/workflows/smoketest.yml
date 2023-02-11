@@ -36,7 +36,7 @@ jobs:
         with:
           latest: true
           fileName: "WISE_Builder*.zip"
-          out-file-path: "builder"
+          # out-file-path: "builder"
           repository: "WISE-Developers/WISE_Builder_Component"
           
      
