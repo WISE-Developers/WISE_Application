@@ -34,14 +34,14 @@ jobs:
           # The name of the file to download.
           # Use this field only to specify filenames other than tarball or zipball, if any.
           # Supports wildcard pattern (eg: '*', '*.deb', '*.zip' etc..)
-          fileName: "wise-ubuntu2004*.deb"
+          # fileName: "wise-ubuntu2004*.deb"
       
 
           # Download the attached tarball (*.tar.gz)
-          tarBall: false
+          # tarBall: false
 
           # Download the attached zipball (*.zip)
-          zipBall: false
+          # zipBall: false
 
           # Relative path under $GITHUB_WORKSPACE to place the downloaded file(s)
           # It will create the target directory automatically if not present
