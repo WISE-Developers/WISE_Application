@@ -23,18 +23,18 @@ jobs:
     - name: Convert workflow
       run: |
         echo '```mermaid\ngraph LR\n' > workflow.md
-        cat .github/workflows/main.yml | grep '^name: ' | while read line; do
+        cat .github/workflows/cmake.yml | grep '^name: ' | while read line; do
           name=$(echo $line | cut -d' ' -f2)
-          echo "  $name[$name]" >> workflow.md
+          echo "  $name[$name]" >> workflow-cmake.md
         done
         cat .github/workflows/main.yml | grep '^needs: ' | while read line; do
           name=$(echo $line | cut -d' ' -f2)
           needs=$(echo $line | cut -d' ' -f3-)
           for need in $needs; do
-            echo "  $name --> $need" >> workflow.md
+            echo "  $name --> $need" >> workflow-cmake.md
           done
         done
-        echo '\n```' >> workflow.md
+        echo '\n```' >> workflow-cmake.md
 
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4
