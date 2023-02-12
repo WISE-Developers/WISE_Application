@@ -1,0 +1,44 @@
+# Convert GitHub Actions workflow to Mermaid
+
+name: Convert to Mermaid
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y nodejs
+
+    - name: Convert workflow
+      run: |
+        echo '```mermaid\ngraph LR\n' > workflow.md
+        cat .github/workflows/main.yml | grep '^name: ' | while read line; do
+          name=$(echo $line | cut -d' ' -f2)
+          echo "  $name[$name]" >> workflow.md
+        done
+        cat .github/workflows/main.yml | grep '^needs: ' | while read line; do
+          name=$(echo $line | cut -d' ' -f2)
+          needs=$(echo $line | cut -d' ' -f3-)
+          for need in $needs; do
+            echo "  $name --> $need" >> workflow.md
+          done
+        done
+        echo '\n```' >> workflow.md
+
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: 'Update Mermaid diagram'
+        push: true
+        branch: main

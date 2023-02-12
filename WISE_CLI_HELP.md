@@ -1,4 +1,8 @@
-WISE version 1.0.0-beta
+<img src="https://wise-developers.github.io/public_wise_assets/splash/wiserepo.png" width="250px">
+
+
+[![release badge][Release Badge]][Latest Releases Link]
+
 usage: WISE [OPTIONS]... [FILENAME]
 W.I.S.E. supports multiple file formats with different extensions:
         FGMJ: W.I.S.E. inputs stored in JSON format
@@ -28,3 +32,8 @@ ____
 | -l [ --balance ] arg           | select which scenario indices should be run if multiple are available. Will override any load balancing specified in the file |
 
 ___
+
+
+[Latest Releases Link]: https://github.com/WISE-Developers/WISE_Application/releases/latest
+
+[Release Badge]: https://badgen.net/github/release/WISE-Developers/WISE_Application?icon=github&scale=2
