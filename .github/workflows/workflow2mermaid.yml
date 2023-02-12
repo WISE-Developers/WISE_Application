@@ -27,7 +27,7 @@ jobs:
           name=$(echo $line | cut -d' ' -f2)
           echo "  $name[$name]" >> workflow-cmake.md
         done
-        cat .github/workflows/main.yml | grep '^needs: ' | while read line; do
+        cat .github/workflows/cmake.yml | grep '^needs: ' | while read line; do
           name=$(echo $line | cut -d' ' -f2)
           needs=$(echo $line | cut -d' ' -f3-)
           for need in $needs; do
