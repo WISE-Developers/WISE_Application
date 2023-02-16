@@ -771,6 +771,10 @@ auto Project::CWFGMProject::deserialize(const google::protobuf::Message& proto, 
 		FGMSerializationData data;
 		data.m_timeManager = m_timeManager;
 		m_outputs.deserialize(project->outputs(), myValid, "outputs", &data);
+		if (!m_outputs.testValidity(&m_scenarioCollection, valid)) {
+			if (!valid)
+				return nullptr;
+		}
 	}
 
 	if (project->has_timestepsettings())
@@ -2430,6 +2434,60 @@ WISE::ProjectProto::Project_Outputs* Project::FGMOutputs::serialize(const Serial
 auto Project::FGMOutputs::deserialize(const google::protobuf::Message& proto, std::shared_ptr<validation::validation_object> valid, const std::string& name) -> FGMOutputs*
 {
 	throw std::logic_error("Incorrect FGM output deserialization");
+}
+
+
+bool Project::FGMOutputs::testValidity(ScenarioCollection* collection, std::shared_ptr<validation::validation_object> valid) {
+	for (int i = 0; i < grids.size(); i++) {
+		GridOutputs& grid = grids[i];
+		Scenario* s = collection->FindName(grid.scenarioName.c_str());
+		if (s) {
+			bool output_fire_stat = false;
+			for (int j = 0; j < grid.outputs.size(); j++) {
+				GridOutput& output = grid.outputs[j];
+				if (((output.statistic >= 10) && (output.statistic <= 19)) ||
+					(output.statistic == PARA_BURNT_MEAN) ||
+					(output.statistic == PARA_CRITICAL_PATH) ||
+					(output.statistic == PARA_CRITICAL_PATH_MEAN)) {
+					output_fire_stat = true;
+					break;
+				}
+			}
+			if (output_fire_stat) {
+				PolymorphicAttribute pa;
+				double val;
+				bool bval;
+				bool error = false;
+				if (SUCCEEDED(s->m_scenario->GetAttribute(CWFGM_SCENARIO_OPTION_SPATIAL_THRESHOLD, &pa))) {
+					val = std::get<double>(pa);
+					if (fabs(val - 1.0) > 0.001)
+						error = true;
+				}
+				if ((!error) && SUCCEEDED(s->m_scenario->GetAttribute(CWFGM_SCENARIO_OPTION_PERIMETER_RESOLUTION, &pa))) {
+					val = std::get<double>(pa);
+					if (fabs(val - 1.0) > 0.001)
+						error = true;
+				}
+				if ((!error) && SUCCEEDED(s->m_scenario->GetAttribute(CWFGM_SCENARIO_OPTION_SPATIAL_THRESHOLD_DYNAMIC, &pa))) {
+					bval = std::get<bool>(pa);
+					if (bval)
+						error = true;
+				}
+				if (error) {
+					/// <summary>
+					/// The file doesn't contain a valid combination of scenario and grid export settings.
+					/// </summary>
+					/// <type>user</type>
+					if (valid) {
+						std::string sname = strprintf("%s", s->m_name.c_str());
+						valid->add_child_validation("CWFGM.ProjectProto.Project", "scenarios", validation::error_level::SEVERE, validation::id::invalid_scenario_options, sname, "Scenario options are not compatible with the selected grid exports.");
+					}
+					return false;
+				}
+			}
+		}
+	}
+	return true;
 }
 
 

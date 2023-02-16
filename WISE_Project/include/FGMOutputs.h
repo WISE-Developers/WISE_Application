@@ -376,6 +376,8 @@ namespace Project
 		virtual FGMOutputs* deserialize(const google::protobuf::Message& proto, std::shared_ptr<validation::validation_object> valid, const std::string& name) override;
 		virtual FGMOutputs* deserialize(const google::protobuf::Message& proto, std::shared_ptr<validation::validation_object> valid, const std::string& name, ISerializationData* data) override;
 		std::optional<bool> isdirty(void) const noexcept override { return std::nullopt; }
+		
+		bool testValidity(ScenarioCollection* collection, std::shared_ptr<validation::validation_object> valid);
 
 	public:
 		std::vector<SummaryOutput> summaries;
