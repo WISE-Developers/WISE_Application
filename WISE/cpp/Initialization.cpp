@@ -128,6 +128,7 @@ const struct _error_msg _error_msgs[] = {
 	{ ERROR_WEATHER_STREAM_ATTEMPT_OVERWRITE,				"Attempt to overwrite existing data in the weather stream failed." },
 	{ WARNING_WEATHER_STREAM_INTERPOLATE,			"There were missing hours in the imported data that were filled using interpolation." },
 	{ WARNING_WEATHER_STREAM_INTERPOLATE_BEFORE_INVALID_DATA, "There were missing hours in the imported data that were filled using interpolation, before encountering invalid data." },
+	{ ERROR_START_AFTER_NOON | ERROR_SEVERITY_WARNING,			"Weather stream cannot start after noon." },
 
 	{ ERROR_ATTEMPT_EXPORT_EMPTY_FIRE,				"Cannot export empty fire perimeter." },
 
