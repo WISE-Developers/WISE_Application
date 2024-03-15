@@ -93,6 +93,7 @@ jobs:
         repository: microsoft/GSL
         path: GSL
         token: ${{ secrets.WISE_PAT }}
+        ref: refs/tags/v4.0.0
     - uses: actions/checkout@v3
       with:
         repository: eclipse/paho.mqtt.c
