@@ -7,6 +7,8 @@ env:
   BUILD_TYPE: Release
   BOOST_VERSION: 1.81.0
   PROTO_VERSION: 21.10
+  PAHO_C_VERSION: 1.3.13
+  PAHO_CPP_VERSION: 1.3.2
 
 jobs:
   build:
@@ -99,11 +101,13 @@ jobs:
         repository: eclipse/paho.mqtt.c
         path: paho
         token: ${{ secrets.WISE_PAT }}
+        ref: refs/tags/v${{ env.PAHO_C_VERSION }}
     - uses: actions/checkout@v3
       with:
         repository: eclipse/paho.mqtt.cpp
         path: pahopp
         token: ${{ secrets.WISE_PAT }}
+        ref: refs/tags/v${{ env.PAHO_CPP_VERSION }}
     
     - name: Download LowLevel include files
       uses: robinraju/release-downloader@v1.7
