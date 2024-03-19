@@ -134,6 +134,7 @@ const struct Project::_error_msg _error_msgs[] = {
 	{ ERROR_GRID_WEATHER_NOT_IMPLEMENTED,					"An object associated with a simulation which can handle weather data is missing." },
 	{ ERROR_GRID_WEATHER_INVALID_DATES,					"If the times for the weather don't work with the scenario start and end times." },
 	{ ERROR_PROJECTION_UNKNOWN,						"Cannot parse the provided projection file." },
+	{ ERROR_TIMEZONE_UNKNOWN,						"Cannot determine timezone." },
 
 	{ ERROR_GRID_PRIMARY_STREAM_UNSPECIFIED,				"Multiple weather streams exist, but none have been identified as the primary weather stream." },
 	{ ERROR_GRID_WEATHERSTATIONS_TOO_CLOSE,					"At least 2 weather stations are within 100m of each other." },

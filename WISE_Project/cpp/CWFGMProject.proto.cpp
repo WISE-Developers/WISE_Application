@@ -409,13 +409,15 @@ HRESULT Project::CWFGMProject::deserialize(const std::string& filename, std::uin
 				file_major_version = data->project().version();
 				retval = S_OK;
 			}
+			catch (const ISerializeProto::DeserializeError& de)
+			{
+				std::cerr << "Error deserializing protobuf " << de.what() << std::endl;
+				retval = de.hr;
+			}
 			catch (std::exception &e)
 			{
-				auto ee = dynamic_cast_assert<ISerializeProto::DeserializeError*>(&e);
-				if ((ee) && (ee->hr != 0))
-						retval = ee->hr;
-				else
-					retval = ERROR_FILE_FORMAT_INVALID | ERROR_SEVERITY_WARNING;
+				std::cerr << "Error deserializing protobuf " << e.what() << std::endl;
+				retval = ERROR_FILE_FORMAT_INVALID | ERROR_SEVERITY_WARNING;
 			}
 		}
 		if (result)
@@ -689,9 +691,6 @@ auto Project::CWFGMProject::deserialize(const google::protobuf::Message& proto, 
 	m_fireCollection.AssignNewGrid(m_gridEngine.get());
 	m_weatherCollection.AssignNewGrid(m_gridEngine.get());
 	m_scenarioCollection.AssignNewGrid(oldgrid.get(), m_gridEngine.get());
-
-	PolymorphicAttribute attr;
-	double temp;
 
 	if (project->has_vectors())
 		if (!m_vectorCollection.deserialize(project->vectors(), myValid, "vectors"))
@@ -1890,10 +1889,6 @@ void Project::Fuel::PrintReportChanges(FuelCollection* m_fuelCollection, void* m
 	if (!defaultFuel) // can happen if m_csLUTFileName is empty
 		defaultFuel = FindDefault(m_fuelCollection->m_fuelCollection_Canada, m_fuelCollection->m_fuelCollection_NewZealand, m_fuelCollection->m_fuelCollection_Tasmania);
 
-	//Check for differences and build both the unmodified and modified lists
-	UCHAR		count, unique_count, ii;
-	long		ASCII_index, export_index, tmp;
-
 	//Get the full fuel name
 	Fuel* f = Fuel::FromCOM(this->m_fuel.get());
 
@@ -2523,7 +2518,7 @@ auto Project::FGMOutputs::deserialize(const google::protobuf::Message& proto, st
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.SummaryOutput", strprintf("summaries[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
 			weak_assert(false);
-			throw std::invalid_argument("StatsOutputs: Version is invalid");
+			throw ISerializeProto::DeserializeError("StatsOutputs: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
 		auto vt2 = validation::conditional_make_object(valid, "WISE.ProjectProto.Project.Outputs.SummaryOutput", strprintf("seasonal[%d]", i));
@@ -2621,7 +2616,7 @@ auto Project::FGMOutputs::deserialize(const google::protobuf::Message& proto, st
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.StatsOutput", strprintf("stats[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
 			weak_assert(false);
-			throw std::invalid_argument("StatsOutputs: Unknown version");
+			throw ISerializeProto::DeserializeError("CWFGM.ProjectProto.Project.Outputs.StatsOutputs: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
 		/// <summary>
@@ -2764,7 +2759,7 @@ HSS_PRAGMA_WARNING_POP
 							/// <type>user</type>
 							statsValid->add_child_validation("WISE.ProjectProto.Project.Outputs.DiscretizedStatsOptions", strprintf("grids[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
 						weak_assert(false);
-						throw std::invalid_argument("DiscretizedStatsOptions: Unknown version");
+						throw ISerializeProto::DeserializeError("CWFGM.ProjectProto.Project.Outputs.DiscretizedStatsOptions: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 					}
 					so.discretize = (std::uint16_t)dopt.discretize();
 					if ((so.discretize < 1) || (so.discretize > 1000))
@@ -2822,7 +2817,7 @@ HSS_PRAGMA_WARNING_POP
 						/// <type>user</type>
 						statsValid->add_child_validation("WISE.ProjectProto.Project.Outputs.DiscretizedStatsOptions", strprintf("grids[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
 					weak_assert(false);
-					throw std::invalid_argument("DiscretizedStatsOptions: Unknown version");
+					throw ISerializeProto::DeserializeError("CWFGM.ProjectProto.Project.Outputs.DiscretizedStatsOptions: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 				}
 				so.discretize = (std::uint16_t)dopt.discretize();
 				if ((so.discretize < 1) || (so.discretize > 1000))
@@ -2858,7 +2853,7 @@ HSS_PRAGMA_WARNING_POP
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.VectorOutput", strprintf("vectors[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto1.version()));
 			weak_assert(false);
-			throw std::invalid_argument("StatsOutputs: Unknown version");
+			throw ISerializeProto::DeserializeError("CWFGM.ProjectProto.Project.Outputs.VectorOutput: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
 		/// <summary>
@@ -3034,7 +3029,7 @@ HSS_PRAGMA_WARNING_POP
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.FuelGridOutput", strprintf("fuelgrids[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto1.version()));
 			weak_assert(false);
-			throw std::invalid_argument("StatsOutputs: Unknown version");
+			throw ISerializeProto::DeserializeError("CWFGM.ProjectProto.Project.Outputs.FuelGridOutput: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
 		/// <summary>
@@ -3136,7 +3131,7 @@ HSS_PRAGMA_WARNING_POP
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.GridOutput", strprintf("grids[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
 			weak_assert(false);
-			throw std::invalid_argument("StatsOutputs: Unknown version");
+			throw ISerializeProto::DeserializeError("CWFGM.ProjectProto.Project.Outputs.GridOutput: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
 		/// <summary>
@@ -3291,7 +3286,7 @@ HSS_PRAGMA_WARNING_POP
 					/// <type>user</type>
 					gridValid->add_child_validation("WISE.ProjectProto.Project.Outputs.DiscretizedStatsOptions", strprintf("grids[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(proto.version()));
 				weak_assert(false);
-				throw std::invalid_argument("DiscretizedStatsOptions: Unknown version");
+				throw ISerializeProto::DeserializeError("CWFGM.ProjectProto.Project.Outputs.DiscretizedStatsOptions: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 			}
 			grid.discretize = (std::uint16_t)dopt.discretize();
 			if ((grid.discretize < 1) || (grid.discretize > 1000))
@@ -3424,7 +3419,7 @@ HSS_PRAGMA_WARNING_POP
 				/// <type>user</type>
 				valid->add_child_validation("WISE.ProjectProto.Project.Outputs.AssetStatsOutput", strprintf("assetStats[%d]", i), validation::error_level::SEVERE, validation::id::version_mismatch, std::to_string(asset.version()));
 			weak_assert(false);
-			throw std::invalid_argument("AssetOutput: Unknown version");
+			throw ISerializeProto::DeserializeError("AssetStatsOutput: Version is invalid", ERROR_PROTOBUF_OBJECT_VERSION_INVALID);
 		}
 
 		/// <summary>
@@ -3456,7 +3451,6 @@ HSS_PRAGMA_WARNING_POP
 		entry.criticalPath = asset.has_criticalpathembedded() && asset.criticalpathembedded().value();
 		entry.criticalPathFilename = asset.criticalpathfilename();
 
-		stats::StatsFileType filetype;
 		switch (asset.filetype())
 		{
 		case WISE::ProjectProto::Project_Outputs_StatsOutput::CSV:

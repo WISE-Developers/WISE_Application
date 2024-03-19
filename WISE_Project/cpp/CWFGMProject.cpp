@@ -558,8 +558,6 @@ HRESULT Project::CWFGMProject::SetTimeZone(std::uint32_t timezoneId)
 	if (!timezone)
 		return E_INVALIDARG;
 
-	HRESULT hr;
-	PolymorphicAttribute var(timezoneId);
 	WTimeSpan diff = m_timeManager->m_worldLocation.m_timezone() - timezone->m_timezone;
 	WorldLocation& worldLocation = (WorldLocation&)(m_timeManager->m_worldLocation);
 	worldLocation.SetTimeZoneOffset(timezoneId);
@@ -587,8 +585,6 @@ HRESULT Project::CWFGMProject::SetTimeZone(std::uint32_t timezoneId)
 HRESULT Project::CWFGMProject::SetTimeZoneTS(const WTimeSpan &Timezone)
 {
 	WTimeSpan diff = m_timeManager->m_worldLocation.m_timezone() - Timezone;
-	PolymorphicAttribute var(Timezone);
-	HRESULT hr;
 	WorldLocation& worldLocation = (WorldLocation&)(m_timeManager->m_worldLocation);
 	worldLocation.m_timezone(Timezone);
 
@@ -1313,11 +1309,11 @@ static UINT AFX_CDECL stepBuildGrid(APTR parameter)
 								startUnits = 0;
 								break;
 							case PARA_WS:
-								value = std::max(0.0, min(200.0, wx.WindSpeed));
+								value = std::max(0.0, std::min(200.0, wx.WindSpeed));
 								startUnits = STORAGE_FORMAT_KM | STORAGE_FORMAT_HOUR;
 								break;
 							case PARA_GUST:
-								value = std::max(0.0, min(200.0, wx.WindGust));
+								value = std::max(0.0, std::min(200.0, wx.WindGust));
 								startUnits = STORAGE_FORMAT_KM | STORAGE_FORMAT_HOUR;
 								break;
 							case PARA_PRECIP:
@@ -1472,11 +1468,11 @@ static UINT AFX_CDECL stepBuildGrid(APTR parameter)
 									startUnits = 0;
 									break;
 								case PARA_WS:
-									value = std::max(0.0, min(200.0, wx.WindSpeed));
+									value = std::max(0.0, std::min(200.0, wx.WindSpeed));
 									startUnits = STORAGE_FORMAT_KM | STORAGE_FORMAT_HOUR;
 									break;
 								case PARA_GUST:
-									value = std::max(0.0, min(200.0, wx.WindGust));
+									value = std::max(0.0, std::min(200.0, wx.WindGust));
 									startUnits = STORAGE_FORMAT_KM | STORAGE_FORMAT_HOUR;
 									break;
 								case PARA_PRECIP:
@@ -3922,7 +3918,7 @@ HRESULT Project::CWFGMProject::PrintReportTxt(const TCHAR *szPath, const PrintRe
 		resultString += "Active Fuel Types :\n";
 		std::string moddedResult = "\nActive Fuel Types (modified):\n";
 
-		UCHAR		count, unique_count, ii;
+		UCHAR		count, unique_count;
 		long		ASCII_index, tmp, export_index;
 
 		ICWFGM_Fuel	*fuel = NULL;

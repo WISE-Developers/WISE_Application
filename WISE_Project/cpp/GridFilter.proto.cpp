@@ -737,6 +737,7 @@ auto Project::StaticVector::deserialize(const google::protobuf::Message& proto, 
 			/// </summary>
 			/// <type>user</type>
 			v->add_child_validation("string", "name", validation::error_level::SEVERE, validation::id::missing_name, vector->name());
+		throw ISerializeProto::DeserializeError("CWFGM.ProjectProto.ProjectVectorFilter: Invalid or missing name.");
 	}
 	m_comments = vector->comments();
 	m_col = vector->color();

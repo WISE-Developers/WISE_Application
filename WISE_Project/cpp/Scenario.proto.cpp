@@ -47,7 +47,7 @@ google::protobuf::Message* Project::Scenario::serialize(const SerializeProtoOpti
 	if (!data)
 	{
 		weak_assert(false);
-		throw std::invalid_argument("");
+		throw std::invalid_argument("Scenario: Parameter invalid");
 	}
 
 	if (options.fileVersion() == 1) {
