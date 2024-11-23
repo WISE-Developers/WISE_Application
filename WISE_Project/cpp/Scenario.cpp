@@ -777,7 +777,7 @@ HRESULT Project::Scenario::Simulation_Step()
 		return m_scenario->Simulation_Step();
 
 	HRESULT hr = S_OK;
-	ULONG complete_count = 0;
+	std::atomic<ULONG> complete_count = 0;
 	int si;
 	int thread_id = -1;
 #pragma omp parallel for num_threads(CWorkerThreadPool::NumberIdealProcessors()) firstprivate(thread_id)
